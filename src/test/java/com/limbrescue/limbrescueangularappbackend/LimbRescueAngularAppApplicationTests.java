@@ -1,10 +1,10 @@
-package com.limbrescue.limbrescueangularapp;
+package com.limbrescue.limbrescueangularappbackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LimbRescueAngularAppApplicationTests {
+class LimbRescueAngularAppBackendApplicationTests {
 
     @Test
     void contextLoads() {

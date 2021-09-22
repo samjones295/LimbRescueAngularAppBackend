@@ -1,4 +1,4 @@
-package com.limbrescue.limbrescueangularapp.controller;
+package com.limbrescue.limbrescueangularappbackend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.limbrescue.limbrescueangularapp.model.Tutorial;
-import com.limbrescue.limbrescueangularapp.repository.TutorialRepository;
+import com.limbrescue.limbrescueangularappbackend.model.Tutorial;
+import com.limbrescue.limbrescueangularappbackend.repository.TutorialRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController

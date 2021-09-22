@@ -1,4 +1,4 @@
-package com.limbrescue.limbrescueangularapp.model;
+package com.limbrescue.limbrescueangularappbackend.model;
 
 import javax.persistence.*;
 

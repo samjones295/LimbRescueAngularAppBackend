@@ -1,10 +1,10 @@
-package com.limbrescue.limbrescueangularapp.repository;
+package com.limbrescue.limbrescueangularappbackend.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.limbrescue.limbrescueangularapp.model.Tutorial;
+import com.limbrescue.limbrescueangularappbackend.model.Tutorial;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
     List<Tutorial> findByPublished(boolean published);
