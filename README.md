@@ -6,9 +6,9 @@
 - In application.properties, change password to your password that you create
 - Download maven
 - mvn spring-boot:run
-- Login to mysql (mysql -uroot -pPassword)
+- Login to mysql (mysql -u root -p)
 - mysql
-- create database testdb; (We will be changing this eventually
-- use testdb;
-- describe testdb;
+- create database limbrescuedb;
+- use limbrescuedb;
+- describe limbrescuedb;
 
