@@ -1,7 +1,7 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Group;
-import com.limbrescue.limbrescueangularappbackend.model.User;
+
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
