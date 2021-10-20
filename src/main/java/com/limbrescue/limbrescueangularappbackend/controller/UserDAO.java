@@ -51,7 +51,7 @@ public class UserDAO {
             user.setUsername(result.getString("username"));
             user.setPassword(result.getString("password"));
             user.setDate_created(result.getDate("date_created"));
-            user.setLast_updated(result.getTimestamp("last_updated"));
+            user.setLast_updated(result.getDate("last_updated"));
         }
         connection.close();
         return user;
@@ -65,7 +65,7 @@ public class UserDAO {
         statement.setString(3, user.getUsername());
         statement.setString(4, user.getPassword());
         statement.setDate(5, user.getDate_created());
-        statement.setTimestamp(6, user.getLast_updated());
+        statement.setDate(6, user.getLast_updated());
         ResultSet result = statement.executeQuery();
         connection.close();
     }
@@ -77,7 +77,7 @@ public class UserDAO {
         statement.setString(2, user.getUsername());
         statement.setString(3, user.getPassword());
         statement.setDate(4, user.getDate_created());
-        statement.setTimestamp(5, user.getLast_updated());
+        statement.setDate(5, user.getLast_updated());
         statement.setInt(6, user.getId());
         ResultSet result = statement.executeQuery();
         connection.close();
