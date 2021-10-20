@@ -90,4 +90,24 @@ public class UserDAO {
         ResultSet result = statement.executeQuery();
         connection.close();
     }
+    public User checkLogin(String username, String password) throws SQLException, ClassNotFoundException{
+        Class.forName("com.mysql.jdbc.Driver");
+        connection = DriverManager.getConnection(jdbcURL,dbUser, dbPassword);
+        String sql = "SELECT * FROM users WHERE username = ? and password = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, username);
+        statement.setString(2, password);
+        ResultSet result = statement.executeQuery();
+        User user = null;
+        if (result.next()) {
+            user = new User();
+            user.setEmail(result.getString("email"));
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setDate_created(result.getDate("date_created"));
+            user.setLast_updated(result.getDate("last_updated"));
+        }
+        connection.close();
+        return user;
+    }
 }
