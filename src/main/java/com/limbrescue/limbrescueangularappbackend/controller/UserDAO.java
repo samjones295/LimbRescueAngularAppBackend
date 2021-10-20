@@ -26,7 +26,7 @@ public class UserDAO {
         Class.forName("com.mysql.jdbc.Driver");
         table = p.getProperty("spring.datasource.UserTable");
     }
-    public List<User> getAll() throws SQLException {
+    public List<User> getAllUsers() throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -50,6 +50,7 @@ public class UserDAO {
         User user = null;
         if (result.next()) {
             user = new User();
+            user.setId(id);
             user.setEmail(result.getString("email"));
             user.setUsername(result.getString("username"));
             user.setPassword(result.getString("password"));
