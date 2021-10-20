@@ -26,7 +26,7 @@ public class ResultDAO {
         Class.forName("com.mysql.jdbc.Driver");
         table = p.getProperty("spring.datasource.ResultTable");
     }
-    public List<Result> getAllReadings() throws SQLException {
+    public List<Result> getAllResults() throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -74,7 +74,7 @@ public class ResultDAO {
     }
     public void updateResult(Result res, int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, group_id_array = ?, active_or_rest = ? WHERE id = ?";
+        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, res.getGroup_id());
         statement.setString(2, res.getAlgorithm());
@@ -90,6 +90,16 @@ public class ResultDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
+        ResultSet result = statement.executeQuery();
+        connection.close();
+    }
+    public void exportResultsToCSV() throws SQLException{
+        //List<Result> results = getAllResults();
+        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        String outputFile = p.getProperty("spring.datasource.OutputFile");
+        String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
+                " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\n";
+        PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
         connection.close();
     }
