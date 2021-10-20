@@ -3,6 +3,7 @@ package com.limbrescue.limbrescueangularappbackend.controller;
 import com.limbrescue.limbrescueangularappbackend.model.User;
 
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class UserDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private Connection connection;
-    public UserDAO() throws Exception {
+    public UserDAO() throws FileNotFoundException, ClassNotFoundException {
         reader = new FileReader("application.properties");
         jdbcURL = p.getProperty("spring.datasource.url");
         dbUser = p.getProperty("spring.datasource.username");
@@ -25,14 +26,16 @@ public class UserDAO {
         Class.forName("com.mysql.jdbc.Driver");
         table = p.getProperty("spring.datasource.UserTable");
     }
-    public List<User> getAllUsers() throws SQLException {
+    public List<User> getAll() throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
         List<User> users = new ArrayList<>();
         while (result.next()) {
-            User user = new User();
+            User user = new User(result.getInt("id"), result.getString("email"),
+                    result.getString("username"), result.getString("password"),
+                    result.getDate("date_created"), result.getDate("last_updated"));
             users.add(user);
         }
         connection.close();
@@ -84,7 +87,7 @@ public class UserDAO {
     }
     public void deleteUser(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        String sql = "DELETE FROM Users WHERE id = ?";
+        String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         ResultSet result = statement.executeQuery();
