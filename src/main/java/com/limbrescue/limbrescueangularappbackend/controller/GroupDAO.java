@@ -62,7 +62,7 @@ public class GroupDAO {
         statement.setInt(1, group.getId());
         statement.setString(2, group.getName());
         statement.setDate(3, group.getDate_created());
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void updateGroup(Group group, int id) throws SQLException{
@@ -72,7 +72,7 @@ public class GroupDAO {
         statement.setString(1, group.getName());
         statement.setDate(2, group.getDate_created());
         statement.setInt(3, group.getId());
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void deleteGroup(int id) throws SQLException{
@@ -80,7 +80,7 @@ public class GroupDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
 }

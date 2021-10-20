@@ -68,7 +68,7 @@ public class ResultDAO {
         statement.setInt(4, res.getRan_by());
         statement.setString(5, res.getStatus());
         statement.setString(6, res.getComments());
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void updateResult(Result res, int id) throws SQLException{
@@ -81,7 +81,7 @@ public class ResultDAO {
         statement.setString(4, res.getStatus());
         statement.setString(5, res.getComments());
         statement.setInt(6, res.getId());
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void deleteResult(int id) throws SQLException{
@@ -89,7 +89,7 @@ public class ResultDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void exportResultsToCSV() throws SQLException{
@@ -99,7 +99,7 @@ public class ResultDAO {
         String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
                 " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\n";
         PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
 }

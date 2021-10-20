@@ -75,7 +75,7 @@ public class ReadingDAO {
         statement.setString(6, reading.getLaterality());
         statement.setString(7, reading.getGroup_id_array());
         statement.setString(8, reading.getActive_or_rest());
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void updateReading(Reading reading, int id) throws SQLException{
@@ -91,7 +91,7 @@ public class ReadingDAO {
         statement.setString(6, reading.getGroup_id_array());
         statement.setString(7, reading.getActive_or_rest());
         statement.setInt(8, reading.getId());
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
     public void deleteReading(int id) throws SQLException{
@@ -99,7 +99,7 @@ public class ReadingDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
+        statement.executeQuery();
         connection.close();
     }
 }
