@@ -1,7 +1,7 @@
 package com.limbrescue.limbrescueangularappbackend.dao;
 
-import com.limbrescue.limbrescueangularappbackend.model.Reading;
 
+import com.limbrescue.limbrescueangularappbackend.model.GroupReading;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ReadingDAO {
+public class GroupReadingDAO {
     private String jdbcURL;
     private String dbUser;
     private String dbPassword;
@@ -18,7 +18,7 @@ public class ReadingDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private Connection connection;
-    public ReadingDAO() throws FileNotFoundException, ClassNotFoundException {
+    public GroupReadingDAO() throws FileNotFoundException, ClassNotFoundException {
         reader = new FileReader("application.properties");
         jdbcURL = p.getProperty("spring.datasource.url");
         dbUser = p.getProperty("spring.datasource.username");
@@ -26,64 +26,57 @@ public class ReadingDAO {
         Class.forName("com.mysql.jdbc.Driver");
         table = p.getProperty("spring.datasource.ReadingTable");
     }
-    public List<Reading> getAllReadings() throws SQLException {
+    public List<GroupReading> getAllGroupReadings() throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
-        List<Reading> readings = new ArrayList<>();
+        List<GroupReading> readings = new ArrayList<>();
         while (result.next()) {
-            Reading reading = new Reading(result.getInt("id"), result.getInt("patient_no"),
-                    result.getDate("date_created"), result.getString("active_or_rest"), result.getString("comments"));
+            GroupReading reading = new GroupReading(result.getInt("id"), result.getInt("group_id"),
+                    result.getInt("reading_id"));
             readings.add(reading);
         }
         connection.close();
         return readings;
     }
-    public Reading getReading(int id) throws SQLException{
+    public GroupReading getGroupReading(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         ResultSet result = statement.executeQuery();
-        Reading reading = null;
+        GroupReading reading = null;
         if (result.next()) {
-            reading = new Reading();
+            reading = new GroupReading();
             reading.setId(id);
-            reading.setPatient_no(result.getInt("patient_no"));
-            reading.setDate_created(result.getDate("date_created"));
-            reading.setActive_or_rest(result.getString("active_or_rest"));
-            reading.setComments(result.getString("comments"));
+            reading.setGroup_id(result.getInt("group_id"));
+            reading.setReading_id(result.getInt("reading_id"));
         }
         connection.close();
         return reading;
     }
-    public void insertReading(Reading reading) throws SQLException{
+    public void insertGroupReading(GroupReading reading) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, date_created = ?, active_or_rest = ?, comments = ?)";
+        String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, reading_id = ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, reading.getId());
-        statement.setInt(2, reading.getPatient_no());
-        statement.setDate(3, reading.getDate_created());
-        statement.setString(4, reading.getActive_or_rest());
-        statement.setString(5, reading.getComments());
+        statement.setInt(2, reading.getGroup_id());
+        statement.setInt(3, reading.getReading_id());
         statement.executeQuery();
         connection.close();
     }
-    public void updateReading(Reading reading, int id) throws SQLException{
+    public void updateGroupReading(GroupReading reading, int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
-                "active_or_rest = ?, comments = ? WHERE id = ?";
+        String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getPatient_no());
-        statement.setDate(2, reading.getDate_created());
-        statement.setString(3, reading.getActive_or_rest());
-        statement.setString(4, reading.getComments());
-        statement.setInt(5, reading.getId());
+        statement.setInt(1, reading.getGroup_id());
+        statement.setInt(2, reading.getReading_id());
+        statement.setInt(3, reading.getId());
         statement.executeQuery();
         connection.close();
     }
-    public void deleteReading(int id) throws SQLException{
+    public void deleteGroupReading(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

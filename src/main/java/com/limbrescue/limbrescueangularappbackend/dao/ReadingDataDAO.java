@@ -1,7 +1,6 @@
 package com.limbrescue.limbrescueangularappbackend.dao;
 
-import com.limbrescue.limbrescueangularappbackend.model.Reading;
-
+import com.limbrescue.limbrescueangularappbackend.model.ReadingData;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ReadingDAO {
+public class ReadingDataDAO {
     private String jdbcURL;
     private String dbUser;
     private String dbPassword;
@@ -18,7 +17,7 @@ public class ReadingDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private Connection connection;
-    public ReadingDAO() throws FileNotFoundException, ClassNotFoundException {
+    public ReadingDataDAO() throws FileNotFoundException, ClassNotFoundException {
         reader = new FileReader("application.properties");
         jdbcURL = p.getProperty("spring.datasource.url");
         dbUser = p.getProperty("spring.datasource.username");
@@ -26,64 +25,60 @@ public class ReadingDAO {
         Class.forName("com.mysql.jdbc.Driver");
         table = p.getProperty("spring.datasource.ReadingTable");
     }
-    public List<Reading> getAllReadings() throws SQLException {
+    public List<ReadingData> getAllReadingData() throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
-        List<Reading> readings = new ArrayList<>();
+        List<ReadingData> readings = new ArrayList<>();
         while (result.next()) {
-            Reading reading = new Reading(result.getInt("id"), result.getInt("patient_no"),
-                    result.getDate("date_created"), result.getString("active_or_rest"), result.getString("comments"));
-            readings.add(reading);
+            ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
+                    result.getDouble("time"), result.getDouble("ppg_reading"));
+            readings.add(data);
         }
         connection.close();
         return readings;
     }
-    public Reading getReading(int id) throws SQLException{
+    public ReadingData getReadingData(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         ResultSet result = statement.executeQuery();
-        Reading reading = null;
+        ReadingData data = null;
         if (result.next()) {
-            reading = new Reading();
-            reading.setId(id);
-            reading.setPatient_no(result.getInt("patient_no"));
-            reading.setDate_created(result.getDate("date_created"));
-            reading.setActive_or_rest(result.getString("active_or_rest"));
-            reading.setComments(result.getString("comments"));
+            data = new ReadingData();
+            data.setId(id);
+            data.setReading_id(result.getInt("reading_id"));
+            data.setTime(result.getDouble("time"));
+            data.setPpg_reading(result.getDouble("ppg_reading"));
         }
         connection.close();
-        return reading;
+        return data;
     }
-    public void insertReading(Reading reading) throws SQLException{
+    public void insertReadingData(ReadingData data) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, date_created = ?, active_or_rest = ?, comments = ?)";
+        String sql = "INSERT INTO " + table + " VALUES(id = ?, reading_id = ?, time = ?, ppg_reading = ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getId());
-        statement.setInt(2, reading.getPatient_no());
-        statement.setDate(3, reading.getDate_created());
-        statement.setString(4, reading.getActive_or_rest());
-        statement.setString(5, reading.getComments());
+        statement.setInt(1, data.getId());
+        statement.setInt(2, data.getReading_id());
+        statement.setDouble(3, data.getTime());
+        statement.setDouble(4, data.getPpg_reading());
         statement.executeQuery();
         connection.close();
     }
-    public void updateReading(Reading reading, int id) throws SQLException{
+    public void updateReadingData(ReadingData data, int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
-                "active_or_rest = ?, comments = ? WHERE id = ?";
+        String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getPatient_no());
-        statement.setDate(2, reading.getDate_created());
-        statement.setString(3, reading.getActive_or_rest());
-        statement.setString(4, reading.getComments());
-        statement.setInt(5, reading.getId());
+        statement.setInt(1, data.getReading_id());
+        statement.setDouble(2, data.getTime());
+        statement.setDouble(3, data.getPpg_reading());
+        statement.setInt(4, data.getId());
         statement.executeQuery();
         connection.close();
     }
-    public void deleteReading(int id) throws SQLException{
+    public void deleteReadingData(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
