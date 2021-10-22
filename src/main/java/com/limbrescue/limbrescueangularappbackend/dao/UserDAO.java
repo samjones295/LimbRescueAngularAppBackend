@@ -1,4 +1,4 @@
-package com.limbrescue.limbrescueangularappbackend.controller;
+package com.limbrescue.limbrescueangularappbackend.dao;
 
 import com.limbrescue.limbrescueangularappbackend.model.User;
 
