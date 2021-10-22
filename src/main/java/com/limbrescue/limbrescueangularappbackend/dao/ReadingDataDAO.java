@@ -23,7 +23,7 @@ public class ReadingDataDAO {
         dbUser = p.getProperty("spring.datasource.username");
         dbPassword = p.getProperty("spring.datasource.password");
         Class.forName("com.mysql.jdbc.Driver");
-        table = p.getProperty("spring.datasource.ReadingTable");
+        table = p.getProperty("spring.datasource.ReadingDataTable");
     }
     public List<ReadingData> getAllReadingData() throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
