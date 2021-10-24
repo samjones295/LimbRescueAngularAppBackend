@@ -1,5 +1,6 @@
 package com.limbrescue.limbrescueangularappbackend.dao;
 
+import com.limbrescue.limbrescueangularappbackend.model.Reading;
 import com.limbrescue.limbrescueangularappbackend.model.Result;
 
 import java.io.FileNotFoundException;
@@ -85,6 +86,17 @@ public class ResultDAO {
         res.setAlgorithm(result.getString("algorithm"));
         res.setRan_by(result.getInt("ran_by"));
         res.setStatus(result.getString("status"));
+        connection.close();
+        return res;
+    }
+    public Result updateComments(Result res, String comment) throws SQLException {
+        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, comment);
+        statement.setInt(2, res.getId());
+        ResultSet result = statement.executeQuery();
+        res.setComments(result.getString("comments"));
         connection.close();
         return res;
     }
