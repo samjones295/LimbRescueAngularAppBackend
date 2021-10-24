@@ -83,6 +83,15 @@ public class ReadingDAO {
         statement.executeQuery();
         connection.close();
     }
+    public void updateComments(Reading reading, String comment) throws SQLException {
+        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, comment);
+        statement.setInt(2, reading.getId());
+        statement.executeQuery();
+        connection.close();
+    }
     public void deleteReading(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "DELETE FROM " + table + " WHERE id = ?";
