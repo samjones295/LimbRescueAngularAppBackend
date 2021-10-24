@@ -65,15 +65,18 @@ public class GroupDAO {
         statement.executeQuery();
         connection.close();
     }
-    public void updateGroup(Group group, int id) throws SQLException{
+    public Group updateGroup(Group group, int id, String name, Date date_created) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, group.getName());
-        statement.setDate(2, group.getDate_created());
-        statement.setInt(3, group.getId());
-        statement.executeQuery();
+        statement.setString(1, name);
+        statement.setDate(2, date_created);
+        statement.setInt(3, id);
+        ResultSet result = statement.executeQuery();
+        group.setName(result.getString("name"));
+        group.setDate_created(result.getDate("date_created"));
         connection.close();
+        return group;
     }
     public void deleteGroup(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);

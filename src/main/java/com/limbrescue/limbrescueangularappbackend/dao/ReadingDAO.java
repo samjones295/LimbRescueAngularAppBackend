@@ -70,27 +70,32 @@ public class ReadingDAO {
         statement.executeQuery();
         connection.close();
     }
-    public void updateReading(Reading reading, int id) throws SQLException{
+    public Reading updateReading(Reading reading, int id, int patient_no, Date date_created, String active_or_rest) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
-                "active_or_rest = ?, comments = ? WHERE id = ?";
+                "active_or_rest = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getPatient_no());
-        statement.setDate(2, reading.getDate_created());
-        statement.setString(3, reading.getActive_or_rest());
-        statement.setString(4, reading.getComments());
-        statement.setInt(5, reading.getId());
-        statement.executeQuery();
+        statement.setInt(1, patient_no);
+        statement.setDate(2, date_created);
+        statement.setString(3, active_or_rest);
+        statement.setInt(4, id);
+        ResultSet result = statement.executeQuery();
+        reading.setPatient_no(result.getInt("patient_no"));
+        reading.setDate_created(result.getDate("date_created"));
+        reading.setActive_or_rest(result.getString("active_or_rest"));
         connection.close();
+        return reading;
     }
-    public void updateComments(Reading reading, String comment) throws SQLException {
+    public Reading updateComments(Reading reading, String comment) throws SQLException {
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
         statement.setInt(2, reading.getId());
-        statement.executeQuery();
+        ResultSet result = statement.executeQuery();
+        reading.setComments(result.getString("comments"));
         connection.close();
+        return reading;
     }
     public void deleteReading(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);

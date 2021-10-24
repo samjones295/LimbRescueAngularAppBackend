@@ -73,18 +73,24 @@ public class UserDAO {
         statement.executeQuery();
         connection.close();
     }
-    public void updateUser(User user, int id) throws SQLException{
+    public User updateUser(User user, int id, String email, String username, String password, Date date_created, Date last_updated) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "UPDATE " + table + " SET email = ?, username = ?, password = ?, date_created = ?, last_updated = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, user.getEmail());
-        statement.setString(2, user.getUsername());
-        statement.setString(3, user.getPassword());
-        statement.setDate(4, user.getDate_created());
-        statement.setDate(5, user.getLast_updated());
-        statement.setInt(6, user.getId());
-        statement.executeQuery();
+        statement.setString(1, email);
+        statement.setString(2, username);
+        statement.setString(3, password);
+        statement.setDate(4, date_created);
+        statement.setDate(5, last_updated);
+        statement.setInt(6, id);
+        ResultSet result = statement.executeQuery();
+        user.setEmail(result.getString("email"));
+        user.setUsername(result.getString("username"));
+        user.setPassword(result.getString("password"));
+        user.setDate_created(result.getDate("date_created"));
+        user.setLast_updated(result.getDate("last_updated"));
         connection.close();
+        return user;
     }
     public void deleteUser(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);

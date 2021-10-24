@@ -71,18 +71,22 @@ public class ResultDAO {
         statement.executeQuery();
         connection.close();
     }
-    public void updateResult(Result res, int id) throws SQLException{
+    public Result updateResult(Result res, int id, int group_id, String algorithm, int ran_by, String status) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, res.getGroup_id());
-        statement.setString(2, res.getAlgorithm());
-        statement.setInt(3, res.getRan_by());
-        statement.setString(4, res.getStatus());
-        statement.setString(5, res.getComments());
-        statement.setInt(6, res.getId());
-        statement.executeQuery();
+        statement.setInt(1, group_id);
+        statement.setString(2, algorithm);
+        statement.setInt(3, ran_by);
+        statement.setString(4, status);
+        statement.setInt(5, id);
+        ResultSet result = statement.executeQuery();
+        res.setGroup_id(result.getInt("group_id"));
+        res.setAlgorithm(result.getString("algorithm"));
+        res.setRan_by(result.getInt("ran_by"));
+        res.setStatus(result.getString("status"));
         connection.close();
+        return res;
     }
     public void deleteResult(int id) throws SQLException{
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -93,7 +97,6 @@ public class ResultDAO {
         connection.close();
     }
     public void exportResultsToCSV() throws SQLException{
-        //List<Result> results = getAllResults();
         connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         String outputFile = p.getProperty("spring.datasource.OutputFile");
         String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
