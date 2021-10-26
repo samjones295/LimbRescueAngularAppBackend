@@ -18,7 +18,7 @@ public class UserDAO {
     private DBConnection dbConnection;
     public UserDAO() throws FileNotFoundException, ClassNotFoundException {
         reader = new FileReader("application.properties");
-        table = p.getProperty("spring.datasource.GroupTable");
+        table = p.getProperty("spring.datasource.UserTable");
         dbConnection = new DBConnection();
     }
     public List<User> getAllUsers() throws SQLException {

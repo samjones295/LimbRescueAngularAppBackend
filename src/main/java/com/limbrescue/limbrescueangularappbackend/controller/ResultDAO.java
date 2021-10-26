@@ -16,7 +16,7 @@ public class ResultDAO {
     private DBConnection dbConnection;
     public ResultDAO() throws FileNotFoundException {
         reader = new FileReader("application.properties");
-        table = p.getProperty("spring.datasource.GroupTable");
+        table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
     }
     public List<Result> getAllResults() throws SQLException {

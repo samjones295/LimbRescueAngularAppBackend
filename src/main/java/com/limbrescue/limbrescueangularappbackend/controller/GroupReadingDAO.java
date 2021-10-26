@@ -17,7 +17,7 @@ public class GroupReadingDAO {
     private DBConnection dbConnection;
     public GroupReadingDAO() throws FileNotFoundException{
         reader = new FileReader("application.properties");
-        table = p.getProperty("spring.datasource.GroupTable");
+        table = p.getProperty("spring.datasource.GroupReadingTable");
         dbConnection = new DBConnection();
     }
     public List<GroupReading> getAllGroupReadings() throws SQLException {
