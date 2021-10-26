@@ -67,12 +67,13 @@ public class ReadingDAO {
     public Reading updateReading(Reading reading, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
-                "active_or_rest = ? WHERE id = ?";
+                "active_or_rest = ?, comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, reading.getPatient_no());
         statement.setDate(2, reading.getDate_created());
         statement.setString(3, reading.getActive_or_rest());
-        statement.setInt(4, id);
+        statement.setString(4, reading.getComments());
+        statement.setInt(5, id);
         ResultSet result = statement.executeQuery();
         reading.setPatient_no(result.getInt("patient_no"));
         reading.setDate_created(result.getDate("date_created"));

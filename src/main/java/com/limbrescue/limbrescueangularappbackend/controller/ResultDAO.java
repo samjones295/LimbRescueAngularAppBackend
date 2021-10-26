@@ -67,13 +67,14 @@ public class ResultDAO {
     }
     public Result updateResult(Result res, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, WHERE id = ?";
+        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?, WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, res.getGroup_id());
         statement.setString(2, res.getAlgorithm());
         statement.setInt(3, res.getRan_by());
         statement.setString(4, res.getStatus());
-        statement.setInt(5, id);
+        statement.setString(5, res.getComments());
+        statement.setInt(6, id);
         ResultSet result = statement.executeQuery();
         res.setGroup_id(result.getInt("group_id"));
         res.setAlgorithm(result.getString("algorithm"));
