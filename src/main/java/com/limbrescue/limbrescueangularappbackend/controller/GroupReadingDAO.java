@@ -1,4 +1,4 @@
-package com.limbrescue.limbrescueangularappbackend.dao;
+package com.limbrescue.limbrescueangularappbackend.controller;
 
 
 import com.limbrescue.limbrescueangularappbackend.model.GroupReading;
