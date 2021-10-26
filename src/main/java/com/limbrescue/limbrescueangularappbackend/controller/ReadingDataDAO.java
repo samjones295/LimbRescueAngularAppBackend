@@ -52,13 +52,18 @@ public class ReadingDataDAO {
     }
     public void insertReadingData(ReadingData data) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, reading_id = ?, time = ?, ppg_reading = ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, data.getId());
-        statement.setInt(2, data.getReading_id());
-        statement.setDouble(3, data.getTime());
-        statement.setDouble(4, data.getPpg_reading());
-        statement.executeQuery();
+        if (getReadingData(data.getId()) != null) {
+            updateReadingData(data, data.getId());
+        }
+        else {
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, reading_id = ?, time = ?, ppg_reading = ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, data.getId());
+            statement.setInt(2, data.getReading_id());
+            statement.setDouble(3, data.getTime());
+            statement.setDouble(4, data.getPpg_reading());
+            statement.executeQuery();
+        }
         connection.close();
     }
     public ReadingData updateReadingData(ReadingData data, int id) throws SQLException{

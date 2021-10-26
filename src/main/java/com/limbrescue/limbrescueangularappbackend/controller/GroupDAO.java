@@ -51,12 +51,17 @@ public class GroupDAO {
     }
     public void insertGroup(Group group) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, name = ?, date_created = ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, group.getId());
-        statement.setString(2, group.getName());
-        statement.setDate(3, group.getDate_created());
-        statement.executeQuery();
+        if (getGroup(group.getId()) != null) {
+            updateGroup(group, group.getId());
+        }
+        else {
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, name = ?, date_created = ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, group.getId());
+            statement.setString(2, group.getName());
+            statement.setDate(3, group.getDate_created());
+            statement.executeQuery();
+        }
         connection.close();
     }
     public Group updateGroup(Group group, int id) throws SQLException{

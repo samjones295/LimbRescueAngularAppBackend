@@ -54,15 +54,20 @@ public class ResultDAO {
     }
     public void insertResult(Result res) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, algorithm = ?, ran_by = ? status = ?, comments = ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, res.getId());
-        statement.setInt(2, res.getGroup_id());
-        statement.setString(3, res.getAlgorithm());
-        statement.setInt(4, res.getRan_by());
-        statement.setString(5, res.getStatus());
-        statement.setString(6, res.getComments());
-        statement.executeQuery();
+        if (getResult(res.getId()) != null) {
+            updateResult(res, res.getId());
+        }
+        else {
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, algorithm = ?, ran_by = ? status = ?, comments = ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, res.getId());
+            statement.setInt(2, res.getGroup_id());
+            statement.setString(3, res.getAlgorithm());
+            statement.setInt(4, res.getRan_by());
+            statement.setString(5, res.getStatus());
+            statement.setString(6, res.getComments());
+            statement.executeQuery();
+        }
         connection.close();
     }
     public Result updateResult(Result res, int id) throws SQLException{

@@ -52,12 +52,17 @@ public class GroupReadingDAO {
     }
     public void insertGroupReading(GroupReading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, reading_id = ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getId());
-        statement.setInt(2, reading.getGroup_id());
-        statement.setInt(3, reading.getReading_id());
-        statement.executeQuery();
+        if (getGroupReading(reading.getId()) != null) {
+            updateGroupReading(reading, reading.getId());
+        }
+        else {
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, reading_id = ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading.getId());
+            statement.setInt(2, reading.getGroup_id());
+            statement.setInt(3, reading.getReading_id());
+            statement.executeQuery();
+        }
         connection.close();
     }
     public GroupReading updateGroupReading(GroupReading reading, int id) throws SQLException{

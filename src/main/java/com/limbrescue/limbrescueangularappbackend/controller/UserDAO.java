@@ -1,5 +1,6 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
+import com.limbrescue.limbrescueangularappbackend.model.Result;
 import com.limbrescue.limbrescueangularappbackend.model.User;
 
 
@@ -56,15 +57,20 @@ public class UserDAO {
     }
     public void insertUser(User user) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, email = ?, username = ?, password = ?, date_created = ?, last_updated = ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, user.getId());
-        statement.setString(2, user.getEmail());
-        statement.setString(3, user.getUsername());
-        statement.setString(4, user.getPassword());
-        statement.setDate(5, user.getDate_created());
-        statement.setDate(6, user.getLast_updated());
-        statement.executeQuery();
+        if (getUser(user.getId()) != null) {
+            updateUser(user, user.getId());
+        }
+        else {
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, email = ?, username = ?, password = ?, date_created = ?, last_updated = ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, user.getId());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getUsername());
+            statement.setString(4, user.getPassword());
+            statement.setDate(5, user.getDate_created());
+            statement.setDate(6, user.getLast_updated());
+            statement.executeQuery();
+        }
         connection.close();
     }
     public User updateUser(User user, int id) throws SQLException{

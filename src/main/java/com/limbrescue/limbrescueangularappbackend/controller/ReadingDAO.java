@@ -54,14 +54,19 @@ public class ReadingDAO {
     }
     public void insertReading(Reading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, date_created = ?, active_or_rest = ?, comments = ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getId());
-        statement.setInt(2, reading.getPatient_no());
-        statement.setDate(3, reading.getDate_created());
-        statement.setString(4, reading.getActive_or_rest());
-        statement.setString(5, reading.getComments());
-        statement.executeQuery();
+        if (getReading(reading.getId()) != null) {
+            updateReading(reading, reading.getId());
+        }
+        else {
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, date_created = ?, active_or_rest = ?, comments = ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading.getId());
+            statement.setInt(2, reading.getPatient_no());
+            statement.setDate(3, reading.getDate_created());
+            statement.setString(4, reading.getActive_or_rest());
+            statement.setString(5, reading.getComments());
+            statement.executeQuery();
+        }
         connection.close();
     }
     public Reading updateReading(Reading reading, int id) throws SQLException{
