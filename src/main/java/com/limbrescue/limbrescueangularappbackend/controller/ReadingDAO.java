@@ -11,23 +11,17 @@ import java.util.List;
 import java.util.Properties;
 
 public class ReadingDAO {
-    private String jdbcURL;
-    private String dbUser;
-    private String dbPassword;
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
-    private Connection connection;
-    public ReadingDAO() throws FileNotFoundException, ClassNotFoundException {
+    private DBConnection dbConnection;
+    public ReadingDAO() throws FileNotFoundException{
         reader = new FileReader("application.properties");
-        jdbcURL = p.getProperty("spring.datasource.url");
-        dbUser = p.getProperty("spring.datasource.username");
-        dbPassword = p.getProperty("spring.datasource.password");
-        Class.forName("com.mysql.jdbc.Driver");
-        table = p.getProperty("spring.datasource.ReadingTable");
+        table = p.getProperty("spring.datasource.GroupTable");
+        dbConnection = new DBConnection();
     }
     public List<Reading> getAllReadings() throws SQLException {
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
@@ -41,7 +35,7 @@ public class ReadingDAO {
         return readings;
     }
     public Reading getReading(int id) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -59,7 +53,7 @@ public class ReadingDAO {
         return reading;
     }
     public void insertReading(Reading reading) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, date_created = ?, active_or_rest = ?, comments = ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, reading.getId());
@@ -71,7 +65,7 @@ public class ReadingDAO {
         connection.close();
     }
     public Reading updateReading(Reading reading, int id, int patient_no, Date date_created, String active_or_rest) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
                 "active_or_rest = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -87,7 +81,7 @@ public class ReadingDAO {
         return reading;
     }
     public Reading updateComments(Reading reading, String comment) throws SQLException {
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
@@ -98,7 +92,7 @@ public class ReadingDAO {
         return reading;
     }
     public void deleteReading(int id) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);

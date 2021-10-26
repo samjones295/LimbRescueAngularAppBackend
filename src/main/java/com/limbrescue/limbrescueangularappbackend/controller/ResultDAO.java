@@ -10,23 +10,17 @@ import java.util.List;
 import java.util.Properties;
 
 public class ResultDAO {
-    private String jdbcURL;
-    private String dbUser;
-    private String dbPassword;
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
-    private Connection connection;
-    public ResultDAO() throws FileNotFoundException, ClassNotFoundException {
+    private DBConnection dbConnection;
+    public ResultDAO() throws FileNotFoundException {
         reader = new FileReader("application.properties");
-        jdbcURL = p.getProperty("spring.datasource.url");
-        dbUser = p.getProperty("spring.datasource.username");
-        dbPassword = p.getProperty("spring.datasource.password");
-        Class.forName("com.mysql.jdbc.Driver");
-        table = p.getProperty("spring.datasource.ResultTable");
+        table = p.getProperty("spring.datasource.GroupTable");
+        dbConnection = new DBConnection();
     }
     public List<Result> getAllResults() throws SQLException {
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
@@ -40,7 +34,7 @@ public class ResultDAO {
         return results;
     }
     public Result getResult(int id) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -59,7 +53,7 @@ public class ResultDAO {
         return res;
     }
     public void insertResult(Result res) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, algorithm = ?, ran_by = ? status = ?, comments = ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, res.getId());
@@ -72,7 +66,7 @@ public class ResultDAO {
         connection.close();
     }
     public Result updateResult(Result res, int id, int group_id, String algorithm, int ran_by, String status) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, group_id);
@@ -89,7 +83,7 @@ public class ResultDAO {
         return res;
     }
     public Result updateComments(Result res, String comment) throws SQLException {
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
@@ -100,7 +94,7 @@ public class ResultDAO {
         return res;
     }
     public void deleteResult(int id) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -108,7 +102,7 @@ public class ResultDAO {
         connection.close();
     }
     public void exportResultsToCSV() throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String outputFile = p.getProperty("spring.datasource.OutputFile");
         String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
                 " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\n";

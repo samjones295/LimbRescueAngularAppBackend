@@ -11,23 +11,17 @@ import java.util.List;
 import java.util.Properties;
 
 public class GroupDAO {
-    private String jdbcURL;
-    private String dbUser;
-    private String dbPassword;
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
-    private Connection connection;
-    public GroupDAO() throws FileNotFoundException, ClassNotFoundException {
+    private DBConnection dbConnection;
+    public GroupDAO() throws FileNotFoundException {
         reader = new FileReader("application.properties");
-        jdbcURL = p.getProperty("spring.datasource.url");
-        dbUser = p.getProperty("spring.datasource.username");
-        dbPassword = p.getProperty("spring.datasource.password");
-        Class.forName("com.mysql.jdbc.Driver");
         table = p.getProperty("spring.datasource.GroupTable");
+        dbConnection = new DBConnection();
     }
     public List<Group> getAllGroups() throws SQLException {
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
@@ -40,7 +34,7 @@ public class GroupDAO {
         return groups;
     }
     public Group getGroup(int id) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -56,7 +50,7 @@ public class GroupDAO {
         return group;
     }
     public void insertGroup(Group group) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "INSERT INTO " + table + " VALUES(id = ?, name = ?, date_created = ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, group.getId());
@@ -66,7 +60,7 @@ public class GroupDAO {
         connection.close();
     }
     public Group updateGroup(Group group, int id, String name, Date date_created) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, name);
@@ -79,7 +73,7 @@ public class GroupDAO {
         return group;
     }
     public void deleteGroup(int id) throws SQLException{
-        connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+        Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
