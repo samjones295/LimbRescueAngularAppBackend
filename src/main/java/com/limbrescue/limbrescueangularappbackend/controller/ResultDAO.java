@@ -65,14 +65,14 @@ public class ResultDAO {
         statement.executeQuery();
         connection.close();
     }
-    public Result updateResult(Result res, int id, int group_id, String algorithm, int ran_by, String status) throws SQLException{
+    public Result updateResult(Result res, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ? WHERE id = ?";
+        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, group_id);
-        statement.setString(2, algorithm);
-        statement.setInt(3, ran_by);
-        statement.setString(4, status);
+        statement.setInt(1, res.getGroup_id());
+        statement.setString(2, res.getAlgorithm());
+        statement.setInt(3, res.getRan_by());
+        statement.setString(4, res.getStatus());
         statement.setInt(5, id);
         ResultSet result = statement.executeQuery();
         res.setGroup_id(result.getInt("group_id"));
@@ -82,12 +82,12 @@ public class ResultDAO {
         connection.close();
         return res;
     }
-    public Result updateComments(Result res, String comment) throws SQLException {
+    public Result updateComments(Result res, int id, String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
-        statement.setInt(2, res.getId());
+        statement.setInt(2, id);
         ResultSet result = statement.executeQuery();
         res.setComments(result.getString("comments"));
         connection.close();

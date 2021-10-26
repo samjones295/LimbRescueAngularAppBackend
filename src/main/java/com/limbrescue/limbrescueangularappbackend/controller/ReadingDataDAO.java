@@ -61,13 +61,13 @@ public class ReadingDataDAO {
         statement.executeQuery();
         connection.close();
     }
-    public ReadingData updateReadingData(ReadingData data, int id, int reading_id, double time, double ppg_reading) throws SQLException{
+    public ReadingData updateReadingData(ReadingData data, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading_id);
+        statement.setInt(1, data.getReading_id());
         statement.setDouble(2, data.getTime());
-        statement.setDouble(3, time);
+        statement.setDouble(3, data.getPpg_reading());
         statement.setInt(4, id);
         ResultSet result = statement.executeQuery();
         data.setReading_id(result.getInt("reading_id"));

@@ -64,14 +64,14 @@ public class ReadingDAO {
         statement.executeQuery();
         connection.close();
     }
-    public Reading updateReading(Reading reading, int id, int patient_no, Date date_created, String active_or_rest) throws SQLException{
+    public Reading updateReading(Reading reading, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
                 "active_or_rest = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, patient_no);
-        statement.setDate(2, date_created);
-        statement.setString(3, active_or_rest);
+        statement.setInt(1, reading.getPatient_no());
+        statement.setDate(2, reading.getDate_created());
+        statement.setString(3, reading.getActive_or_rest());
         statement.setInt(4, id);
         ResultSet result = statement.executeQuery();
         reading.setPatient_no(result.getInt("patient_no"));
@@ -80,12 +80,12 @@ public class ReadingDAO {
         connection.close();
         return reading;
     }
-    public Reading updateComments(Reading reading, String comment) throws SQLException {
+    public Reading updateComments(Reading reading, int id, String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
-        statement.setInt(2, reading.getId());
+        statement.setInt(2, id);
         ResultSet result = statement.executeQuery();
         reading.setComments(result.getString("comments"));
         connection.close();

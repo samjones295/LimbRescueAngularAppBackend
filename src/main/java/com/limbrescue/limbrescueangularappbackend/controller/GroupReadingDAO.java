@@ -60,12 +60,12 @@ public class GroupReadingDAO {
         statement.executeQuery();
         connection.close();
     }
-    public GroupReading updateGroupReading(GroupReading reading, int id, int group_id, int reading_id) throws SQLException{
+    public GroupReading updateGroupReading(GroupReading reading, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, group_id);
-        statement.setInt(2, reading_id);
+        statement.setInt(1, reading.getGroup_id());
+        statement.setInt(2, reading.getReading_id());
         statement.setInt(3, id);
         ResultSet result = statement.executeQuery();
         reading.setGroup_id(result.getInt("group_id"));
