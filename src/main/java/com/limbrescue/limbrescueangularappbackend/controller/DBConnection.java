@@ -11,7 +11,6 @@ public class DBConnection {
     private String jdbcURL;
     private String dbUser;
     private String dbPassword;
-    private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private Connection connection;
