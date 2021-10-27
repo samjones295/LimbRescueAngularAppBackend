@@ -8,7 +8,7 @@
 - mvn spring-boot:run
 - Login to mysql (mysql -u root -p)
 - mysql
-- create database limbrescuedb;
-- use limbrescuedb;
-- describe limbrescuedb;
+- create database testdb;
+- use testdb;
+- describe testdb;
 
