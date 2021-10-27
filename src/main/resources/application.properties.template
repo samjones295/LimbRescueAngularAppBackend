@@ -1,0 +1,16 @@
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.UserTable=
+spring.datasource.GroupTable=
+spring.datasource.GroupReadingTable=
+spring.datasource.ReadingTable=
+spring.datasource.ReadingDataTable=
+spring.datasource.ResultTable=
+spring.datasource.OutputFile=
+spring.security.user.name=
+spring.security.user.password=
+spring.jpa.properties.hibernate.dialect=
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto=
