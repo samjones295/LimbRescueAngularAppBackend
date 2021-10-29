@@ -22,7 +22,7 @@ public class PatientDAO {
         table = p.getProperty("spring.datasource.PatientTable");
         dbConnection = new DBConnection();
     }
-    public List<Patient> getAllReadingData() throws SQLException {
+    public List<Patient> getAllPatients() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
         PreparedStatement statement = connection.prepareStatement(sql);
