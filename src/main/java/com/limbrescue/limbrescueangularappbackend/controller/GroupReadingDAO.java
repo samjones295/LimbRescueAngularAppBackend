@@ -31,6 +31,7 @@ public class GroupReadingDAO {
         table = p.getProperty("spring.datasource.GroupReadingTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allgroupreadings")
     public List<GroupReading> getAllGroupReadings() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;

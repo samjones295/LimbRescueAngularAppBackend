@@ -31,6 +31,7 @@ public class GroupDAO {
         table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allgroups")
     public List<Group> getAllGroups() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;

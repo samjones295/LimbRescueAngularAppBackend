@@ -33,6 +33,7 @@ public class PatientDAO {
         table = p.getProperty("spring.datasource.PatientTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allpatients")
     public List<Patient> getAllPatients() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;

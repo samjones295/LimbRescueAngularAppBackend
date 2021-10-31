@@ -30,6 +30,7 @@ public class ReadingDataDAO {
         table = p.getProperty("spring.datasource.ReadingDataTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allreadingdata")
     public List<ReadingData> getAllReadingData() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;

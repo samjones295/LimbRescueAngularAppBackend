@@ -32,6 +32,7 @@ public class UserDAO {
         table = p.getProperty("spring.datasource.UserTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allusers")
     public List<User> getAllUsers() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;

@@ -28,6 +28,7 @@ public class ReadingDAO {
         table = p.getProperty("spring.datasource.ReadingTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allreadings")
     public List<Reading> getAllReadings() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;

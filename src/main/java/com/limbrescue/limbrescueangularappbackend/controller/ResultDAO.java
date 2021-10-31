@@ -26,6 +26,7 @@ public class ResultDAO {
         table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
     }
+    @GetMapping("/allresults")
     public List<Result> getAllResults() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
