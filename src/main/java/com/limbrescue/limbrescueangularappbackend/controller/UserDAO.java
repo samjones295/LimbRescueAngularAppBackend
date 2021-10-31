@@ -102,6 +102,7 @@ public class UserDAO {
         connection.close();
         return user;
     }
+    @DeleteMapping("/user")
     public void deleteUser(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
@@ -110,6 +111,7 @@ public class UserDAO {
         statement.executeQuery();
         connection.close();
     }
+    @GetMapping("/logincheck")
     public User checkLogin(String username, String password) throws SQLException {
         //Class.forName("com.mysql.jdbc.Driver");
         Connection connection = dbConnection.getConnection();

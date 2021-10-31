@@ -91,6 +91,7 @@ public class ReadingDataDAO {
         connection.close();
         return data;
     }
+    @DeleteMapping("/readingdata")
     public void deleteReadingData(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";

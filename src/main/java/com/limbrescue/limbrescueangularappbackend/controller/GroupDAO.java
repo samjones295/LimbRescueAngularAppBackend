@@ -87,6 +87,7 @@ public class GroupDAO {
         connection.close();
         return group;
     }
+    @DeleteMapping("/group")
     public void deleteGroup(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";

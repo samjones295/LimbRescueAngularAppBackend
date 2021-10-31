@@ -109,6 +109,7 @@ public class ResultDAO {
         connection.close();
         return res;
     }
+    @DeleteMapping("/result")
     public void deleteResult(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";

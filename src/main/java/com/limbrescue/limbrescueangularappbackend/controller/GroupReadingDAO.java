@@ -88,6 +88,7 @@ public class GroupReadingDAO {
         connection.close();
         return reading;
     }
+    @DeleteMapping("/groupreading")
     public void deleteGroupReading(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";

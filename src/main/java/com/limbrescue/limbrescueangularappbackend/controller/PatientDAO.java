@@ -89,6 +89,7 @@ public class PatientDAO {
         connection.close();
         return patient;
     }
+    @DeleteMapping("/patient")
     public void deletePatient(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
