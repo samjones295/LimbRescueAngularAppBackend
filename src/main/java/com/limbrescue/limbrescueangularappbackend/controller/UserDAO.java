@@ -2,10 +2,7 @@ package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Result;
 import com.limbrescue.limbrescueangularappbackend.model.User;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.io.FileNotFoundException;
@@ -67,7 +64,7 @@ public class UserDAO {
         connection.close();
         return user;
     }
-    @GetMapping(path = "/user")
+    @PostMapping(path = "/user")
     public void insertUser(User user) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getUser(user.getId()) != null) {

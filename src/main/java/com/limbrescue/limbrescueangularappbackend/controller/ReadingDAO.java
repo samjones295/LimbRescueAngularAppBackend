@@ -61,7 +61,7 @@ public class ReadingDAO {
         connection.close();
         return reading;
     }
-    @GetMapping(path = "/reading")
+    @PostMapping(path = "/reading")
     public void insertReading(Reading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getReading(reading.getId()) != null) {

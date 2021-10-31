@@ -2,10 +2,7 @@ package com.limbrescue.limbrescueangularappbackend.controller;
 
 
 import com.limbrescue.limbrescueangularappbackend.model.GroupReading;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -62,7 +59,7 @@ public class GroupReadingDAO {
         connection.close();
         return reading;
     }
-    @GetMapping(path = "/groupreading")
+    @PostMapping(path = "/groupreading")
     public void insertGroupReading(GroupReading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getGroupReading(reading.getId()) != null) {

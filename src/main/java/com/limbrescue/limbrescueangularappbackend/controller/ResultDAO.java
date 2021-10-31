@@ -60,7 +60,7 @@ public class ResultDAO {
         connection.close();
         return res;
     }
-    @GetMapping(path = "/result")
+    @PostMapping(path = "/result")
     public void insertResult(Result res) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getResult(res.getId()) != null) {
