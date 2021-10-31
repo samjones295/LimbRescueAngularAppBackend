@@ -25,7 +25,7 @@ public class DBConnection {
         dbUser = p.getProperty("spring.datasource.username");
         dbPassword = p.getProperty("spring.datasource.password");
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
 
         }
