@@ -1,6 +1,10 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.ReadingData;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+@CrossOrigin(origins="http://localhost:8081")
+@RestController
+@RequestMapping("/api/v1")
 public class ReadingDataDAO {
     private String table;
     private static final Properties p = new Properties();
@@ -50,6 +57,7 @@ public class ReadingDataDAO {
         connection.close();
         return data;
     }
+    @GetMapping(path = "/readingdata")
     public void insertReadingData(ReadingData data) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getReadingData(data.getId()) != null) {

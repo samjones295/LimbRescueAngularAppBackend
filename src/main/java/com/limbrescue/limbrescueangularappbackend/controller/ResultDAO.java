@@ -1,6 +1,10 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Result;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,7 +12,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
+@CrossOrigin(origins="http://localhost:8081")
+@RestController
+@RequestMapping("/api/v1")
 public class ResultDAO {
     private String table;
     private static final Properties p = new Properties();
@@ -52,6 +58,7 @@ public class ResultDAO {
         connection.close();
         return res;
     }
+    @GetMapping(path = "/result")
     public void insertResult(Result res) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getResult(res.getId()) != null) {
@@ -107,6 +114,7 @@ public class ResultDAO {
         statement.executeQuery();
         connection.close();
     }
+    @GetMapping(path = "/viewreport")
     public void exportResultsToCSV() throws SQLException{
         Connection connection = dbConnection.getConnection();
         String outputFile = p.getProperty("spring.datasource.OutputFile");
