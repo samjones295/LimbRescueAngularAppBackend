@@ -21,8 +21,12 @@ public class ReadingDataDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
-    public ReadingDataDAO() throws FileNotFoundException {
-        reader = new FileReader("application.properties");
+    public ReadingDataDAO() {
+        try {
+            reader = new FileReader("src/main/resources/application.properties");
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find the file");
+        }
         table = p.getProperty("spring.datasource.ReadingDataTable");
         dbConnection = new DBConnection();
     }

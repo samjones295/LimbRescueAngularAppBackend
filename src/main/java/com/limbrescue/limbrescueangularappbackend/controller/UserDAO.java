@@ -23,8 +23,12 @@ public class UserDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
-    public UserDAO() throws FileNotFoundException, ClassNotFoundException {
-        reader = new FileReader("application.properties");
+    public UserDAO()  {
+        try {
+            reader = new FileReader("src/main/resources/application.properties");
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find the file");
+        }
         table = p.getProperty("spring.datasource.UserTable");
         dbConnection = new DBConnection();
     }

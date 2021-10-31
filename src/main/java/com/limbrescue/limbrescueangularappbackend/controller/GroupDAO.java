@@ -22,8 +22,12 @@ public class GroupDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
-    public GroupDAO() throws FileNotFoundException {
-        reader = new FileReader("application.properties");
+    public GroupDAO()  {
+        try {
+            reader = new FileReader("src/main/resources/application.properties");
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find the file");
+        }
         table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
