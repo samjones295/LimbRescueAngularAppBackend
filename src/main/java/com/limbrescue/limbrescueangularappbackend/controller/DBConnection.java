@@ -16,9 +16,9 @@ public class DBConnection {
     private Connection connection;
     public DBConnection() {
         try {
-            reader = new FileReader("application.properties");
+            reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
-
+            System.out.println("Cannot find the file");
         }
 
         jdbcURL = p.getProperty("spring.datasource.url");
