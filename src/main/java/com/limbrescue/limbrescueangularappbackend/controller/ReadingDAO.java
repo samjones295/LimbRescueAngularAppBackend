@@ -79,6 +79,7 @@ public class ReadingDAO {
         }
         connection.close();
     }
+    @GetMapping("/singlereading")
     public Reading updateReading(Reading reading, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +

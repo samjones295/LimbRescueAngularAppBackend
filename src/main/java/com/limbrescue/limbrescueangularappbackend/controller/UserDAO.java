@@ -45,6 +45,7 @@ public class UserDAO {
         connection.close();
         return users;
     }
+    @GetMapping("/singleuser")
     public User getUser(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";

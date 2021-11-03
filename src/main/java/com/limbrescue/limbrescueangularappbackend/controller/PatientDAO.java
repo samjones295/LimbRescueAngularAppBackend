@@ -76,6 +76,7 @@ public class PatientDAO {
         }
         connection.close();
     }
+    @GetMapping("/singlepatient")
     public Patient updatePatient(Patient patient, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";

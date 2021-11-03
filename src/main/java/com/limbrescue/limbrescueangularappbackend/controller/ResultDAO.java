@@ -41,6 +41,7 @@ public class ResultDAO {
         connection.close();
         return results;
     }
+    @GetMapping("/singleresult")
     public Result getResult(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";

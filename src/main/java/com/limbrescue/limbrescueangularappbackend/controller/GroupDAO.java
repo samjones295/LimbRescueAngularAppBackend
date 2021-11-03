@@ -42,6 +42,7 @@ public class GroupDAO {
         connection.close();
         return groups;
     }
+    @GetMapping("/singlegroup")
     public Group getGroup(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";

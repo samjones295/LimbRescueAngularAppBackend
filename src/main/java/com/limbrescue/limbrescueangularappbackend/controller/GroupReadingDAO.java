@@ -75,6 +75,7 @@ public class GroupReadingDAO {
         }
         connection.close();
     }
+    @GetMapping("/singlegroupreading")
     public GroupReading updateGroupReading(GroupReading reading, int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";

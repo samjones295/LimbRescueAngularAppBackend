@@ -42,6 +42,7 @@ public class ReadingDataDAO {
         connection.close();
         return readings;
     }
+    @GetMapping("/singlereadingdata")
     public ReadingData getReadingData(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
