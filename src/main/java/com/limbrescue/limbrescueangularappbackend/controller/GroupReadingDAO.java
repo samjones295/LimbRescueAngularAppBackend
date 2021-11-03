@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,11 @@ public class GroupReadingDAO {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find the file");
+        }
+        try {
+            p.load(reader);
+        } catch (IOException e) {
+            System.out.println("Cannot load file");
         }
         table = p.getProperty("spring.datasource.GroupReadingTable");
         dbConnection = new DBConnection();
