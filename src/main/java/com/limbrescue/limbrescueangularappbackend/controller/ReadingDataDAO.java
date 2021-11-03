@@ -28,6 +28,7 @@ public class ReadingDataDAO {
         dbConnection = new DBConnection();
     }
     @GetMapping("/allreadingdata")
+    @ResponseBody
     public List<ReadingData> getAllReadingData() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
@@ -42,8 +43,9 @@ public class ReadingDataDAO {
         connection.close();
         return readings;
     }
-    @GetMapping("/singlereadingdata")
-    public ReadingData getReadingData(int id) throws SQLException{
+    @GetMapping("/singlereadingdata/{id}")
+    @ResponseBody
+    public ReadingData getReadingData(@RequestParam int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -61,7 +63,8 @@ public class ReadingDataDAO {
         return data;
     }
     @PostMapping(path = "/readingdata")
-    public void insertReadingData(ReadingData data) throws SQLException{
+    @ResponseBody
+    public void insertReadingData(@RequestParam ReadingData data) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getReadingData(data.getId()) != null) {
             updateReadingData(data, data.getId());
@@ -77,7 +80,9 @@ public class ReadingDataDAO {
         }
         connection.close();
     }
-    public ReadingData updateReadingData(ReadingData data, int id) throws SQLException{
+    @PutMapping(path="/readingdata/{id}")
+    @ResponseBody
+    public ReadingData updateReadingData(@RequestParam ReadingData data, @PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -92,8 +97,9 @@ public class ReadingDataDAO {
         connection.close();
         return data;
     }
-    @DeleteMapping("/readingdata")
-    public void deleteReadingData(int id) throws SQLException{
+    @DeleteMapping("/readingdata/{id}")
+    @ResponseBody
+    public void deleteReadingData(@RequestParam int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

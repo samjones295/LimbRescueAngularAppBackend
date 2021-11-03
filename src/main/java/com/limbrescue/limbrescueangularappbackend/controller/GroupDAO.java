@@ -29,6 +29,7 @@ public class GroupDAO {
         dbConnection = new DBConnection();
     }
     @GetMapping("/allgroups")
+    @ResponseBody
     public List<Group> getAllGroups() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
@@ -42,8 +43,9 @@ public class GroupDAO {
         connection.close();
         return groups;
     }
-    @GetMapping("/singlegroup")
-    public Group getGroup(int id) throws SQLException{
+    @GetMapping("/singlegroup/{id}")
+    @ResponseBody
+    public Group getGroup(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -60,7 +62,8 @@ public class GroupDAO {
         return group;
     }
     @PostMapping(path = "/group")
-    public void insertGroup(Group group) throws SQLException{
+    @ResponseBody
+    public void insertGroup(@RequestParam Group group) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getGroup(group.getId()) != null) {
             updateGroup(group, group.getId());
@@ -75,7 +78,9 @@ public class GroupDAO {
         }
         connection.close();
     }
-    public Group updateGroup(Group group, int id) throws SQLException{
+    @PutMapping(path="/group/{id}")
+    @ResponseBody
+    public Group updateGroup(@RequestParam Group group, @PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -88,8 +93,9 @@ public class GroupDAO {
         connection.close();
         return group;
     }
-    @DeleteMapping("/group")
-    public void deleteGroup(int id) throws SQLException{
+    @DeleteMapping("/group/{id}")
+    @ResponseBody
+    public void deleteGroup(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

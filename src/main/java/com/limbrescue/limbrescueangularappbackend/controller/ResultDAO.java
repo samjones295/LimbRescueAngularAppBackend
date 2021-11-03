@@ -27,6 +27,7 @@ public class ResultDAO {
         dbConnection = new DBConnection();
     }
     @GetMapping("/allresults")
+    @ResponseBody
     public List<Result> getAllResults() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
@@ -41,7 +42,8 @@ public class ResultDAO {
         connection.close();
         return results;
     }
-    @GetMapping("/singleresult")
+    @GetMapping("/singleresult/{id}")
+    @ResponseBody
     public Result getResult(int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
@@ -62,7 +64,8 @@ public class ResultDAO {
         return res;
     }
     @PostMapping(path = "/result")
-    public void insertResult(Result res) throws SQLException{
+    @ResponseBody
+    public void insertResult(@RequestParam Result res) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getResult(res.getId()) != null) {
             updateResult(res, res.getId());
@@ -80,7 +83,9 @@ public class ResultDAO {
         }
         connection.close();
     }
-    public Result updateResult(Result res, int id) throws SQLException{
+    @PutMapping(path="/result/{id}")
+    @ResponseBody
+    public Result updateResult(@RequestParam Result res, @PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?, WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -98,8 +103,9 @@ public class ResultDAO {
         connection.close();
         return res;
     }
-    @PutMapping("/resultcomment")
-    public Result updateComments(Result res, int id, String comment) throws SQLException {
+    @PutMapping("/resultcomment/{id}")
+    @ResponseBody
+    public Result updateComments(@RequestParam Result res, @PathVariable int id, @RequestParam String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -110,8 +116,9 @@ public class ResultDAO {
         connection.close();
         return res;
     }
-    @DeleteMapping("/result")
-    public void deleteResult(int id) throws SQLException{
+    @DeleteMapping("/result/{id}")
+    @ResponseBody
+    public void deleteResult(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -120,6 +127,7 @@ public class ResultDAO {
         connection.close();
     }
     @GetMapping(path = "/viewreport")
+    @ResponseBody
     public void exportResultsToCSV() throws SQLException{
         Connection connection = dbConnection.getConnection();
         String outputFile = p.getProperty("spring.datasource.OutputFile");

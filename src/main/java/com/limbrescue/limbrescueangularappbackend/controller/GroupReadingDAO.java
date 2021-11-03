@@ -29,6 +29,7 @@ public class GroupReadingDAO {
         dbConnection = new DBConnection();
     }
     @GetMapping("/allgroupreadings")
+    @ResponseBody
     public List<GroupReading> getAllGroupReadings() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
@@ -43,7 +44,9 @@ public class GroupReadingDAO {
         connection.close();
         return readings;
     }
-    public GroupReading getGroupReading(int id) throws SQLException{
+    @GetMapping("/singlegroupreading/{id}")
+    @ResponseBody
+    public GroupReading getGroupReading(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -60,7 +63,8 @@ public class GroupReadingDAO {
         return reading;
     }
     @PostMapping(path = "/groupreading")
-    public void insertGroupReading(GroupReading reading) throws SQLException{
+    @ResponseBody
+    public void insertGroupReading(@RequestParam GroupReading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getGroupReading(reading.getId()) != null) {
             updateGroupReading(reading, reading.getId());
@@ -75,8 +79,9 @@ public class GroupReadingDAO {
         }
         connection.close();
     }
-    @GetMapping("/singlegroupreading")
-    public GroupReading updateGroupReading(GroupReading reading, int id) throws SQLException{
+    @PutMapping(path="/groupreading/{id}")
+    @ResponseBody
+    public GroupReading updateGroupReading(@RequestParam GroupReading reading, @PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -89,8 +94,9 @@ public class GroupReadingDAO {
         connection.close();
         return reading;
     }
-    @DeleteMapping("/groupreading")
-    public void deleteGroupReading(int id) throws SQLException{
+    @DeleteMapping("/groupreading/{id}")
+    @ResponseBody
+    public void deleteGroupReading(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

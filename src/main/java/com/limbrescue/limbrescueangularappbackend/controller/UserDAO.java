@@ -30,6 +30,7 @@ public class UserDAO {
         dbConnection = new DBConnection();
     }
     @GetMapping("/allusers")
+    @ResponseBody
     public List<User> getAllUsers() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
@@ -45,8 +46,9 @@ public class UserDAO {
         connection.close();
         return users;
     }
-    @GetMapping("/singleuser")
-    public User getUser(int id) throws SQLException{
+    @GetMapping("/singleuser/{id}")
+    @ResponseBody
+    public User getUser(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -66,7 +68,8 @@ public class UserDAO {
         return user;
     }
     @PostMapping(path = "/user")
-    public void insertUser(User user) throws SQLException{
+    @ResponseBody
+    public void insertUser(@RequestParam User user) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getUser(user.getId()) != null) {
             updateUser(user, user.getId());
@@ -84,7 +87,9 @@ public class UserDAO {
         }
         connection.close();
     }
-    public User updateUser(User user, int id) throws SQLException{
+    @PutMapping(path="/user/{id}")
+    @ResponseBody
+    public User updateUser(@RequestParam User user, @PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET email = ?, username = ?, password = ?, date_created = ?, last_updated = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -103,8 +108,9 @@ public class UserDAO {
         connection.close();
         return user;
     }
-    @DeleteMapping("/user")
-    public void deleteUser(int id) throws SQLException{
+    @DeleteMapping("/user/{id}")
+    @ResponseBody
+    public void deleteUser(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -113,7 +119,8 @@ public class UserDAO {
         connection.close();
     }
     @GetMapping("/logincheck")
-    public User checkLogin(String username, String password) throws SQLException {
+    @ResponseBody
+    public User checkLogin(@RequestParam String username, @RequestParam String password) throws SQLException {
         //Class.forName("com.mysql.jdbc.Driver");
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM users WHERE username = ? and password = ?";

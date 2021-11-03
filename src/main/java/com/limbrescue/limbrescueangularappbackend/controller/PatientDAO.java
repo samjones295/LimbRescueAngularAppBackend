@@ -1,6 +1,7 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Patient;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -31,6 +32,7 @@ public class PatientDAO {
         dbConnection = new DBConnection();
     }
     @GetMapping("/allpatients")
+    @ResponseBody
     public List<Patient> getAllPatients() throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
@@ -44,7 +46,9 @@ public class PatientDAO {
         connection.close();
         return readings;
     }
-    public Patient getPatient(int id) throws SQLException{
+    @GetMapping("/singlepatient/{id}")
+    @ResponseBody
+    public Patient getPatient(@PathVariable  int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -61,7 +65,8 @@ public class PatientDAO {
         return patient;
     }
     @PostMapping(path = "/patient")
-    public void insertPatient(Patient patient) throws SQLException{
+    @ResponseBody
+    public void insertPatient(@RequestParam Patient patient) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getPatient(patient.getId()) != null) {
             updatePatient(patient, patient.getId());
@@ -76,8 +81,9 @@ public class PatientDAO {
         }
         connection.close();
     }
-    @GetMapping("/singlepatient")
-    public Patient updatePatient(Patient patient, int id) throws SQLException{
+    @PutMapping(path="/patient/{id}")
+    @ResponseBody
+    public Patient updatePatient(@RequestParam Patient patient, @PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -90,8 +96,9 @@ public class PatientDAO {
         connection.close();
         return patient;
     }
-    @DeleteMapping("/patient")
-    public void deletePatient(int id) throws SQLException{
+    @DeleteMapping("/patient/{id}")
+    @ResponseBody
+    public void deletePatient(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
