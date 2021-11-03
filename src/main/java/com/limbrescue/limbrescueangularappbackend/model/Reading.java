@@ -11,7 +11,7 @@ public class Reading {
     public Reading() {
 
     }
-    public Reading(int id, String patient_no, Date date_created, String active_or_rest, String comments) {
+    public Reading(int id, String patient_no, Date date_created, /*String active_or_rest,*/ String comments) {
         this.id = id;
         this.patient_no = patient_no;
         this.date_created = date_created;
