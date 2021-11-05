@@ -50,7 +50,7 @@ public class ResultDAO {
     }
     @GetMapping("/singleresult/{id}")
     @ResponseBody
-    public Result getResult(int id) throws SQLException{
+    public Result getResult(@PathVariable int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class ResultDAO {
     }
     @PutMapping("/resultcomment/{id}")
     @ResponseBody
-    public Result updateComments(@RequestParam Result res, @PathVariable int id, @RequestParam String comment) throws SQLException {
+    public Result updateComments(@RequestParam Result res, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

@@ -51,7 +51,7 @@ public class ReadingDataDAO {
     }
     @GetMapping("/singlereadingdata/{id}")
     @ResponseBody
-    public ReadingData getReadingData(@RequestParam int id) throws SQLException{
+    public ReadingData getReadingData(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class ReadingDataDAO {
     }
     @PutMapping(path="/readingdata/{id}")
     @ResponseBody
-    public ReadingData updateReadingData(@RequestParam ReadingData data, @PathVariable int id) throws SQLException{
+    public ReadingData updateReadingData(@RequestParam ReadingData data, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class ReadingDataDAO {
     }
     @DeleteMapping("/readingdata/{id}")
     @ResponseBody
-    public void deleteReadingData(@RequestParam int id) throws SQLException{
+    public void deleteReadingData(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

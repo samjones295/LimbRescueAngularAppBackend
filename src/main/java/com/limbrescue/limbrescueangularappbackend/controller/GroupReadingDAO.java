@@ -52,7 +52,7 @@ public class GroupReadingDAO {
     }
     @GetMapping("/singlegroupreading/{id}")
     @ResponseBody
-    public GroupReading getGroupReading(@PathVariable int id) throws SQLException{
+    public GroupReading getGroupReading(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class GroupReadingDAO {
     }
     @PutMapping(path="/groupreading/{id}")
     @ResponseBody
-    public GroupReading updateGroupReading(@RequestParam GroupReading reading, @PathVariable int id) throws SQLException{
+    public GroupReading updateGroupReading(@RequestParam GroupReading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class GroupReadingDAO {
     }
     @DeleteMapping("/groupreading/{id}")
     @ResponseBody
-    public void deleteGroupReading(@PathVariable int id) throws SQLException{
+    public void deleteGroupReading(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

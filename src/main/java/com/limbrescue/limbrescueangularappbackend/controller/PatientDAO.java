@@ -54,7 +54,7 @@ public class PatientDAO {
     }
     @GetMapping("/singlepatient/{id}")
     @ResponseBody
-    public Patient getPatient(@PathVariable  int id) throws SQLException{
+    public Patient getPatient(@PathVariable("id")  int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -89,7 +89,7 @@ public class PatientDAO {
     }
     @PutMapping(path="/patient/{id}")
     @ResponseBody
-    public Patient updatePatient(@RequestParam Patient patient, @PathVariable int id) throws SQLException{
+    public Patient updatePatient(@RequestParam Patient patient, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class PatientDAO {
     }
     @DeleteMapping("/patient/{id}")
     @ResponseBody
-    public void deletePatient(@PathVariable int id) throws SQLException{
+    public void deletePatient(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

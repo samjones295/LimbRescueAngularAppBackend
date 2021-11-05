@@ -38,7 +38,7 @@ public class GroupDAO {
     @ResponseBody
     public List<Group> getAllGroups() throws SQLException {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
+        String sql = "SELECT * FROM `" + table + "`";
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet result = statement.executeQuery();
         List<Group> groups = new ArrayList<>();
@@ -51,7 +51,7 @@ public class GroupDAO {
     }
     @GetMapping("/singlegroup/{id}")
     @ResponseBody
-    public Group getGroup(@PathVariable int id) throws SQLException{
+    public Group getGroup(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class GroupDAO {
     }
     @PutMapping(path="/group/{id}")
     @ResponseBody
-    public Group updateGroup(@RequestParam Group group, @PathVariable int id) throws SQLException{
+    public Group updateGroup(@RequestParam Group group, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -101,7 +101,7 @@ public class GroupDAO {
     }
     @DeleteMapping("/group/{id}")
     @ResponseBody
-    public void deleteGroup(@PathVariable int id) throws SQLException{
+    public void deleteGroup(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

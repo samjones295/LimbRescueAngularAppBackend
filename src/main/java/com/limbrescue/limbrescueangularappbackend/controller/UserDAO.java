@@ -54,7 +54,7 @@ public class UserDAO {
     }
     @GetMapping("/singleuser/{id}")
     @ResponseBody
-    public User getUser(@PathVariable int id) throws SQLException{
+    public User getUser(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -95,7 +95,7 @@ public class UserDAO {
     }
     @PutMapping(path="/user/{id}")
     @ResponseBody
-    public User updateUser(@RequestParam User user, @PathVariable int id) throws SQLException{
+    public User updateUser(@RequestParam User user, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET email = ?, username = ?, password = ?, date_created = ?, last_updated = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -116,7 +116,7 @@ public class UserDAO {
     }
     @DeleteMapping("/user/{id}")
     @ResponseBody
-    public void deleteUser(@PathVariable int id) throws SQLException{
+    public void deleteUser(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

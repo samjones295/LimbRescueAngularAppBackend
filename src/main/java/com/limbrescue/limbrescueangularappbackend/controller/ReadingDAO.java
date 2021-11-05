@@ -52,7 +52,7 @@ public class ReadingDAO {
     }
     @GetMapping("/singlereading/{id}")
     @ResponseBody
-    public Reading getReading(@PathVariable int id) throws SQLException{
+    public Reading getReading(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class ReadingDAO {
     }
     @PutMapping(path="/reading/{id}")
     @ResponseBody
-    public Reading updateReading(@RequestParam  Reading reading, @PathVariable int id) throws SQLException{
+    public Reading updateReading(@RequestParam  Reading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
                 "comments = ? WHERE id = ?";
@@ -110,7 +110,7 @@ public class ReadingDAO {
     }
     @PutMapping("/readingcomment/{id}")
     @ResponseBody
-    public Reading updateComments(@RequestParam Reading reading, @PathVariable int id, @RequestParam String comment) throws SQLException {
+    public Reading updateComments(@RequestParam Reading reading, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -123,7 +123,7 @@ public class ReadingDAO {
     }
     @DeleteMapping("/reading/{id}")
     @ResponseBody
-    public void deleteReading(int id) throws SQLException{
+    public void deleteReading(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
