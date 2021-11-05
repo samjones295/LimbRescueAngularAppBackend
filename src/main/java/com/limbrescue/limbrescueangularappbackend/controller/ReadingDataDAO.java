@@ -13,7 +13,7 @@ import java.util.Properties;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class ReadingDataDAO {
     private String table;
     private static final Properties p = new Properties();
