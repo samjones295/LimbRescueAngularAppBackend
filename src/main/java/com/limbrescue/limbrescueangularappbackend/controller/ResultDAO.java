@@ -124,7 +124,7 @@ public class ResultDAO {
     }
     @DeleteMapping("/result/{id}")
     @ResponseBody
-    public void deleteResult(@PathVariable int id) throws SQLException{
+    public void deleteResult(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
