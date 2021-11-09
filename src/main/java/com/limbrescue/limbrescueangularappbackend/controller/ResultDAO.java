@@ -112,7 +112,7 @@ public class ResultDAO {
     }
     @PutMapping("/resultcomment/{id}/{comment}")
     @ResponseBody
-    public Result updateComments(@RequestParam Result res, @PathVariable("id") int id, @PathVariable("comment") String comment) throws SQLException {
+    public Result updateComments(@RequestBody Result res, @PathVariable("id") int id, @PathVariable("comment") String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

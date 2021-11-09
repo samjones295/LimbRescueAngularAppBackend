@@ -70,7 +70,7 @@ public class GroupReadingDAO {
     }
     @PostMapping(path = "/groupreading")
     @ResponseBody
-    public void insertGroupReading(@RequestParam GroupReading reading) throws SQLException{
+    public void insertGroupReading(@RequestBody GroupReading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getGroupReading(reading.getId()) != null) {
             updateGroupReading(reading, reading.getId());
@@ -87,7 +87,7 @@ public class GroupReadingDAO {
     }
     @PutMapping(path="/groupreading/{id}")
     @ResponseBody
-    public GroupReading updateGroupReading(@RequestParam GroupReading reading, @PathVariable("id") int id) throws SQLException{
+    public GroupReading updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

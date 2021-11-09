@@ -72,7 +72,7 @@ public class PatientDAO {
     }
     @PostMapping(path = "/patient")
     @ResponseBody
-    public void insertPatient(@RequestParam Patient patient) throws SQLException{
+    public void insertPatient(@RequestBody Patient patient) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getPatient(patient.getId()) != null) {
             updatePatient(patient, patient.getId());
@@ -89,7 +89,7 @@ public class PatientDAO {
     }
     @PutMapping(path="/patient/{id}")
     @ResponseBody
-    public Patient updatePatient(@RequestParam Patient patient, @PathVariable("id") int id) throws SQLException{
+    public Patient updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

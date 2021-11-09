@@ -70,7 +70,7 @@ public class ReadingDataDAO {
     }
     @PostMapping(path = "/readingdata")
     @ResponseBody
-    public void insertReadingData(@RequestParam ReadingData data) throws SQLException{
+    public void insertReadingData(@RequestBody ReadingData data) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getReadingData(data.getId()) != null) {
             updateReadingData(data, data.getId());
@@ -88,7 +88,7 @@ public class ReadingDataDAO {
     }
     @PutMapping(path="/readingdata/{id}")
     @ResponseBody
-    public ReadingData updateReadingData(@RequestParam ReadingData data, @PathVariable("id") int id) throws SQLException{
+    public ReadingData updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

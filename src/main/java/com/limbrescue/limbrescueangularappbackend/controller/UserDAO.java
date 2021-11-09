@@ -75,7 +75,7 @@ public class UserDAO {
     }
     @PostMapping(path = "/user")
     @ResponseBody
-    public void insertUser(@RequestParam User user) throws SQLException{
+    public void insertUser(@RequestBody User user) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getUser(user.getId()) != null) {
             updateUser(user, user.getId());
@@ -95,7 +95,7 @@ public class UserDAO {
     }
     @PutMapping(path="/user/{id}")
     @ResponseBody
-    public User updateUser(@RequestParam User user, @PathVariable("id") int id) throws SQLException{
+    public User updateUser(@RequestBody User user, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET email = ?, username = ?, password = ?, date_created = ?, last_updated = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -124,9 +124,9 @@ public class UserDAO {
         statement.executeQuery();
         connection.close();
     }
-    @GetMapping("/logincheck")
+    @GetMapping("/logincheck/{username}/{password}")
     @ResponseBody
-    public User checkLogin(@RequestParam String username, @RequestParam String password) throws SQLException {
+    public User checkLogin(@PathVariable("username") String username, @PathVariable("password") String password) throws SQLException {
         //Class.forName("com.mysql.jdbc.Driver");
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM users WHERE username = ? and password = ?";

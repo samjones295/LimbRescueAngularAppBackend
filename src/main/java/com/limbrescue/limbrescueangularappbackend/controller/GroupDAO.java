@@ -69,7 +69,7 @@ public class GroupDAO {
     }
     @PostMapping(path = "/group")
     @ResponseBody
-    public void insertGroup(@RequestParam Group group) throws SQLException{
+    public void insertGroup(@RequestBody Group group) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getGroup(group.getId()) != null) {
             updateGroup(group, group.getId());
@@ -86,7 +86,7 @@ public class GroupDAO {
     }
     @PutMapping(path="/group/{id}")
     @ResponseBody
-    public Group updateGroup(@RequestParam Group group, @PathVariable("id") int id) throws SQLException{
+    public Group updateGroup(@RequestBody Group group, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

@@ -72,7 +72,7 @@ public class ReadingDAO {
     }
     @PostMapping(path = "/reading")
     @ResponseBody
-    public void insertReading(@RequestParam Reading reading) throws SQLException{
+    public void insertReading(@RequestBody Reading reading) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getReading(reading.getId()) != null) {
             updateReading(reading, reading.getId());
@@ -91,7 +91,7 @@ public class ReadingDAO {
     }
     @PutMapping(path="/reading/{id}")
     @ResponseBody
-    public Reading updateReading(@RequestParam  Reading reading, @PathVariable("id") int id) throws SQLException{
+    public Reading updateReading(@RequestBody Reading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
                 "comments = ? WHERE id = ?";
@@ -110,7 +110,7 @@ public class ReadingDAO {
     }
     @PutMapping("/readingcomment/{id}")
     @ResponseBody
-    public Reading updateComments(@RequestParam Reading reading, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
+    public Reading updateComments(@RequestBody Reading reading, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
