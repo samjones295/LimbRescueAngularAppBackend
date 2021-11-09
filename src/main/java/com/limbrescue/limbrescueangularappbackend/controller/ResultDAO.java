@@ -1,6 +1,7 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Result;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -50,7 +51,7 @@ public class ResultDAO {
     }
     @GetMapping("/singleresult/{id}")
     @ResponseBody
-    public Result getResult(@PathVariable int id) throws SQLException{
+    public Result getResult(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -71,13 +72,13 @@ public class ResultDAO {
     }
     @PostMapping(path = "/result")
     @ResponseBody
-    public void insertResult(@RequestParam Result res) throws SQLException{
+    public void insertResult(@RequestBody Result res) throws SQLException{
         Connection connection = dbConnection.getConnection();
         if (getResult(res.getId()) != null) {
             updateResult(res, res.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, algorithm = ?, ran_by = ? status = ?, comments = ?)";
+            String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, res.getId());
             statement.setInt(2, res.getGroup_id());
@@ -85,13 +86,13 @@ public class ResultDAO {
             statement.setInt(4, res.getRan_by());
             statement.setString(5, res.getStatus());
             statement.setString(6, res.getComments());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }
     @PutMapping(path="/result/{id}")
     @ResponseBody
-    public Result updateResult(@RequestParam Result res, @PathVariable int id) throws SQLException{
+    public Result updateResult(@RequestBody Result res, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?, WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -109,9 +110,9 @@ public class ResultDAO {
         connection.close();
         return res;
     }
-    @PutMapping("/resultcomment/{id}")
+    @PutMapping("/resultcomment/{id}/{comment}")
     @ResponseBody
-    public Result updateComments(@RequestParam Result res, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
+    public Result updateComments(@RequestParam Result res, @PathVariable("id") int id, @PathVariable("comment") String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -129,7 +130,7 @@ public class ResultDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
     @GetMapping(path = "/viewreport")
