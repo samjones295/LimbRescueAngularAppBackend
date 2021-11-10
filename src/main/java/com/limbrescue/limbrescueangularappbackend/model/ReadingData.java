@@ -42,4 +42,13 @@ public class ReadingData {
     public void setPpg_reading(double ppg_reading) {
         this.ppg_reading = ppg_reading;
     }
+    //ToString
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "patient_no: " + reading_id + ", " +
+                "time: " + time + ", " +
+                "ppg_reading: " + ppg_reading + ", " +
+                "}";
+    }
 }

@@ -36,4 +36,12 @@ public class Group {
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
+    //ToString
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "name: " + name + ", " +
+                "date_created: " + date_created + ", " +
+                "}";
+    }
 }

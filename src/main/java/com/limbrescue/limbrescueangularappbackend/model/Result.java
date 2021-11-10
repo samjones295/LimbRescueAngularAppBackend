@@ -58,4 +58,15 @@ public class Result {
     public void setComments(String comments) {
         this.comments = comments;
     }
+    //ToString
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "group_id: " + group_id + ", " +
+                "algorithm: " + algorithm + ", " +
+                "ran_by: " + ran_by + ", " +
+                "status: " + status + ", " +
+                "comments: " + comments + ", " +
+                "}";
+    }
 }

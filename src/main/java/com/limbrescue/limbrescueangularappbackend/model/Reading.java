@@ -52,4 +52,13 @@ public class Reading {
     public void setComments(String comments) {
         this.comments = comments;
     }
+    //ToString
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "patient_no: " + patient_no + ", " +
+                "date_created: " + date_created + ", " +
+                "comments: " + comments + ", " +
+                "}";
+    }
 }

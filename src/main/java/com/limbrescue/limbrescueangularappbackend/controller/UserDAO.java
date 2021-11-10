@@ -39,8 +39,10 @@ public class UserDAO {
     }
 
     /**
+     * Retrieves all the elements of the users table and stores it in an array list.
      *
      * @return
+     *          An arraylist containing the users table.
      * @throws SQLException
      */
     @GetMapping("/allusers")
@@ -62,9 +64,12 @@ public class UserDAO {
     }
 
     /**
+     * Retrieves a single user based on the ID.
      *
      * @param id
+     *          The ID to be retrieved
      * @return
+     *          A pointer to a tuple in the results table.
      * @throws SQLException
      */
     @GetMapping("/singleuser/{id}")
@@ -90,8 +95,10 @@ public class UserDAO {
     }
 
     /**
+     * Inserts a user to the table.
      *
      * @param user
+     *          The user to be inserted.
      * @throws SQLException
      */
     @PostMapping(path = "/user")
@@ -116,10 +123,14 @@ public class UserDAO {
     }
 
     /**
+     * Updates a user based on the ID.
      *
      * @param user
+     *          The variable values of the columns.
      * @param id
+     *          The user ID to be updated.
      * @return
+     *          The updated user.
      * @throws SQLException
      */
     @PutMapping(path="/user/{id}")
@@ -145,8 +156,10 @@ public class UserDAO {
     }
 
     /**
+     * Deletes a user based on the ID.
      *
      * @param id
+     *          The ID to be deleted.
      * @throws SQLException
      */
     @DeleteMapping("/user/{id}")
@@ -161,10 +174,14 @@ public class UserDAO {
     }
 
     /**
+     * Check to see if credentials are valid
      *
      * @param username
+     *                  The username.
      * @param password
+     *                  The password.
      * @return
+     *                  A pointer to the tuple.
      * @throws SQLException
      */
     @GetMapping("/logincheck/{username}/{password}")

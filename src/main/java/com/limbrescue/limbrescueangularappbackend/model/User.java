@@ -60,4 +60,14 @@ public class User {
     public void setLast_updated(Date last_updated) {
         this.last_updated = last_updated;
     }
+    //ToString
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "username: " + username + ", " +
+                "password: " + password + ", " +
+                "date_created: " + date_created + ", " +
+                "last_updated: " + last_updated + ", " +
+                "}";
+    }
 }

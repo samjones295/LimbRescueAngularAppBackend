@@ -34,4 +34,11 @@ public class GroupReading {
     public void setReading_id(int reading_id) {
         this.reading_id = reading_id;
     }
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "group_id: " + group_id + ", " +
+                "reading_id: " + reading_id + ", " +
+                "}";
+    }
 }

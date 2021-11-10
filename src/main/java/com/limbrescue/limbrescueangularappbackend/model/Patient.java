@@ -34,4 +34,12 @@ public class Patient {
     public void setStatus(String status) {
         this.status = status;
     }
+    //ToString
+    public String toString() {
+        return "{" +
+                "id: " + id + ", " +
+                "patient_no: " + patient_no + ", " +
+                "status: " + status + ", " +
+                "}";
+    }
 }
