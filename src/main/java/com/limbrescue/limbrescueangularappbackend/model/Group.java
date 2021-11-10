@@ -3,9 +3,11 @@ package com.limbrescue.limbrescueangularappbackend.model;
 import java.sql.Date;
 
 public class Group {
+    //Fields
     private int id;
     private String name;
     private Date date_created;
+    //Constructors
     public Group() {
 
     }
@@ -14,6 +16,7 @@ public class Group {
         this.name = name;
         this.date_created = date_created;
     }
+    //Getters
     public int getId() {
         return id;
     }
@@ -23,6 +26,7 @@ public class Group {
     public Date getDate_created() {
         return date_created;
     }
+    //Setters
     public void setId(int id) {
         this.id = id;
     }

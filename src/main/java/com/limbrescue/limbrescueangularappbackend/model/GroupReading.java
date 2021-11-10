@@ -1,9 +1,11 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
 public class GroupReading {
+    //Fields
     private int id;
     private int group_id;
     private int reading_id;
+    //Constructors
     public GroupReading() {
 
     }
@@ -12,6 +14,7 @@ public class GroupReading {
         this.group_id = group_id;
         this.reading_id = reading_id;
     }
+    //Getters
     public int getId() {
         return id;
     }
@@ -21,6 +24,7 @@ public class GroupReading {
     public int getReading_id() {
         return reading_id;
     }
+    //Setters
     public void setId(int id) {
         this.id = id;
     }

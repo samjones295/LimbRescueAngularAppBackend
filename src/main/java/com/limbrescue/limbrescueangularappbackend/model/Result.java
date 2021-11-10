@@ -1,12 +1,14 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
 public class Result {
+    //Fields
     private int id;
     private int group_id;
     private String algorithm;
     private int ran_by;
     private String status;
     private String comments;
+    //Constructors
     public Result() {
 
     }
@@ -18,6 +20,7 @@ public class Result {
         this.status = status;
         this.comments = comments;
     }
+    //Getters
     public int getId() {
         return id;
     }
@@ -36,6 +39,7 @@ public class Result {
     public String getComments() {
         return comments;
     }
+    //Setters
     public void setId(int id) {
         this.id = id;
     }

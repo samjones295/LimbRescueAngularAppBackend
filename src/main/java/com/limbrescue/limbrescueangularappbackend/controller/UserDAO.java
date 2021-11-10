@@ -17,11 +17,13 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class UserDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
     public UserDAO()  {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -35,6 +37,12 @@ public class UserDAO {
         table = p.getProperty("spring.datasource.UserTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @GetMapping("/allusers")
     @ResponseBody
     public List<User> getAllUsers() throws SQLException {
@@ -52,6 +60,13 @@ public class UserDAO {
         connection.close();
         return users;
     }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @GetMapping("/singleuser/{id}")
     @ResponseBody
     public User getUser(@PathVariable("id") int id) throws SQLException{
@@ -73,6 +88,12 @@ public class UserDAO {
         connection.close();
         return user;
     }
+
+    /**
+     *
+     * @param user
+     * @throws SQLException
+     */
     @PostMapping(path = "/user")
     @ResponseBody
     public void insertUser(@RequestBody User user) throws SQLException{
@@ -93,6 +114,14 @@ public class UserDAO {
         }
         connection.close();
     }
+
+    /**
+     *
+     * @param user
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @PutMapping(path="/user/{id}")
     @ResponseBody
     public User updateUser(@RequestBody User user, @PathVariable("id") int id) throws SQLException{
@@ -114,6 +143,12 @@ public class UserDAO {
         connection.close();
         return user;
     }
+
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @DeleteMapping("/user/{id}")
     @ResponseBody
     public void deleteUser(@PathVariable("id") int id) throws SQLException{
@@ -124,6 +159,14 @@ public class UserDAO {
         statement.executeQuery();
         connection.close();
     }
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     @GetMapping("/logincheck/{username}/{password}")
     @ResponseBody
     public User checkLogin(@PathVariable("username") String username, @PathVariable("password") String password) throws SQLException {

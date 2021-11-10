@@ -16,6 +16,7 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class ReadingDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
@@ -34,6 +35,14 @@ public class ReadingDAO {
         table = p.getProperty("spring.datasource.ReadingTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     * Retrieves all the elements of the readings table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the readings table.
+     * @throws SQLException
+     */
     @GetMapping("/allreadings")
     @ResponseBody
     public List<Reading> getAllReadings() throws SQLException {
@@ -50,6 +59,16 @@ public class ReadingDAO {
         connection.close();
         return readings;
     }
+
+    /**
+     * Retrieves a single reading based on the ID.
+     *
+     * @param id
+     *          The ID to be retrieved
+     * @return
+     *          A pointer to a tuple in the readings table.
+     * @throws SQLException
+     */
     @GetMapping("/singlereading/{id}")
     @ResponseBody
     public Reading getReading(@PathVariable("id") int id) throws SQLException{
@@ -70,6 +89,14 @@ public class ReadingDAO {
         connection.close();
         return reading;
     }
+
+    /**
+     * Inserts a reading to the table.
+     *
+     * @param reading
+     *              The reading to be inserted.
+     * @throws SQLException
+     */
     @PostMapping(path = "/reading")
     @ResponseBody
     public void insertReading(@RequestBody Reading reading) throws SQLException{
@@ -89,6 +116,18 @@ public class ReadingDAO {
         }
         connection.close();
     }
+
+    /**
+     * Updates a reading based on the ID.
+     *
+     * @param reading
+     *          The variable values of the columns.
+     * @param id
+     *          The reading ID to be updated.
+     * @return
+     *          The updated reading.
+     * @throws SQLException
+     */
     @PutMapping(path="/reading/{id}")
     @ResponseBody
     public Reading updateReading(@RequestBody Reading reading, @PathVariable("id") int id) throws SQLException{
@@ -108,6 +147,20 @@ public class ReadingDAO {
         connection.close();
         return reading;
     }
+
+    /**
+     * Updates the comments of a patient.
+     *
+     * @param reading
+     *          The reading to be updated
+     * @param id
+     *          The id to be updated.
+     * @param comment
+     *          The updated comment.
+     * @return
+     *          The updated reading.
+     * @throws SQLException
+     */
     @PutMapping("/readingcomment/{id}")
     @ResponseBody
     public Reading updateComments(@RequestBody Reading reading, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
@@ -121,6 +174,14 @@ public class ReadingDAO {
         connection.close();
         return reading;
     }
+
+    /**
+     * Deletes a reading based on the ID.
+     *
+     * @param id
+     *          The ID to be deleted.
+     * @throws SQLException
+     */
     @DeleteMapping("/reading/{id}")
     @ResponseBody
     public void deleteReading(@PathVariable("id") int id) throws SQLException{

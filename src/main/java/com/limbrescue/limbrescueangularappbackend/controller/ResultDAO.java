@@ -15,11 +15,13 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class ResultDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
     public ResultDAO()  {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -33,6 +35,14 @@ public class ResultDAO {
         table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     * Retrieves all the elements of the results table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the results table.
+     * @throws SQLException
+     */
     @GetMapping("/allresults")
     @ResponseBody
     public List<Result> getAllResults() throws SQLException {
@@ -49,6 +59,16 @@ public class ResultDAO {
         connection.close();
         return results;
     }
+
+    /**
+     * Retrieves a single result based on the ID.
+     *
+     * @param id
+     *          The ID to be retrieved
+     * @return
+     *          A pointer to a tuple in the results table.
+     * @throws SQLException
+     */
     @GetMapping("/singleresult/{id}")
     @ResponseBody
     public Result getResult(@PathVariable("id") int id) throws SQLException{
@@ -70,6 +90,14 @@ public class ResultDAO {
         connection.close();
         return res;
     }
+
+    /**
+     * Inserts a result to the table.
+     *
+     * @param res
+     *          The result to be inserted.
+     * @throws SQLException
+     */
     @PostMapping(path = "/result")
     @ResponseBody
     public void insertResult(@RequestBody Result res) throws SQLException{
@@ -90,6 +118,18 @@ public class ResultDAO {
         }
         connection.close();
     }
+
+    /**
+     * Updates a result based on the ID.
+     *
+     * @param res
+     *          The variable values of the columns.
+     * @param id
+     *          The result ID to be updated.
+     * @return
+     *          The updated result.
+     * @throws SQLException
+     */
     @PutMapping(path="/result/{id}")
     @ResponseBody
     public Result updateResult(@RequestBody Result res, @PathVariable("id") int id) throws SQLException{
@@ -110,6 +150,20 @@ public class ResultDAO {
         connection.close();
         return res;
     }
+
+    /**
+     * Updates the comments of a result.
+     *
+     * @param res
+     *          The result to be updated
+     * @param id
+     *          The id to be updated.
+     * @param comment
+     *          The updated comment.
+     * @return
+     *          The updated result.
+     * @throws SQLException
+     */
     @PutMapping("/resultcomment/{id}/{comment}")
     @ResponseBody
     public Result updateComments(@RequestBody Result res, @PathVariable("id") int id, @PathVariable("comment") String comment) throws SQLException {
@@ -123,6 +177,14 @@ public class ResultDAO {
         connection.close();
         return res;
     }
+
+    /**
+     * Deletes a result based on the ID.
+     *
+     * @param id
+     *          The ID to be deleted.
+     * @throws SQLException
+     */
     @DeleteMapping("/result/{id}")
     @ResponseBody
     public void deleteResult(@PathVariable("id") int id) throws SQLException{
@@ -133,6 +195,12 @@ public class ResultDAO {
         statement.executeUpdate();
         connection.close();
     }
+
+    /**
+     * Exports the results to a .csv file.
+     *
+     * @throws SQLException
+     */
     @GetMapping(path = "/viewreport")
     @ResponseBody
     public void exportResultsToCSV() throws SQLException{

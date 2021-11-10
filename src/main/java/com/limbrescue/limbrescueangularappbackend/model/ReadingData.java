@@ -1,10 +1,12 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
 public class ReadingData {
+    //Fields
     private int id;
     private int reading_id;
     private double time;
     private double ppg_reading;
+    //Constructors
     public ReadingData() {
 
     }
@@ -14,6 +16,7 @@ public class ReadingData {
         this.time = time;
         this.ppg_reading = ppg_reading;
     }
+    //Getters
     public int getId() {
         return id;
     }
@@ -26,6 +29,7 @@ public class ReadingData {
     public double getPpg_reading() {
         return ppg_reading;
     }
+    //Setters
     public void setId(int id) {
         this.id = id;
     }

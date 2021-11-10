@@ -1,9 +1,11 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
 public class Patient {
+    //Fields
     private int id;
     private String patient_no;
     private String status;
+    //Constructors
     public Patient() {
 
     }
@@ -12,6 +14,7 @@ public class Patient {
         this.patient_no = patient_no;
         this.status = status;
     }
+    //Getters
     public int getId() {
         return id;
     }
@@ -21,6 +24,7 @@ public class Patient {
     public String getStatus() {
         return status;
     }
+    //Setters
     public void setId(int id) {
         this.id = id;
     }

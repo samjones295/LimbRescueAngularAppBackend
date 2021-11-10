@@ -1,7 +1,6 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Patient;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -19,11 +18,13 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class PatientDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
     public PatientDAO() {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -37,6 +38,14 @@ public class PatientDAO {
         table = p.getProperty("spring.datasource.PatientTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     * Retrieves all the elements of the patients table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the group readings table.
+     * @throws SQLException
+     */
     @GetMapping("/allpatients")
     @ResponseBody
     public List<Patient> getAllPatients() throws SQLException {
@@ -52,6 +61,14 @@ public class PatientDAO {
         connection.close();
         return readings;
     }
+
+    /**
+     * Retrieves a single patient based on the ID.
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @GetMapping("/singlepatient/{id}")
     @ResponseBody
     public Patient getPatient(@PathVariable("id")  int id) throws SQLException{
@@ -70,6 +87,14 @@ public class PatientDAO {
         connection.close();
         return patient;
     }
+
+    /**
+     * Inserts a patient to the table.
+     *
+     * @param patient
+     *              The patient to be inserted.
+     * @throws SQLException
+     */
     @PostMapping(path = "/patient")
     @ResponseBody
     public void insertPatient(@RequestBody Patient patient) throws SQLException{
@@ -87,6 +112,17 @@ public class PatientDAO {
         }
         connection.close();
     }
+
+    /**
+     *
+     * @param patient
+     *              The variable values of the columns.
+     * @param id
+     *              The group reading ID to be updated.
+     * @return
+     *              The updated patient.
+     * @throws SQLException
+     */
     @PutMapping(path="/patient/{id}")
     @ResponseBody
     public Patient updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) throws SQLException{
@@ -102,6 +138,14 @@ public class PatientDAO {
         connection.close();
         return patient;
     }
+
+    /**
+     * Deletes a patient based on the ID.
+     *
+     * @param id
+     *          The ID to be deleted.
+     * @throws SQLException
+     */
     @DeleteMapping("/patient/{id}")
     @ResponseBody
     public void deletePatient(@PathVariable("id") int id) throws SQLException{

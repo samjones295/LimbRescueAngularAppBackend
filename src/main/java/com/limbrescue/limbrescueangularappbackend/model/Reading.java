@@ -3,11 +3,13 @@ package com.limbrescue.limbrescueangularappbackend.model;
 import java.sql.Date;
 
 public class Reading {
+    //Fields
     private int id;
     private String patient_no;
     private Date date_created;
     //private String active_or_rest;
     private String comments;
+    //Constructors
     public Reading() {
 
     }
@@ -18,6 +20,7 @@ public class Reading {
         //this.active_or_rest = active_or_rest;
         this.comments = comments;
     }
+    //Getters
     public int getId() {
         return id;
     }
@@ -30,6 +33,7 @@ public class Reading {
 //    public String getActive_or_rest() {
 //        return active_or_rest;
 //    }
+    //Setters
     public String getComments() {
         return comments;
     }

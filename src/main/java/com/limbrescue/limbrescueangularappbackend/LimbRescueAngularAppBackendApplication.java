@@ -9,6 +9,7 @@ public class LimbRescueAngularAppBackendApplication {
 
     public static void main(String[] args) throws Exception{
         SpringApplication.run(LimbRescueAngularAppBackendApplication.class, args);
+        //This is just some tutorial and will be removed.
         PythonScript script = new PythonScript();
         script.run();
     }

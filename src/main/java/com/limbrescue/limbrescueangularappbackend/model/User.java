@@ -3,6 +3,7 @@ package com.limbrescue.limbrescueangularappbackend.model;
 import java.sql.Date;
 
 public class User {
+    //Fields
     private int id;
     private String email;
     private String username;

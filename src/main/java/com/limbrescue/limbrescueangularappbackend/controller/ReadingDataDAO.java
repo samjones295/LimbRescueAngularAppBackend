@@ -15,11 +15,13 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class ReadingDataDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
     public ReadingDataDAO() {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -33,6 +35,14 @@ public class ReadingDataDAO {
         table = p.getProperty("spring.datasource.ReadingDataTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     * Retrieves all the elements of the reading data table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the reading data table.
+     * @throws SQLException
+     */
     @GetMapping("/allreadingdata")
     @ResponseBody
     public List<ReadingData> getAllReadingData() throws SQLException {
@@ -49,6 +59,16 @@ public class ReadingDataDAO {
         connection.close();
         return readings;
     }
+
+    /**
+     * Retrieves a single reading data based on the ID.
+     *
+     * @param id
+     *          The ID to be retrieved
+     * @return
+     *          A pointer to a tuple in the group readings table.
+     * @throws SQLException
+     */
     @GetMapping("/singlereadingdata/{id}")
     @ResponseBody
     public ReadingData getReadingData(@PathVariable("id") int id) throws SQLException{
@@ -68,6 +88,14 @@ public class ReadingDataDAO {
         connection.close();
         return data;
     }
+
+    /**
+     * Inserts a reading data to the table.
+     *
+     * @param data
+     *              The group reading to be inserted.
+     * @throws SQLException
+     */
     @PostMapping(path = "/readingdata")
     @ResponseBody
     public void insertReadingData(@RequestBody ReadingData data) throws SQLException{
@@ -86,6 +114,18 @@ public class ReadingDataDAO {
         }
         connection.close();
     }
+
+    /**
+     * Updates a reading data based on the ID.
+     *
+     * @param data
+     *          The variable values of the columns.
+     * @param id
+     *          The reading data ID to be updated.
+     * @return
+     *          The updated reading data.
+     * @throws SQLException
+     */
     @PutMapping(path="/readingdata/{id}")
     @ResponseBody
     public ReadingData updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) throws SQLException{
@@ -103,6 +143,14 @@ public class ReadingDataDAO {
         connection.close();
         return data;
     }
+
+    /**
+     * Deletes a reading data based on the ID.
+     *
+     * @param id
+     *          The ID to be deleted.
+     * @throws SQLException
+     */
     @DeleteMapping("/readingdata/{id}")
     @ResponseBody
     public void deleteReadingData(@PathVariable("id") int id) throws SQLException{

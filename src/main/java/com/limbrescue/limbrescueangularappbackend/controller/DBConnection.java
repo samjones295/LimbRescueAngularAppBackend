@@ -9,13 +9,16 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
+    //Database Credentials
     private String jdbcURL;
     private String dbUser;
     private String dbPassword;
+    //Read from the properties file
     private static final Properties p = new Properties();
     private FileReader reader;
     private Connection connection;
     public DBConnection() {
+        //Properties file reading
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -26,6 +29,7 @@ public class DBConnection {
         } catch (IOException e) {
             System.out.println("Cannot load file");
         }
+        //Set up the credentials.
         jdbcURL = p.getProperty("spring.datasource.url");
         dbUser = p.getProperty("spring.datasource.username");
         dbPassword = p.getProperty("spring.datasource.password");
@@ -36,6 +40,7 @@ public class DBConnection {
         }
 
     }
+    //Returns a DB connection object.
     public Connection getConnection() {
         try {
             connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);

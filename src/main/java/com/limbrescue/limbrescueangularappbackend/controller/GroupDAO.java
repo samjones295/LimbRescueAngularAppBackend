@@ -16,11 +16,13 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class GroupDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
     public GroupDAO()  {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -34,6 +36,14 @@ public class GroupDAO {
         table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     * Retrieves all the elements of the group table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the group table.
+     * @throws SQLException
+     */
     @GetMapping("/allgroups")
     @ResponseBody
     public List<Group> getAllGroups() throws SQLException {
@@ -49,6 +59,16 @@ public class GroupDAO {
         connection.close();
         return groups;
     }
+
+    /**
+     * Retrieves a single group based on the ID.
+     *
+     * @param id
+     *          The ID to be retrieved
+     * @return
+     *          A pointer to a tuple in the group table.
+     * @throws SQLException
+     */
     @GetMapping("/singlegroup/{id}")
     @ResponseBody
     public Group getGroup(@PathVariable("id") int id) throws SQLException{
@@ -67,6 +87,14 @@ public class GroupDAO {
         connection.close();
         return group;
     }
+
+    /**
+     * Inserts a group to the table.
+     *
+     * @param group
+     *              The group to be inserted.
+     * @throws SQLException
+     */
     @PostMapping(path = "/group")
     @ResponseBody
     public void insertGroup(@RequestBody Group group) throws SQLException{
@@ -84,6 +112,18 @@ public class GroupDAO {
         }
         connection.close();
     }
+
+    /**
+     * Updates a group based on the ID.
+     *
+     * @param group
+     *          The variable values of the columns.
+     * @param id
+     *          The group ID to be updated.
+     * @return
+     *          The updated group.
+     * @throws SQLException
+     */
     @PutMapping(path="/group/{id}")
     @ResponseBody
     public Group updateGroup(@RequestBody Group group, @PathVariable("id") int id) throws SQLException{
@@ -99,6 +139,14 @@ public class GroupDAO {
         connection.close();
         return group;
     }
+
+    /**
+     * Deletes a Group based on the ID.
+     *
+     * @param id
+     *          The ID to be deleted.
+     * @throws SQLException
+     */
     @DeleteMapping("/group/{id}")
     @ResponseBody
     public void deleteGroup(@PathVariable("id") int id) throws SQLException{

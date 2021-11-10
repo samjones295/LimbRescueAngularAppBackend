@@ -16,11 +16,13 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class GroupReadingDAO {
+    //All attributes read from the properties file.
     private String table;
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
     public GroupReadingDAO() {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
@@ -34,6 +36,14 @@ public class GroupReadingDAO {
         table = p.getProperty("spring.datasource.GroupReadingTable");
         dbConnection = new DBConnection();
     }
+
+    /**
+     * Retrieves all the elements of the group readings table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the group readings table.
+     * @throws SQLException
+     */
     @GetMapping("/allgroupreadings")
     @ResponseBody
     public List<GroupReading> getAllGroupReadings() throws SQLException {
@@ -50,6 +60,16 @@ public class GroupReadingDAO {
         connection.close();
         return readings;
     }
+
+    /**
+     * Retrieves a single group reading based on the ID.
+     *
+     * @param id
+     *          The ID to be retrieved
+     * @return
+     *          A pointer to a tuple in the group readings table.
+     * @throws SQLException
+     */
     @GetMapping("/singlegroupreading/{id}")
     @ResponseBody
     public GroupReading getGroupReading(@PathVariable("id") int id) throws SQLException{
@@ -68,6 +88,14 @@ public class GroupReadingDAO {
         connection.close();
         return reading;
     }
+
+    /**
+     * Inserts a group reading to the table.
+     *
+     * @param reading
+     *              The group reading to be inserted.
+     * @throws SQLException
+     */
     @PostMapping(path = "/groupreading")
     @ResponseBody
     public void insertGroupReading(@RequestBody GroupReading reading) throws SQLException{
@@ -85,6 +113,18 @@ public class GroupReadingDAO {
         }
         connection.close();
     }
+
+    /**
+     * Updates a group reading based on the ID.
+     *
+     * @param reading
+     *          The variable values of the columns.
+     * @param id
+     *          The group reading ID to be updated.
+     * @return
+     *          The updated group reading.
+     * @throws SQLException
+     */
     @PutMapping(path="/groupreading/{id}")
     @ResponseBody
     public GroupReading updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) throws SQLException{
@@ -100,6 +140,14 @@ public class GroupReadingDAO {
         connection.close();
         return reading;
     }
+
+    /**
+     * Deletes a Group reading based on the ID.
+     *
+     * @param id
+     *          The ID to be deleted.
+     * @throws SQLException
+     */
     @DeleteMapping("/groupreading/{id}")
     @ResponseBody
     public void deleteGroupReading(@PathVariable("id") int id) throws SQLException{
