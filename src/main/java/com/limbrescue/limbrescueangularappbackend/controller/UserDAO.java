@@ -109,7 +109,7 @@ public class UserDAO {
             updateUser(user, user.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, email = ?, username = ?, password = ?, date_created = ?, last_updated = ?)";
+            String sql = "INSERT INTO " + table + " (id, email, username, password, date_created, last_updated) VALUES(?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, user.getId());
             statement.setString(2, user.getEmail());

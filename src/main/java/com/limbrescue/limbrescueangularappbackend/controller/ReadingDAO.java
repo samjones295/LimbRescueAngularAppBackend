@@ -83,6 +83,7 @@ public class ReadingDAO {
             reading.setId(id);
             reading.setPatient_no(result.getString("patient_no"));
             reading.setDate_created(result.getDate("date_created"));
+            reading.setLaterality(result.getString("laterality"));
             //reading.setActive_or_rest(result.getString("active_or_rest"));
             reading.setComments(result.getString("comments"));
         }
@@ -105,13 +106,14 @@ public class ReadingDAO {
             updateReading(reading, reading.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, date_created = ?, comments = ?)";
+            String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, reading.getId());
             statement.setString(2, reading.getPatient_no());
             statement.setDate(3, reading.getDate_created());
+            statement.setString(4, reading.getLaterality());
             //statement.setString(4, reading.getActive_or_rest());
-            statement.setString(4, reading.getComments());
+            statement.setString(5, reading.getComments());
             statement.executeQuery();
         }
         connection.close();
@@ -132,14 +134,15 @@ public class ReadingDAO {
     @ResponseBody
     public Reading updateReading(@RequestBody Reading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, " +
+        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, " +
                 "comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, reading.getPatient_no());
         statement.setDate(2, reading.getDate_created());
+        statement.setString(3, reading.getLaterality());
         //statement.setString(3, reading.getActive_or_rest());
-        statement.setString(3, reading.getComments());
-        statement.setInt(4, id);
+        statement.setString(4, reading.getComments());
+        statement.setInt(5, id);
         ResultSet result = statement.executeQuery();
         reading.setPatient_no(result.getString("patient_no"));
         reading.setDate_created(result.getDate("date_created"));

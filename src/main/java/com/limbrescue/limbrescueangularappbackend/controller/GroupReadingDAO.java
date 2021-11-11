@@ -104,7 +104,7 @@ public class GroupReadingDAO {
             updateGroupReading(reading, reading.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, group_id = ?, reading_id = ?)";
+            String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, reading.getId());
             statement.setInt(2, reading.getGroup_id());

@@ -104,7 +104,7 @@ public class ReadingDataDAO {
             updateReadingData(data, data.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, reading_id = ?, time = ?, ppg_reading = ?)";
+            String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading) VALUES(?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, data.getId());
             statement.setInt(2, data.getReading_id());

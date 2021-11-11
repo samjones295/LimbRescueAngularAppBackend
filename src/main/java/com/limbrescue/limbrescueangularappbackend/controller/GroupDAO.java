@@ -103,7 +103,7 @@ public class GroupDAO {
             updateGroup(group, group.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, name = ?, date_created = ?)";
+            String sql = "INSERT INTO " + table + " (id, name, date_created) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, group.getId());
             statement.setString(2, group.getName());

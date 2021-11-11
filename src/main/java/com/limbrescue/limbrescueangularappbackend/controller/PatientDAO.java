@@ -103,7 +103,7 @@ public class PatientDAO {
             updatePatient(patient, patient.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(id = ?, patient_no = ?, status = ?)";
+            String sql = "INSERT INTO " + table + " (id, patient_no, status) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, patient.getId());
             statement.setString(2, patient.getPatient_no());
