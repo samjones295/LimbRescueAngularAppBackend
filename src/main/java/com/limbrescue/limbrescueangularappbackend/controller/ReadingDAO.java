@@ -114,7 +114,7 @@ public class ReadingDAO {
             statement.setString(4, reading.getLaterality());
             //statement.setString(4, reading.getActive_or_rest());
             statement.setString(5, reading.getComments());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }
@@ -126,56 +126,44 @@ public class ReadingDAO {
      *          The variable values of the columns.
      * @param id
      *          The reading ID to be updated.
-     * @return
-     *          The updated reading.
      * @throws SQLException
      */
     @PutMapping(path="/reading/{id}")
     @ResponseBody
-    public Reading updateReading(@RequestBody Reading reading, @PathVariable("id") int id) throws SQLException{
+    public void updateReading(@RequestBody Reading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, " +
-                "comments = ? WHERE id = ?";
+                " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, reading.getPatient_no());
         statement.setDate(2, reading.getDate_created());
         statement.setString(3, reading.getLaterality());
         //statement.setString(3, reading.getActive_or_rest());
-        statement.setString(4, reading.getComments());
-        statement.setInt(5, id);
-        ResultSet result = statement.executeQuery();
-        reading.setPatient_no(result.getString("patient_no"));
-        reading.setDate_created(result.getDate("date_created"));
+        statement.setInt(4, id);
+        statement.executeUpdate();
         //reading.setActive_or_rest(result.getString("active_or_rest"));
         connection.close();
-        return reading;
     }
 
     /**
      * Updates the comments of a patient.
      *
-     * @param reading
-     *          The reading to be updated
      * @param id
      *          The id to be updated.
      * @param comment
      *          The updated comment.
-     * @return
-     *          The updated reading.
      * @throws SQLException
      */
     @PutMapping("/readingcomment/{id}")
     @ResponseBody
-    public Reading updateComments(@RequestBody Reading reading, @PathVariable("id") int id, @RequestParam String comment) throws SQLException {
+    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
         statement.setInt(2, id);
-        ResultSet result = statement.executeQuery();
-        reading.setComments(result.getString("comments"));
+        statement.executeUpdate();
         connection.close();
-        return reading;
     }
 
     /**
@@ -192,7 +180,7 @@ public class ReadingDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
 }

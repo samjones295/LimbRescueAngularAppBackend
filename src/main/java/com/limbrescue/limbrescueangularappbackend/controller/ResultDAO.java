@@ -127,36 +127,26 @@ public class ResultDAO {
      *          The variable values of the columns.
      * @param id
      *          The result ID to be updated.
-     * @return
-     *          The updated result.
      * @throws SQLException
      */
     @PutMapping(path="/result/{id}")
     @ResponseBody
-    public Result updateResult(@RequestBody Result res, @PathVariable("id") int id) throws SQLException{
+    public void updateResult(@RequestBody Result res, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?, WHERE id = ?";
+        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, res.getGroup_id());
         statement.setString(2, res.getAlgorithm());
         statement.setInt(3, res.getRan_by());
         statement.setString(4, res.getStatus());
-        statement.setString(5, res.getComments());
-        statement.setInt(6, id);
-        ResultSet result = statement.executeQuery();
-        res.setGroup_id(result.getInt("group_id"));
-        res.setAlgorithm(result.getString("algorithm"));
-        res.setRan_by(result.getInt("ran_by"));
-        res.setStatus(result.getString("status"));
+        statement.setInt(5, id);
+        statement.executeUpdate();
         connection.close();
-        return res;
     }
 
     /**
      * Updates the comments of a result.
      *
-     * @param res
-     *          The result to be updated
      * @param id
      *          The id to be updated.
      * @param comment
@@ -165,18 +155,16 @@ public class ResultDAO {
      *          The updated result.
      * @throws SQLException
      */
-    @PutMapping("/resultcomment/{id}/{comment}")
+    @PutMapping("/resultcomment/{id}")
     @ResponseBody
-    public Result updateComments(@RequestBody Result res, @PathVariable("id") int id, @PathVariable("comment") String comment) throws SQLException {
+    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) throws SQLException {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, comment);
         statement.setInt(2, id);
-        ResultSet result = statement.executeQuery();
-        res.setComments(result.getString("comments"));
+        statement.executeUpdate();
         connection.close();
-        return res;
     }
 
     /**

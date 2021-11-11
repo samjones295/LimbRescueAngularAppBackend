@@ -108,7 +108,7 @@ public class PatientDAO {
             statement.setInt(1, patient.getId());
             statement.setString(2, patient.getPatient_no());
             statement.setString(3, patient.getStatus());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }
@@ -119,24 +119,19 @@ public class PatientDAO {
      *              The variable values of the columns.
      * @param id
      *              The group reading ID to be updated.
-     * @return
-     *              The updated patient.
      * @throws SQLException
      */
     @PutMapping(path="/patient/{id}")
     @ResponseBody
-    public Patient updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) throws SQLException{
+    public void updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, patient.getPatient_no());
         statement.setString(2, patient.getStatus());
         statement.setInt(3, id);
-        ResultSet result = statement.executeQuery();
-        patient.setPatient_no(result.getString("patient_no"));
-        patient.setStatus(result.getString("status"));
+        statement.executeUpdate();
         connection.close();
-        return patient;
     }
 
     /**

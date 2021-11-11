@@ -122,13 +122,11 @@ public class ReadingDataDAO {
      *          The variable values of the columns.
      * @param id
      *          The reading data ID to be updated.
-     * @return
-     *          The updated reading data.
      * @throws SQLException
      */
     @PutMapping(path="/readingdata/{id}")
     @ResponseBody
-    public ReadingData updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) throws SQLException{
+    public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -136,12 +134,8 @@ public class ReadingDataDAO {
         statement.setDouble(2, data.getTime());
         statement.setDouble(3, data.getPpg_reading());
         statement.setInt(4, id);
-        ResultSet result = statement.executeQuery();
-        data.setReading_id(result.getInt("reading_id"));
-        data.setTime(result.getDouble("time"));
-        data.setPpg_reading(result.getDouble("ppg_reading"));
+        statement.executeUpdate();
         connection.close();
-        return data;
     }
 
     /**

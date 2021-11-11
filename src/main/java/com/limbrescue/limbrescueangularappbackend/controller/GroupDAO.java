@@ -108,7 +108,7 @@ public class GroupDAO {
             statement.setInt(1, group.getId());
             statement.setString(2, group.getName());
             statement.setDate(3, group.getDate_created());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }
@@ -126,18 +126,15 @@ public class GroupDAO {
      */
     @PutMapping(path="/group/{id}")
     @ResponseBody
-    public Group updateGroup(@RequestBody Group group, @PathVariable("id") int id) throws SQLException{
+    public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, group.getName());
         statement.setDate(2, group.getDate_created());
         statement.setInt(3, id);
-        ResultSet result = statement.executeQuery();
-        group.setName(result.getString("name"));
-        group.setDate_created(result.getDate("date_created"));
+        statement.executeUpdate();
         connection.close();
-        return group;
     }
 
     /**
@@ -154,7 +151,7 @@ public class GroupDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
 }

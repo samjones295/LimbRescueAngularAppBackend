@@ -109,7 +109,7 @@ public class GroupReadingDAO {
             statement.setInt(1, reading.getId());
             statement.setInt(2, reading.getGroup_id());
             statement.setInt(3, reading.getReading_id());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }
@@ -121,24 +121,19 @@ public class GroupReadingDAO {
      *          The variable values of the columns.
      * @param id
      *          The group reading ID to be updated.
-     * @return
-     *          The updated group reading.
      * @throws SQLException
      */
     @PutMapping(path="/groupreading/{id}")
     @ResponseBody
-    public GroupReading updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) throws SQLException{
+    public void updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, reading.getGroup_id());
         statement.setInt(2, reading.getReading_id());
         statement.setInt(3, id);
-        ResultSet result = statement.executeQuery();
-        reading.setGroup_id(result.getInt("group_id"));
-        reading.setReading_id(result.getInt("reading_id"));
+        statement.executeUpdate();
         connection.close();
-        return reading;
     }
 
     /**
@@ -155,7 +150,7 @@ public class GroupReadingDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
 }

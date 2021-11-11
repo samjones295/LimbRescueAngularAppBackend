@@ -129,13 +129,11 @@ public class UserDAO {
      *          The variable values of the columns.
      * @param id
      *          The user ID to be updated.
-     * @return
-     *          The updated user.
      * @throws SQLException
      */
     @PutMapping(path="/user/{id}")
     @ResponseBody
-    public User updateUser(@RequestBody User user, @PathVariable("id") int id) throws SQLException{
+    public void updateUser(@RequestBody User user, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET email = ?, username = ?, password = ?, date_created = ?, last_updated = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -145,14 +143,8 @@ public class UserDAO {
         statement.setDate(4, user.getDate_created());
         statement.setDate(5, user.getLast_updated());
         statement.setInt(6, id);
-        ResultSet result = statement.executeQuery();
-        user.setEmail(result.getString("email"));
-        user.setUsername(result.getString("username"));
-        user.setPassword(result.getString("password"));
-        user.setDate_created(result.getDate("date_created"));
-        user.setLast_updated(result.getDate("last_updated"));
+        statement.executeUpdate();
         connection.close();
-        return user;
     }
 
     /**
@@ -169,7 +161,7 @@ public class UserDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
 
