@@ -7,16 +7,18 @@ public class Reading {
     private int id;
     private String patient_no;
     private Date date_created;
+    private String laterality;
     //private String active_or_rest;
     private String comments;
     //Constructors
     public Reading() {
 
     }
-    public Reading(int id, String patient_no, Date date_created, /*String active_or_rest,*/ String comments) {
+    public Reading(int id, String patient_no, Date date_created, String laterality, /*String active_or_rest,*/ String comments) {
         this.id = id;
         this.patient_no = patient_no;
         this.date_created = date_created;
+        this.laterality = laterality;
         //this.active_or_rest = active_or_rest;
         this.comments = comments;
     }
@@ -30,13 +32,14 @@ public class Reading {
     public Date getDate_created() {
         return date_created;
     }
-//    public String getActive_or_rest() {
-//        return active_or_rest;
-//    }
-    //Setters
+    public String getLaterality() { return laterality; }
+    //  public String getActive_or_rest() { return active_or_rest; }
     public String getComments() {
         return comments;
     }
+
+    //Setters
+
     public void setId(int id) {
         this.id = id;
     }
@@ -46,9 +49,8 @@ public class Reading {
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
-//    public void setActive_or_rest(String active_or_rest) {
-//        this.active_or_rest = active_or_rest;
-//    }
+    public void setLaterality(String laterality) { this.laterality = laterality; }
+    //  public void setActive_or_rest(String active_or_rest) { this.active_or_rest = active_or_rest; }
     public void setComments(String comments) {
         this.comments = comments;
     }
@@ -58,6 +60,7 @@ public class Reading {
                 "id: " + id + ", " +
                 "patient_no: " + patient_no + ", " +
                 "date_created: " + date_created + ", " +
+                "laterality: " + laterality + ", " +
                 "comments: " + comments + ", " +
                 "}";
     }
