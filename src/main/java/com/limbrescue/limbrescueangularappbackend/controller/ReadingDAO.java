@@ -53,7 +53,7 @@ public class ReadingDAO {
         List<Reading> readings = new ArrayList<>();
         while (result.next()) {
             Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                    result.getDate("date_created"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
+                    result.getDate("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
             readings.add(reading);
         }
         connection.close();
