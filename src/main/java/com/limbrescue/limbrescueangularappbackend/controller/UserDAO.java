@@ -117,7 +117,7 @@ public class UserDAO {
             statement.setString(4, user.getPassword());
             statement.setDate(5, user.getDate_created());
             statement.setDate(6, user.getLast_updated());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }

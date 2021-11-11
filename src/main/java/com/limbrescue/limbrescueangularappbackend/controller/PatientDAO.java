@@ -148,7 +148,7 @@ public class PatientDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
 }

@@ -110,7 +110,7 @@ public class ReadingDataDAO {
             statement.setInt(2, data.getReading_id());
             statement.setDouble(3, data.getTime());
             statement.setDouble(4, data.getPpg_reading());
-            statement.executeQuery();
+            statement.executeUpdate();
         }
         connection.close();
     }
@@ -152,7 +152,7 @@ public class ReadingDataDAO {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
-        statement.executeQuery();
+        statement.executeUpdate();
         connection.close();
     }
 }

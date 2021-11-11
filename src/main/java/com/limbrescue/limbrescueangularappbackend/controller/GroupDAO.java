@@ -73,7 +73,7 @@ public class GroupDAO {
     @ResponseBody
     public Group getGroup(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
+        String sql = "SELECT * FROM `" + table + "` WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         ResultSet result = statement.executeQuery();
@@ -103,7 +103,7 @@ public class GroupDAO {
             updateGroup(group, group.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " (id, name, date_created) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO `" + table + "` (id, name, date_created) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, group.getId());
             statement.setString(2, group.getName());
@@ -128,7 +128,7 @@ public class GroupDAO {
     @ResponseBody
     public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET name = ?, date_created = ? WHERE id = ?";
+        String sql = "UPDATE `" + table + "` SET name = ?, date_created = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, group.getName());
         statement.setDate(2, group.getDate_created());
@@ -148,7 +148,7 @@ public class GroupDAO {
     @ResponseBody
     public void deleteGroup(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "DELETE FROM " + table + " WHERE id = ?";
+        String sql = "DELETE FROM `" + table + "` WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         statement.executeUpdate();
