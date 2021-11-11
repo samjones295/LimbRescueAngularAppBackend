@@ -106,16 +106,16 @@ public class ResultDAO {
             updateResult(res, res.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " VALUES(" + res.getId() + ", " + res.getGroup_id() + ", '" +
-                    res.getAlgorithm() + "', " + res.getRan_by() + ", '" + res.getStatus() + "', '" + res.getComments() + "')";
-            Statement statement = connection.prepareStatement(sql);
-//            statement.setInt(1, res.getId());
-//            statement.setInt(2, res.getGroup_id());
-//            statement.setString(3, res.getAlgorithm());
-//            statement.setInt(4, res.getRan_by());
-//            statement.setString(5, res.getStatus());
-//            statement.setString(6, res.getComments());
-            statement.executeUpdate(sql);
+
+            String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments) VALUES(?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, res.getId());
+            statement.setInt(2, res.getGroup_id());
+            statement.setString(3, res.getAlgorithm());
+            statement.setInt(4, res.getRan_by());
+            statement.setString(5, res.getStatus());
+            statement.setString(6, res.getComments());
+            statement.executeUpdate();
         }
         connection.close();
     }
@@ -190,10 +190,10 @@ public class ResultDAO {
     @ResponseBody
     public void deleteResult(@PathVariable("id") int id) throws SQLException{
         Connection connection = dbConnection.getConnection();
-        String sql = "DELETE FROM " + table + " WHERE id = " + id;
-        Statement statement = connection.prepareStatement(sql);
-        //statement.setInt(1, id);
-        statement.executeUpdate(sql);
+        String sql = "DELETE FROM " + table + " WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.executeUpdate();
         connection.close();
     }
 
