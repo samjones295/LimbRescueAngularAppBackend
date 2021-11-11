@@ -196,7 +196,7 @@ public class ResultDAO {
         Connection connection = dbConnection.getConnection();
         String outputFile = p.getProperty("spring.datasource.OutputFile");
         String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
-                " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\n";
+                " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\\n'";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.executeQuery();
         connection.close();
