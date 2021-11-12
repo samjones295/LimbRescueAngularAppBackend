@@ -20,7 +20,7 @@ public class MultiLayerPerceptron {
         }
     }
     private String resolvePythonScriptPath(String filename) {
-        File file = new File("src/main/resources/" + filename);
+        File file = new File("src/main/resources/LimbRescueML/limbresml/modeling/" + filename);
         return file.getAbsolutePath();
     }
 }
