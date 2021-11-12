@@ -20,7 +20,7 @@ public class SupportVectorMachine {
         }
     }
     private String resolvePythonScriptPath(String filename) {
-        File file = new File("src/main/resources/LimbRescueML/limbresml/modeling/" + filename);
+        File file = new File("src/main/resources/limbresml/modeling/" + filename);
         return file.getAbsolutePath();
     }
 }
