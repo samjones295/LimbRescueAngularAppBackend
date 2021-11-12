@@ -1,0 +1,21 @@
+MODEL: "SVM"
+TUNE_HP_PARAMS: True
+SVM:
+  # -----------------------------------------------------------------------------
+  # Support Vector Machine
+  # For full documentation, please see:
+  # https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+  # -----------------------------------------------------------------------------
+  C: [1.0, 3.0, 5.0, 7.0]
+  kernel: ["linear", "rbf", "poly", "sigmoid"]
+  degree: [1, 2, 3]
+  gamma: ["scale", "auto"]
+  class_weight: ["balanced", null]
+  decision_function_shape: ["ovo", "ovr"]
+  random_state: [null]
+
+INPUT:
+  PATH: "./data/ns10_ls300_normalized.npz"
+  CAT_TRAIN_VAL: False
+
+OUTPUT_DIR: "./output"
