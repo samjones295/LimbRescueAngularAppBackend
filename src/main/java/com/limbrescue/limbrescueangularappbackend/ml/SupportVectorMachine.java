@@ -10,7 +10,7 @@ public class SupportVectorMachine {
         processBuilder.redirectErrorStream(true);
 
         Process process = processBuilder.start();
-//        List<String> results = readProcessOutput(process.getInputStream());
+        List<String> results = readProcessOutput(process.getInputStream());
 //        System.out.println(results);
     }
     private List<String> readProcessOutput(InputStream inputStream) throws IOException {
