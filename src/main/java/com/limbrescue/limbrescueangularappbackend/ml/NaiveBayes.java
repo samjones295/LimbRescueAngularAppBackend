@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class NaiveBayes {
-    public void run() throws Exception{
+    public void run() {
         ProcessBuilder processBuilder = new ProcessBuilder("python", resolvePythonScriptPath("train_net.py"));
         processBuilder.redirectErrorStream(true);
-
-        Process process = processBuilder.start();
-        List<String> results = readProcessOutput(process.getInputStream());
+        try {
+            Process process = processBuilder.start();
+            List<String> results = readProcessOutput(process.getInputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        System.out.println(results);
     }
     private List<String> readProcessOutput(InputStream inputStream) throws IOException {
