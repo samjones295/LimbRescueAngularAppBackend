@@ -23,7 +23,7 @@ public class NaiveBayes {
         }
     }
     private String resolvePythonScriptPath(String filename) {
-        File file = new File("src/main/resources/nb/" + filename);
+        File file = new File("C:/Users/yiche/Desktop/nb" + filename);
         return file.getAbsolutePath();
     }
 }

@@ -23,7 +23,7 @@ public class MultiLayerPerceptron {
         }
     }
     private String resolvePythonScriptPath(String filename) {
-        File file = new File("src/main/resources/mlp/" + filename);
+        File file = new File("C:/Users/yiche/Desktop/mlp" + filename);
         return file.getAbsolutePath();
     }
 }

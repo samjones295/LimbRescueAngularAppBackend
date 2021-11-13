@@ -24,7 +24,7 @@ public class SupportVectorMachine {
         }
     }
     private String resolvePythonScriptPath(String filename) {
-        File file = new File("src/main/resources/svm/" + filename);
+        File file = new File("C:/Users/yiche/Desktop/svm" + filename);
         return file.getAbsolutePath();
     }
 }

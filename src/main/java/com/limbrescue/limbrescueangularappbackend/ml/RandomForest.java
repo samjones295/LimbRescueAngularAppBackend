@@ -23,7 +23,7 @@ public class RandomForest {
         }
     }
     private String resolvePythonScriptPath(String filename) {
-        File file = new File("src/main/resources/rf/" + filename);
+        File file = new File("C:/Users/yiche/Desktop/rf" + filename);
         return file.getAbsolutePath();
     }
 }
