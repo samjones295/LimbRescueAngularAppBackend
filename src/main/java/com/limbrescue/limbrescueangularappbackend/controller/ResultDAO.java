@@ -25,12 +25,12 @@ public class ResultDAO {
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find the file");
+            e.printStackTrace();
         }
         try {
             p.load(reader);
         } catch (IOException e) {
-            System.out.println("Cannot load file");
+            e.printStackTrace();
         }
         table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
@@ -41,22 +41,31 @@ public class ResultDAO {
      *
      * @return
      *          An arraylist containing the results table.
-     * @throws SQLException
      */
-    @GetMapping("/allresults")
+    @GetMapping("/results")
     @ResponseBody
-    public List<Result> getAllResults() throws SQLException {
+    public List<Result> getAllResults() {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
         List<Result> results = new ArrayList<>();
-        while (result.next()) {
-            Result res = new Result(result.getInt("id"), result.getInt("group_id"), result.getString("algorithm"),
-                    result.getInt("ran_by"), result.getString("status"), result.getString("comments"));
-            results.add(res);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                Result res = new Result(result.getInt("id"), result.getInt("group_id"), result.getString("algorithm"),
+                        result.getInt("ran_by"), result.getString("status"), result.getString("comments"));
+                results.add(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return results;
     }
 
@@ -67,27 +76,35 @@ public class ResultDAO {
      *          The ID to be retrieved
      * @return
      *          A pointer to a tuple in the results table.
-     * @throws SQLException
      */
-    @GetMapping("/singleresult/{id}")
+    @GetMapping("/result/{id}")
     @ResponseBody
-    public Result getResult(@PathVariable("id") int id) throws SQLException{
+    public Result getResult(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
         Result res = null;
-        if (result.next()) {
-            res = new Result();
-            res.setId(id);
-            res.setGroup_id(result.getInt("group_id"));
-            res.setAlgorithm(result.getString("algorithm"));
-            res.setRan_by(result.getInt("ran_by"));
-            res.setStatus(result.getString("status"));
-            res.setComments(result.getString("comments"));
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                res = new Result();
+                res.setId(id);
+                res.setGroup_id(result.getInt("group_id"));
+                res.setAlgorithm(result.getString("algorithm"));
+                res.setRan_by(result.getInt("ran_by"));
+                res.setStatus(result.getString("status"));
+                res.setComments(result.getString("comments"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return res;
     }
 
@@ -96,28 +113,34 @@ public class ResultDAO {
      *
      * @param res
      *          The result to be inserted.
-     * @throws SQLException
      */
     @PostMapping(path = "/result")
     @ResponseBody
-    public void insertResult(@RequestBody Result res) throws SQLException{
+    public void insertResult(@RequestBody Result res) {
         Connection connection = dbConnection.getConnection();
         if (getResult(res.getId()) != null) {
             updateResult(res, res.getId());
         }
         else {
-
             String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments) VALUES(?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, res.getId());
-            statement.setInt(2, res.getGroup_id());
-            statement.setString(3, res.getAlgorithm());
-            statement.setInt(4, res.getRan_by());
-            statement.setString(5, res.getStatus());
-            statement.setString(6, res.getComments());
-            statement.executeUpdate();
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, res.getId());
+                statement.setInt(2, res.getGroup_id());
+                statement.setString(3, res.getAlgorithm());
+                statement.setInt(4, res.getRan_by());
+                statement.setString(5, res.getStatus());
+                statement.setString(6, res.getComments());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -127,21 +150,29 @@ public class ResultDAO {
      *          The variable values of the columns.
      * @param id
      *          The result ID to be updated.
-     * @throws SQLException
      */
     @PutMapping(path="/result/{id}")
     @ResponseBody
-    public void updateResult(@RequestBody Result res, @PathVariable("id") int id) throws SQLException{
+    public void updateResult(@RequestBody Result res, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, res.getGroup_id());
-        statement.setString(2, res.getAlgorithm());
-        statement.setInt(3, res.getRan_by());
-        statement.setString(4, res.getStatus());
-        statement.setInt(5, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, res.getGroup_id());
+            statement.setString(2, res.getAlgorithm());
+            statement.setInt(3, res.getRan_by());
+            statement.setString(4, res.getStatus());
+            statement.setInt(5, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -151,20 +182,26 @@ public class ResultDAO {
      *          The id to be updated.
      * @param comment
      *          The updated comment.
-     * @return
-     *          The updated result.
-     * @throws SQLException
      */
     @PutMapping("/resultcomment/{id}")
     @ResponseBody
-    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) throws SQLException {
+    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, comment);
-        statement.setInt(2, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, comment);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -172,33 +209,48 @@ public class ResultDAO {
      *
      * @param id
      *          The ID to be deleted.
-     * @throws SQLException
      */
     @DeleteMapping("/result/{id}")
     @ResponseBody
-    public void deleteResult(@PathVariable("id") int id) throws SQLException{
+    public void deleteResult(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
      * Exports the results to a .csv file.
-     *
-     * @throws SQLException
      */
     @GetMapping(path = "/viewreport")
     @ResponseBody
-    public void exportResultsToCSV() throws SQLException{
+    public void exportResultsToCSV() {
         Connection connection = dbConnection.getConnection();
         String outputFile = p.getProperty("spring.datasource.OutputFile");
         String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
                 " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\\n'";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.executeQuery();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

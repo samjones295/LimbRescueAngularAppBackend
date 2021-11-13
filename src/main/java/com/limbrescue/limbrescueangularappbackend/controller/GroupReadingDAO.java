@@ -26,12 +26,12 @@ public class GroupReadingDAO {
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find the file");
+            e.printStackTrace();
         }
         try {
             p.load(reader);
         } catch (IOException e) {
-            System.out.println("Cannot load file");
+            e.printStackTrace();
         }
         table = p.getProperty("spring.datasource.GroupReadingTable");
         dbConnection = new DBConnection();
@@ -42,22 +42,25 @@ public class GroupReadingDAO {
      *
      * @return
      *          An arraylist containing the group readings table.
-     * @throws SQLException
      */
-    @GetMapping("/allgroupreadings")
+    @GetMapping("/groupreadings")
     @ResponseBody
-    public List<GroupReading> getAllGroupReadings() throws SQLException {
+    public List<GroupReading> getAllGroupReadings() {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
         List<GroupReading> readings = new ArrayList<>();
-        while (result.next()) {
-            GroupReading reading = new GroupReading(result.getInt("id"), result.getInt("group_id"),
-                    result.getInt("reading_id"));
-            readings.add(reading);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                GroupReading reading = new GroupReading(result.getInt("id"), result.getInt("group_id"),
+                        result.getInt("reading_id"));
+                readings.add(reading);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        connection.close();
         return readings;
     }
 
@@ -68,24 +71,33 @@ public class GroupReadingDAO {
      *          The ID to be retrieved
      * @return
      *          A pointer to a tuple in the group readings table.
-     * @throws SQLException
      */
-    @GetMapping("/singlegroupreading/{id}")
+    @GetMapping("/groupreading/{id}")
     @ResponseBody
-    public GroupReading getGroupReading(@PathVariable("id") int id) throws SQLException{
+    public GroupReading getGroupReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
         GroupReading reading = null;
-        if (result.next()) {
-            reading = new GroupReading();
-            reading.setId(id);
-            reading.setGroup_id(result.getInt("group_id"));
-            reading.setReading_id(result.getInt("reading_id"));
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                reading = new GroupReading();
+                reading.setId(id);
+                reading.setGroup_id(result.getInt("group_id"));
+                reading.setReading_id(result.getInt("reading_id"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return reading;
     }
 
@@ -94,24 +106,31 @@ public class GroupReadingDAO {
      *
      * @param reading
      *              The group reading to be inserted.
-     * @throws SQLException
      */
     @PostMapping(path = "/groupreading")
     @ResponseBody
-    public void insertGroupReading(@RequestBody GroupReading reading) throws SQLException{
+    public void insertGroupReading(@RequestBody GroupReading reading) {
         Connection connection = dbConnection.getConnection();
         if (getGroupReading(reading.getId()) != null) {
             updateGroupReading(reading, reading.getId());
         }
         else {
-            String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, reading.getId());
-            statement.setInt(2, reading.getGroup_id());
-            statement.setInt(3, reading.getReading_id());
-            statement.executeUpdate();
+            try {
+                String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, reading.getId());
+                statement.setInt(2, reading.getGroup_id());
+                statement.setInt(3, reading.getReading_id());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -121,19 +140,27 @@ public class GroupReadingDAO {
      *          The variable values of the columns.
      * @param id
      *          The group reading ID to be updated.
-     * @throws SQLException
      */
     @PutMapping(path="/groupreading/{id}")
     @ResponseBody
-    public void updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) throws SQLException{
+    public void updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reading.getGroup_id());
-        statement.setInt(2, reading.getReading_id());
-        statement.setInt(3, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading.getGroup_id());
+            statement.setInt(2, reading.getReading_id());
+            statement.setInt(3, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -141,16 +168,25 @@ public class GroupReadingDAO {
      *
      * @param id
      *          The ID to be deleted.
-     * @throws SQLException
      */
     @DeleteMapping("/groupreading/{id}")
     @ResponseBody
-    public void deleteGroupReading(@PathVariable("id") int id) throws SQLException{
+    public void deleteGroupReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

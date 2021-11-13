@@ -28,12 +28,12 @@ public class PatientDAO {
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find the file");
+            e.printStackTrace();
         }
         try {
             p.load(reader);
         } catch (IOException e) {
-            System.out.println("Cannot load file");
+            e.printStackTrace();
         }
         table = p.getProperty("spring.datasource.PatientTable");
         dbConnection = new DBConnection();
@@ -44,21 +44,29 @@ public class PatientDAO {
      *
      * @return
      *          An arraylist containing the group readings table.
-     * @throws SQLException
      */
-    @GetMapping("/allpatients")
+    @GetMapping("/patients")
     @ResponseBody
-    public List<Patient> getAllPatients() throws SQLException {
+    public List<Patient> getAllPatients() {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
         List<Patient> readings = new ArrayList<>();
-        while (result.next()) {
-            Patient data = new Patient(result.getInt("id"), result.getString("patient_no"), result.getString("status"));
-            readings.add(data);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Patient data = new Patient(result.getInt("id"), result.getString("patient_no"), result.getString("status"));
+                readings.add(data);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return readings;
     }
 
@@ -66,25 +74,35 @@ public class PatientDAO {
      * Retrieves a single patient based on the ID.
      *
      * @param id
+     *          The id of the patient.
      * @return
-     * @throws SQLException
+     *          A pointer to a tuple in the patients table.
      */
-    @GetMapping("/singlepatient/{id}")
+    @GetMapping("/patient/{id}")
     @ResponseBody
-    public Patient getPatient(@PathVariable("id")  int id) throws SQLException{
+    public Patient getPatient(@PathVariable("id")  int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
         Patient patient = null;
-        if (result.next()) {
-            patient = new Patient();
-            patient.setId(id);
-            patient.setPatient_no(result.getString("patient_no"));
-            patient.setStatus(result.getString("status"));
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                patient = new Patient();
+                patient.setId(id);
+                patient.setPatient_no(result.getString("patient_no"));
+                patient.setStatus(result.getString("status"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return patient;
     }
 
@@ -93,24 +111,32 @@ public class PatientDAO {
      *
      * @param patient
      *              The patient to be inserted.
-     * @throws SQLException
      */
     @PostMapping(path = "/patient")
     @ResponseBody
-    public void insertPatient(@RequestBody Patient patient) throws SQLException{
+    public void insertPatient(@RequestBody Patient patient) {
         Connection connection = dbConnection.getConnection();
+
         if (getPatient(patient.getId()) != null) {
             updatePatient(patient, patient.getId());
         }
         else {
             String sql = "INSERT INTO " + table + " (id, patient_no, status) VALUES(?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, patient.getId());
-            statement.setString(2, patient.getPatient_no());
-            statement.setString(3, patient.getStatus());
-            statement.executeUpdate();
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, patient.getId());
+                statement.setString(2, patient.getPatient_no());
+                statement.setString(3, patient.getStatus());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -119,19 +145,27 @@ public class PatientDAO {
      *              The variable values of the columns.
      * @param id
      *              The group reading ID to be updated.
-     * @throws SQLException
      */
     @PutMapping(path="/patient/{id}")
     @ResponseBody
-    public void updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) throws SQLException{
+    public void updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, patient.getPatient_no());
-        statement.setString(2, patient.getStatus());
-        statement.setInt(3, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, patient.getPatient_no());
+            statement.setString(2, patient.getStatus());
+            statement.setInt(3, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -139,16 +173,24 @@ public class PatientDAO {
      *
      * @param id
      *          The ID to be deleted.
-     * @throws SQLException
      */
     @DeleteMapping("/patient/{id}")
     @ResponseBody
-    public void deletePatient(@PathVariable("id") int id) throws SQLException{
+    public void deletePatient(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

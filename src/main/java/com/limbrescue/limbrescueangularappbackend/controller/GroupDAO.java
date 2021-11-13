@@ -26,12 +26,12 @@ public class GroupDAO {
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find the file");
+            e.printStackTrace();
         }
         try {
             p.load(reader);
         } catch (IOException e) {
-            System.out.println("Cannot load file");
+            e.printStackTrace();
         }
         table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
@@ -42,21 +42,25 @@ public class GroupDAO {
      *
      * @return
      *          An arraylist containing the group table.
-     * @throws SQLException
      */
-    @GetMapping("/allgroups")
+    @GetMapping("/groups")
     @ResponseBody
-    public List<Group> getAllGroups() throws SQLException {
+    public List<Group> getAllGroups() {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "`";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
         List<Group> groups = new ArrayList<>();
-        while (result.next()) {
-            Group group = new Group(result.getInt("id"), result.getString("name"), result.getDate("date_created"));
-            groups.add(group);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                Group group = new Group(result.getInt("id"), result.getString("name"), result.getDate("date_created"));
+                groups.add(group);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        connection.close();
         return groups;
     }
 
@@ -67,24 +71,33 @@ public class GroupDAO {
      *          The ID to be retrieved
      * @return
      *          A pointer to a tuple in the group table.
-     * @throws SQLException
      */
-    @GetMapping("/singlegroup/{id}")
+    @GetMapping("/group/{id}")
     @ResponseBody
-    public Group getGroup(@PathVariable("id") int id) throws SQLException{
+    public Group getGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
         Group group = null;
-        if (result.next()) {
-            group = new Group();
-            group.setId(id);
-            group.setName(result.getString("name"));
-            group.setDate_created(result.getDate("date_created"));
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                group = new Group();
+                group.setId(id);
+                group.setName(result.getString("name"));
+                group.setDate_created(result.getDate("date_created"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return group;
     }
 
@@ -93,24 +106,31 @@ public class GroupDAO {
      *
      * @param group
      *              The group to be inserted.
-     * @throws SQLException
      */
     @PostMapping(path = "/group")
     @ResponseBody
-    public void insertGroup(@RequestBody Group group) throws SQLException{
+    public void insertGroup(@RequestBody Group group) {
         Connection connection = dbConnection.getConnection();
         if (getGroup(group.getId()) != null) {
             updateGroup(group, group.getId());
         }
         else {
-            String sql = "INSERT INTO `" + table + "` (id, name, date_created) VALUES(?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, group.getId());
-            statement.setString(2, group.getName());
-            statement.setDate(3, group.getDate_created());
-            statement.executeUpdate();
+            try {
+                String sql = "INSERT INTO `" + table + "` (id, name, date_created) VALUES(?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, group.getId());
+                statement.setString(2, group.getName());
+                statement.setDate(3, group.getDate_created());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -120,21 +140,27 @@ public class GroupDAO {
      *          The variable values of the columns.
      * @param id
      *          The group ID to be updated.
-     * @return
-     *          The updated group.
-     * @throws SQLException
      */
     @PutMapping(path="/group/{id}")
     @ResponseBody
-    public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) throws SQLException{
+    public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE `" + table + "` SET name = ?, date_created = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, group.getName());
-        statement.setDate(2, group.getDate_created());
-        statement.setInt(3, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, group.getName());
+            statement.setDate(2, group.getDate_created());
+            statement.setInt(3, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -142,16 +168,24 @@ public class GroupDAO {
      *
      * @param id
      *          The ID to be deleted.
-     * @throws SQLException
      */
     @DeleteMapping("/group/{id}")
     @ResponseBody
-    public void deleteGroup(@PathVariable("id") int id) throws SQLException{
+    public void deleteGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM `" + table + "` WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

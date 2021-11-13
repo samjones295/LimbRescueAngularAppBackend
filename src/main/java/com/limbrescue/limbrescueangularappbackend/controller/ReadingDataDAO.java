@@ -25,12 +25,12 @@ public class ReadingDataDAO {
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find the file");
+            e.printStackTrace();
         }
         try {
             p.load(reader);
         } catch (IOException e) {
-            System.out.println("Cannot load file");
+            e.printStackTrace();
         }
         table = p.getProperty("spring.datasource.ReadingDataTable");
         dbConnection = new DBConnection();
@@ -41,22 +41,31 @@ public class ReadingDataDAO {
      *
      * @return
      *          An arraylist containing the reading data table.
-     * @throws SQLException
      */
-    @GetMapping("/allreadingdata")
+    @GetMapping("/readingdata")
     @ResponseBody
-    public List<ReadingData> getAllReadingData() throws SQLException {
+    public List<ReadingData> getAllReadingData() {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table;
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
         List<ReadingData> readings = new ArrayList<>();
-        while (result.next()) {
-            ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                    result.getDouble("time"), result.getDouble("ppg_reading"));
-            readings.add(data);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
+                        result.getDouble("time"), result.getDouble("ppg_reading"));
+                readings.add(data);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return readings;
     }
 
@@ -66,26 +75,34 @@ public class ReadingDataDAO {
      * @param id
      *          The ID to be retrieved
      * @return
-     *          A pointer to a tuple in the group readings table.
-     * @throws SQLException
+     *          A pointer to a tuple in the reading data table.
      */
-    @GetMapping("/singlereadingdata/{id}")
+    @GetMapping("/readingdata/{id}")
     @ResponseBody
-    public ReadingData getReadingData(@PathVariable("id") int id) throws SQLException{
+    public ReadingData getReadingData(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        ResultSet result = statement.executeQuery();
         ReadingData data = null;
-        if (result.next()) {
-            data = new ReadingData();
-            data.setId(id);
-            data.setReading_id(result.getInt("reading_id"));
-            data.setTime(result.getDouble("time"));
-            data.setPpg_reading(result.getDouble("ppg_reading"));
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                data = new ReadingData();
+                data.setId(id);
+                data.setReading_id(result.getInt("reading_id"));
+                data.setTime(result.getDouble("time"));
+                data.setPpg_reading(result.getDouble("ppg_reading"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
         return data;
     }
 
@@ -94,25 +111,32 @@ public class ReadingDataDAO {
      *
      * @param data
      *              The group reading to be inserted.
-     * @throws SQLException
      */
     @PostMapping(path = "/readingdata")
     @ResponseBody
-    public void insertReadingData(@RequestBody ReadingData data) throws SQLException{
+    public void insertReadingData(@RequestBody ReadingData data) {
         Connection connection = dbConnection.getConnection();
         if (getReadingData(data.getId()) != null) {
             updateReadingData(data, data.getId());
         }
         else {
             String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading) VALUES(?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, data.getId());
-            statement.setInt(2, data.getReading_id());
-            statement.setDouble(3, data.getTime());
-            statement.setDouble(4, data.getPpg_reading());
-            statement.executeUpdate();
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, data.getId());
+                statement.setInt(2, data.getReading_id());
+                statement.setDouble(3, data.getTime());
+                statement.setDouble(4, data.getPpg_reading());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        connection.close();
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -122,20 +146,28 @@ public class ReadingDataDAO {
      *          The variable values of the columns.
      * @param id
      *          The reading data ID to be updated.
-     * @throws SQLException
      */
     @PutMapping(path="/readingdata/{id}")
     @ResponseBody
-    public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) throws SQLException{
+    public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, data.getReading_id());
-        statement.setDouble(2, data.getTime());
-        statement.setDouble(3, data.getPpg_reading());
-        statement.setInt(4, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, data.getReading_id());
+            statement.setDouble(2, data.getTime());
+            statement.setDouble(3, data.getPpg_reading());
+            statement.setInt(4, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -143,16 +175,24 @@ public class ReadingDataDAO {
      *
      * @param id
      *          The ID to be deleted.
-     * @throws SQLException
      */
     @DeleteMapping("/readingdata/{id}")
     @ResponseBody
-    public void deleteReadingData(@PathVariable("id") int id) throws SQLException{
+    public void deleteReadingData(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM " + table + " WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        statement.executeUpdate();
-        connection.close();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
