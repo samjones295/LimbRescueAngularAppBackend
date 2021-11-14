@@ -47,7 +47,7 @@ def add_cfg_model(cfg, tune=False):
     cfg.RF.max_features = None  # {"auto", "sqrt", "log2"}, int or float, default="auto"
     cfg.RF.max_leaf_nodes = None  # None or int
     cfg.RF.min_impurity_decrease = 0.0
-    cfg.RF.min_impurity_split = None  # None or float
+    #cfg.RF.min_impurity_split = None  # None or float
     cfg.RF.bootstrap = True
     cfg.RF.oob_score = False
     cfg.RF.n_jobs = None  # None or int
