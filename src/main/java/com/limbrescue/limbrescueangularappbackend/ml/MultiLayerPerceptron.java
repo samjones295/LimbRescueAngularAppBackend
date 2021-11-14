@@ -6,11 +6,14 @@ import java.util.stream.Collectors;
 
 public class MultiLayerPerceptron {
     public void run() {
-        ProcessBuilder processBuilder = new ProcessBuilder("python", resolvePythonScriptPath("train_net.py"));
+        ProcessBuilder processBuilder = new ProcessBuilder("./mlp.bat");
         processBuilder.redirectErrorStream(true);
         try {
             Process process = processBuilder.start();
             List<String> results = readProcessOutput(process.getInputStream());
+            for (String s : results) {
+                System.out.println(s);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

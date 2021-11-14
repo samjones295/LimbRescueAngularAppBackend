@@ -17,8 +17,8 @@ public class LimbRescueAngularAppBackendApplication {
         rf.run();
         NaiveBayes nb = new NaiveBayes();
         nb.run();
-        MultiLayerPerceptron mlp = new MultiLayerPerceptron();
-        mlp.run();
+//        MultiLayerPerceptron mlp = new MultiLayerPerceptron();
+//        mlp.run();
         //This is just some tutorial and will be removed.
         PythonScript script = new PythonScript();
         script.run();
