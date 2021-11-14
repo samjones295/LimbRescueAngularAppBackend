@@ -23,7 +23,7 @@ def get_model(cfg_model):
         max_features=cfg_model.max_features,
         max_leaf_nodes=cfg_model.max_leaf_nodes,
         min_impurity_decrease=cfg_model.min_impurity_decrease,
-        min_impurity_split=cfg_model.min_impurity_split,
+        #min_impurity_split=cfg_model.min_impurity_split,
         bootstrap=cfg_model.bootstrap,
         oob_score=cfg_model.oob_score,
         n_jobs=cfg_model.n_jobs,
