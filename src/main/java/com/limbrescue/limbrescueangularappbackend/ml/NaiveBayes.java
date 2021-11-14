@@ -1,21 +1,27 @@
 package com.limbrescue.limbrescueangularappbackend.ml;
 
+import org.python.antlr.ast.Str;
+
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class NaiveBayes {
-    public void run() {
+    public List<String> run() {
         ProcessBuilder processBuilder = new ProcessBuilder("./batch/nb.bat");
         processBuilder.redirectErrorStream(true);
+        List<String> results = new ArrayList<>();
         try {
             Process process = processBuilder.start();
-            List<String> results = readProcessOutput(process.getInputStream());
+            results = readProcessOutput(process.getInputStream());
             for (String s : results) {
                 System.out.println(s);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            return results;
         }
     }
     private List<String> readProcessOutput(InputStream inputStream) throws IOException {

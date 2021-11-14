@@ -9,7 +9,7 @@ import java.util.Random;
 @SpringBootApplication
 public class LimbRescueAngularAppBackendApplication {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
         SpringApplication.run(LimbRescueAngularAppBackendApplication.class, args);
         SupportVectorMachine svm = new SupportVectorMachine();
         svm.run();

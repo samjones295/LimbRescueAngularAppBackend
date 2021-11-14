@@ -23,7 +23,7 @@ public class UserDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
-    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UserDAO.class.getName());
     public UserDAO()  {
         //Determine what file to read
         try {
