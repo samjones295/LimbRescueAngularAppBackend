@@ -1,2 +1,2 @@
 cd svm/
-python train_net.py
+python3 train_net.py
