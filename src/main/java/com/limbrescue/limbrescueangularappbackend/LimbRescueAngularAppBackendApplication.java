@@ -19,9 +19,6 @@ public class LimbRescueAngularAppBackendApplication {
         nb.run();
 //        MultiLayerPerceptron mlp = new MultiLayerPerceptron();
 //        mlp.run();
-        //This is just some tutorial and will be removed.
-        PythonScript script = new PythonScript();
-        script.run();
     }
 
 }
