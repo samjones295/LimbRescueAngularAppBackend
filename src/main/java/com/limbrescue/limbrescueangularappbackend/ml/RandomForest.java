@@ -17,7 +17,6 @@ public class RandomForest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//
     }
     private List<String> readProcessOutput(InputStream inputStream) throws IOException {
         try (BufferedReader output = new BufferedReader(new InputStreamReader(inputStream))) {

@@ -17,7 +17,6 @@ public class NaiveBayes {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        System.out.println(results);
     }
     private List<String> readProcessOutput(InputStream inputStream) throws IOException {
         try (BufferedReader output = new BufferedReader(new InputStreamReader(inputStream))) {
