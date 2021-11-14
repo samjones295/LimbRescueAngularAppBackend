@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class SupportVectorMachine {
     public void run() {
-        ProcessBuilder processBuilder = new ProcessBuilder("./svm.bat");
+        ProcessBuilder processBuilder = new ProcessBuilder("./batch/svm.bat");
         processBuilder.redirectErrorStream(true);
 
         try {

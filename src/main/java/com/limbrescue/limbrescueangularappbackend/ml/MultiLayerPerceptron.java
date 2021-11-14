@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class MultiLayerPerceptron {
     public void run() {
-        ProcessBuilder processBuilder = new ProcessBuilder("./mlp.bat");
+        ProcessBuilder processBuilder = new ProcessBuilder("./batch/mlp.bat");
         processBuilder.redirectErrorStream(true);
         try {
             Process process = processBuilder.start();

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class RandomForest {
     public void run() {
-        ProcessBuilder processBuilder = new ProcessBuilder("./rf.bat");
+        ProcessBuilder processBuilder = new ProcessBuilder("./batch/rf.bat");
         processBuilder.redirectErrorStream(true);
         try {
             Process process = processBuilder.start();

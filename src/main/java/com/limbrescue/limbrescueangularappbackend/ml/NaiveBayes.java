@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class NaiveBayes {
     public void run() {
-        ProcessBuilder processBuilder = new ProcessBuilder("./nb.bat");
+        ProcessBuilder processBuilder = new ProcessBuilder("./batch/nb.bat");
         processBuilder.redirectErrorStream(true);
         try {
             Process process = processBuilder.start();
