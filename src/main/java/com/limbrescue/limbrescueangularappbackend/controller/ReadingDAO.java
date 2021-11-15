@@ -156,15 +156,16 @@ public class ReadingDAO {
     @ResponseBody
     public void updateReading(@RequestBody Reading reading, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, " +
+        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, comments= ? " +
                 " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, reading.getPatient_no());
             statement.setDate(2, reading.getDate_created());
             statement.setString(3, reading.getLaterality());
+            statement.setString(4, reading.getComments());
             //statement.setString(3, reading.getActive_or_rest());
-            statement.setInt(4, id);
+            statement.setInt(5, id);
             statement.executeUpdate();
             //reading.setActive_or_rest(result.getString("active_or_rest"));
         } catch (SQLException e) {
