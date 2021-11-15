@@ -11,14 +11,14 @@ public class LimbRescueAngularAppBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LimbRescueAngularAppBackendApplication.class, args);
+        MultiLayerPerceptron mlp = new MultiLayerPerceptron();
+        mlp.run();
         SupportVectorMachine svm = new SupportVectorMachine();
         svm.run();
         RandomForest rf = new RandomForest();
         rf.run();
         NaiveBayes nb = new NaiveBayes();
         nb.run();
-//        MultiLayerPerceptron mlp = new MultiLayerPerceptron();
-//        mlp.run();
     }
 
 }
