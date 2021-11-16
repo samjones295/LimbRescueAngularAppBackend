@@ -28,8 +28,4 @@ public class RandomForest {
                     .collect(Collectors.toList());
         }
     }
-    private String resolvePythonScriptPath(String filename) {
-        File file = new File("C:/Users/yiche/Desktop/rf" + filename);
-        return file.getAbsolutePath();
-    }
 }

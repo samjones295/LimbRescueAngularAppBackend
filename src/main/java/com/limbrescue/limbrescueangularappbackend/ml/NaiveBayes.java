@@ -30,8 +30,4 @@ public class NaiveBayes {
                     .collect(Collectors.toList());
         }
     }
-    private String resolvePythonScriptPath(String filename) {
-        File file = new File("C:/Users/yiche/Desktop/nb" + filename);
-        return file.getAbsolutePath();
-    }
 }

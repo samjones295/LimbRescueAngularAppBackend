@@ -29,8 +29,4 @@ public class SupportVectorMachine {
                     .collect(Collectors.toList());
         }
     }
-    private String resolvePythonScriptPath(String filename) {
-        File file = new File("C:/Users/yiche/Desktop/svm" + filename);
-        return file.getAbsolutePath();
-    }
 }

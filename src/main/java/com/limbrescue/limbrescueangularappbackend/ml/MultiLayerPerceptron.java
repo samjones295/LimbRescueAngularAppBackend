@@ -28,8 +28,4 @@ public class MultiLayerPerceptron {
                     .collect(Collectors.toList());
         }
     }
-    private String resolvePythonScriptPath(String filename) {
-        File file = new File("C:/Users/yiche/Desktop/mlp" + filename);
-        return file.getAbsolutePath();
-    }
 }
