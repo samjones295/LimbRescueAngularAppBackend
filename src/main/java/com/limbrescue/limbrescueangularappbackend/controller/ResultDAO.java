@@ -160,14 +160,15 @@ public class ResultDAO {
     @ResponseBody
     public void updateResult(@RequestBody Result res, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, WHERE id = ?";
+        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, res.getGroup_id());
             statement.setString(2, res.getAlgorithm());
             statement.setInt(3, res.getRan_by());
             statement.setString(4, res.getStatus());
-            statement.setInt(5, id);
+            statement.setString(5, res.getComments());
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -236,9 +237,9 @@ public class ResultDAO {
     }
 
     /**
-     * Exports the results to a .csv file.
+     * Exports the results to a .txt file.
      */
-    @GetMapping(path = "/viewreport/{id}")
+    @GetMapping(path = "/report/{id}")
     @ResponseBody
     public void exportResultsToFile(@PathVariable("id") int id) {
 //        Connection connection = dbConnection.getConnection();
@@ -274,12 +275,12 @@ public class ResultDAO {
                     break;
             }
         }
-
         try {
             FileWriter writer = new FileWriter(outputFile);
             for (String s : list) {
-                writer.write(s);
+                writer.write(s + "\n");
             }
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
