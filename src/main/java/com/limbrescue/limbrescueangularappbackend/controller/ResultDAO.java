@@ -137,6 +137,7 @@ public class ResultDAO {
                 statement.setString(5, res.getStatus());
                 statement.setString(6, res.getComments());
                 statement.executeUpdate();
+                exportResultsToFile(res.getId());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -170,6 +171,7 @@ public class ResultDAO {
             statement.setString(5, res.getComments());
             statement.setInt(6, id);
             statement.executeUpdate();
+            exportResultsToFile(id);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -281,9 +283,61 @@ public class ResultDAO {
         }
         try {
             FileWriter writer = new FileWriter(outputFile);
-            for (String s : list) {
-                writer.write(s + "\n");
+            switch(res.getAlgorithm()) {
+                case "Support Vector Machine":
+                    writer.write("{\n");
+                    writer.write("\t" + list.get(29).substring(list.get(29).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(33) + "\n");
+                    writer.write("\t" + list.get(34) + "\n");
+                    writer.write("\t" + list.get(35) + "\n");
+                    writer.write("\t" + list.get(36) + "\n");
+                    writer.write("\t" + list.get(37).substring(list.get(37).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(38) + "\n");
+                    writer.write("\t" + list.get(39) + "\n");
+                    writer.write("\t" + list.get(40) + "\n");
+                    writer.write("\t" + list.get(41) + "\n");
+                    writer.write("}\n");
+                    break;
+                case "Random Forest":
+                    writer.write("{\n");
+                    writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(35).substring(list.get(35).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(36) + "\n");
+                    writer.write("\t" + list.get(37) + "\n");
+                    writer.write("\t" + list.get(38) + "\n");
+                    writer.write("\t" + list.get(39) + "\n");
+                    writer.write("\t" + list.get(40).substring(list.get(40).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(41) + "\n");
+                    writer.write("\t" + list.get(42) + "\n");
+                    writer.write("\t" + list.get(43) + "\n");
+                    writer.write("\t" + list.get(44) + "\n");
+                    writer.write("}\n");
+                    break;
+                case "Naive Bayes":
+                    writer.write("{\n");
+                    writer.write("\t" + list.get(16).substring(list.get(16).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(19).substring(list.get(19).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(20) + "\n");
+                    writer.write("\t" + list.get(21) + "\n");
+                    writer.write("\t" + list.get(22) + "\n");
+                    writer.write("\t" + list.get(23) + "\n");
+                    writer.write("\t" + list.get(24).substring(list.get(24).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(25) + "\n");
+                    writer.write("\t" + list.get(26) + "\n");
+                    writer.write("\t" + list.get(27) + "\n");
+                    writer.write("\t" + list.get(28) + "\n");
+                    writer.write("}\n");
+                    break;
+//                case "Multi Layer Perceptron":
+//                    break;
+                default:
+                    LOGGER.warning("Invalid Algorithm");
+                    break;
             }
+//            for (String s : list) {
+//                writer.write(s + "\n");
+//            }
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
