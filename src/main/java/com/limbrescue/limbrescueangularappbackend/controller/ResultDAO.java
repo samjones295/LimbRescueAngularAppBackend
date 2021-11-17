@@ -243,7 +243,7 @@ public class ResultDAO {
     @ResponseBody
     public void exportResultsToFile(@PathVariable("id") int id) {
 //        Connection connection = dbConnection.getConnection();
-        String outputFile = p.getProperty("spring.datasource.OutputFile");
+        String outputFile = null; //p.getProperty("spring.datasource.OutputFile");
 //        String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
 //                " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\\n'";
         //String sql = "SELECT * FROM " + table + " WHERE id = " + id;
@@ -257,18 +257,22 @@ public class ResultDAO {
                 case "Support Vector Machine":
                     SupportVectorMachine svm = new SupportVectorMachine();
                     list = svm.run();
+                    outputFile = p.getProperty("spring.datasource.SVM");
                     break;
                 case "Random Forest":
                     RandomForest rf = new RandomForest();
                     list = rf.run();
+                    outputFile = p.getProperty("spring.datasource.RF");
                     break;
                 case "Naive Bayes":
                     NaiveBayes nb = new NaiveBayes();
                     list = nb.run();
+                    outputFile = p.getProperty("spring.datasource.NB");
                     break;
                 case "Multi Layer Perceptron":
                     MultiLayerPerceptron mlp = new MultiLayerPerceptron();
                     list = mlp.run();
+                    outputFile = p.getProperty("spring.datasource.MLP");
                     break;
                 default:
                     LOGGER.warning("Invalid Algorithm");
