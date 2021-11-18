@@ -138,7 +138,7 @@ public class ResultDAO {
             statement.setString(5, res.getStatus());
             statement.setString(6, res.getComments());
             statement.executeUpdate();
-            exportResultsToFile(res.getId());
+            runMLAlgorithm(res.getAlgorithm());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -149,7 +149,36 @@ public class ResultDAO {
             }
         }
     }
-
+    public void runMLAlgorithm(String algorithm) {
+        List<String> list = new ArrayList<>();
+        String outputFile = null;
+        switch(algorithm) {
+            case "Support Vector Machine":
+                SupportVectorMachine svm = new SupportVectorMachine();
+                list = svm.run();
+                outputFile = p.getProperty("spring.datasource.SVM");
+                break;
+            case "Random Forest":
+                RandomForest rf = new RandomForest();
+                list = rf.run();
+                outputFile = p.getProperty("spring.datasource.RF");
+                break;
+            case "Naive Bayes":
+                NaiveBayes nb = new NaiveBayes();
+                list = nb.run();
+                outputFile = p.getProperty("spring.datasource.NB");
+                break;
+            case "Multi Layer Perceptron":
+                MultiLayerPerceptron mlp = new MultiLayerPerceptron();
+                list = mlp.run();
+                outputFile = p.getProperty("spring.datasource.MLP");
+                break;
+            default:
+                LOGGER.warning("Invalid Algorithm");
+                break;
+        }
+        exportResultsToFile(algorithm, list, outputFile);
+    }
     /**
      * Updates a result based on the ID.
      *
@@ -172,7 +201,7 @@ public class ResultDAO {
             statement.setString(5, res.getComments());
             statement.setInt(6, id);
             statement.executeUpdate();
-            exportResultsToFile(id);
+            runMLAlgorithm(res.getAlgorithm());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -244,47 +273,46 @@ public class ResultDAO {
      */
     @GetMapping(path = "/report/{id}")
     @ResponseBody
-    public void exportResultsToFile(@PathVariable("id") int id) {
+    public void exportResultsToFile(String algorithm, List<String> list, String outputFile) {
 //        Connection connection = dbConnection.getConnection();
-        String outputFile = null; //p.getProperty("spring.datasource.OutputFile");
+//        String outputFile = null; //p.getProperty("spring.datasource.OutputFile");
 //        String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
 //                " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\\n'";
         //String sql = "SELECT * FROM " + table + " WHERE id = " + id;
-        List<String> list = new ArrayList<>();
 //        try {
 //            PreparedStatement statement = connection.prepareStatement(sql);
 //            ResultSet result = statement.executeQuery();
-        Result res = getResult(id);
-        if (res != null) {
-            switch(res.getAlgorithm()) {
-                case "Support Vector Machine":
-                    SupportVectorMachine svm = new SupportVectorMachine();
-                    list = svm.run();
-                    outputFile = p.getProperty("spring.datasource.SVM");
-                    break;
-                case "Random Forest":
-                    RandomForest rf = new RandomForest();
-                    list = rf.run();
-                    outputFile = p.getProperty("spring.datasource.RF");
-                    break;
-                case "Naive Bayes":
-                    NaiveBayes nb = new NaiveBayes();
-                    list = nb.run();
-                    outputFile = p.getProperty("spring.datasource.NB");
-                    break;
-                case "Multi Layer Perceptron":
-                    MultiLayerPerceptron mlp = new MultiLayerPerceptron();
-                    list = mlp.run();
-                    outputFile = p.getProperty("spring.datasource.MLP");
-                    break;
-                default:
-                    LOGGER.warning("Invalid Algorithm");
-                    break;
-            }
-        }
+//        Result res = getResult(id);
+//        if (res != null) {
+//            switch(res.getAlgorithm()) {
+//                case "Support Vector Machine":
+//                    SupportVectorMachine svm = new SupportVectorMachine();
+//                    list = svm.run();
+//                    outputFile = p.getProperty("spring.datasource.SVM");
+//                    break;
+//                case "Random Forest":
+//                    RandomForest rf = new RandomForest();
+//                    list = rf.run();
+//                    outputFile = p.getProperty("spring.datasource.RF");
+//                    break;
+//                case "Naive Bayes":
+//                    NaiveBayes nb = new NaiveBayes();
+//                    list = nb.run();
+//                    outputFile = p.getProperty("spring.datasource.NB");
+//                    break;
+//                case "Multi Layer Perceptron":
+//                    MultiLayerPerceptron mlp = new MultiLayerPerceptron();
+//                    list = mlp.run();
+//                    outputFile = p.getProperty("spring.datasource.MLP");
+//                    break;
+//                default:
+//                    LOGGER.warning("Invalid Algorithm");
+//                    break;
+//            }
+//        }
         try {
             FileWriter writer = new FileWriter(outputFile);
-            switch(res.getAlgorithm()) {
+            switch(algorithm) {
                 case "Support Vector Machine":
                     writer.write("{\n");
                     writer.write("\t" + list.get(29).substring(list.get(29).indexOf("0m") + 3) + "\n");
