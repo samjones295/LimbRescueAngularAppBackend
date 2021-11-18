@@ -118,24 +118,23 @@ public class ReadingDAO {
     @ResponseBody
     public void insertReading(@RequestBody Reading reading) {
         Connection connection = dbConnection.getConnection();
-        if (getReading(reading.getId()) != null) {
-            updateReading(reading, reading.getId());
+        int id = reading.getId();
+        while (getReading(id) != null) {
+            id++;
+            reading.setId(id);
         }
-        else {
-            String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
-            try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, reading.getId());
-                statement.setString(2, reading.getPatient_no());
-                statement.setDate(3, reading.getDate_created());
-                statement.setString(4, reading.getLaterality());
-                //statement.setString(4, reading.getActive_or_rest());
-                statement.setString(5, reading.getComments());
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
+        String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading.getId());
+            statement.setString(2, reading.getPatient_no());
+            statement.setDate(3, reading.getDate_created());
+            statement.setString(4, reading.getLaterality());
+            //statement.setString(4, reading.getActive_or_rest());
+            statement.setString(5, reading.getComments());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         try {
             connection.close();

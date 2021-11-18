@@ -116,21 +116,21 @@ public class ReadingDataDAO {
     @ResponseBody
     public void insertReadingData(@RequestBody ReadingData data) {
         Connection connection = dbConnection.getConnection();
-        if (getReadingData(data.getId()) != null) {
-            updateReadingData(data, data.getId());
+        int id = data.getId();
+        while (getReadingData(id) != null) {
+            id++;
+            data.setId(id);
         }
-        else {
-            String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading) VALUES(?, ?, ?, ?)";
-            try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, data.getId());
-                statement.setInt(2, data.getReading_id());
-                statement.setDouble(3, data.getTime());
-                statement.setDouble(4, data.getPpg_reading());
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading) VALUES(?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, data.getId());
+            statement.setInt(2, data.getReading_id());
+            statement.setDouble(3, data.getTime());
+            statement.setDouble(4, data.getPpg_reading());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         try {
             connection.close();

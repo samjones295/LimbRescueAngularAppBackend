@@ -113,21 +113,20 @@ public class PatientDAO {
     @ResponseBody
     public void insertPatient(@RequestBody Patient patient) {
         Connection connection = dbConnection.getConnection();
-
-        if (getPatient(patient.getId()) != null) {
-            updatePatient(patient, patient.getId());
+        int id = patient.getId();
+        while (getPatient(id) != null) {
+            id++;
+            patient.setId(id);
         }
-        else {
-            String sql = "INSERT INTO " + table + " (id, patient_no, status) VALUES(?, ?, ?)";
-            try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, patient.getId());
-                statement.setString(2, patient.getPatient_no());
-                statement.setString(3, patient.getStatus());
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        String sql = "INSERT INTO " + table + " (id, patient_no, status) VALUES(?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, patient.getId());
+            statement.setString(2, patient.getPatient_no());
+            statement.setString(3, patient.getStatus());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         try {
             connection.close();

@@ -111,25 +111,26 @@ public class GroupReadingDAO {
     @ResponseBody
     public void insertGroupReading(@RequestBody GroupReading reading) {
         Connection connection = dbConnection.getConnection();
-        if (getGroupReading(reading.getId()) != null) {
-            updateGroupReading(reading, reading.getId());
+        int id = reading.getId();
+        while (getGroupReading(id) != null) {
+            id++;
+            reading.setId(id);
         }
-        else {
+        try {
+            String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading.getId());
+            statement.setInt(2, reading.getGroup_id());
+            statement.setInt(3, reading.getReading_id());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, reading.getId());
-                statement.setInt(2, reading.getGroup_id());
-                statement.setInt(3, reading.getReading_id());
-                statement.executeUpdate();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

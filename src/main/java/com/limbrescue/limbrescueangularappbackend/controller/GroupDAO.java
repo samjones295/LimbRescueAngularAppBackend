@@ -111,25 +111,26 @@ public class GroupDAO {
     @ResponseBody
     public void insertGroup(@RequestBody Group group) {
         Connection connection = dbConnection.getConnection();
-        if (getGroup(group.getId()) != null) {
-            updateGroup(group, group.getId());
+        int id = group.getId();
+        while (getGroup(id) != null) {
+            id++;
+            group.setId(id);
         }
-        else {
+        try {
+            String sql = "INSERT INTO `" + table + "` (id, name, date_created) VALUES(?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, group.getId());
+            statement.setString(2, group.getName());
+            statement.setDate(3, group.getDate_created());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                String sql = "INSERT INTO `" + table + "` (id, name, date_created) VALUES(?, ?, ?)";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, group.getId());
-                statement.setString(2, group.getName());
-                statement.setDate(3, group.getDate_created());
-                statement.executeUpdate();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

@@ -124,28 +124,29 @@ public class UserDAO {
     @ResponseBody
     public void insertUser(@RequestBody User user) {
         Connection connection = dbConnection.getConnection();
-        if (getUser(user.getId()) != null) {
-            updateUser(user, user.getId());
+        int id = user.getId();
+        while (getUser(id) != null) {
+            id++;
+            user.setId(id);
         }
-        else {
-            String sql = "INSERT INTO " + table + " (id, email, username, password, date_created, last_updated) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + table + " (id, email, username, password, date_created, last_updated) VALUES(?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getUsername());
+            statement.setString(4, user.getPassword());
+            statement.setDate(5, user.getDate_created());
+            statement.setDate(6, user.getLast_updated());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, user.getId());
-                statement.setString(2, user.getEmail());
-                statement.setString(3, user.getUsername());
-                statement.setString(4, user.getPassword());
-                statement.setDate(5, user.getDate_created());
-                statement.setDate(6, user.getLast_updated());
-                statement.executeUpdate();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

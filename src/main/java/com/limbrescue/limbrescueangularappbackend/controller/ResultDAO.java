@@ -123,29 +123,30 @@ public class ResultDAO {
     @ResponseBody
     public void insertResult(@RequestBody Result res) {
         Connection connection = dbConnection.getConnection();
-        if (getResult(res.getId()) != null) {
-            updateResult(res, res.getId());
+        int id = res.getId();
+        while (getResult(id) != null) {
+            id++;
+            res.setId(id);
         }
-        else {
-            String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments) VALUES(?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setInt(2, res.getGroup_id());
+            statement.setString(3, res.getAlgorithm());
+            statement.setInt(4, res.getRan_by());
+            statement.setString(5, res.getStatus());
+            statement.setString(6, res.getComments());
+            statement.executeUpdate();
+            exportResultsToFile(res.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setInt(1, res.getId());
-                statement.setInt(2, res.getGroup_id());
-                statement.setString(3, res.getAlgorithm());
-                statement.setInt(4, res.getRan_by());
-                statement.setString(5, res.getStatus());
-                statement.setString(6, res.getComments());
-                statement.executeUpdate();
-                exportResultsToFile(res.getId());
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
