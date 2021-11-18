@@ -101,6 +101,15 @@ public class GroupDAO {
         }
         return group;
     }
+
+    /**
+     * Retrieves a list of groups with the corresponding name.
+     *
+     * @param name
+     *          The name to search for.
+     * @return
+     *          The list of groups with the name.
+     */
     @GetMapping("/group/{name}")
     @ResponseBody
     public List<Group> getGroupByName(@PathVariable("name") String name) {

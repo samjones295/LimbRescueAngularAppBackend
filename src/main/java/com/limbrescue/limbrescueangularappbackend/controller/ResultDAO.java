@@ -149,6 +149,13 @@ public class ResultDAO {
             }
         }
     }
+
+    /**
+     * Runs a machine learning algorithm.
+     *
+     * @param algorithm
+     *                  The algorithm to be run.
+     */
     public void runMLAlgorithm(String algorithm) {
         List<String> list = new ArrayList<>();
         switch(algorithm) {
