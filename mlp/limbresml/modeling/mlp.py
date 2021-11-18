@@ -50,7 +50,7 @@ def add_cfg_model(cfg, tune=False):
     cfg.MLP.learning_rate = "adaptive"  # {"constant", "invscaling", "adaptive"}
     cfg.MLP.learning_rate_init = 0.001
     cfg.MLP.power_t = 0.5
-    cfg.MLP.max_iter = 10
+    cfg.MLP.max_iter = 10000000000
     cfg.MLP.shuffle = True
     cfg.MLP.random_state = None  # int, default=None
     cfg.MLP.tol = 1e-4

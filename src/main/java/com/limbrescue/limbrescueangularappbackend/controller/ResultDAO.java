@@ -329,8 +329,21 @@ public class ResultDAO {
                     writer.write("\t" + list.get(28) + "\n");
                     writer.write("}\n");
                     break;
-//                case "Multi Layer Perceptron":
-//                    break;
+                case "Multi Layer Perceptron":
+                    writer.write("{\n");
+                    writer.write("\t" + list.get(37).substring(list.get(37).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(40).substring(list.get(40).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(41) + "\n");
+                    writer.write("\t" + list.get(42) + "\n");
+                    writer.write("\t" + list.get(43) + "\n");
+                    writer.write("\t" + list.get(44) + "\n");
+                    writer.write("\t" + list.get(45).substring(list.get(45).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + list.get(46) + "\n");
+                    writer.write("\t" + list.get(47) + "\n");
+                    writer.write("\t" + list.get(48) + "\n");
+                    writer.write("\t" + list.get(49) + "\n");
+                    writer.write("}\n");
+                    break;
                 default:
                     LOGGER.warning("Invalid Algorithm");
                     break;
