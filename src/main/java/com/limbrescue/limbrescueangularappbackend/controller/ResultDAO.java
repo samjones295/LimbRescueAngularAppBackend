@@ -151,33 +151,28 @@ public class ResultDAO {
     }
     public void runMLAlgorithm(String algorithm) {
         List<String> list = new ArrayList<>();
-        String outputFile = null;
         switch(algorithm) {
             case "Support Vector Machine":
                 SupportVectorMachine svm = new SupportVectorMachine();
                 list = svm.run();
-                outputFile = p.getProperty("spring.datasource.SVM");
                 break;
             case "Random Forest":
                 RandomForest rf = new RandomForest();
                 list = rf.run();
-                outputFile = p.getProperty("spring.datasource.RF");
                 break;
             case "Naive Bayes":
                 NaiveBayes nb = new NaiveBayes();
                 list = nb.run();
-                outputFile = p.getProperty("spring.datasource.NB");
                 break;
             case "Multi Layer Perceptron":
                 MultiLayerPerceptron mlp = new MultiLayerPerceptron();
                 list = mlp.run();
-                outputFile = p.getProperty("spring.datasource.MLP");
                 break;
             default:
                 LOGGER.warning("Invalid Algorithm");
                 break;
         }
-        exportResultsToFile(algorithm, list, outputFile);
+        exportResultsToFile(algorithm, list);
     }
     /**
      * Updates a result based on the ID.
@@ -273,47 +268,12 @@ public class ResultDAO {
      */
     @GetMapping(path = "/report/{id}")
     @ResponseBody
-    public void exportResultsToFile(String algorithm, List<String> list, String outputFile) {
-//        Connection connection = dbConnection.getConnection();
-//        String outputFile = null; //p.getProperty("spring.datasource.OutputFile");
-//        String sql = "(SELECT 'ID', 'Group ID', 'Algorithm', 'Ran By', 'Status', 'Comments') UNION (SELECT * FROM " + table +
-//                " ) INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\\n'";
-        //String sql = "SELECT * FROM " + table + " WHERE id = " + id;
-//        try {
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            ResultSet result = statement.executeQuery();
-//        Result res = getResult(id);
-//        if (res != null) {
-//            switch(res.getAlgorithm()) {
-//                case "Support Vector Machine":
-//                    SupportVectorMachine svm = new SupportVectorMachine();
-//                    list = svm.run();
-//                    outputFile = p.getProperty("spring.datasource.SVM");
-//                    break;
-//                case "Random Forest":
-//                    RandomForest rf = new RandomForest();
-//                    list = rf.run();
-//                    outputFile = p.getProperty("spring.datasource.RF");
-//                    break;
-//                case "Naive Bayes":
-//                    NaiveBayes nb = new NaiveBayes();
-//                    list = nb.run();
-//                    outputFile = p.getProperty("spring.datasource.NB");
-//                    break;
-//                case "Multi Layer Perceptron":
-//                    MultiLayerPerceptron mlp = new MultiLayerPerceptron();
-//                    list = mlp.run();
-//                    outputFile = p.getProperty("spring.datasource.MLP");
-//                    break;
-//                default:
-//                    LOGGER.warning("Invalid Algorithm");
-//                    break;
-//            }
-//        }
+    public void exportResultsToFile(String algorithm, List<String> list) {
         try {
-            FileWriter writer = new FileWriter(outputFile);
+            FileWriter writer = null;
             switch(algorithm) {
                 case "Support Vector Machine":
+                    writer = new FileWriter(p.getProperty("spring.datasource.SVM"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(29).substring(list.get(29).indexOf("0m") + 3) + "\n");
                     writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
@@ -329,6 +289,7 @@ public class ResultDAO {
                     writer.write("}\n");
                     break;
                 case "Random Forest":
+                    writer = new FileWriter(p.getProperty("spring.datasource.RF"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
                     writer.write("\t" + list.get(35).substring(list.get(35).indexOf("0m") + 3) + "\n");
@@ -344,6 +305,7 @@ public class ResultDAO {
                     writer.write("}\n");
                     break;
                 case "Naive Bayes":
+                    writer = new FileWriter(p.getProperty("spring.datasource.NB"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(16).substring(list.get(16).indexOf("0m") + 3) + "\n");
                     writer.write("\t" + list.get(19).substring(list.get(19).indexOf("0m") + 3) + "\n");
@@ -359,6 +321,7 @@ public class ResultDAO {
                     writer.write("}\n");
                     break;
                 case "Multi Layer Perceptron":
+                    writer = new FileWriter(p.getProperty("spring.datasource.MLP"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(37).substring(list.get(37).indexOf("0m") + 3) + "\n");
                     writer.write("\t" + list.get(40).substring(list.get(40).indexOf("0m") + 3) + "\n");
@@ -377,22 +340,9 @@ public class ResultDAO {
                     LOGGER.warning("Invalid Algorithm");
                     break;
             }
-//            for (String s : list) {
-//                writer.write(s + "\n");
-//            }
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        }
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 }

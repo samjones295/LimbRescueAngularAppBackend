@@ -101,7 +101,34 @@ public class GroupDAO {
         }
         return group;
     }
-
+    @GetMapping("/group/{name}")
+    @ResponseBody
+    public List<Group> getGroupByName(@PathVariable("name") String name) {
+        Connection connection = dbConnection.getConnection();
+        String sql = "SELECT * FROM `" + table + "` WHERE name = ?";
+        List<Group> groups = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Group group = new Group();
+                group.setId(result.getInt("id"));
+                group.setName(name);
+                group.setReading_ids(result.getString("reading_ids"));
+                groups.add(group);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return groups;
+    }
     /**
      * Inserts a group to the table.
      *
