@@ -54,7 +54,8 @@ public class GroupDAO {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                Group group = new Group(result.getInt("id"), result.getString("name"), result.getDate("date_created"));
+                Group group = new Group(result.getInt("id"), result.getString("name"),
+                        result.getString("reading_ids"));
                 groups.add(group);
             }
             connection.close();
@@ -86,7 +87,7 @@ public class GroupDAO {
                 group = new Group();
                 group.setId(id);
                 group.setName(result.getString("name"));
-                group.setDate_created(result.getDate("date_created"));
+                group.setReading_ids(result.getString("reading_ids"));
             }
 
         } catch (SQLException e) {
@@ -117,11 +118,11 @@ public class GroupDAO {
             group.setId(id);
         }
         try {
-            String sql = "INSERT INTO `" + table + "` (id, name, date_created) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO `" + table + "` (id, name, reading_ids) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, group.getId());
             statement.setString(2, group.getName());
-            statement.setDate(3, group.getDate_created());
+            statement.setString(3, group.getReading_ids());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -150,7 +151,7 @@ public class GroupDAO {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, group.getName());
-            statement.setDate(2, group.getDate_created());
+            statement.setString(2, group.getReading_ids());
             statement.setInt(3, id);
             statement.executeUpdate();
         } catch (SQLException e) {

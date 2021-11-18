@@ -6,15 +6,15 @@ public class Group {
     //Fields
     private int id;
     private String name;
-    private Date date_created;
+    private String reading_ids;
     //Constructors
     public Group() {
 
     }
-    public Group(int id, String name, Date date_created) {
+    public Group(int id, String name, String reading_ids) {
         this.id = id;
         this.name = name;
-        this.date_created = date_created;
+        this.reading_ids = reading_ids;
     }
     //Getters
     public int getId() {
@@ -23,9 +23,7 @@ public class Group {
     public String getName() {
         return name;
     }
-    public Date getDate_created() {
-        return date_created;
-    }
+    public String getReading_ids(){ return reading_ids; }
     //Setters
     public void setId(int id) {
         this.id = id;
@@ -33,15 +31,13 @@ public class Group {
     public void setName(String name) {
         this.name = name;
     }
-    public void setDate_created(Date date_created) {
-        this.date_created = date_created;
-    }
+    public void setReading_ids(String reading_ids) { this.reading_ids = reading_ids;}
     //ToString
     public String toString() {
         return "{" +
                 "id: " + id + ", " +
                 "name: " + name + ", " +
-                "date_created: " + date_created + ", " +
+                "reading_ids: " + reading_ids + ", " +
                 "}";
     }
 }
