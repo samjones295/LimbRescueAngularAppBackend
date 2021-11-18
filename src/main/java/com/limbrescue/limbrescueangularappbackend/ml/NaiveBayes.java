@@ -15,9 +15,6 @@ public class NaiveBayes {
         try {
             Process process = processBuilder.start();
             results = readProcessOutput(process.getInputStream());
-            for (String s : results) {
-                System.out.println(s);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
