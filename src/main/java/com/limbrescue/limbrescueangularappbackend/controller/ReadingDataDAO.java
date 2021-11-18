@@ -42,7 +42,7 @@ public class ReadingDataDAO {
      * @return
      *          An arraylist containing the reading data table.
      */
-    @GetMapping("/readingdata")
+    @GetMapping("/set")
     @ResponseBody
     public List<ReadingData> getAllReadingData() {
         Connection connection = dbConnection.getConnection();
@@ -77,7 +77,7 @@ public class ReadingDataDAO {
      * @return
      *          A pointer to a tuple in the reading data table.
      */
-    @GetMapping("/readingdata/{id}")
+    @GetMapping("/data/{id}")
     @ResponseBody
     public ReadingData getReadingData(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
@@ -112,7 +112,7 @@ public class ReadingDataDAO {
      * @param data
      *              The group reading to be inserted.
      */
-    @PostMapping(path = "/readingdata")
+    @PostMapping(path = "/data")
     @ResponseBody
     public void insertReadingData(@RequestBody ReadingData data) {
         Connection connection = dbConnection.getConnection();
@@ -147,7 +147,7 @@ public class ReadingDataDAO {
      * @param id
      *          The reading data ID to be updated.
      */
-    @PutMapping(path="/readingdata/{id}")
+    @PutMapping(path="/data/{id}")
     @ResponseBody
     public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
@@ -176,7 +176,7 @@ public class ReadingDataDAO {
      * @param id
      *          The ID to be deleted.
      */
-    @DeleteMapping("/readingdata/{id}")
+    @DeleteMapping("/data/{id}")
     @ResponseBody
     public void deleteReadingData(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
