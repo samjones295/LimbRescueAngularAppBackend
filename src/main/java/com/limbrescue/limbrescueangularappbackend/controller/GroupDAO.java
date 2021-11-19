@@ -181,8 +181,8 @@ public class GroupDAO {
      * @param id
      *          The group ID to be updated.
      */
-    @PutMapping(path="/group/{id}")
-    @ResponseBody
+//    @PutMapping(path="/group/{id}")
+//    @ResponseBody
     public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "UPDATE `" + table + "` SET name = ?, reading_ids = ? WHERE id = ?";
@@ -238,14 +238,33 @@ public class GroupDAO {
      * @param id
      *          The ID to be deleted.
      */
-    @DeleteMapping("/group/{id}")
-    @ResponseBody
+//    @DeleteMapping("/group/{id}")
+//    @ResponseBody
     public void deleteGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM `" + table + "` WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @DeleteMapping("/group/{name}")
+    @ResponseBody
+    public void deleteGroupByName(@PathVariable("id") String name) {
+        Connection connection = dbConnection.getConnection();
+        String sql = "DELETE FROM `" + table + "` WHERE name = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
