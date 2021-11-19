@@ -1,6 +1,8 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Group {
     //Fields
@@ -31,7 +33,7 @@ public class Group {
     public void setName(String name) {
         this.name = name;
     }
-    public void setReading_ids(String reading_ids) { this.reading_ids = reading_ids;}
+    public void setReading_ids(String reading_ids) { this.reading_ids = sortIDs(reading_ids);}
     //ToString
     public String toString() {
         return "{" +
@@ -39,5 +41,23 @@ public class Group {
                 "name: " + name + ", " +
                 "reading_ids: " + reading_ids + ", " +
                 "}";
+    }
+
+    /**
+     *
+     * @param ids
+     *              The list of ids to be sorted
+     * @return
+     *              The sorted list of IDs.
+     */
+    private String sortIDs(String ids) {
+        String[] nums = ids.split(", ");
+        Arrays.sort(nums, new Comparator<String>() {
+            public int compare(String a, String b) {
+                return Integer.parseInt(a) - Integer.parseInt(b);
+            }
+        });
+        String result = Arrays.toString(nums);
+        return result.substring(1, result.length() - 1);
     }
 }

@@ -73,8 +73,8 @@ public class GroupDAO {
      * @return
      *          A pointer to a tuple in the group table.
      */
-    @GetMapping("/group/{id}")
-    @ResponseBody
+//    @GetMapping("/group/{id}")
+//    @ResponseBody
     public Group getGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE id = ?";
