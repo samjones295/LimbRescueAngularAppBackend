@@ -182,7 +182,7 @@ public class GroupDAO {
     @ResponseBody
     public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE `" + table + "` SET name = ?, date_created = ? WHERE id = ?";
+        String sql = "UPDATE `" + table + "` SET name = ?, reading_ids = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, group.getName());
