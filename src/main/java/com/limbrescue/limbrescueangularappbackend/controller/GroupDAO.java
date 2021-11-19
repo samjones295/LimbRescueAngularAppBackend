@@ -103,29 +103,28 @@ public class GroupDAO {
     }
 
     /**
-     * Retrieves a list of groups with the corresponding name.
+     * Retrieves a group with the corresponding name.
      *
      * @param name
      *          The name to search for.
      * @return
-     *          The list of groups with the name.
+     *          The group with the name.
      */
     @GetMapping("/group/{name}")
     @ResponseBody
-    public List<Group> getGroupByName(@PathVariable("name") String name) {
+    public Group getGroupByName(@PathVariable("name") String name) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE name = ?";
-        List<Group> groups = new ArrayList<>();
+        Group group = null;
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name);
             ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                Group group = new Group();
+            if (result.next()) {
+                group = new Group();
                 group.setId(result.getInt("id"));
                 group.setName(name);
                 group.setReading_ids(result.getString("reading_ids"));
-                groups.add(group);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,7 +135,7 @@ public class GroupDAO {
                 e.printStackTrace();
             }
         }
-        return groups;
+        return group;
     }
     /**
      * Inserts a group to the table.
