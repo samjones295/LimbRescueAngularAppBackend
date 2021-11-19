@@ -112,20 +112,19 @@ public class GroupDAO {
      */
     @GetMapping("/group/{name}")
     @ResponseBody
-    public List<Group> getGroupByName(@PathVariable("name") String name) {
+    public Group getGroupByName(@PathVariable("name") String name) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE name = ?";
-        List<Group> groups = new ArrayList<>();
+        Group group = null;
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name);
             ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                Group group = new Group();
+            if (result.next()) {
+                group = new Group();
                 group.setId(result.getInt("id"));
                 group.setName(name);
                 group.setReading_ids(result.getString("reading_ids"));
-                groups.add(group);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,7 +135,7 @@ public class GroupDAO {
                 e.printStackTrace();
             }
         }
-        return groups;
+        return group;
     }
     /**
      * Inserts a group to the table.
@@ -152,6 +151,9 @@ public class GroupDAO {
         while (getGroup(id) != null) {
             id++;
             group.setId(id);
+        }
+        if (getGroupByName(group.getName()) != null) {
+            updateGroupByName(group, group.getName());
         }
         try {
             String sql = "INSERT INTO `" + table + "` (id, name, reading_ids) VALUES(?, ?, ?)";
@@ -183,12 +185,41 @@ public class GroupDAO {
     @ResponseBody
     public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE `" + table + "` SET name = ?, date_created = ? WHERE id = ?";
+        String sql = "UPDATE `" + table + "` SET name = ?, reading_ids = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, group.getName());
             statement.setString(2, group.getReading_ids());
             statement.setInt(3, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Updates a group based on the ID.
+     *
+     * @param group
+     *          The variable values of the columns.
+     * @param name
+     *          The group name to be updated.
+     */
+    @PutMapping(path="/group/{name}")
+    @ResponseBody
+    public void updateGroupByName(@RequestBody Group group, @PathVariable("name") String name) {
+        Connection connection = dbConnection.getConnection();
+        String sql = "UPDATE `" + table + "` SET reading_ids = ? WHERE name = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, group.getReading_ids());
+            statement.setString(2, name);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,8 +1,9 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
-import java.sql.Date;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Group {
     //Fields
@@ -52,12 +53,20 @@ public class Group {
      */
     private String sortIDs(String ids) {
         String[] nums = ids.split(", ");
+        System.out.println(Arrays.toString(nums));
         Arrays.sort(nums, new Comparator<String>() {
             public int compare(String a, String b) {
                 return Integer.parseInt(a) - Integer.parseInt(b);
             }
         });
-        String result = Arrays.toString(nums);
-        return result.substring(1, result.length() - 1);
+        Set<String> set = new HashSet<>();
+        for (String num : nums) {
+            set.add(num);
+        }
+        String result = "";
+        for (String s : set) {
+            result = result + s + ", ";
+        }
+        return result.substring(0, result.length() - 2);
     }
 }
