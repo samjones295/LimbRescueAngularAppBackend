@@ -1,6 +1,5 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
-import com.limbrescue.limbrescueangularappbackend.model.Result;
 import com.limbrescue.limbrescueangularappbackend.model.User;
 
 import org.springframework.web.bind.annotation.*;
