@@ -258,7 +258,7 @@ public class GroupDAO {
     }
     @DeleteMapping("/group/{name}")
     @ResponseBody
-    public void deleteGroupByName(@PathVariable("id") String name) {
+    public void deleteGroupByName(@PathVariable("name") String name) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM `" + table + "` WHERE name = ?";
         try {
