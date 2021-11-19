@@ -1,13 +1,10 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
-import ch.qos.logback.classic.Logger;
 import com.limbrescue.limbrescueangularappbackend.ml.MultiLayerPerceptron;
 import com.limbrescue.limbrescueangularappbackend.ml.NaiveBayes;
 import com.limbrescue.limbrescueangularappbackend.ml.RandomForest;
 import com.limbrescue.limbrescueangularappbackend.ml.SupportVectorMachine;
 import com.limbrescue.limbrescueangularappbackend.model.Result;
-import com.limbrescue.limbrescueangularappbackend.model.User;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
@@ -24,6 +21,7 @@ public class ResultDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
+    private List<String> list;
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(ResultDAO.class.getName());
     public ResultDAO()  {
         //Determine what file to read
@@ -37,6 +35,7 @@ public class ResultDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        list = new ArrayList<>();
         table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
     }
@@ -119,9 +118,7 @@ public class ResultDAO {
      * @param res
      *          The result to be inserted.
      */
-    @PostMapping(path = "/result")
-    @ResponseBody
-    public void insertResult(@RequestBody Result res) {
+    public void insertResult(Result res) {
         Connection connection = dbConnection.getConnection();
         int id = res.getId();
         while (getResult(id) != null) {
@@ -138,7 +135,6 @@ public class ResultDAO {
             statement.setString(5, res.getStatus());
             statement.setString(6, res.getComments());
             statement.executeUpdate();
-            runMLAlgorithm(res.getAlgorithm());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -151,14 +147,16 @@ public class ResultDAO {
     }
 
     /**
-     * Runs a machine learning algorithm.
+     * Runs a machine learning algorithm before insertion.
      *
-     * @param algorithm
-     *                  The algorithm to be run.
+     * @param res
+     *              the result tuple to be inserted.
      */
-    public void runMLAlgorithm(String algorithm) {
-        List<String> list = new ArrayList<>();
-        switch(algorithm) {
+    @PostMapping(path = "/result")
+    @ResponseBody
+    public void runMLAlgorithm(@RequestBody Result res) {
+        list.clear();
+        switch(res.getAlgorithm()) {
             case "Support Vector Machine":
                 SupportVectorMachine svm = new SupportVectorMachine();
                 list = svm.run();
@@ -179,7 +177,7 @@ public class ResultDAO {
                 LOGGER.warning("Invalid Algorithm");
                 break;
         }
-        exportResultsToFile(algorithm, list);
+        insertResult(res);
     }
     /**
      * Updates a result based on the ID.
@@ -203,7 +201,6 @@ public class ResultDAO {
             statement.setString(5, res.getComments());
             statement.setInt(6, id);
             statement.executeUpdate();
-            runMLAlgorithm(res.getAlgorithm());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -273,13 +270,13 @@ public class ResultDAO {
     /**
      * Exports the results to a .txt file.
      */
-    @GetMapping(path = "/report/{id}")
+    @GetMapping(path = "/report/{algorithm}")
     @ResponseBody
-    public void exportResultsToFile(String algorithm, List<String> list) {
+    public void exportResultsToFile(@PathVariable("algorithm") String algorithm) {
         try {
             FileWriter writer = null;
             switch(algorithm) {
-                case "Support Vector Machine":
+                case "svm":
                     writer = new FileWriter(p.getProperty("spring.datasource.SVM"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(29).substring(list.get(29).indexOf("0m") + 3) + "\n");
@@ -295,7 +292,7 @@ public class ResultDAO {
                     writer.write("\t" + list.get(41) + "\n");
                     writer.write("}\n");
                     break;
-                case "Random Forest":
+                case "rf":
                     writer = new FileWriter(p.getProperty("spring.datasource.RF"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
@@ -311,7 +308,7 @@ public class ResultDAO {
                     writer.write("\t" + list.get(44) + "\n");
                     writer.write("}\n");
                     break;
-                case "Naive Bayes":
+                case "nb":
                     writer = new FileWriter(p.getProperty("spring.datasource.NB"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(16).substring(list.get(16).indexOf("0m") + 3) + "\n");
@@ -327,7 +324,7 @@ public class ResultDAO {
                     writer.write("\t" + list.get(28) + "\n");
                     writer.write("}\n");
                     break;
-                case "Multi Layer Perceptron":
+                case "mlp":
                     writer = new FileWriter(p.getProperty("spring.datasource.MLP"));
                     writer.write("{\n");
                     writer.write("\t" + list.get(37).substring(list.get(37).indexOf("0m") + 3) + "\n");
