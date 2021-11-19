@@ -2,6 +2,7 @@ package com.limbrescue.limbrescueangularappbackend.controller;
 
 
 import com.limbrescue.limbrescueangularappbackend.model.GroupReading;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -63,7 +64,27 @@ public class GroupReadingDAO {
         }
         return readings;
     }
-
+    @GetMapping("/groupreadings/{group_id}")
+    @ResponseBody
+    public List<GroupReading> getGroupReadingsByGroupID(@PathVariable("group_id") int group_id) {
+        Connection connection = dbConnection.getConnection();
+        String sql = "SELECT * FROM " + table + " WHERE group_id = ?";
+        List<GroupReading> readings = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, group_id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                GroupReading reading = new GroupReading(result.getInt("id"), result.getInt("group_id"),
+                        result.getInt("reading_id"));
+                readings.add(reading);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return readings;
+    }
     /**
      * Retrieves a single group reading based on the ID.
      *
@@ -100,7 +121,6 @@ public class GroupReadingDAO {
         }
         return reading;
     }
-
     /**
      * Inserts a group reading to the table.
      *

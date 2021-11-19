@@ -8,9 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
@@ -160,7 +158,8 @@ public class GroupDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, group.getId());
             statement.setString(2, group.getName());
-            statement.setString(3, group.getReading_ids());
+            System.out.println(sortIDs(group.getReading_ids()));
+            statement.setString(3, sortIDs(group.getReading_ids()));
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -275,5 +274,29 @@ public class GroupDAO {
                 e.printStackTrace();
             }
         }
+    }
+    /**
+     *
+     * @param ids
+     *              The list of ids to be sorted
+     * @return
+     *              The sorted list of IDs.
+     */
+    private String sortIDs(String ids) {
+        String[] nums = ids.split(",");
+        Arrays.sort(nums, new Comparator<String>() {
+            public int compare(String a, String b) {
+                return Integer.parseInt(a) - Integer.parseInt(b);
+            }
+        });
+        Set<String> set = new HashSet<>();
+        for (String num : nums) {
+            set.add(num);
+        }
+        String result = "";
+        for (String s : set) {
+            result = result + s + ",";
+        }
+        return result.substring(0, result.length() - 1);
     }
 }
