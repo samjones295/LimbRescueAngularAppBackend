@@ -103,12 +103,12 @@ public class GroupDAO {
     }
 
     /**
-     * Retrieves a list of groups with the corresponding name.
+     * Retrieves a group with the corresponding name.
      *
      * @param name
      *          The name to search for.
      * @return
-     *          The list of groups with the name.
+     *          The group with the name.
      */
     @GetMapping("/group/{name}")
     @ResponseBody
