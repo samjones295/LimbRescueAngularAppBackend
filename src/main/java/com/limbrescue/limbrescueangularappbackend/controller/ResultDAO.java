@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
+
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("")
@@ -21,7 +20,7 @@ public class ResultDAO {
     private static final Properties p = new Properties();
     private FileReader reader;
     private DBConnection dbConnection;
-    private List<String> list;
+    private Map<Integer, List<String>> resultList;
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(ResultDAO.class.getName());
     public ResultDAO()  {
         //Determine what file to read
@@ -35,7 +34,7 @@ public class ResultDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        list = new ArrayList<>();
+        resultList = new HashMap<>();
         table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
     }
@@ -120,15 +119,10 @@ public class ResultDAO {
      */
     public void insertResult(Result res) {
         Connection connection = dbConnection.getConnection();
-        int id = res.getId();
-        while (getResult(id) != null) {
-            id++;
-            res.setId(id);
-        }
         String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setInt(1, res.getId());
             statement.setInt(2, res.getGroup_id());
             statement.setString(3, res.getAlgorithm());
             statement.setInt(4, res.getRan_by());
@@ -155,23 +149,28 @@ public class ResultDAO {
     @PostMapping(path = "/result")
     @ResponseBody
     public void runMLAlgorithm(@RequestBody Result res) {
-        list.clear();
+        int id = res.getId();
+        while (getResult(id) != null) {
+            id++;
+            res.setId(id);
+        }
+        resultList.put(res.getId(), new ArrayList<>());
         switch(res.getAlgorithm()) {
             case "Support Vector Machine":
                 SupportVectorMachine svm = new SupportVectorMachine();
-                list = svm.run();
+                resultList.put(res.getId(), svm.run());
                 break;
             case "Random Forest":
                 RandomForest rf = new RandomForest();
-                list = rf.run();
+                resultList.put(res.getId(), rf.run());
                 break;
             case "Naive Bayes":
                 NaiveBayes nb = new NaiveBayes();
-                list = nb.run();
+                resultList.put(res.getId(), nb.run());
                 break;
             case "Multi Layer Perceptron":
                 MultiLayerPerceptron mlp = new MultiLayerPerceptron();
-                list = mlp.run();
+                resultList.put(res.getId(), mlp.run());
                 break;
             default:
                 LOGGER.warning("Invalid Algorithm");
@@ -270,74 +269,75 @@ public class ResultDAO {
     /**
      * Exports the results to a .txt file.
      */
-    @GetMapping(path = "/report/{algorithm}")
+    @GetMapping(path = "/report/{id}")
     @ResponseBody
-    public void exportResultsToFile(@PathVariable("algorithm") String algorithm) {
+    public void exportResultsToFile(@PathVariable("id") int id) {
+        Result res = getResult(id);
         try {
             FileWriter writer = null;
-            switch(algorithm) {
-                case "svm":
+            switch(res.getAlgorithm()) {
+                case "Support Vector Machine":
                     writer = new FileWriter(p.getProperty("spring.datasource.SVM"));
                     writer.write("{\n");
-                    writer.write("\t" + list.get(29).substring(list.get(29).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(33) + "\n");
-                    writer.write("\t" + list.get(34) + "\n");
-                    writer.write("\t" + list.get(35) + "\n");
-                    writer.write("\t" + list.get(36) + "\n");
-                    writer.write("\t" + list.get(37).substring(list.get(37).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(38) + "\n");
-                    writer.write("\t" + list.get(39) + "\n");
-                    writer.write("\t" + list.get(40) + "\n");
-                    writer.write("\t" + list.get(41) + "\n");
+                    writer.write("\t" + resultList.get(id).get(29).substring(resultList.get(id).get(29).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(32).substring(resultList.get(id).get(32).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(33) + "\n");
+                    writer.write("\t" + resultList.get(id).get(34) + "\n");
+                    writer.write("\t" + resultList.get(id).get(35) + "\n");
+                    writer.write("\t" + resultList.get(id).get(36) + "\n");
+                    writer.write("\t" + resultList.get(id).get(37).substring(resultList.get(id).get(37).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(38) + "\n");
+                    writer.write("\t" + resultList.get(id).get(39) + "\n");
+                    writer.write("\t" + resultList.get(id).get(40) + "\n");
+                    writer.write("\t" + resultList.get(id).get(41) + "\n");
                     writer.write("}\n");
                     break;
-                case "rf":
+                case "Random Forest":
                     writer = new FileWriter(p.getProperty("spring.datasource.RF"));
                     writer.write("{\n");
-                    writer.write("\t" + list.get(32).substring(list.get(32).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(35).substring(list.get(35).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(36) + "\n");
-                    writer.write("\t" + list.get(37) + "\n");
-                    writer.write("\t" + list.get(38) + "\n");
-                    writer.write("\t" + list.get(39) + "\n");
-                    writer.write("\t" + list.get(40).substring(list.get(40).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(41) + "\n");
-                    writer.write("\t" + list.get(42) + "\n");
-                    writer.write("\t" + list.get(43) + "\n");
-                    writer.write("\t" + list.get(44) + "\n");
+                    writer.write("\t" + resultList.get(id).get(32).substring(resultList.get(id).get(32).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(35).substring(resultList.get(id).get(35).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(36) + "\n");
+                    writer.write("\t" + resultList.get(id).get(37) + "\n");
+                    writer.write("\t" + resultList.get(id).get(38) + "\n");
+                    writer.write("\t" + resultList.get(id).get(39) + "\n");
+                    writer.write("\t" + resultList.get(id).get(40).substring(resultList.get(id).get(40).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(41) + "\n");
+                    writer.write("\t" + resultList.get(id).get(42) + "\n");
+                    writer.write("\t" + resultList.get(id).get(43) + "\n");
+                    writer.write("\t" + resultList.get(id).get(44) + "\n");
                     writer.write("}\n");
                     break;
-                case "nb":
+                case "Naive Bayes":
                     writer = new FileWriter(p.getProperty("spring.datasource.NB"));
                     writer.write("{\n");
-                    writer.write("\t" + list.get(16).substring(list.get(16).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(19).substring(list.get(19).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(20) + "\n");
-                    writer.write("\t" + list.get(21) + "\n");
-                    writer.write("\t" + list.get(22) + "\n");
-                    writer.write("\t" + list.get(23) + "\n");
-                    writer.write("\t" + list.get(24).substring(list.get(24).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(25) + "\n");
-                    writer.write("\t" + list.get(26) + "\n");
-                    writer.write("\t" + list.get(27) + "\n");
-                    writer.write("\t" + list.get(28) + "\n");
+                    writer.write("\t" + resultList.get(id).get(16).substring(resultList.get(id).get(16).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(19).substring(resultList.get(id).get(19).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(20) + "\n");
+                    writer.write("\t" + resultList.get(id).get(21) + "\n");
+                    writer.write("\t" + resultList.get(id).get(22) + "\n");
+                    writer.write("\t" + resultList.get(id).get(23) + "\n");
+                    writer.write("\t" + resultList.get(id).get(24).substring(resultList.get(id).get(24).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(25) + "\n");
+                    writer.write("\t" + resultList.get(id).get(26) + "\n");
+                    writer.write("\t" + resultList.get(id).get(27) + "\n");
+                    writer.write("\t" + resultList.get(id).get(28) + "\n");
                     writer.write("}\n");
                     break;
-                case "mlp":
+                case "Multi Layer Perceptron":
                     writer = new FileWriter(p.getProperty("spring.datasource.MLP"));
                     writer.write("{\n");
-                    writer.write("\t" + list.get(37).substring(list.get(37).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(40).substring(list.get(40).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(41) + "\n");
-                    writer.write("\t" + list.get(42) + "\n");
-                    writer.write("\t" + list.get(43) + "\n");
-                    writer.write("\t" + list.get(44) + "\n");
-                    writer.write("\t" + list.get(45).substring(list.get(45).indexOf("0m") + 3) + "\n");
-                    writer.write("\t" + list.get(46) + "\n");
-                    writer.write("\t" + list.get(47) + "\n");
-                    writer.write("\t" + list.get(48) + "\n");
-                    writer.write("\t" + list.get(49) + "\n");
+                    writer.write("\t" + resultList.get(id).get(37).substring(resultList.get(id).get(37).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(40).substring(resultList.get(id).get(40).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(41) + "\n");
+                    writer.write("\t" + resultList.get(id).get(42) + "\n");
+                    writer.write("\t" + resultList.get(id).get(43) + "\n");
+                    writer.write("\t" + resultList.get(id).get(44) + "\n");
+                    writer.write("\t" + resultList.get(id).get(45).substring(resultList.get(id).get(45).indexOf("0m") + 3) + "\n");
+                    writer.write("\t" + resultList.get(id).get(46) + "\n");
+                    writer.write("\t" + resultList.get(id).get(47) + "\n");
+                    writer.write("\t" + resultList.get(id).get(48) + "\n");
+                    writer.write("\t" + resultList.get(id).get(49) + "\n");
                     writer.write("}\n");
                     break;
                 default:
