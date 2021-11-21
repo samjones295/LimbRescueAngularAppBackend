@@ -69,6 +69,39 @@ public class ReadingDAO {
     }
 
     /**
+     * Retrieves all the elements of the readings table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the readings table.
+     */
+    @GetMapping(value ="/readings", params="patient_no")
+    @ResponseBody
+    public List<Reading> getAllReadingsOfPatient(@RequestParam("patient_no") String patient_no) {
+        Connection connection = dbConnection.getConnection();
+        String sql = "SELECT * FROM " + table  + " WHERE patient_no = ?";
+        List<Reading> readings = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, patient_no);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
+                        result.getDate("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
+                readings.add(reading);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return readings;
+    }
+
+    /**
      * Retrieves a single reading based on the ID.
      *
      * @param id
@@ -91,6 +124,46 @@ public class ReadingDAO {
                 reading = new Reading();
                 reading.setId(id);
                 reading.setPatient_no(result.getString("patient_no"));
+                reading.setDate_created(result.getDate("date_created"));
+                reading.setLaterality(result.getString("laterality"));
+                //reading.setActive_or_rest(result.getString("active_or_rest"));
+                reading.setComments(result.getString("comments"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return reading;
+    }
+
+    /**
+     * Retrieves a single reading based on the patient_no.
+     *
+     * @param patient_no
+     *          The patient_no to be retrieved
+     * @return
+     *          A pointer to a tuple in the readings table.
+     */
+    @GetMapping("/reading")
+    @ResponseBody
+    public Reading getReading(@RequestParam("patient_no") String patient_no) {
+        Connection connection = dbConnection.getConnection();
+        Reading reading = null;
+        String sql = "SELECT * FROM " + table + " WHERE patient_no = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, patient_no);
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                reading = new Reading();
+                reading.setId(result.getInt("id"));
+                reading.setPatient_no(patient_no);
                 reading.setDate_created(result.getDate("date_created"));
                 reading.setLaterality(result.getString("laterality"));
                 //reading.setActive_or_rest(result.getString("active_or_rest"));
