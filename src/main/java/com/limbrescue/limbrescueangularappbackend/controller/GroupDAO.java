@@ -14,11 +14,26 @@ import java.util.*;
 @RestController
 @RequestMapping("")
 public class GroupDAO {
-    //All attributes read from the properties file.
+    /**
+     * The name of the table.
+     */
     private String table;
+    /**
+     * The properties file.
+     */
     private static final Properties p = new Properties();
+    /**
+     * The file reader.
+     */
     private FileReader reader;
+    /**
+     * The Database Connection.
+     */
     private DBConnection dbConnection;
+
+    /**
+     * Constructor
+     */
     public GroupDAO()  {
         //Determine what file to read
         try {
@@ -26,11 +41,13 @@ public class GroupDAO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Loads the reader.
         try {
             p.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //Reads the table from the properties file.
         table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
@@ -71,8 +88,8 @@ public class GroupDAO {
      * @return
      *          A pointer to a tuple in the group table.
      */
-//    @GetMapping("/group/{id}")
-//    @ResponseBody
+    @GetMapping("/group/{id}")
+    @ResponseBody
     public Group getGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE id = ?";
@@ -108,9 +125,9 @@ public class GroupDAO {
      * @return
      *          The group with the name.
      */
-    @GetMapping("/group/{name}")
+    @GetMapping(value = "/group/", params = "name")
     @ResponseBody
-    public Group getGroupByName(@PathVariable("name") String name) {
+    public Group getGroupByName(@RequestParam("name") String name) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE name = ?";
         Group group = null;
@@ -145,11 +162,13 @@ public class GroupDAO {
     @ResponseBody
     public void insertGroup(@RequestBody Group group) {
         Connection connection = dbConnection.getConnection();
+        //Updates the ID if necessary to avoid duplicates.
         int id = group.getId();
         while (getGroup(id) != null) {
             id++;
             group.setId(id);
         }
+        //Updates the group if the name is a duplicate.
         if (getGroupByName(group.getName()) != null) {
             updateGroupByName(group, group.getName());
         }
@@ -237,8 +256,8 @@ public class GroupDAO {
      * @param id
      *          The ID to be deleted.
      */
-//    @DeleteMapping("/group/{id}")
-//    @ResponseBody
+    @DeleteMapping("/group/{id}")
+    @ResponseBody
     public void deleteGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM `" + table + "` WHERE id = ?";
@@ -256,9 +275,16 @@ public class GroupDAO {
             }
         }
     }
-    @DeleteMapping("/group/{name}")
+
+    /**
+     * Deletes a group based on the name.
+     *
+     * @param name
+     *              The group name to be deleted.
+     */
+    @DeleteMapping(value = "/group", params = "name")
     @ResponseBody
-    public void deleteGroupByName(@PathVariable("name") String name) {
+    public void deleteGroupByName(@RequestParam("name") String name) {
         Connection connection = dbConnection.getConnection();
         String sql = "DELETE FROM `" + table + "` WHERE name = ?";
         try {
@@ -276,24 +302,29 @@ public class GroupDAO {
         }
     }
     /**
+     * Sort the reading IDs.
      *
      * @param ids
      *              The list of ids to be sorted
      * @return
      *              The sorted list of IDs.
      */
-    private String sortIDs(String ids) {
+    public String sortIDs(String ids) {
+        //Split the strings into the ID numbers.
         String[] nums = ids.split(",");
+        //Sort the array based on integer parsed.
         Arrays.sort(nums, new Comparator<String>() {
             public int compare(String a, String b) {
                 return Integer.parseInt(a) - Integer.parseInt(b);
             }
         });
+        //Set to store the IDs and avoid duplicates.
         Set<String> set = new HashSet<>();
         for (String num : nums) {
             set.add(num);
         }
         String result = "";
+        //Iterates over the set and append it to result.
         for (String s : set) {
             result = result + s + ",";
         }

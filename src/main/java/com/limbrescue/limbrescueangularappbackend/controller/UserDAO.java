@@ -17,12 +17,29 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class UserDAO {
-    //All attributes read from the properties file.
+    /**
+     * The name of the table.
+     */
     private String table;
+    /**
+     * The properties file.
+     */
     private static final Properties p = new Properties();
+    /**
+     * The file reader.
+     */
     private FileReader reader;
+    /**
+     * The Database Connection.
+     */
     private DBConnection dbConnection;
+    /**
+     * Logger
+     */
     private static final Logger LOGGER = Logger.getLogger(UserDAO.class.getName());
+    /**
+     * Constructor
+     */
     public UserDAO()  {
         //Determine what file to read
         try {
@@ -30,12 +47,14 @@ public class UserDAO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Loads the reader.
         try {
             p.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        table = p.getProperty("spring.datasource.UserTable");
+        //Reads the table from the properties file.
+        table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
 
@@ -123,6 +142,7 @@ public class UserDAO {
     @ResponseBody
     public void insertUser(@RequestBody User user) {
         Connection connection = dbConnection.getConnection();
+        //Updates the ID if necessary to avoid duplicates.
         int id = user.getId();
         while (getUser(id) != null) {
             id++;

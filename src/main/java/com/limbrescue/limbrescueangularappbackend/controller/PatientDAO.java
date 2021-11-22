@@ -15,11 +15,26 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class PatientDAO {
-    //All attributes read from the properties file.
+    /**
+     * The name of the table.
+     */
     private String table;
+    /**
+     * The properties file.
+     */
     private static final Properties p = new Properties();
+    /**
+     * The file reader.
+     */
     private FileReader reader;
+    /**
+     * The Database Connection.
+     */
     private DBConnection dbConnection;
+
+    /**
+     * Constructor
+     */
     public PatientDAO() {
         //Determine what file to read
         try {
@@ -27,12 +42,14 @@ public class PatientDAO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Loads the reader.
         try {
             p.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        table = p.getProperty("spring.datasource.PatientTable");
+        //Reads the table from the properties file.
+        table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
 
@@ -113,6 +130,7 @@ public class PatientDAO {
     @ResponseBody
     public void insertPatient(@RequestBody Patient patient) {
         Connection connection = dbConnection.getConnection();
+        //Updates the ID if necessary to avoid duplicates.
         int id = patient.getId();
         while (getPatient(id) != null) {
             id++;

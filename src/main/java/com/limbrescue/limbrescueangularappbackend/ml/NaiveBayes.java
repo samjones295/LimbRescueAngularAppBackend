@@ -1,13 +1,17 @@
 package com.limbrescue.limbrescueangularappbackend.ml;
 
-import org.python.antlr.ast.Str;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NaiveBayes {
+public class NaiveBayes implements MachineLearning{
+    /**
+     * Runs the NB python script.
+     *
+     * @return
+     *          The list containing the output.
+     */
     public List<String> run() {
         ProcessBuilder processBuilder = new ProcessBuilder("./batch/nb.bat");
         processBuilder.redirectErrorStream(true);
@@ -21,7 +25,15 @@ public class NaiveBayes {
             return results;
         }
     }
-    private List<String> readProcessOutput(InputStream inputStream) throws IOException {
+    /**
+     * Parses an output.
+     *
+     * @param inputStream
+     * @return
+     *          The list containing the output.
+     * @throws IOException
+     */
+    public List<String> readProcessOutput(InputStream inputStream) throws IOException {
         try (BufferedReader output = new BufferedReader(new InputStreamReader(inputStream))) {
             return output.lines()
                     .collect(Collectors.toList());

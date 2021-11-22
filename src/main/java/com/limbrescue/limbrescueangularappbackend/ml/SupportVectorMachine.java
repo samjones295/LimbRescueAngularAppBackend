@@ -5,7 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SupportVectorMachine {
+public class SupportVectorMachine implements MachineLearning {
+    /**
+     * Runs the SVM python script.
+     *
+     * @return
+     *          The list containing the output.
+     */
     public List<String> run() {
         ProcessBuilder processBuilder = new ProcessBuilder("./batch/svm.bat");
         processBuilder.redirectErrorStream(true);
@@ -19,7 +25,15 @@ public class SupportVectorMachine {
             return results;
         }
     }
-    private List<String> readProcessOutput(InputStream inputStream) throws IOException {
+    /**
+     * Parses an output.
+     *
+     * @param inputStream
+     * @return
+     *          The list containing the output.
+     * @throws IOException
+     */
+    public List<String> readProcessOutput(InputStream inputStream) throws IOException {
         try (BufferedReader output = new BufferedReader(new InputStreamReader(inputStream))) {
             return output.lines()
                     .collect(Collectors.toList());

@@ -16,23 +16,41 @@ import java.util.Properties;
 @RestController
 @RequestMapping("")
 public class ReadingDAO {
-    //All attributes read from the properties file.
+    /**
+     * The name of the table.
+     */
     private String table;
+    /**
+     * The properties file.
+     */
     private static final Properties p = new Properties();
+    /**
+     * The file reader.
+     */
     private FileReader reader;
+    /**
+     * The Database Connection.
+     */
     private DBConnection dbConnection;
+
+    /**
+     * Constructor
+     */
     public ReadingDAO() {
+        //Determine what file to read
         try {
             reader = new FileReader("src/main/resources/application.properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Loads the reader.
         try {
             p.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        table = p.getProperty("spring.datasource.ReadingTable");
+        //Reads the table from the properties file.
+        table = p.getProperty("spring.datasource.GroupTable");
         dbConnection = new DBConnection();
     }
 
@@ -191,6 +209,7 @@ public class ReadingDAO {
     @ResponseBody
     public void insertReading(@RequestBody Reading reading) {
         Connection connection = dbConnection.getConnection();
+        //Updates the ID if necessary to avoid duplicates.
         int id = reading.getId();
         while (getReading(id) != null) {
             id++;

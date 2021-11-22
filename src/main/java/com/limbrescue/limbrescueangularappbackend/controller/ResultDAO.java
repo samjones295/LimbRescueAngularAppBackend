@@ -1,9 +1,6 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
-import com.limbrescue.limbrescueangularappbackend.ml.MultiLayerPerceptron;
-import com.limbrescue.limbrescueangularappbackend.ml.NaiveBayes;
-import com.limbrescue.limbrescueangularappbackend.ml.RandomForest;
-import com.limbrescue.limbrescueangularappbackend.ml.SupportVectorMachine;
+import com.limbrescue.limbrescueangularappbackend.ml.*;
 import com.limbrescue.limbrescueangularappbackend.model.Result;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +12,33 @@ import java.util.*;
 @RestController
 @RequestMapping("")
 public class ResultDAO {
-    //All attributes read from the properties file.
+    /**
+     * The name of the table.
+     */
     private String table;
+    /**
+     * The properties file.
+     */
     private static final Properties p = new Properties();
+    /**
+     * The file reader.
+     */
     private FileReader reader;
+    /**
+     * The Database Connection.
+     */
     private DBConnection dbConnection;
+    /**
+     * Stores the ML results.
+     */
     private Map<Integer, List<String>> resultList;
+    /**
+     * Logger
+     */
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(ResultDAO.class.getName());
+    /**
+     * Constructor
+     */
     public ResultDAO()  {
         //Determine what file to read
         try {
@@ -29,14 +46,17 @@ public class ResultDAO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Loads the reader.
         try {
             p.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        resultList = new HashMap<>();
+        //Reads the table from the properties file.
         table = p.getProperty("spring.datasource.ResultTable");
         dbConnection = new DBConnection();
+        //Initializes the result list map.
+        resultList = new HashMap<>();
     }
 
     /**
@@ -149,33 +169,36 @@ public class ResultDAO {
     @PostMapping(path = "/result")
     @ResponseBody
     public void runMLAlgorithm(@RequestBody Result res) {
+        //Updates the ID if necessary to avoid duplicates.
         int id = res.getId();
         while (getResult(id) != null) {
             id++;
             res.setId(id);
         }
-        resultList.put(res.getId(), new ArrayList<>());
+        //Runs the machine learning and stores the results.
+        MachineLearning ml = null;
         switch(res.getAlgorithm()) {
             case "Support Vector Machine":
-                SupportVectorMachine svm = new SupportVectorMachine();
-                resultList.put(res.getId(), svm.run());
+                ml = new SupportVectorMachine();
+                resultList.put(res.getId(), ml.run());
                 break;
             case "Random Forest":
-                RandomForest rf = new RandomForest();
-                resultList.put(res.getId(), rf.run());
+                ml = new RandomForest();
+                resultList.put(res.getId(),ml.run());
                 break;
             case "Naive Bayes":
-                NaiveBayes nb = new NaiveBayes();
-                resultList.put(res.getId(), nb.run());
+                ml = new NaiveBayes();
+                resultList.put(res.getId(), ml.run());
                 break;
             case "Multi Layer Perceptron":
-                MultiLayerPerceptron mlp = new MultiLayerPerceptron();
-                resultList.put(res.getId(), mlp.run());
+                ml = new MultiLayerPerceptron();
+                resultList.put(res.getId(), ml.run());
                 break;
             default:
                 LOGGER.warning("Invalid Algorithm");
                 break;
         }
+        //Insert the result to the SQL.
         insertResult(res);
     }
     /**
@@ -268,6 +291,8 @@ public class ResultDAO {
 
     /**
      * Exports the results to a .txt file.
+     * @param id
+     *          The id to export the results.
      */
     @GetMapping(path = "/report/{id}")
     @ResponseBody
@@ -275,6 +300,7 @@ public class ResultDAO {
         Result res = getResult(id);
         try {
             FileWriter writer = null;
+            //Output depends on which algorithm is being run.
             switch(res.getAlgorithm()) {
                 case "Support Vector Machine":
                     writer = new FileWriter(p.getProperty("spring.datasource.SVM"));
