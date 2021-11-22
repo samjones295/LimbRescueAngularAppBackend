@@ -150,6 +150,7 @@ public class ReadingDataDAO {
                 data.setReading_id(result.getInt("reading_id"));
                 data.setTime(result.getDouble("time"));
                 data.setPpg_reading(result.getDouble("ppg_reading"));
+                data.setLaterality(result.getString("laterality"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -179,13 +180,14 @@ public class ReadingDataDAO {
             id++;
             data.setId(id);
         }
-        String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, data.getId());
             statement.setInt(2, data.getReading_id());
             statement.setDouble(3, data.getTime());
             statement.setDouble(4, data.getPpg_reading());
+            statement.setString(5, data.getLaterality());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -209,13 +211,14 @@ public class ReadingDataDAO {
     @ResponseBody
     public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ? WHERE id = ?";
+        String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ?, laterality = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, data.getReading_id());
             statement.setDouble(2, data.getTime());
             statement.setDouble(3, data.getPpg_reading());
-            statement.setInt(4, id);
+            statement.setString(4, data.getLaterality());
+            statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
