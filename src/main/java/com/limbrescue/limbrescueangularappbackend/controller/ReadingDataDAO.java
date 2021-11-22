@@ -54,8 +54,13 @@ public class ReadingDataDAO {
     }
 
     /**
-     * Retrieves all the elements of the reading data table and stores it in an array list.
+     * Retrieves all the elements of the reading data table and stores it in an array list based on reading ID and
+     * laterality.
      *
+     * @param reading_id
+     *                  The reading ID.
+     * @param laterality
+     *                  The laterality.
      * @return
      *          An arraylist containing the reading data table.
      */
