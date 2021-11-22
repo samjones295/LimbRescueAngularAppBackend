@@ -6,15 +6,17 @@ public class ReadingData {
     private int reading_id;
     private double time;
     private double ppg_reading;
+    private String laterality;
     //Constructors
     public ReadingData() {
 
     }
-    public ReadingData(int id, int reading_id, double time, double ppg_reading) {
+    public ReadingData(int id, int reading_id, double time, double ppg_reading, String laterality) {
         this.id = id;
         this.reading_id = reading_id;
         this.time = time;
         this.ppg_reading = ppg_reading;
+        this.laterality = laterality;
     }
     //Getters
     public int getId() {
@@ -29,6 +31,7 @@ public class ReadingData {
     public double getPpg_reading() {
         return ppg_reading;
     }
+    public String getLaterality() { return  laterality; }
     //Setters
     public void setId(int id) {
         this.id = id;
@@ -42,6 +45,7 @@ public class ReadingData {
     public void setPpg_reading(double ppg_reading) {
         this.ppg_reading = ppg_reading;
     }
+    public void setLaterality(String laterality) { this.laterality = laterality; }
     //ToString
     public String toString() {
         return "{" +
@@ -49,6 +53,7 @@ public class ReadingData {
                 "patient_no: " + reading_id + ", " +
                 "time: " + time + ", " +
                 "ppg_reading: " + ppg_reading + ", " +
+                "laterality: " + laterality +
                 "}";
     }
 }
