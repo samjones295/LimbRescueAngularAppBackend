@@ -1,0 +1,13 @@
+{
+	train / test accuracy: 0.76 / 0.67
+	confusion matrix for train set: 
+	                  Pred. normal     Pred. left    Pred. right
+	    True normal     159 (0.91)      13 (0.10)       2 (0.01)
+	      True left       0 (0.00)     123 (0.99)       1 (0.01)
+	     True right      88 (0.51)       0 (0.00)      46 (0.34)
+	confusion matrix for test set: 
+	                  Pred. normal     Pred. left    Pred. right
+	    True normal       3 (0.75)       0 (0.00)       1 (0.25)
+	      True left       0 (0.00)       4 (1.00)       0 (0.00)
+	     True right       3 (0.75)       0 (0.00)       1 (0.25)
+}
