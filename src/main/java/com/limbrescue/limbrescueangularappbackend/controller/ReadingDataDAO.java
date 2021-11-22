@@ -42,7 +42,42 @@ public class ReadingDataDAO {
      * @return
      *          An arraylist containing the reading data table.
      */
-    @GetMapping("/set")
+    @GetMapping(value="/data", params={"reading_id","laterality"})
+    @ResponseBody
+    public List<ReadingData> getAllReadingDataOfReadingId(@RequestParam("reading_id") int reading_id, @RequestParam("laterality") String laterality) {
+        Connection connection = dbConnection.getConnection();
+        String sql = "SELECT * FROM " + table + " WHERE reading_id=? AND laterality=?";
+        List<ReadingData> readings = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading_id);
+            statement.setString(2, laterality);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
+                        result.getDouble("time"), result.getDouble("ppg_reading"), result.getString("laterality"));
+                readings.add(data);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return readings;
+    }
+
+    /**
+     * Retrieves all the elements of the reading data table and stores it in an array list.
+     *
+     * @return
+     *          An arraylist containing the reading data table.
+     */
+    @GetMapping("/data")
     @ResponseBody
     public List<ReadingData> getAllReadingData() {
         Connection connection = dbConnection.getConnection();
@@ -54,7 +89,7 @@ public class ReadingDataDAO {
 
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getDouble("ppg_reading"));
+                        result.getDouble("time"), result.getDouble("ppg_reading"), result.getString("laterality"));
                 readings.add(data);
             }
         } catch (SQLException e) {
