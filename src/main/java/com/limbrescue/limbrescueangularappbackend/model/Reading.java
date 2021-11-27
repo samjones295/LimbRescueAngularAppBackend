@@ -55,6 +55,7 @@ public class Reading {
         this.comments = comments;
     }
     //ToString
+    @Override
     public String toString() {
         return "{" +
                 "id: " + id + ", " +

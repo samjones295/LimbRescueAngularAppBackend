@@ -62,12 +62,12 @@ public class GroupDAO {
     @ResponseBody
     public List<Group> getAllGroups() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM `" + table + "`";
-        List<Group> groups = new ArrayList<>();
+        String sql = "SELECT * FROM `" + table + "`"; //The SELECT Query
+        List<Group> groups = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
-
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Group group = new Group(result.getInt("id"), result.getString("name"),
                         result.getString("reading_ids"));
@@ -92,12 +92,13 @@ public class GroupDAO {
     @ResponseBody
     public Group getGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM `" + table + "` WHERE id = ?";
-        Group group = null;
+        String sql = "SELECT * FROM `" + table + "` WHERE id = ?"; //The SELECT Query
+        Group group = null; //Uses a NULL value if ID is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 group = new Group();
                 group.setId(id);
@@ -130,11 +131,12 @@ public class GroupDAO {
     public Group getGroupByName(@RequestParam("name") String name) {
         Connection connection = dbConnection.getConnection();
         String sql = "SELECT * FROM `" + table + "` WHERE name = ?";
-        Group group = null;
+        Group group = null; //Uses a NULL value if name is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name);
             ResultSet result = statement.executeQuery();
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 group = new Group();
                 group.setId(result.getInt("id"));
@@ -172,12 +174,12 @@ public class GroupDAO {
         if (getGroupByName(group.getName()) != null) {
             updateGroupByName(group, group.getName());
         }
+        //SQL Insert Statement
+        String sql = "INSERT INTO `" + table + "` (id, name, reading_ids) VALUES(?, ?, ?)";
         try {
-            String sql = "INSERT INTO `" + table + "` (id, name, reading_ids) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, group.getId());
             statement.setString(2, group.getName());
-            System.out.println(sortIDs(group.getReading_ids()));
             statement.setString(3, sortIDs(group.getReading_ids()));
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -203,6 +205,7 @@ public class GroupDAO {
 //    @ResponseBody
     public void updateGroup(@RequestBody Group group, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE `" + table + "` SET name = ?, reading_ids = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -233,6 +236,7 @@ public class GroupDAO {
     @ResponseBody
     public void updateGroupByName(@RequestBody Group group, @PathVariable("name") String name) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement by group name
         String sql = "UPDATE `" + table + "` SET reading_ids = ? WHERE name = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -260,6 +264,7 @@ public class GroupDAO {
     @ResponseBody
     public void deleteGroup(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM `" + table + "` WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -286,6 +291,7 @@ public class GroupDAO {
     @ResponseBody
     public void deleteGroupByName(@RequestParam("name") String name) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement by group name
         String sql = "DELETE FROM `" + table + "` WHERE name = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

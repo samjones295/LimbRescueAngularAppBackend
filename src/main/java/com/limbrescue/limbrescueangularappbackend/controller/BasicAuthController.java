@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1")
 public class BasicAuthController {
-    //Login Authorization.
+    /**
+     * Authorizes the login.
+     *
+     * @return
+     *          The authentication bean.
+     */
     @GetMapping(path = "/basicauth")
     public AuthenticationBean helloWorldBean() {
         return new AuthenticationBean("You are authenticated");

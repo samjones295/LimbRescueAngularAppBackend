@@ -35,6 +35,7 @@ public class Patient {
         this.status = status;
     }
     //ToString
+    @Override
     public String toString() {
         return "{" +
                 "id: " + id + ", " +

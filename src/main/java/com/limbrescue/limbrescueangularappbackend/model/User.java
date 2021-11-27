@@ -61,6 +61,7 @@ public class User {
         this.last_updated = last_updated;
     }
     //ToString
+    @Override
     public String toString() {
         return "{" +
                 "id: " + id + ", " +

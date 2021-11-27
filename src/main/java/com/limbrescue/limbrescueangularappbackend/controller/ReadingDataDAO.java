@@ -68,14 +68,14 @@ public class ReadingDataDAO {
     @ResponseBody
     public List<ReadingData> getAllReadingDataOfReadingId(@RequestParam("reading_id") int reading_id, @RequestParam("laterality") String laterality) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE reading_id=? AND laterality=?";
-        List<ReadingData> readings = new ArrayList<>();
+        String sql = "SELECT * FROM " + table + " WHERE reading_id=? AND laterality=?"; //The SELECT Query
+        List<ReadingData> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, reading_id);
             statement.setString(2, laterality);
             ResultSet result = statement.executeQuery();
-
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
                         result.getDouble("time"), result.getDouble("ppg_reading"), result.getString("laterality"));
@@ -103,12 +103,12 @@ public class ReadingDataDAO {
     @ResponseBody
     public List<ReadingData> getAllReadingData() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
-        List<ReadingData> readings = new ArrayList<>();
+        String sql = "SELECT * FROM " + table; //The SELECT Query
+        List<ReadingData> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
-
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
                         result.getDouble("time"), result.getDouble("ppg_reading"), result.getString("laterality"));
@@ -138,12 +138,13 @@ public class ReadingDataDAO {
     @ResponseBody
     public ReadingData getReadingData(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        ReadingData data = null;
+        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
+        ReadingData data = null; //Uses a NULL value if ID is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 data = new ReadingData();
                 data.setId(id);
@@ -180,6 +181,7 @@ public class ReadingDataDAO {
             id++;
             data.setId(id);
         }
+        //SQL Insert Statement
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -211,6 +213,7 @@ public class ReadingDataDAO {
     @ResponseBody
     public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ?, laterality = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -241,6 +244,7 @@ public class ReadingDataDAO {
     @ResponseBody
     public void deleteReadingData(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

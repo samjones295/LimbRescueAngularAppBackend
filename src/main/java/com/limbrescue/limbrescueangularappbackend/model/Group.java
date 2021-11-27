@@ -36,6 +36,7 @@ public class Group {
     }
     public void setReading_ids(String reading_ids) { this.reading_ids = reading_ids; }
     //ToString
+    @Override
     public String toString() {
         return "{" +
                 "id: " + id + ", " +

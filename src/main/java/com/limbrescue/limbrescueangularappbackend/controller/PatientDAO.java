@@ -63,11 +63,12 @@ public class PatientDAO {
     @ResponseBody
     public List<Patient> getAllPatients() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
-        List<Patient> readings = new ArrayList<>();
+        String sql = "SELECT * FROM " + table; //The SELECT Query
+        List<Patient> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Patient data = new Patient(result.getInt("id"), result.getString("patient_no"), result.getString("status"));
                 readings.add(data);
@@ -96,12 +97,13 @@ public class PatientDAO {
     @ResponseBody
     public Patient getPatient(@PathVariable("id")  int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        Patient patient = null;
+        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
+        Patient patient = null; //Uses a NULL value if ID is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 patient = new Patient();
                 patient.setId(id);
@@ -136,6 +138,7 @@ public class PatientDAO {
             id++;
             patient.setId(id);
         }
+        //SQL Insert Statement
         String sql = "INSERT INTO " + table + " (id, patient_no, status) VALUES(?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -164,6 +167,7 @@ public class PatientDAO {
     @ResponseBody
     public void updatePatient(@RequestBody Patient patient, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE " + table + " SET patient_no = ?, status = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -192,6 +196,7 @@ public class PatientDAO {
     @ResponseBody
     public void deletePatient(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

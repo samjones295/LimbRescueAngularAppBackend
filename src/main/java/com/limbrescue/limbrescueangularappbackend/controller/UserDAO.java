@@ -68,12 +68,12 @@ public class UserDAO {
     @ResponseBody
     public List<User> getAllUsers() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
-        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM " + table; //The SELECT Query
+        List<User> users = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
-
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 User user = new User(result.getInt("id"), result.getString("email"),
                         result.getString("username"), result.getString("password"),
@@ -104,13 +104,13 @@ public class UserDAO {
     @ResponseBody
     public User getUser(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        User user = null;
+        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
+        User user = null; //Uses a NULL value if ID is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
-
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 user = new User();
                 user.setId(id);
@@ -148,6 +148,7 @@ public class UserDAO {
             id++;
             user.setId(id);
         }
+        //SQL Insert Statement
         String sql = "INSERT INTO " + table + " (id, email, username, password, date_created, last_updated) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -181,6 +182,7 @@ public class UserDAO {
     @ResponseBody
     public void updateUser(@RequestBody User user, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE " + table + " SET email = ?, username = ?, password = ?, date_created = ?, last_updated = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -212,6 +214,7 @@ public class UserDAO {
     @ResponseBody
     public void deleteUser(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -242,13 +245,14 @@ public class UserDAO {
     @ResponseBody
     public User checkLogin(@PathVariable("username") String username, @PathVariable("password") String password) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM users WHERE username = ? and password = ?";
-        User user = null;
+        String sql = "SELECT * FROM users WHERE username = ? and password = ?"; //SQL SELECT Query by credentials.
+        User user = null; //Initializes to NULL if account not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet result = statement.executeQuery();
+            //If found, creates a new user.
             if (result.next()) {
                 user = new User();
                 user.setEmail(result.getString("email"));

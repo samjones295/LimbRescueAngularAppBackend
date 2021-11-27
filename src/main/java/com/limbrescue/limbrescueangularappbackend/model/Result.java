@@ -67,6 +67,7 @@ public class Result {
     public void setTrain_accuracy(int train_accuracy) { this.train_accuracy = train_accuracy; }
     public void setTest_accuracy(int test_accuracy) { this.test_accuracy = test_accuracy; }
     //ToString
+    @Override
     public String toString() {
         return "{" +
                 "id: " + id + ", " +

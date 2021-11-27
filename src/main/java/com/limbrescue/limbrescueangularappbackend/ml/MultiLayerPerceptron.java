@@ -13,9 +13,11 @@ public class MultiLayerPerceptron implements MachineLearning {
      *          The list containing the output.
      */
     public List<String> run() {
+        //Runs the batch file.
         ProcessBuilder processBuilder = new ProcessBuilder("./batch/mlp.bat");
         processBuilder.redirectErrorStream(true);
-        List<String> results = new ArrayList<>();
+        List<String> results = new ArrayList<>(); //The array list to store the output.
+        //Runs the python script file.
         try {
             Process process = processBuilder.start();
             results = readProcessOutput(process.getInputStream());

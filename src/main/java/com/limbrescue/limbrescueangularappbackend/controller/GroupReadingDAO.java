@@ -65,11 +65,12 @@ public class GroupReadingDAO {
     @ResponseBody
     public List<GroupReading> getAllGroupReadings() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
-        List<GroupReading> readings = new ArrayList<>();
+        String sql = "SELECT * FROM " + table; //The SELECT Query
+        List<GroupReading> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 GroupReading reading = new GroupReading(result.getInt("id"), result.getInt("group_id"),
                         result.getInt("reading_id"));
@@ -85,12 +86,13 @@ public class GroupReadingDAO {
     @ResponseBody
     public List<GroupReading> getGroupReadingsByGroupID(@PathVariable("group_id") int group_id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE group_id = ?";
-        List<GroupReading> readings = new ArrayList<>();
+        String sql = "SELECT * FROM " + table + " WHERE group_id = ?"; //The SELECT Query
+        List<GroupReading> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, group_id);
             ResultSet result = statement.executeQuery();
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 GroupReading reading = new GroupReading(result.getInt("id"), result.getInt("group_id"),
                         result.getInt("reading_id"));
@@ -114,12 +116,13 @@ public class GroupReadingDAO {
     @ResponseBody
     public GroupReading getGroupReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        GroupReading reading = null;
+        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
+        GroupReading reading = null; //Uses a NULL value if ID is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 reading = new GroupReading();
                 reading.setId(id);
@@ -154,8 +157,9 @@ public class GroupReadingDAO {
             id++;
             reading.setId(id);
         }
+        //SQL Insert Statement
+        String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
         try {
-            String sql = "INSERT INTO " + table + " (id, group_id, reading_id) VALUES(?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, reading.getId());
             statement.setInt(2, reading.getGroup_id());
@@ -184,6 +188,7 @@ public class GroupReadingDAO {
     @ResponseBody
     public void updateGroupReading(@RequestBody GroupReading reading, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE " + table + " SET group_id = ?, reading_id = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -212,6 +217,7 @@ public class GroupReadingDAO {
     @ResponseBody
     public void deleteGroupReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

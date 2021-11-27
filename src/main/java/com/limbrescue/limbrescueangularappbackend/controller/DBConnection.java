@@ -24,12 +24,13 @@ public class DBConnection {
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find the file");
         }
+        //Loads the properties file.
         try {
             p.load(reader);
         } catch (IOException e) {
             System.out.println("Cannot load file");
         }
-        //Set up the credentials.
+        //Set up the database connection credentials.
         jdbcURL = p.getProperty("spring.datasource.url");
         dbUser = p.getProperty("spring.datasource.username");
         dbPassword = p.getProperty("spring.datasource.password");
@@ -40,12 +41,19 @@ public class DBConnection {
         }
 
     }
-    //Returns a DB connection object.
+
+    /**
+     * Starts a new database connection. Every DAO method calls this at the beginning.
+     * Every DAO method closes the connection after the "finally" clause of SQL Exception handler.
+     *
+     * @return
+     *          The Database Connection.
+     */
     public Connection getConnection() {
         try {
             connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         } catch (SQLException e) {
-
+            e.printStackTrace();
         }
         return connection;
     }

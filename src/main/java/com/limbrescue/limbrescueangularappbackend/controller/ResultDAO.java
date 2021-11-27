@@ -69,12 +69,12 @@ public class ResultDAO {
     @ResponseBody
     public List<Result> getAllResults() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
-        List<Result> results = new ArrayList<>();
+        String sql = "SELECT * FROM " + table; //The SELECT Query
+        List<Result> results = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
-
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Result res = new Result(result.getInt("id"), result.getInt("group_id"), result.getString("algorithm"),
                         result.getInt("ran_by"), result.getString("status"), result.getString("comments"),
@@ -105,12 +105,13 @@ public class ResultDAO {
     @ResponseBody
     public Result getResult(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
-        Result res = null;
+        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
+        Result res = null; //Uses a NULL value if ID is not found.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 res = new Result();
                 res.setId(id);
@@ -142,6 +143,13 @@ public class ResultDAO {
      */
     public void insertResult(Result res) {
         Connection connection = dbConnection.getConnection();
+        //Updates the ID if necessary to avoid duplicates.
+        int id = res.getId();
+        while (getResult(id) != null) {
+            id++;
+            res.setId(id);
+        }
+        //SQL Insert Statement
         String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments, train_accuracy, test_accuracy) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -182,6 +190,7 @@ public class ResultDAO {
         }
         //Runs the machine learning and stores the results.
         MachineLearning ml = null;
+        //Tha algorithm to run depends on the algorithm stored.
         switch(res.getAlgorithm()) {
             case "Support Vector Machine":
                 ml = new SupportVectorMachine();
@@ -199,14 +208,15 @@ public class ResultDAO {
                 LOGGER.warning("Invalid Algorithm");
                 break;
         }
+        //The output of the ML algorithm.
         List<String> output = ml.run();
         for (String out : output) {
+            //Locates the line that contains train and test accuracy.
             if (out.contains("train / test accuracy:")) {
                 String accuracy = out.substring(out.indexOf("train / test accuracy:") + 23);
                 String[] nums = accuracy.split(" / ");
-                System.out.println(Arrays.toString(nums));
-                res.setTrain_accuracy((int) (Double.parseDouble(nums[0]) * 100));
-                res.setTest_accuracy((int) (Double.parseDouble(nums[1]) * 100));
+                res.setTrain_accuracy((int) (Double.parseDouble(nums[0]) * 100)); //Train Accuracy
+                res.setTest_accuracy((int) (Double.parseDouble(nums[1]) * 100)); //Test Accuracy
                 break;
             }
         }
@@ -226,6 +236,7 @@ public class ResultDAO {
     @ResponseBody
     public void updateResult(@RequestBody Result res, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?," +
                 "train_accuracy = ?, test_accuracy = ? WHERE id = ?";
         try {
@@ -262,6 +273,7 @@ public class ResultDAO {
     @ResponseBody
     public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement to update comments
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -289,6 +301,7 @@ public class ResultDAO {
     @ResponseBody
     public void deleteResult(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

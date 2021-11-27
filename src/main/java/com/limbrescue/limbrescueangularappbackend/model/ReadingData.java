@@ -47,6 +47,7 @@ public class ReadingData {
     }
     public void setLaterality(String laterality) { this.laterality = laterality; }
     //ToString
+    @Override
     public String toString() {
         return "{" +
                 "id: " + id + ", " +

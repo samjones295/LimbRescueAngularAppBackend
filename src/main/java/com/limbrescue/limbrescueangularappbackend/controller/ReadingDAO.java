@@ -96,12 +96,13 @@ public class ReadingDAO {
     @ResponseBody
     public List<Reading> getAllReadingsOfPatient(@RequestParam("patient_no") String patient_no) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table  + " WHERE patient_no = ?";
-        List<Reading> readings = new ArrayList<>();
+        String sql = "SELECT * FROM " + table  + " WHERE patient_no = ?"; //The SELECT query.
+        List<Reading> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, patient_no);
             ResultSet result = statement.executeQuery();
+            //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
                         result.getDate("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
@@ -131,13 +132,13 @@ public class ReadingDAO {
     @ResponseBody
     public Reading getReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
-        Reading reading = null;
-        String sql = "SELECT * FROM " + table + " WHERE id = ?";
+        Reading reading = null; //Uses a NULL value if ID is not found.
+        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
-
+            //If found, set return object to be the value of the tuple.
             if (result.next()) {
                 reading = new Reading();
                 reading.setId(id);
@@ -172,7 +173,7 @@ public class ReadingDAO {
     public Reading getReading(@RequestParam("patient_no") String patient_no) {
         Connection connection = dbConnection.getConnection();
         Reading reading = null;
-        String sql = "SELECT * FROM " + table + " WHERE patient_no = ?";
+        String sql = "SELECT * FROM " + table + " WHERE patient_no = ?"; //The SELECT Query
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, patient_no);
@@ -215,6 +216,7 @@ public class ReadingDAO {
             id++;
             reading.setId(id);
         }
+        //SQL Insert Statement
         String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -247,6 +249,7 @@ public class ReadingDAO {
     @ResponseBody
     public void updateReading(@RequestBody Reading reading, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement
         String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, comments= ? " +
                 " WHERE id = ?";
         try {
@@ -282,6 +285,7 @@ public class ReadingDAO {
     @ResponseBody
     public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
         Connection connection = dbConnection.getConnection();
+        //SQL Update Statement to update comments
         String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -310,6 +314,7 @@ public class ReadingDAO {
     @ResponseBody
     public void deleteReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        //SQL Delete Statement
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
