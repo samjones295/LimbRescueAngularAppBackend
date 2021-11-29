@@ -293,16 +293,16 @@ public class ResultDAO {
         String outputFile = "";
         switch(res.getAlgorithm()) {
             case "Support Vector Machine":
-                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/svm/rawdata/files/" + res.getGroup_name() + ".csv";
+                outputFile = p.getProperty("spring.datasource.outputFile") + "/svm/rawdata/files/" + res.getGroup_name() + ".csv";
                 break;
             case "Random Forest":
-                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/rf/rawdata/files/" + res.getGroup_name() + ".csv";
+                outputFile = p.getProperty("spring.datasource.outputFile") + "/rf/rawdata/files/" + res.getGroup_name() + ".csv";
                 break;
             case "Naive Bayes":
-                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/nb/rawdata/files/" + res.getGroup_name() + ".csv";
+                outputFile = p.getProperty("spring.datasource.outputFile") + "/nb/rawdata/files/" + res.getGroup_name() + ".csv";
                 break;
             case "Multi Layer Perceptron":
-                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/mlp/rawdata/files/" + res.getGroup_name() + ".csv";
+                outputFile = p.getProperty("spring.datasource.outputFile") + "/mlp/rawdata/files/" + res.getGroup_name() + ".csv";
                 break;
         }
         String sql = "(SELECT 'Limb', 'Time', 'Value') UNION " +
