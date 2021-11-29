@@ -49,7 +49,7 @@ public class ReadingDataDAO {
             e.printStackTrace();
         }
         //Reads the table from the properties file.
-        table = p.getProperty("spring.datasource.GroupTable");
+        table = p.getProperty("spring.datasource.ReadingDataTable");
         dbConnection = new DBConnection();
     }
 

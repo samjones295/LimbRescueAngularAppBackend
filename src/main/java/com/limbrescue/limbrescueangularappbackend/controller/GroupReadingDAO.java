@@ -51,7 +51,7 @@ public class GroupReadingDAO {
             e.printStackTrace();
         }
         //Reads the table from the properties file.
-        table = p.getProperty("spring.datasource.GroupTable");
+        table = p.getProperty("spring.datasource.GroupReadingTable");
         dbConnection = new DBConnection();
     }
 
