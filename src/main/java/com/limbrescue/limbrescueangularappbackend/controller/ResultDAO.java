@@ -183,6 +183,7 @@ public class ResultDAO {
             id++;
             res.setId(id);
         }
+        exportReadingDataToCSV(res);
         //Runs the machine learning and stores the results.
         MachineLearning ml = null;
         //Tha algorithm to run depends on the algorithm stored.
@@ -281,90 +282,46 @@ public class ResultDAO {
         }
     }
 
-//    /**
-//     * Exports the results to a .txt file.
-//     * @param id
-//     *          The id to export the results.
-//     */
-//    @GetMapping(path = "/report/{id}")
-//    @ResponseBody
-//    public void exportResultsToFile(@PathVariable("id") int id) {
-//        Result res = getResult(id);
-//        try {
-//            FileWriter writer = null;
-//            //Output depends on which algorithm is being run.
-//            switch(res.getAlgorithm()) {
-//                case "Support Vector Machine":
-//                    writer = new FileWriter(p.getProperty("spring.datasource.SVM"));
-//                    writer.write("{\n");
-//                    writer.write("\t" + resultList.get(id).get(29).substring(resultList.get(id).get(29).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(32).substring(resultList.get(id).get(32).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(33) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(34) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(35) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(36) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(37).substring(resultList.get(id).get(37).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(38) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(39) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(40) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(41) + "\n");
-//                    writer.write("}\n");
-//                    break;
-//                case "Random Forest":
-//                    writer = new FileWriter(p.getProperty("spring.datasource.RF"));
-//                    writer.write("{\n");
-//                    writer.write("\t" + resultList.get(id).get(32).substring(resultList.get(id).get(32).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(35).substring(resultList.get(id).get(35).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(36) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(37) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(38) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(39) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(40).substring(resultList.get(id).get(40).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(41) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(42) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(43) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(44) + "\n");
-//                    writer.write("}\n");
-//                    break;
-//                case "Naive Bayes":
-//                    writer = new FileWriter(p.getProperty("spring.datasource.NB"));
-//                    writer.write("{\n");
-//                    writer.write("\t" + resultList.get(id).get(16).substring(resultList.get(id).get(16).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(19).substring(resultList.get(id).get(19).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(20) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(21) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(22) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(23) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(24).substring(resultList.get(id).get(24).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(25) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(26) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(27) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(28) + "\n");
-//                    writer.write("}\n");
-//                    break;
-//                case "Multi Layer Perceptron":
-//                    writer = new FileWriter(p.getProperty("spring.datasource.MLP"));
-//                    writer.write("{\n");
-//                    writer.write("\t" + resultList.get(id).get(37).substring(resultList.get(id).get(37).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(40).substring(resultList.get(id).get(40).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(41) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(42) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(43) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(44) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(45).substring(resultList.get(id).get(45).indexOf("0m") + 3) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(46) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(47) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(48) + "\n");
-//                    writer.write("\t" + resultList.get(id).get(49) + "\n");
-//                    writer.write("}\n");
-//                    break;
-//                default:
-//                    LOGGER.warning("Invalid Algorithm");
-//                    break;
-//            }
-//            writer.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    /**
+     * Export the reading data to a .csv
+     *
+     * @param res
+     *          The result tuple
+     */
+    public void exportReadingDataToCSV(Result res) {
+        Connection connection = dbConnection.getConnection();
+        String outputFile = "";
+        switch(res.getAlgorithm()) {
+            case "Support Vector Machine":
+                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/svm/rawdata/files/" + res.getGroup_name() + ".csv";
+                break;
+            case "Random Forest":
+                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/rf/rawdata/files/" + res.getGroup_name() + ".csv";
+                break;
+            case "Naive Bayes":
+                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/nb/rawdata/files/" + res.getGroup_name() + ".csv";
+                break;
+            case "Multi Layer Perceptron":
+                outputFile = "C:/Users/yiche/Desktop/LimbRescueAngularAppBackend/mlp/rawdata/files/" + res.getGroup_name() + ".csv";
+                break;
+        }
+        String sql = "(SELECT 'Limb', 'Time', 'Value') UNION " +
+                "(SELECT laterality, time, ppg_reading FROM " + p.getProperty("spring.datasource.ReadingDataTable") +
+                " WHERE reading_id LIKE (SELECT reading_ids FROM `group` WHERE name = ?))" +
+                " INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\n'";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, res.getGroup_name());
+            statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }
