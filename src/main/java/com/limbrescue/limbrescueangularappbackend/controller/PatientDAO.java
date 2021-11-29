@@ -49,7 +49,7 @@ public class PatientDAO {
             e.printStackTrace();
         }
         //Reads the table from the properties file.
-        table = p.getProperty("spring.datasource.GroupTable");
+        table = p.getProperty("spring.datasource.PatientTable");
         dbConnection = new DBConnection();
     }
 
