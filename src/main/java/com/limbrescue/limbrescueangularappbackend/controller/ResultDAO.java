@@ -77,7 +77,6 @@ public class ResultDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Result res = new Result(result.getInt("id"), result.getInt("group_id"), result.getString("algorithm"),
-                        result.getInt("ran_by"), result.getString("status"), result.getString("comments"),
                         result.getInt("train_accuracy"), result.getInt("test_accuracy"));
                 results.add(res);
             }
@@ -117,9 +116,6 @@ public class ResultDAO {
                 res.setId(id);
                 res.setGroup_id(result.getInt("group_id"));
                 res.setAlgorithm(result.getString("algorithm"));
-                res.setRan_by(result.getInt("ran_by"));
-                res.setStatus(result.getString("status"));
-                res.setComments(result.getString("comments"));
                 res.setTrain_accuracy(result.getInt("train_accuracy"));
                 res.setTest_accuracy(result.getInt("test_accuracy"));
             }
@@ -150,17 +146,14 @@ public class ResultDAO {
             res.setId(id);
         }
         //SQL Insert Statement
-        String sql = "INSERT INTO " + table + " (id, group_id, algorithm, ran_by, status, comments, train_accuracy, test_accuracy) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + table + " (id, group_id, algorithm, train_accuracy, test_accuracy) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, res.getId());
             statement.setInt(2, res.getGroup_id());
             statement.setString(3, res.getAlgorithm());
-            statement.setInt(4, res.getRan_by());
-            statement.setString(5, res.getStatus());
-            statement.setString(6, res.getComments());
-            statement.setInt(7, res.getTrain_accuracy());
-            statement.setInt(8, res.getTest_accuracy());
+            statement.setInt(4, res.getTrain_accuracy());
+            statement.setInt(5, res.getTest_accuracy());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -237,18 +230,15 @@ public class ResultDAO {
     public void updateResult(@RequestBody Result res, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         //SQL Update Statement
-        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, ran_by = ?, status = ?, comments = ?," +
+        String sql = "UPDATE " + table + " SET group_id = ?, algorithm = ?, " +
                 "train_accuracy = ?, test_accuracy = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, res.getGroup_id());
             statement.setString(2, res.getAlgorithm());
-            statement.setInt(3, res.getRan_by());
-            statement.setString(4, res.getStatus());
-            statement.setString(5, res.getComments());
-            statement.setInt(6, res.getTrain_accuracy());
-            statement.setInt(7, res.getTest_accuracy());
-            statement.setInt(8, id);
+            statement.setInt(3, res.getTrain_accuracy());
+            statement.setInt(4, res.getTest_accuracy());
+            statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -261,35 +251,35 @@ public class ResultDAO {
         }
     }
 
-    /**
-     * Updates the comments of a result.
-     *
-     * @param id
-     *          The id to be updated.
-     * @param comment
-     *          The updated comment.
-     */
-    @PutMapping("/resultcomment/{id}")
-    @ResponseBody
-    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
-        Connection connection = dbConnection.getConnection();
-        //SQL Update Statement to update comments
-        String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, comment);
-            statement.setInt(2, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    /**
+//     * Updates the comments of a result.
+//     *
+//     * @param id
+//     *          The id to be updated.
+//     * @param comment
+//     *          The updated comment.
+//     */
+//    @PutMapping("/resultcomment/{id}")
+//    @ResponseBody
+//    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
+//        Connection connection = dbConnection.getConnection();
+//        //SQL Update Statement to update comments
+//        String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
+//        try {
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setString(1, comment);
+//            statement.setInt(2, id);
+//            statement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     /**
      * Deletes a result based on the ID.
