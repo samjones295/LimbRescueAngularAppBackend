@@ -105,7 +105,7 @@ public class ReadingDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getDate("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
+                        result.getDate("date_created"), result.getString("laterality"), result.getString("comments"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -145,7 +145,6 @@ public class ReadingDAO {
                 reading.setPatient_no(result.getString("patient_no"));
                 reading.setDate_created(result.getDate("date_created"));
                 reading.setLaterality(result.getString("laterality"));
-                //reading.setActive_or_rest(result.getString("active_or_rest"));
                 reading.setComments(result.getString("comments"));
             }
         } catch (SQLException e) {
@@ -170,7 +169,7 @@ public class ReadingDAO {
      */
     @GetMapping("/reading")
     @ResponseBody
-    public Reading getReading(@RequestParam("patient_no") String patient_no) {
+    public Reading getReadingOfPatient(@RequestParam("patient_no") String patient_no) {
         Connection connection = dbConnection.getConnection();
         Reading reading = null;
         String sql = "SELECT * FROM " + table + " WHERE patient_no = ?"; //The SELECT Query
@@ -185,7 +184,6 @@ public class ReadingDAO {
                 reading.setPatient_no(patient_no);
                 reading.setDate_created(result.getDate("date_created"));
                 reading.setLaterality(result.getString("laterality"));
-                //reading.setActive_or_rest(result.getString("active_or_rest"));
                 reading.setComments(result.getString("comments"));
             }
         } catch (SQLException e) {
@@ -224,7 +222,6 @@ public class ReadingDAO {
             statement.setString(2, reading.getPatient_no());
             statement.setDate(3, reading.getDate_created());
             statement.setString(4, reading.getLaterality());
-            //statement.setString(4, reading.getActive_or_rest());
             statement.setString(5, reading.getComments());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -258,10 +255,8 @@ public class ReadingDAO {
             statement.setDate(2, reading.getDate_created());
             statement.setString(3, reading.getLaterality());
             statement.setString(4, reading.getComments());
-            //statement.setString(3, reading.getActive_or_rest());
             statement.setInt(5, id);
             statement.executeUpdate();
-            //reading.setActive_or_rest(result.getString("active_or_rest"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

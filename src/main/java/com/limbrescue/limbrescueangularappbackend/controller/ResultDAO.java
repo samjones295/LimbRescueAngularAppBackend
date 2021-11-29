@@ -254,36 +254,6 @@ public class ResultDAO {
         }
     }
 
-//    /**
-//     * Updates the comments of a result.
-//     *
-//     * @param id
-//     *          The id to be updated.
-//     * @param comment
-//     *          The updated comment.
-//     */
-//    @PutMapping("/resultcomment/{id}")
-//    @ResponseBody
-//    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
-//        Connection connection = dbConnection.getConnection();
-//        //SQL Update Statement to update comments
-//        String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
-//        try {
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setString(1, comment);
-//            statement.setInt(2, id);
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     /**
      * Deletes a result based on the ID.
      *
