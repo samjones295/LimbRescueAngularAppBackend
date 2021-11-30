@@ -239,15 +239,36 @@ public class ReadingDAO {
             e.printStackTrace();
         }
     }
-    @GetMapping("/timestamp")
+
+    /**
+     * Retrieves the start date and time for the watch.
+     *
+     * @return
+     *          The current date and time in UTC.
+     */
+    @GetMapping("/start")
     @ResponseBody
-    public String getCurrentDateAndTime() {
+    public String getStartDateAndTime() {
         DateFormat df = DateFormat.getDateTimeInstance();
         df.setTimeZone(TimeZone.getTimeZone("gmt"));
         String gmtTime = df.format(new Date());
-        System.out.println(gmtTime);
         return gmtTime;
     }
+    /**
+     * Retrieves the stop date and time for the watch.
+     *
+     * @return
+     *          The current date and time in UTC.
+     */
+    @GetMapping("/stop")
+    @ResponseBody
+    public String getStopDateAndTime() {
+        DateFormat df = DateFormat.getDateTimeInstance();
+        df.setTimeZone(TimeZone.getTimeZone("gmt"));
+        String gmtTime = df.format(new Date());
+        return gmtTime;
+    }
+
 
     /**
      * Updates a reading based on the ID.
