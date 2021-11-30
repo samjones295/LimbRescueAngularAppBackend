@@ -1,0 +1,9 @@
+INPUT:
+  CAT_TRAIN_VAL: true
+  PATH: ./data/ns10_ls300_normalized.npz
+MODEL: NB
+NB:
+  priors: null
+  var_smoothing: 1.0e-08
+OUTPUT_DIR: ./output
+TUNE_HP_PARAMS: false

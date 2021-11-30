@@ -8,9 +8,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.TimeZone;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
@@ -232,6 +238,15 @@ public class ReadingDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    @GetMapping("/timestamp")
+    @ResponseBody
+    public String getCurrentDateAndTime() {
+        DateFormat df = DateFormat.getDateTimeInstance();
+        df.setTimeZone(TimeZone.getTimeZone("gmt"));
+        String gmtTime = df.format(new Date());
+        System.out.println(gmtTime);
+        return gmtTime;
     }
 
     /**
