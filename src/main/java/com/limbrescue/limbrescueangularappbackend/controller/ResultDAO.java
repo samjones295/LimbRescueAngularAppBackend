@@ -308,7 +308,7 @@ public class ResultDAO {
         String sql = "(SELECT 'Limb', 'Time', 'Value') UNION " +
                 "(SELECT laterality, time, ppg_reading FROM " + p.getProperty("spring.datasource.ReadingDataTable") +
                 " WHERE reading_id LIKE (SELECT reading_ids FROM `group` WHERE name = ?))" +
-                " INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '\"' TERMINATED BY ',' ESCAPED BY '\"' LINES TERMINATED BY '\n'";
+                " INTO OUTFILE '" + outputFile + "' FIELDS ENCLOSED BY '' TERMINATED BY ',' ESCAPED BY '' LINES TERMINATED BY '\n'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, res.getGroup_name());
