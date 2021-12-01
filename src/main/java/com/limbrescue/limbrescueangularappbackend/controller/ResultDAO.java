@@ -3,6 +3,8 @@ package com.limbrescue.limbrescueangularappbackend.controller;
 import com.limbrescue.limbrescueangularappbackend.ml.*;
 import com.limbrescue.limbrescueangularappbackend.model.Result;
 import org.springframework.web.bind.annotation.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import java.io.*;
 import java.sql.*;
@@ -291,6 +293,7 @@ public class ResultDAO {
     public void exportReadingDataToCSV(Result res) {
         Connection connection = dbConnection.getConnection();
         String outputFile = "";
+        //Sets the output file based on the algorithm.
         switch(res.getAlgorithm()) {
             case "Support Vector Machine":
                 outputFile = p.getProperty("spring.datasource.outputFile") + "/svm/rawdata/files/" + res.getGroup_name() + ".csv";
@@ -305,6 +308,7 @@ public class ResultDAO {
                 outputFile = p.getProperty("spring.datasource.outputFile") + "/mlp/rawdata/files/" + res.getGroup_name() + ".csv";
                 break;
         }
+        //The SQL query to export to a CSV file.
         String sql = "(SELECT 'Limb', 'Time', 'Value') UNION " +
                 "(SELECT laterality, time, ppg_reading FROM " + p.getProperty("spring.datasource.ReadingDataTable") +
                 " WHERE (SELECT reading_ids FROM `group` WHERE name = ?) LIKE CONCAT('%', reading_id, '%'))" +
@@ -322,6 +326,64 @@ public class ResultDAO {
                 e.printStackTrace();
             }
         }
+        //The CSV annotation file to update the NPZ file.
+        File csvOutputFile = null;
+        switch(res.getAlgorithm()) {
+            case "Support Vector Machine":
+                csvOutputFile = new File(p.getProperty("spring.datasource.outputFile") + "/svm/rawdata/annotations.csv");
+                break;
+            case "Random Forest":
+                csvOutputFile = new File(p.getProperty("spring.datasource.outputFile") + "/rf/rawdata/annotations.csv");
+                break;
+            case "Naive Bayes":
+                csvOutputFile = new File(p.getProperty("spring.datasource.outputFile") + "/nb/rawdata/annotations.csv");
+                break;
+            case "Multi Layer Perceptron":
+                csvOutputFile = new File(p.getProperty("spring.datasource.outputFile") + "/mlp/rawdata/annotations.csv");
+                break;
+        }
+        //The data to be written to the annotations CSV.
+        List<String[]> dataLines = new ArrayList<>();
+        dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
+        dataLines.add(new String[]{res.getGroup_name(), "1", "none", "", ""});
+        dataLines.add(new String[]{res.getGroup_name(), "2", "none", "", ""});
+        dataLines.add(new String[]{res.getGroup_name(), "3", "none", "", ""});
+        try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+            dataLines.stream()
+                    .map(this::convertToCSV)
+                    .forEach(pw::println);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * Converts to a CSV.
+     *
+     * @param data
+     *          The data to be written to the .csv file.
+     * @return
+     *          The stream of data.
+     */
+    public String convertToCSV(String[] data) {
+        return Stream.of(data)
+                .map(this::escapeSpecialCharacters)
+                .collect(Collectors.joining(","));
+    }
+
+    /**
+     * Escapes all special characters.
+     * @param data
+     *              The data to be written to the .csv file
+     * @return
+     *              The escaped data.
+     */
+    public String escapeSpecialCharacters(String data) {
+        String escapedData = data.replaceAll("\\R", " ");
+        if (data.contains(",") || data.contains("\"") || data.contains("'")) {
+            data = data.replace("\"", "\"\"");
+            escapedData = "\"" + data + "\"";
+        }
+        return escapedData;
     }
 }
