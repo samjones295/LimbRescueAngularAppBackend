@@ -1,445 +1,1921 @@
 ,file,drop,pre_length,post_start,post_length,switch,label,dataset,prediction
-0,session_2021-06-28-21_54_19.csv,150,723,227,300,False,3,train,3
-1,session_2021-06-29-22_23_10.csv,150,716,127,300,False,1,train,3
-2,session_2021-06-29-08_27_11.csv,150,719,207,300,False,1,train,3
-3,session_2021-06-29-22_19_19.csv,150,704,237,300,False,1,train,3
-4,session_2021-07-19-11_24_09.csv,150,687,157,300,False,2,train,2
-5,session_2021-07-19-11_30_59.csv,150,719,2,300,False,3,train,3
-6,session_2021-06-29-22_22_10.csv,150,721,47,300,False,2,train,2
-7,session_2021-06-28-17_47_03.csv,150,721,11,300,False,2,train,2
-8,session_2021-06-29-22_45_06.csv,150,690,346,300,False,3,train,3
-9,session_2021-06-29-22_19_19.csv,150,704,78,300,False,1,train,3
-10,session_2021-06-29-22_24_14.csv,150,715,260,300,False,2,train,2
-11,session_2021-06-29-22_24_14.csv,150,715,49,300,False,2,train,2
-12,session_2021-06-28-17_43_10.csv,150,672,82,300,False,1,train,2
-13,session_2021-06-28-21_58_23.csv,150,722,417,300,False,1,train,3
-14,session_2021-06-28-21_46_21.csv,150,708,16,300,False,1,train,3
-15,session_2021-06-28-17_47_03.csv,150,721,174,300,False,2,train,2
-16,session_2021-06-28-17_44_26.csv,150,688,279,300,False,2,train,2
-17,session_2021-06-29-22_37_01.csv,150,723,396,300,False,3,train,1
-18,session_2021-06-28-21_40_11.csv,150,736,364,300,False,1,train,3
-19,session_2021-06-29-22_45_06.csv,150,690,241,300,False,3,train,3
-20,session_2021-06-29-22_35_49.csv,150,705,195,300,False,3,train,3
-21,session_2021-06-28-21_58_23.csv,150,722,226,300,False,1,train,3
-22,session_2021-07-19-11_24_09.csv,150,687,209,300,False,2,train,2
-23,session_2021-06-29-22_15_53.csv,150,696,102,300,False,1,train,2
-24,session_2021-06-29-08_24_02.csv,150,718,223,300,False,1,train,3
-25,session_2021-06-28-17_43_10.csv,150,672,203,300,False,1,train,1
-26,session_2021-06-28-21_51_04.csv,150,717,304,300,False,3,train,3
-27,session_2021-06-28-21_44_21.csv,150,717,146,300,False,2,train,2
-28,session_2021-07-19-11_24_09.csv,150,687,13,300,False,2,train,2
-29,session_2021-06-29-08_25_10.csv,150,645,233,300,False,2,train,2
-30,session_2021-06-28-21_47_59.csv,150,721,72,300,False,1,train,1
-31,session_2021-06-29-22_24_14.csv,150,715,375,300,False,2,train,2
-32,session_2021-06-28-17_43_10.csv,150,672,99,300,False,1,train,2
-33,session_2021-06-29-22_35_49.csv,150,705,39,300,False,3,train,3
-34,session_2021-06-28-17_57_27.csv,150,643,259,300,False,1,train,1
-35,session_2021-06-29-22_19_19.csv,150,704,21,300,False,1,train,3
-36,session_2021-06-28-21_43_21.csv,150,676,232,300,False,2,train,2
-37,session_2021-07-19-11_30_59.csv,150,719,132,300,False,3,train,3
-38,session_2021-06-28-21_55_21.csv,150,706,342,300,False,1,train,3
-39,session_2021-07-19-11_26_06.csv,150,719,65,300,False,2,train,2
-40,session_2021-06-28-17_45_55.csv,150,734,383,300,False,1,train,1
-41,session_2021-06-28-21_58_23.csv,150,722,108,300,False,1,train,3
-42,session_2021-06-28-17_44_26.csv,150,688,304,300,False,2,train,2
-43,session_2021-06-28-17_52_22.csv,150,719,287,300,False,1,train,1
-44,session_2021-06-29-22_37_01.csv,150,723,341,300,False,3,train,1
-45,session_2021-06-29-22_45_06.csv,150,690,389,300,False,3,train,3
-46,session_2021-06-29-22_37_01.csv,150,723,225,300,False,3,train,1
-47,session_2021-06-28-21_50_01.csv,150,687,348,300,False,1,train,3
-48,session_2021-06-28-21_51_04.csv,150,717,106,300,False,3,train,3
-49,session_2021-07-19-11_33_06.csv,150,658,180,300,False,3,train,3
-50,session_2021-06-29-22_15_53.csv,150,696,3,300,False,1,train,2
-51,session_2021-06-29-08_25_10.csv,150,645,73,300,False,2,train,2
-52,session_2021-06-28-21_54_19.csv,150,723,335,300,False,3,train,3
-53,session_2021-06-29-08_24_02.csv,150,718,0,300,False,1,train,3
-54,session_2021-07-19-11_42_07.csv,150,718,337,300,False,3,train,3
-55,session_2021-06-28-21_47_59.csv,150,721,87,300,False,1,train,1
-56,session_2021-06-29-08_25_10.csv,150,645,313,300,False,2,train,2
-57,session_2021-06-28-21_50_01.csv,150,687,83,300,False,1,train,3
-58,session_2021-06-29-22_29_03.csv,150,703,217,300,False,1,train,3
-59,session_2021-07-19-11_22_11.csv,150,627,158,300,False,2,train,2
-60,session_2021-06-29-22_24_14.csv,150,715,48,300,False,2,train,2
-61,session_2021-07-19-11_42_07.csv,150,718,103,300,False,3,train,1
-62,session_2021-06-28-17_57_27.csv,150,643,291,300,False,1,train,1
-63,session_2021-06-28-21_58_23.csv,150,722,197,300,False,1,train,3
-64,session_2021-06-29-08_27_11.csv,150,719,6,300,False,1,train,3
-65,session_2021-07-19-11_42_07.csv,150,718,216,300,False,3,train,3
-66,session_2021-06-29-08_27_11.csv,150,719,397,300,False,1,train,3
-67,session_2021-06-29-22_29_03.csv,150,703,167,300,False,1,train,3
-68,session_2021-06-29-08_25_10.csv,150,645,205,300,False,2,train,2
-69,session_2021-06-29-22_42_47.csv,150,704,105,300,False,3,train,3
-70,session_2021-06-28-21_50_01.csv,150,687,219,300,False,1,train,3
-71,session_2021-06-28-21_55_21.csv,150,706,376,300,False,1,train,3
-72,session_2021-07-19-11_33_06.csv,150,658,133,300,False,3,train,3
-73,session_2021-06-28-21_56_20.csv,150,646,265,300,False,3,train,3
-74,session_2021-06-29-22_29_03.csv,150,703,289,300,False,1,train,3
-75,session_2021-07-19-11_29_30.csv,150,721,11,300,False,2,train,2
-76,session_2021-07-19-11_42_07.csv,150,718,213,300,False,3,train,3
-77,session_2021-06-29-08_27_11.csv,150,719,166,300,False,1,train,3
-78,session_2021-07-19-11_20_13.csv,150,720,84,300,False,2,train,2
-79,session_2021-06-28-17_51_17.csv,150,718,317,300,False,3,train,3
-80,session_2021-07-19-11_32_02.csv,150,718,397,300,False,3,train,3
-81,session_2021-07-19-11_42_07.csv,150,718,129,300,False,3,train,3
-82,session_2021-06-28-21_50_01.csv,150,687,61,300,False,1,train,3
-83,session_2021-06-28-17_45_55.csv,150,734,123,300,False,1,train,1
-84,session_2021-06-29-22_23_10.csv,150,716,157,300,False,1,train,3
-85,session_2021-06-29-22_35_49.csv,150,705,210,300,False,3,train,3
-86,session_2021-06-29-08_24_02.csv,150,718,7,300,False,1,train,3
-87,session_2021-07-19-11_29_30.csv,150,721,101,300,False,2,train,2
-88,session_2021-06-29-22_23_10.csv,150,716,302,300,False,1,train,3
-89,session_2021-06-28-17_57_27.csv,150,643,258,300,False,1,train,1
-90,session_2021-06-28-21_43_21.csv,150,676,292,300,False,2,train,2
-91,session_2021-06-29-22_23_10.csv,150,716,363,300,False,1,train,3
-92,session_2021-06-29-22_24_14.csv,150,715,109,300,False,2,train,2
-93,session_2021-06-28-21_40_11.csv,150,736,29,300,False,1,train,3
-94,session_2021-06-28-21_43_21.csv,150,676,254,300,False,2,train,2
-95,session_2021-07-19-11_37_12.csv,150,720,267,300,False,3,train,3
-96,session_2021-07-19-11_29_30.csv,150,721,278,300,False,2,train,2
-97,session_2021-07-19-11_30_59.csv,150,719,88,300,False,3,train,3
-98,session_2021-06-29-22_35_49.csv,150,705,403,300,False,3,train,3
-99,session_2021-06-28-21_44_21.csv,150,717,322,300,False,2,train,2
-100,session_2021-06-28-17_43_10.csv,150,672,121,300,False,1,train,2
-101,session_2021-06-29-22_22_10.csv,150,721,164,300,False,2,train,2
-102,session_2021-06-29-22_29_03.csv,150,703,372,300,False,1,train,3
-103,session_2021-06-28-17_51_17.csv,150,718,413,300,False,3,train,3
-104,session_2021-06-28-21_51_04.csv,150,717,13,300,False,3,train,3
-105,session_2021-07-19-11_26_06.csv,150,719,40,300,False,2,train,2
-106,session_2021-07-19-11_26_06.csv,150,719,238,300,False,2,train,2
-107,session_2021-06-28-21_55_21.csv,150,706,105,300,False,1,train,3
-108,session_2021-07-19-11_30_59.csv,150,719,94,300,False,3,train,3
-109,session_2021-06-28-17_51_17.csv,150,718,139,300,False,3,train,3
-110,session_2021-06-28-21_56_20.csv,150,646,332,300,False,3,train,3
-111,session_2021-06-28-21_44_21.csv,150,717,341,300,False,2,train,2
-112,session_2021-06-28-17_52_22.csv,150,719,184,300,False,1,train,1
-113,session_2021-06-28-21_58_23.csv,150,722,125,300,False,1,train,3
-114,session_2021-07-19-11_26_06.csv,150,719,167,300,False,2,train,2
-115,session_2021-06-28-21_56_20.csv,150,646,325,300,False,3,train,3
-116,session_2021-06-29-08_27_11.csv,150,719,51,300,False,1,train,3
-117,session_2021-06-28-21_43_21.csv,150,676,197,300,False,2,train,2
-118,session_2021-06-29-22_42_47.csv,150,704,115,300,False,3,train,3
-119,session_2021-06-28-21_44_21.csv,150,717,44,300,False,2,train,2
-120,session_2021-06-28-17_51_17.csv,150,718,377,300,False,3,train,3
-121,session_2021-07-19-11_42_07.csv,150,718,213,300,False,3,train,3
-122,session_2021-06-28-21_55_21.csv,150,706,182,300,False,1,train,3
-123,session_2021-06-28-21_44_21.csv,150,717,323,300,False,2,train,2
-124,session_2021-06-28-17_52_22.csv,150,719,416,300,False,1,train,1
-125,session_2021-06-29-22_19_19.csv,150,704,392,300,False,1,train,3
-126,session_2021-06-28-21_54_19.csv,150,723,353,300,False,3,train,3
-127,session_2021-06-29-08_25_10.csv,150,645,4,300,False,2,train,2
-128,session_2021-06-28-21_55_21.csv,150,706,138,300,False,1,train,3
-129,session_2021-06-28-21_54_19.csv,150,723,305,300,False,3,train,3
-130,session_2021-06-28-21_50_01.csv,150,687,74,300,False,1,train,3
-131,session_2021-06-28-21_46_21.csv,150,708,329,300,False,1,train,3
-132,session_2021-06-28-21_47_59.csv,150,721,320,300,False,1,train,1
-133,session_2021-06-29-08_24_02.csv,150,718,206,300,False,1,train,3
-134,session_2021-06-28-21_46_21.csv,150,708,94,300,False,1,train,3
-135,session_2021-06-29-08_27_11.csv,150,719,26,300,False,1,train,3
-136,session_2021-06-29-20_06_51.csv,150,716,336,300,False,1,train,2
-137,session_2021-07-19-11_24_09.csv,150,687,230,300,False,2,train,2
-138,session_2021-06-29-08_24_02.csv,150,718,96,300,False,1,train,3
-139,session_2021-06-29-22_45_06.csv,150,690,348,300,False,3,train,3
-140,session_2021-06-28-21_43_21.csv,150,676,347,300,False,2,train,2
-141,session_2021-07-19-11_26_06.csv,150,719,216,300,False,2,train,2
-142,session_2021-06-29-22_15_53.csv,150,696,390,300,False,1,train,2
-143,session_2021-07-19-11_22_11.csv,150,627,228,300,False,2,train,2
-144,session_2021-06-29-22_23_10.csv,150,716,46,300,False,1,train,3
-145,session_2021-06-28-17_45_55.csv,150,734,209,300,False,1,train,1
-146,session_2021-06-29-22_29_03.csv,150,703,105,300,False,1,train,3
-147,session_2021-07-19-11_20_13.csv,150,720,207,300,False,2,train,2
-148,session_2021-06-29-20_06_51.csv,150,716,321,300,False,1,train,2
-149,session_2021-06-28-17_47_03.csv,150,721,125,300,False,2,train,2
-150,session_2021-06-29-22_15_53.csv,150,696,165,300,False,1,train,2
-151,session_2021-06-28-17_47_03.csv,150,721,94,300,False,2,train,2
-152,session_2021-07-19-11_32_02.csv,150,718,97,300,False,3,train,3
-153,session_2021-06-29-20_06_51.csv,150,716,229,300,False,1,train,2
-154,session_2021-07-19-11_30_59.csv,150,719,261,300,False,3,train,3
-155,session_2021-06-29-22_24_14.csv,150,715,116,300,False,2,train,2
-156,session_2021-06-29-22_19_19.csv,150,704,100,300,False,1,train,3
-157,session_2021-07-19-11_29_30.csv,150,721,216,300,False,2,train,2
-158,session_2021-06-28-17_45_55.csv,150,734,130,300,False,1,train,1
-159,session_2021-06-29-22_29_03.csv,150,703,100,300,False,1,train,3
-160,session_2021-06-28-17_44_26.csv,150,688,368,300,False,2,train,2
-161,session_2021-06-28-21_50_01.csv,150,687,22,300,False,1,train,3
-162,session_2021-06-29-22_22_10.csv,150,721,197,300,False,2,train,2
-163,session_2021-07-19-11_37_12.csv,150,720,324,300,False,3,train,3
-164,session_2021-06-29-08_27_11.csv,150,719,303,300,False,1,train,3
-165,session_2021-06-28-21_51_04.csv,150,717,314,300,False,3,train,3
-166,session_2021-06-28-17_51_17.csv,150,718,248,300,False,3,train,3
-167,session_2021-06-29-22_42_47.csv,150,704,100,300,False,3,train,3
-168,session_2021-06-28-17_44_26.csv,150,688,98,300,False,2,train,2
-169,session_2021-06-28-17_44_26.csv,150,688,197,300,False,2,train,2
-170,session_2021-06-28-21_51_04.csv,150,717,269,300,False,3,train,3
-171,session_2021-06-28-17_52_22.csv,150,719,251,300,False,1,train,1
-172,session_2021-06-29-08_24_02.csv,150,718,347,300,False,1,train,3
-173,session_2021-06-29-20_06_51.csv,150,716,268,300,False,1,train,2
-174,session_2021-06-28-17_51_17.csv,150,718,184,300,False,3,train,3
-175,session_2021-07-19-11_33_06.csv,150,658,262,300,False,3,train,3
-176,session_2021-06-28-17_57_27.csv,150,643,43,300,False,1,train,1
-177,session_2021-07-19-11_24_09.csv,150,687,362,300,False,2,train,2
-178,session_2021-07-19-11_33_06.csv,150,658,218,300,False,3,train,3
-179,session_2021-07-19-11_37_12.csv,150,720,183,300,False,3,train,3
-180,session_2021-07-19-11_32_02.csv,150,718,226,300,False,3,train,3
-181,session_2021-06-29-22_19_19.csv,150,704,159,300,False,1,train,3
-182,session_2021-07-19-11_24_09.csv,150,687,19,300,False,2,train,2
-183,session_2021-06-28-21_54_19.csv,150,723,208,300,False,3,train,3
-184,session_2021-06-28-21_47_59.csv,150,721,120,300,False,1,train,1
-185,session_2021-06-28-17_45_55.csv,150,734,430,300,False,1,train,1
-186,session_2021-06-28-21_58_23.csv,150,722,195,300,False,1,train,3
-187,session_2021-07-19-11_26_06.csv,150,719,29,300,False,2,train,2
-188,session_2021-06-28-17_47_03.csv,150,721,269,300,False,2,train,2
-189,session_2021-06-29-22_45_06.csv,150,690,158,300,False,3,train,3
-190,session_2021-07-19-11_22_11.csv,150,627,155,300,False,2,train,2
-191,session_2021-06-28-17_57_27.csv,150,643,104,300,False,1,train,1
-192,session_2021-06-28-17_43_10.csv,150,672,119,300,False,1,train,2
-193,session_2021-06-28-17_43_10.csv,150,672,57,300,False,1,train,2
-194,session_2021-06-28-17_44_26.csv,150,688,305,300,False,2,train,2
-195,session_2021-06-29-22_45_06.csv,150,690,37,300,False,3,train,3
-196,session_2021-06-29-22_35_49.csv,150,705,242,300,False,3,train,3
-197,session_2021-06-29-08_25_10.csv,150,645,93,300,False,2,train,2
-198,session_2021-07-19-11_37_12.csv,150,720,391,300,False,3,train,3
-199,session_2021-06-29-22_37_01.csv,150,723,365,300,False,3,train,1
-200,session_2021-06-28-17_45_55.csv,150,734,62,300,False,1,train,1
-201,session_2021-06-28-17_52_22.csv,150,719,111,300,False,1,train,1
-202,session_2021-06-29-08_24_02.csv,150,718,353,300,False,1,train,3
-203,session_2021-06-28-21_55_21.csv,150,706,65,300,False,1,train,3
-204,session_2021-06-29-20_06_51.csv,150,716,178,300,False,1,train,2
-205,session_2021-07-19-11_22_11.csv,150,627,279,300,False,2,train,2
-206,session_2021-06-28-21_56_20.csv,150,646,128,300,False,3,train,3
-207,session_2021-06-29-22_42_47.csv,150,704,116,300,False,3,train,3
-208,session_2021-06-28-17_52_22.csv,150,719,41,300,False,1,train,1
-209,session_2021-06-29-20_06_51.csv,150,716,100,300,False,1,train,2
-210,session_2021-06-28-21_47_59.csv,150,721,270,300,False,1,train,1
-211,session_2021-06-29-20_06_51.csv,150,716,125,300,False,1,train,2
-212,session_2021-07-19-11_37_12.csv,150,720,395,300,False,3,train,3
-213,session_2021-06-29-22_37_01.csv,150,723,257,300,False,3,train,1
-214,session_2021-06-28-21_55_21.csv,150,706,148,300,False,1,train,3
-215,session_2021-06-29-22_15_53.csv,150,696,218,300,False,1,train,2
-216,session_2021-06-28-17_57_27.csv,150,643,182,300,False,1,train,1
-217,session_2021-06-29-22_35_49.csv,150,705,138,300,False,3,train,3
-218,session_2021-06-28-17_57_27.csv,150,643,300,300,False,1,train,1
-219,session_2021-07-19-11_33_06.csv,150,658,11,300,False,3,train,3
-220,session_2021-06-28-17_45_55.csv,150,734,193,300,False,1,train,1
-221,session_2021-06-28-17_44_26.csv,150,688,163,300,False,2,train,2
-222,session_2021-06-29-22_42_47.csv,150,704,193,300,False,3,train,3
-223,session_2021-07-19-11_37_12.csv,150,720,185,300,False,3,train,3
-224,session_2021-07-19-11_37_12.csv,150,720,88,300,False,3,train,3
-225,session_2021-06-28-21_54_19.csv,150,723,54,300,False,3,train,3
-226,session_2021-06-28-21_47_59.csv,150,721,13,300,False,1,train,3
-227,session_2021-06-28-17_47_03.csv,150,721,86,300,False,2,train,2
-228,session_2021-06-29-22_23_10.csv,150,716,353,300,False,1,train,3
-229,session_2021-06-29-22_45_06.csv,150,690,95,300,False,3,train,3
-230,session_2021-07-19-11_20_13.csv,150,720,131,300,False,2,train,2
-231,session_2021-06-28-21_56_20.csv,150,646,330,300,False,3,train,3
-232,session_2021-06-28-21_50_01.csv,150,687,139,300,False,1,train,3
-233,session_2021-06-29-08_25_10.csv,150,645,343,300,False,2,train,2
-234,session_2021-06-28-17_44_26.csv,150,688,373,300,False,2,train,2
-235,session_2021-07-19-11_33_06.csv,150,658,263,300,False,3,train,3
-236,session_2021-06-29-22_15_53.csv,150,696,344,300,False,1,train,2
-237,session_2021-06-28-17_52_22.csv,150,719,377,300,False,1,train,1
-238,session_2021-06-28-17_43_10.csv,150,672,180,300,False,1,train,2
-239,session_2021-06-29-22_23_10.csv,150,716,290,300,False,1,train,3
-240,session_2021-07-19-11_42_07.csv,150,718,284,300,False,3,train,3
-241,session_2021-06-28-21_50_01.csv,150,687,361,300,False,1,train,3
-242,session_2021-06-28-21_58_23.csv,150,722,246,300,False,1,train,3
-243,session_2021-06-28-17_47_03.csv,150,721,184,300,False,2,train,2
-244,session_2021-06-29-22_19_19.csv,150,704,396,300,False,1,train,3
-245,session_2021-06-28-21_47_59.csv,150,721,420,300,False,1,train,1
-246,session_2021-07-19-11_32_02.csv,150,718,98,300,False,3,train,3
-247,session_2021-06-29-22_24_14.csv,150,715,374,300,False,2,train,2
-248,session_2021-07-19-11_26_06.csv,150,719,250,300,False,2,train,2
-249,session_2021-06-28-21_43_21.csv,150,676,44,300,False,2,train,2
-250,session_2021-06-28-17_47_03.csv,150,721,77,300,False,2,train,2
-251,session_2021-07-19-11_32_02.csv,150,718,100,300,False,3,train,3
-252,session_2021-07-19-11_20_13.csv,150,720,255,300,False,2,train,2
-253,session_2021-06-29-22_37_01.csv,150,723,178,300,False,3,train,1
-254,session_2021-07-19-11_33_06.csv,150,658,122,300,False,3,train,3
-255,session_2021-07-19-11_30_59.csv,150,719,87,300,False,3,train,3
-256,session_2021-07-19-11_30_59.csv,150,719,59,300,False,3,train,3
-257,session_2021-06-28-17_57_27.csv,150,643,125,300,False,1,train,1
-258,session_2021-06-28-21_46_21.csv,150,708,405,300,False,1,train,3
-259,session_2021-06-28-17_57_27.csv,150,643,24,300,False,1,train,1
-260,session_2021-06-28-21_56_20.csv,150,646,131,300,False,3,train,3
-261,session_2021-07-19-11_37_12.csv,150,720,205,300,False,3,train,3
-262,session_2021-06-28-21_44_21.csv,150,717,29,300,False,2,train,2
-263,session_2021-06-28-21_46_21.csv,150,708,191,300,False,1,train,3
-264,session_2021-06-29-22_29_03.csv,150,703,343,300,False,1,train,3
-265,session_2021-06-28-17_43_10.csv,150,672,321,300,False,1,train,1
-266,session_2021-06-28-17_51_17.csv,150,718,328,300,False,3,train,3
-267,session_2021-06-29-22_15_53.csv,150,696,120,300,False,1,train,2
-268,session_2021-06-28-21_40_11.csv,150,736,302,300,False,1,train,3
-269,session_2021-07-19-11_42_07.csv,150,718,395,300,False,3,train,3
-270,session_2021-06-29-20_06_51.csv,150,716,114,300,False,1,train,2
-271,session_2021-06-28-17_43_10.csv,150,672,47,300,False,1,train,2
-272,session_2021-06-29-22_22_10.csv,150,721,152,300,False,2,train,2
-273,session_2021-06-28-17_52_22.csv,150,719,129,300,False,1,train,1
-274,session_2021-07-19-11_42_07.csv,150,718,272,300,False,3,train,3
-275,session_2021-06-28-21_47_59.csv,150,721,93,300,False,1,train,1
-276,session_2021-06-29-08_24_02.csv,150,718,226,300,False,1,train,3
-277,session_2021-06-28-21_55_21.csv,150,706,259,300,False,1,train,3
-278,session_2021-06-28-17_43_10.csv,150,672,131,300,False,1,train,2
-279,session_2021-07-19-11_30_59.csv,150,719,340,300,False,3,train,3
-280,session_2021-06-28-21_43_21.csv,150,676,136,300,False,2,train,2
-281,session_2021-07-19-11_29_30.csv,150,721,374,300,False,2,train,2
-282,session_2021-06-28-17_52_22.csv,150,719,83,300,False,1,train,1
-283,session_2021-06-29-22_37_01.csv,150,723,118,300,False,3,train,1
-284,session_2021-07-19-11_26_06.csv,150,719,384,300,False,2,train,2
-285,session_2021-06-28-21_47_59.csv,150,721,276,300,False,1,train,1
-286,session_2021-06-28-21_43_21.csv,150,676,88,300,False,2,train,2
-287,session_2021-06-28-17_47_03.csv,150,721,80,300,False,2,train,2
-288,session_2021-07-19-11_22_11.csv,150,627,114,300,False,2,train,2
-289,session_2021-06-28-21_46_21.csv,150,708,198,300,False,1,train,3
-290,session_2021-07-19-11_24_09.csv,150,687,214,300,False,2,train,2
-291,session_2021-06-29-22_15_53.csv,150,696,390,300,False,1,train,2
-292,session_2021-07-19-11_32_02.csv,150,718,154,300,False,3,train,3
-293,session_2021-07-19-11_29_30.csv,150,721,199,300,False,2,train,2
-294,session_2021-06-29-22_42_47.csv,150,704,76,300,False,3,train,3
-295,session_2021-06-28-21_51_04.csv,150,717,274,300,False,3,train,3
-296,session_2021-06-28-21_54_19.csv,150,723,280,300,False,3,train,3
-297,session_2021-06-29-22_24_14.csv,150,715,285,300,False,2,train,2
-298,session_2021-06-29-22_45_06.csv,150,690,127,300,False,3,train,3
-299,session_2021-07-19-11_24_09.csv,150,687,363,300,False,2,train,2
-300,session_2021-06-28-21_54_19.csv,150,723,60,300,False,3,train,3
-301,session_2021-07-19-11_29_30.csv,150,721,119,300,False,2,train,2
-302,session_2021-07-19-11_32_02.csv,150,718,170,300,False,3,train,3
-303,session_2021-06-29-22_22_10.csv,150,721,345,300,False,2,train,2
-304,session_2021-07-19-11_20_13.csv,150,720,79,300,False,2,train,2
-305,session_2021-06-28-21_40_11.csv,150,736,295,300,False,1,train,3
-306,session_2021-06-29-22_22_10.csv,150,721,206,300,False,2,train,2
-307,session_2021-06-28-21_58_23.csv,150,722,340,300,False,1,train,3
-308,session_2021-06-28-21_51_04.csv,150,717,163,300,False,3,train,3
-309,session_2021-06-29-08_27_11.csv,150,719,208,300,False,1,train,3
-310,session_2021-06-28-21_55_21.csv,150,706,324,300,False,1,train,3
-311,session_2021-06-28-21_50_01.csv,150,687,256,300,False,1,train,3
-312,session_2021-06-28-21_46_21.csv,150,708,297,300,False,1,train,3
-313,session_2021-06-29-22_35_49.csv,150,705,301,300,False,3,train,3
-314,session_2021-06-28-21_44_21.csv,150,717,340,300,False,2,train,2
-315,session_2021-06-28-21_46_21.csv,150,708,348,300,False,1,train,3
-316,session_2021-06-29-22_23_10.csv,150,716,110,300,False,1,train,3
-317,session_2021-07-19-11_22_11.csv,150,627,112,300,False,2,train,2
-318,session_2021-06-28-21_51_04.csv,150,717,38,300,False,3,train,3
-319,session_2021-06-29-22_42_47.csv,150,704,62,300,False,3,train,3
-320,session_2021-06-29-22_23_10.csv,150,716,135,300,False,1,train,3
-321,session_2021-06-29-22_22_10.csv,150,721,152,300,False,2,train,2
-322,session_2021-06-29-22_37_01.csv,150,723,422,300,False,3,train,1
-323,session_2021-06-28-21_44_21.csv,150,717,150,300,False,2,train,2
-324,session_2021-07-19-11_29_30.csv,150,721,217,300,False,2,train,2
-325,session_2021-06-28-21_56_20.csv,150,646,43,300,False,3,train,3
-326,session_2021-06-29-22_37_01.csv,150,723,171,300,False,3,train,1
-327,session_2021-06-28-21_54_19.csv,150,723,407,300,False,3,train,3
-328,session_2021-07-19-11_22_11.csv,150,627,54,300,False,2,train,2
-329,session_2021-06-28-21_56_20.csv,150,646,186,300,False,3,train,3
-330,session_2021-06-28-21_56_20.csv,150,646,111,300,False,3,train,3
-331,session_2021-06-28-21_40_11.csv,150,736,297,300,False,1,train,3
-332,session_2021-07-19-11_33_06.csv,150,658,38,300,False,3,train,3
-333,session_2021-07-19-11_33_06.csv,150,658,271,300,False,3,train,3
-334,session_2021-06-29-22_19_19.csv,150,704,119,300,False,1,train,3
-335,session_2021-06-28-21_51_04.csv,150,717,336,300,False,3,train,3
-336,session_2021-07-19-11_32_02.csv,150,718,387,300,False,3,train,3
-337,session_2021-06-28-21_56_20.csv,150,646,314,300,False,3,train,3
-338,session_2021-06-28-17_45_55.csv,150,734,201,300,False,1,train,1
-339,session_2021-06-29-22_29_03.csv,150,703,345,300,False,1,train,3
-340,session_2021-06-29-08_25_10.csv,150,645,185,300,False,2,train,2
-341,session_2021-06-29-22_22_10.csv,150,721,199,300,False,2,train,2
-342,session_2021-06-28-17_51_17.csv,150,718,328,300,False,3,train,3
-343,session_2021-06-29-08_27_11.csv,150,719,414,300,False,1,train,3
-344,session_2021-06-28-17_52_22.csv,150,719,207,300,False,1,train,1
-345,session_2021-07-19-11_24_09.csv,150,687,100,300,False,2,train,2
-346,session_2021-06-28-17_51_17.csv,150,718,25,300,False,3,train,3
-347,session_2021-06-29-08_25_10.csv,150,645,194,300,False,2,train,2
-348,session_2021-07-19-11_30_59.csv,150,719,261,300,False,3,train,3
-349,session_2021-06-28-21_51_04.csv,150,717,326,300,False,3,train,3
-350,session_2021-06-29-20_06_51.csv,150,716,82,300,False,1,train,2
-351,session_2021-06-28-21_47_59.csv,150,721,136,300,False,1,train,1
-352,session_2021-06-28-21_44_21.csv,150,717,69,300,False,2,train,2
-353,session_2021-06-28-21_40_11.csv,150,736,265,300,False,1,train,3
-354,session_2021-06-28-21_43_21.csv,150,676,209,300,False,2,train,2
-355,session_2021-07-19-11_30_59.csv,150,719,100,300,False,3,train,3
-356,session_2021-06-28-17_51_17.csv,150,718,260,300,False,3,train,3
-357,session_2021-06-28-21_44_21.csv,150,717,291,300,False,2,train,2
-358,session_2021-06-29-22_22_10.csv,150,721,186,300,False,2,train,2
-359,session_2021-06-29-22_19_19.csv,150,704,400,300,False,1,train,3
-360,session_2021-06-29-22_42_47.csv,150,704,332,300,False,3,train,3
-361,session_2021-06-29-08_24_02.csv,150,718,392,300,False,1,train,3
-362,session_2021-06-28-21_40_11.csv,150,736,307,300,False,1,train,3
-363,session_2021-06-29-22_29_03.csv,150,703,104,300,False,1,train,3
-364,session_2021-06-28-21_40_11.csv,150,736,429,300,False,1,train,1
-365,session_2021-06-29-22_24_14.csv,150,715,42,300,False,2,train,2
-366,session_2021-07-19-11_29_30.csv,150,721,96,300,False,2,train,2
-367,session_2021-06-29-22_45_06.csv,150,690,93,300,False,3,train,3
-368,session_2021-06-29-22_45_06.csv,150,690,208,300,False,3,train,3
-369,session_2021-06-29-20_06_51.csv,150,716,93,300,False,1,train,2
-370,session_2021-06-29-22_35_49.csv,150,705,284,300,False,3,train,3
-371,session_2021-07-19-11_20_13.csv,150,720,48,300,False,2,train,2
-372,session_2021-06-28-17_45_55.csv,150,734,270,300,False,1,train,1
-373,session_2021-07-19-11_33_06.csv,150,658,97,300,False,3,train,3
-374,session_2021-06-29-08_24_02.csv,150,718,38,300,False,1,train,3
-375,session_2021-07-19-11_22_11.csv,150,627,71,300,False,2,train,2
-376,session_2021-07-19-11_29_30.csv,150,721,368,300,False,2,train,2
-377,session_2021-07-19-11_26_06.csv,150,719,179,300,False,2,train,2
-378,session_2021-06-29-22_42_47.csv,150,704,274,300,False,3,train,3
-379,session_2021-06-28-21_50_01.csv,150,687,290,300,False,1,train,3
-380,session_2021-07-19-11_20_13.csv,150,720,135,300,False,2,train,2
-381,session_2021-07-19-11_32_02.csv,150,718,244,300,False,3,train,3
-382,session_2021-06-29-08_25_10.csv,150,645,164,300,False,2,train,2
-383,session_2021-06-29-22_15_53.csv,150,696,197,300,False,1,train,2
-384,session_2021-06-28-17_45_55.csv,150,734,394,300,False,1,train,1
-385,session_2021-06-28-21_40_11.csv,150,736,217,300,False,1,train,3
-386,session_2021-07-19-11_22_11.csv,150,627,286,300,False,2,train,2
-387,session_2021-06-28-21_46_21.csv,150,708,209,300,False,1,train,3
-388,session_2021-06-28-17_44_26.csv,150,688,143,300,False,2,train,2
-389,session_2021-06-28-21_58_23.csv,150,722,365,300,False,1,train,3
-390,session_2021-06-29-22_42_47.csv,150,704,222,300,False,3,train,3
-391,session_2021-06-29-22_29_03.csv,150,703,102,300,False,1,train,3
-392,session_2021-07-19-11_37_12.csv,150,720,249,300,False,3,train,3
-393,session_2021-06-28-21_40_11.csv,150,736,61,300,False,1,train,3
-394,session_2021-06-29-22_35_49.csv,150,705,219,300,False,3,train,3
-395,session_2021-06-29-22_15_53.csv,150,696,197,300,False,1,train,2
-396,session_2021-06-28-17_57_27.csv,150,643,189,300,False,1,train,1
-397,session_2021-06-28-21_55_21.csv,150,706,371,300,False,1,train,3
-398,session_2021-07-19-11_20_13.csv,150,720,144,300,False,2,train,2
-399,session_2021-06-29-22_22_10.csv,150,721,138,300,False,2,train,2
-400,session_2021-06-28-21_43_21.csv,150,676,256,300,False,2,train,2
-401,session_2021-06-28-21_46_21.csv,150,708,384,300,False,1,train,3
-402,session_2021-06-29-08_27_11.csv,150,719,128,300,False,1,train,3
-403,session_2021-07-19-11_20_13.csv,150,720,9,300,False,2,train,2
-404,session_2021-06-29-22_37_01.csv,150,723,381,300,False,3,train,1
-405,session_2021-06-28-21_58_23.csv,150,722,26,300,False,1,train,3
-406,session_2021-07-19-11_37_12.csv,150,720,236,300,False,3,train,3
-407,session_2021-06-28-17_47_03.csv,150,721,128,300,False,2,train,2
-408,session_2021-06-28-17_44_26.csv,150,688,369,300,False,2,train,2
-409,session_2021-06-29-22_23_10.csv,150,716,124,300,False,1,train,3
-410,session_2021-06-28-21_54_19.csv,150,723,370,300,False,3,train,3
-411,session_2021-07-19-11_32_02.csv,150,718,145,300,False,3,train,3
-412,session_2021-06-29-22_19_19.csv,150,704,385,300,False,1,train,3
-413,session_2021-07-19-11_24_09.csv,150,687,150,300,False,2,train,2
-414,session_2021-07-19-11_42_07.csv,150,718,131,300,False,3,train,3
-415,session_2021-07-19-11_26_06.csv,150,719,367,300,False,2,train,2
-416,session_2021-06-29-22_35_49.csv,150,705,156,300,False,3,train,3
-417,session_2021-06-29-22_24_14.csv,150,715,84,300,False,2,train,2
-418,session_2021-07-19-11_22_11.csv,150,627,7,300,False,2,train,2
-419,session_2021-07-19-11_20_13.csv,150,720,413,300,False,2,train,2
-420,session_2021-06-29-22_17_56.csv,150,720,210,300,False,1,val,3
-421,session_2021-07-19-11_21_15.csv,150,689,194,300,False,2,val,2
-422,session_2021-06-28-21_45_25.csv,150,691,195,300,False,2,val,3
-423,session_2021-06-28-21_37_46.csv,150,716,208,300,False,1,val,2
-424,session_2021-07-19-11_40_00.csv,150,714,207,300,False,3,val,1
-425,session_2021-06-29-20_11_21.csv,150,719,209,300,False,2,val,2
-426,session_2021-07-19-11_36_12.csv,150,723,211,300,False,3,val,2
-427,session_2021-07-19-11_39_04.csv,150,658,179,300,False,3,val,3
-428,session_2021-07-19-11_25_13.csv,150,690,195,300,False,2,val,2
-429,session_2021-07-19-11_41_07.csv,150,720,210,300,False,3,val,1
-430,session_2021-06-29-20_09_40.csv,150,718,209,300,False,1,val,2
-431,session_2021-06-28-17_50_06.csv,150,717,208,300,False,1,val,1
-432,session_2021-06-29-22_27_44.csv,150,645,172,300,False,1,test,3
-433,session_2021-06-29-22_43_51.csv,150,722,211,300,False,3,test,3
-434,session_2021-06-29-22_39_33.csv,150,719,209,300,False,3,test,3
-435,session_2021-06-29-22_49_16.csv,150,721,210,300,False,1,test,3
-436,session_2021-06-29-22_26_44.csv,150,703,201,300,False,2,test,2
-437,session_2021-07-19-11_19_04.csv,150,717,208,300,False,2,test,2
-438,session_2021-06-28-17_56_16.csv,150,700,200,300,False,3,test,3
-439,session_2021-06-28-21_57_23.csv,150,705,202,300,False,1,test,3
-440,session_2021-06-29-20_08_31.csv,150,721,210,300,False,2,test,2
-441,session_2021-07-19-11_38_07.csv,150,705,202,300,False,3,test,3
-442,session_2021-06-29-20_12_31.csv,150,720,210,300,False,1,test,1
-443,session_2021-07-19-11_23_10.csv,150,721,210,300,False,2,test,2
+0,Group 1.csv,150,725,217,300,False,2,train,1
+1,Group 1.csv,150,725,124,300,False,3,train,1
+2,Group 1.csv,150,725,78,300,False,1,train,1
+3,Group 1.csv,150,725,408,300,False,3,train,1
+4,Group 1.csv,150,725,121,300,False,2,train,1
+5,Group 1.csv,150,725,27,300,True,3,train,2
+6,Group 1.csv,150,725,6,300,False,2,train,1
+7,Group 1.csv,150,725,169,300,True,3,train,2
+8,Group 1.csv,150,725,296,300,False,3,train,3
+9,Group 1.csv,150,725,229,300,True,1,train,3
+10,Group 1.csv,150,725,249,300,False,2,train,1
+11,Group 1.csv,150,725,109,300,False,3,train,1
+12,Group 1.csv,150,725,115,300,True,2,train,3
+13,Group 1.csv,150,725,110,300,False,2,train,1
+14,Group 1.csv,150,725,276,300,True,1,train,2
+15,Group 1.csv,150,725,171,300,False,2,train,1
+16,Group 1.csv,150,725,358,300,False,1,train,2
+17,Group 1.csv,150,725,308,300,True,2,train,2
+18,Group 1.csv,150,725,24,300,False,3,train,1
+19,Group 1.csv,150,725,354,300,False,1,train,2
+20,Group 1.csv,150,725,179,300,True,1,train,2
+21,Group 1.csv,150,725,398,300,False,1,train,3
+22,Group 1.csv,150,725,37,300,True,1,train,2
+23,Group 1.csv,150,725,354,300,False,1,train,2
+24,Group 1.csv,150,725,380,300,False,1,train,2
+25,Group 1.csv,150,725,191,300,True,1,train,2
+26,Group 1.csv,150,725,60,300,False,3,train,1
+27,Group 1.csv,150,725,203,300,False,1,train,1
+28,Group 1.csv,150,725,7,300,True,2,train,2
+29,Group 1.csv,150,725,375,300,True,2,train,2
+30,Group 1.csv,150,725,366,300,True,3,train,2
+31,Group 1.csv,150,725,15,300,True,2,train,2
+32,Group 1.csv,150,725,178,300,False,2,train,1
+33,Group 1.csv,150,725,388,300,False,1,train,2
+34,Group 1.csv,150,725,257,300,False,2,train,1
+35,Group 1.csv,150,725,377,300,True,3,train,2
+36,Group 1.csv,150,725,346,300,False,1,train,3
+37,Group 1.csv,150,725,118,300,True,1,train,3
+38,Group 1.csv,150,725,312,300,True,3,train,2
+39,Group 1.csv,150,725,300,300,False,2,train,3
+40,Group 1.csv,150,725,46,300,True,2,train,2
+41,Group 1.csv,150,725,419,300,True,1,train,1
+42,Group 1.csv,150,725,131,300,False,1,train,1
+43,Group 1.csv,150,725,220,300,True,2,train,3
+44,Group 1.csv,150,725,260,300,True,1,train,3
+45,Group 1.csv,150,725,3,300,True,2,train,2
+46,Group 1.csv,150,725,390,300,False,2,train,2
+47,Group 1.csv,150,725,305,300,False,3,train,3
+48,Group 1.csv,150,725,99,300,True,2,train,3
+49,Group 1.csv,150,725,347,300,True,1,train,3
+50,Group 1.csv,150,725,367,300,True,2,train,2
+51,Group 1.csv,150,725,229,300,True,2,train,3
+52,Group 1.csv,150,725,145,300,True,1,train,3
+53,Group 1.csv,150,725,74,300,True,3,train,3
+54,Group 1.csv,150,725,165,300,True,3,train,2
+55,Group 1.csv,150,725,416,300,True,2,train,1
+56,Group 1.csv,150,725,13,300,False,3,train,1
+57,Group 1.csv,150,725,19,300,False,1,train,1
+58,Group 1.csv,150,725,120,300,True,1,train,3
+59,Group 1.csv,150,725,408,300,False,3,train,1
+60,Group 1.csv,150,725,161,300,True,3,train,2
+61,Group 1.csv,150,725,222,300,True,2,train,3
+62,Group 1.csv,150,725,187,300,True,3,train,2
+63,Group 1.csv,150,725,123,300,True,2,train,3
+64,Group 1.csv,150,725,83,300,False,1,train,1
+65,Group 1.csv,150,725,183,300,True,3,train,2
+66,Group 1.csv,150,725,322,300,True,2,train,3
+67,Group 1.csv,150,725,267,300,False,1,train,3
+68,Group 1.csv,150,725,193,300,True,2,train,2
+69,Group 1.csv,150,725,121,300,True,1,train,3
+70,Group 1.csv,150,725,190,300,True,2,train,2
+71,Group 1.csv,150,725,91,300,True,3,train,3
+72,Group 1.csv,150,725,303,300,False,3,train,3
+73,Group 1.csv,150,725,211,300,True,1,train,3
+74,Group 1.csv,150,725,163,300,True,1,train,2
+75,Group 1.csv,150,725,318,300,False,3,train,3
+76,Group 1.csv,150,725,414,300,False,3,train,1
+77,Group 1.csv,150,725,207,300,False,1,train,1
+78,Group 1.csv,150,725,262,300,False,1,train,3
+79,Group 1.csv,150,725,223,300,False,3,train,1
+80,Group 1.csv,150,725,199,300,False,1,train,1
+81,Group 1.csv,150,725,282,300,True,1,train,2
+82,Group 1.csv,150,725,410,300,False,3,train,1
+83,Group 1.csv,150,725,350,300,False,1,train,2
+84,Group 1.csv,150,725,61,300,True,2,train,3
+85,Group 1.csv,150,725,122,300,True,2,train,3
+86,Group 1.csv,150,725,205,300,False,3,train,1
+87,Group 1.csv,150,725,156,300,False,2,train,1
+88,Group 1.csv,150,725,36,300,True,1,train,2
+89,Group 1.csv,150,725,142,300,False,1,train,1
+90,Group 1.csv,150,725,38,300,False,2,train,1
+91,Group 1.csv,150,725,305,300,False,1,train,3
+92,Group 1.csv,150,725,102,300,False,2,train,1
+93,Group 1.csv,150,725,272,300,False,3,train,3
+94,Group 1.csv,150,725,56,300,True,1,train,3
+95,Group 1.csv,150,725,42,300,True,3,train,2
+96,Group 1.csv,150,725,285,300,True,1,train,2
+97,Group 1.csv,150,725,38,300,False,2,train,1
+98,Group 1.csv,150,725,411,300,False,3,train,1
+99,Group 1.csv,150,725,61,300,False,1,train,1
+100,Group 1.csv,150,725,253,300,True,1,train,3
+101,Group 1.csv,150,725,10,300,False,2,train,1
+102,Group 1.csv,150,725,114,300,False,2,train,1
+103,Group 1.csv,150,725,88,300,True,2,train,3
+104,Group 1.csv,150,725,76,300,True,3,train,3
+105,Group 1.csv,150,725,28,300,True,1,train,2
+106,Group 1.csv,150,725,202,300,False,2,train,1
+107,Group 1.csv,150,725,46,300,False,2,train,1
+108,Group 1.csv,150,725,44,300,True,3,train,2
+109,Group 1.csv,150,725,24,300,True,3,train,2
+110,Group 1.csv,150,725,254,300,True,1,train,3
+111,Group 1.csv,150,725,47,300,True,1,train,2
+112,Group 1.csv,150,725,293,300,True,3,train,2
+113,Group 1.csv,150,725,23,300,False,1,train,1
+114,Group 1.csv,150,725,417,300,False,1,train,1
+115,Group 1.csv,150,725,59,300,False,2,train,1
+116,Group 1.csv,150,725,296,300,False,1,train,3
+117,Group 1.csv,150,725,126,300,True,1,train,3
+118,Group 1.csv,150,725,39,300,False,3,train,1
+119,Group 1.csv,150,725,299,300,True,3,train,2
+120,Group 1.csv,150,725,206,300,True,2,train,3
+121,Group 1.csv,150,725,180,300,False,1,train,1
+122,Group 1.csv,150,725,140,300,False,3,train,1
+123,Group 1.csv,150,725,125,300,False,3,train,1
+124,Group 1.csv,150,725,405,300,True,1,train,1
+125,Group 1.csv,150,725,65,300,True,2,train,3
+126,Group 1.csv,150,725,209,300,False,2,train,1
+127,Group 1.csv,150,725,136,300,True,3,train,3
+128,Group 1.csv,150,725,220,300,False,1,train,1
+129,Group 1.csv,150,725,138,300,True,2,train,3
+130,Group 1.csv,150,725,107,300,False,1,train,1
+131,Group 1.csv,150,725,79,300,False,1,train,1
+132,Group 1.csv,150,725,121,300,False,2,train,1
+133,Group 1.csv,150,725,199,300,False,1,train,1
+134,Group 1.csv,150,725,283,300,False,3,train,3
+135,Group 1.csv,150,725,386,300,False,1,train,2
+136,Group 1.csv,150,725,103,300,True,2,train,3
+137,Group 1.csv,150,725,2,300,False,1,train,1
+138,Group 1.csv,150,725,420,300,False,1,train,1
+139,Group 1.csv,150,725,219,300,True,2,train,3
+140,Group 1.csv,150,725,214,300,False,1,train,1
+141,Group 1.csv,150,725,251,300,True,2,train,3
+142,Group 1.csv,150,725,420,300,False,2,train,1
+143,Group 1.csv,150,725,332,300,False,2,train,3
+144,Group 1.csv,150,725,228,300,False,1,train,1
+145,Group 1.csv,150,725,138,300,False,2,train,1
+146,Group 1.csv,150,725,234,300,True,3,train,3
+147,Group 1.csv,150,725,111,300,False,2,train,1
+148,Group 1.csv,150,725,318,300,False,3,train,3
+149,Group 1.csv,150,725,362,300,False,3,train,2
+150,Group 1.csv,150,725,34,300,True,1,train,2
+151,Group 1.csv,150,725,371,300,True,3,train,2
+152,Group 1.csv,150,725,29,300,False,2,train,1
+153,Group 1.csv,150,725,384,300,False,1,train,2
+154,Group 1.csv,150,725,232,300,False,2,train,1
+155,Group 1.csv,150,725,78,300,True,1,train,3
+156,Group 1.csv,150,725,109,300,False,2,train,1
+157,Group 1.csv,150,725,97,300,True,1,train,3
+158,Group 1.csv,150,725,357,300,True,3,train,3
+159,Group 1.csv,150,725,205,300,True,1,train,3
+160,Group 1.csv,150,725,119,300,False,1,train,1
+161,Group 1.csv,150,725,181,300,False,1,train,1
+162,Group 1.csv,150,725,55,300,True,2,train,3
+163,Group 1.csv,150,725,409,300,True,1,train,1
+164,Group 1.csv,150,725,214,300,False,2,train,1
+165,Group 1.csv,150,725,7,300,False,1,train,1
+166,Group 1.csv,150,725,241,300,True,1,train,3
+167,Group 1.csv,150,725,411,300,False,2,train,1
+168,Group 1.csv,150,725,239,300,True,3,train,3
+169,Group 1.csv,150,725,351,300,True,3,train,3
+170,Group 1.csv,150,725,284,300,False,1,train,3
+171,Group 1.csv,150,725,395,300,False,3,train,3
+172,Group 1.csv,150,725,98,300,False,2,train,1
+173,Group 1.csv,150,725,250,300,False,2,train,1
+174,Group 1.csv,150,725,353,300,True,3,train,3
+175,Group 1.csv,150,725,150,300,False,2,train,1
+176,Group 1.csv,150,725,253,300,False,3,train,1
+177,Group 1.csv,150,725,315,300,False,3,train,3
+178,Group 1.csv,150,725,351,300,True,1,train,3
+179,Group 1.csv,150,725,379,300,False,1,train,2
+180,Group 1.csv,150,725,345,300,False,3,train,3
+181,Group 1.csv,150,725,298,300,True,1,train,2
+182,Group 1.csv,150,725,95,300,False,1,train,1
+183,Group 1.csv,150,725,139,300,False,3,train,1
+184,Group 1.csv,150,725,8,300,True,1,train,2
+185,Group 1.csv,150,725,68,300,False,1,train,1
+186,Group 1.csv,150,725,129,300,False,3,train,1
+187,Group 1.csv,150,725,122,300,False,1,train,1
+188,Group 1.csv,150,725,120,300,True,2,train,3
+189,Group 1.csv,150,725,423,300,False,1,train,1
+190,Group 1.csv,150,725,296,300,True,3,train,2
+191,Group 1.csv,150,725,80,300,True,3,train,3
+192,Group 1.csv,150,725,317,300,False,2,train,3
+193,Group 1.csv,150,725,272,300,True,2,train,2
+194,Group 1.csv,150,725,297,300,False,1,train,3
+195,Group 1.csv,150,725,406,300,True,3,train,1
+196,Group 1.csv,150,725,99,300,False,3,train,1
+197,Group 1.csv,150,725,369,300,True,2,train,2
+198,Group 1.csv,150,725,89,300,True,3,train,3
+199,Group 1.csv,150,725,321,300,False,3,train,3
+200,Group 1.csv,150,725,76,300,False,3,train,1
+201,Group 1.csv,150,725,363,300,True,3,train,2
+202,Group 1.csv,150,725,223,300,False,2,train,1
+203,Group 1.csv,150,725,142,300,False,1,train,1
+204,Group 1.csv,150,725,52,300,False,3,train,1
+205,Group 1.csv,150,725,147,300,True,2,train,3
+206,Group 1.csv,150,725,133,300,True,3,train,3
+207,Group 1.csv,150,725,160,300,True,1,train,2
+208,Group 1.csv,150,725,73,300,False,1,train,1
+209,Group 1.csv,150,725,320,300,True,3,train,3
+210,Group 1.csv,150,725,245,300,True,1,train,3
+211,Group 1.csv,150,725,396,300,False,2,train,3
+212,Group 1.csv,150,725,130,300,True,2,train,3
+213,Group 1.csv,150,725,273,300,True,1,train,2
+214,Group 1.csv,150,725,81,300,True,1,train,3
+215,Group 1.csv,150,725,148,300,False,1,train,1
+216,Group 1.csv,150,725,83,300,False,2,train,1
+217,Group 1.csv,150,725,3,300,True,3,train,2
+218,Group 1.csv,150,725,52,300,False,2,train,1
+219,Group 1.csv,150,725,40,300,True,1,train,2
+220,Group 1.csv,150,725,286,300,True,3,train,2
+221,Group 1.csv,150,725,274,300,False,3,train,3
+222,Group 1.csv,150,725,321,300,False,2,train,3
+223,Group 1.csv,150,725,399,300,False,1,train,3
+224,Group 1.csv,150,725,277,300,False,1,train,3
+225,Group 1.csv,150,725,112,300,False,1,train,1
+226,Group 1.csv,150,725,76,300,True,3,train,3
+227,Group 1.csv,150,725,314,300,True,3,train,2
+228,Group 1.csv,150,725,309,300,False,1,train,3
+229,Group 1.csv,150,725,281,300,True,2,train,2
+230,Group 1.csv,150,725,204,300,False,1,train,1
+231,Group 1.csv,150,725,390,300,False,1,train,2
+232,Group 1.csv,150,725,327,300,False,1,train,3
+233,Group 1.csv,150,725,194,300,True,2,train,2
+234,Group 1.csv,150,725,238,300,False,1,train,1
+235,Group 1.csv,150,725,347,300,True,1,train,3
+236,Group 1.csv,150,725,97,300,True,1,train,3
+237,Group 1.csv,150,725,185,300,False,3,train,1
+238,Group 1.csv,150,725,297,300,False,2,train,3
+239,Group 1.csv,150,725,20,300,True,1,train,2
+240,Group 1.csv,150,725,277,300,True,2,train,2
+241,Group 1.csv,150,725,32,300,False,2,train,1
+242,Group 1.csv,150,725,4,300,False,3,train,1
+243,Group 1.csv,150,725,299,300,True,3,train,2
+244,Group 1.csv,150,725,100,300,True,1,train,3
+245,Group 1.csv,150,725,284,300,False,3,train,3
+246,Group 1.csv,150,725,82,300,True,2,train,3
+247,Group 1.csv,150,725,250,300,True,2,train,3
+248,Group 1.csv,150,725,323,300,True,3,train,3
+249,Group 1.csv,150,725,390,300,False,3,train,2
+250,Group 1.csv,150,725,83,300,False,2,train,1
+251,Group 1.csv,150,725,256,300,False,2,train,1
+252,Group 1.csv,150,725,22,300,True,2,train,2
+253,Group 1.csv,150,725,157,300,True,2,train,2
+254,Group 1.csv,150,725,138,300,True,2,train,3
+255,Group 1.csv,150,725,420,300,True,2,train,1
+256,Group 1.csv,150,725,298,300,True,2,train,2
+257,Group 1.csv,150,725,34,300,True,1,train,2
+258,Group 1.csv,150,725,236,300,False,2,train,1
+259,Group 1.csv,150,725,302,300,True,2,train,2
+260,Group 1.csv,150,725,52,300,True,2,train,3
+261,Group 1.csv,150,725,220,300,False,3,train,1
+262,Group 1.csv,150,725,421,300,True,1,train,1
+263,Group 1.csv,150,725,13,300,True,2,train,2
+264,Group 1.csv,150,725,216,300,True,1,train,3
+265,Group 1.csv,150,725,87,300,True,1,train,3
+266,Group 1.csv,150,725,30,300,True,2,train,2
+267,Group 1.csv,150,725,217,300,True,2,train,3
+268,Group 1.csv,150,725,305,300,True,1,train,2
+269,Group 1.csv,150,725,370,300,False,2,train,2
+270,Group 1.csv,150,725,298,300,False,1,train,3
+271,Group 1.csv,150,725,383,300,False,1,train,2
+272,Group 1.csv,150,725,272,300,True,2,train,2
+273,Group 1.csv,150,725,354,300,True,3,train,3
+274,Group 1.csv,150,725,202,300,False,2,train,1
+275,Group 1.csv,150,725,36,300,False,1,train,1
+276,Group 1.csv,150,725,320,300,False,1,train,3
+277,Group 1.csv,150,725,300,300,False,1,train,3
+278,Group 1.csv,150,725,65,300,True,1,train,3
+279,Group 1.csv,150,725,34,300,True,1,train,2
+280,Group 1.csv,150,725,269,300,True,1,train,2
+281,Group 1.csv,150,725,285,300,False,2,train,3
+282,Group 1.csv,150,725,214,300,False,1,train,1
+283,Group 1.csv,150,725,149,300,True,2,train,3
+284,Group 1.csv,150,725,416,300,True,3,train,1
+285,Group 1.csv,150,725,391,300,True,1,train,1
+286,Group 1.csv,150,725,93,300,True,2,train,3
+287,Group 1.csv,150,725,158,300,True,1,train,2
+288,Group 1.csv,150,725,208,300,True,1,train,3
+289,Group 1.csv,150,725,153,300,True,3,train,2
+290,Group 1.csv,150,725,348,300,False,3,train,2
+291,Group 1.csv,150,725,220,300,True,2,train,3
+292,Group 1.csv,150,725,270,300,True,3,train,2
+293,Group 1.csv,150,725,368,300,False,2,train,2
+294,Group 1.csv,150,725,145,300,False,2,train,1
+295,Group 1.csv,150,725,314,300,True,2,train,2
+296,Group 1.csv,150,725,31,300,True,2,train,2
+297,Group 1.csv,150,725,120,300,True,3,train,3
+298,Group 1.csv,150,725,327,300,True,2,train,3
+299,Group 1.csv,150,725,423,300,True,1,train,1
+300,Group 1.csv,150,725,397,300,False,3,train,3
+301,Group 1.csv,150,725,266,300,True,1,train,2
+302,Group 1.csv,150,725,365,300,True,2,train,2
+303,Group 1.csv,150,725,229,300,True,2,train,3
+304,Group 1.csv,150,725,231,300,False,1,train,1
+305,Group 1.csv,150,725,291,300,True,1,train,2
+306,Group 1.csv,150,725,228,300,True,3,train,3
+307,Group 1.csv,150,725,176,300,False,2,train,1
+308,Group 1.csv,150,725,364,300,True,3,train,2
+309,Group 1.csv,150,725,1,300,True,3,train,2
+310,Group 1.csv,150,725,397,300,False,2,train,3
+311,Group 1.csv,150,725,249,300,False,1,train,1
+312,Group 1.csv,150,725,332,300,False,2,train,3
+313,Group 1.csv,150,725,67,300,True,2,train,3
+314,Group 1.csv,150,725,180,300,False,2,train,1
+315,Group 1.csv,150,725,298,300,False,3,train,3
+316,Group 1.csv,150,725,423,300,False,1,train,1
+317,Group 1.csv,150,725,128,300,True,2,train,3
+318,Group 1.csv,150,725,3,300,False,3,train,1
+319,Group 1.csv,150,725,171,300,False,1,train,1
+320,Group 1.csv,150,725,301,300,True,3,train,2
+321,Group 1.csv,150,725,349,300,True,3,train,3
+322,Group 1.csv,150,725,97,300,False,2,train,1
+323,Group 1.csv,150,725,105,300,True,3,train,3
+324,Group 1.csv,150,725,58,300,True,1,train,3
+325,Group 1.csv,150,725,59,300,True,1,train,3
+326,Group 1.csv,150,725,142,300,False,2,train,1
+327,Group 1.csv,150,725,420,300,False,1,train,1
+328,Group 1.csv,150,725,4,300,True,1,train,2
+329,Group 1.csv,150,725,366,300,True,2,train,2
+330,Group 1.csv,150,725,408,300,False,2,train,1
+331,Group 1.csv,150,725,131,300,True,1,train,3
+332,Group 1.csv,150,725,413,300,False,1,train,1
+333,Group 1.csv,150,725,120,300,True,2,train,3
+334,Group 1.csv,150,725,67,300,True,2,train,3
+335,Group 1.csv,150,725,100,300,False,3,train,1
+336,Group 1.csv,150,725,35,300,False,1,train,1
+337,Group 1.csv,150,725,66,300,False,1,train,1
+338,Group 1.csv,150,725,411,300,True,2,train,1
+339,Group 1.csv,150,725,270,300,False,3,train,3
+340,Group 1.csv,150,725,198,300,False,3,train,1
+341,Group 1.csv,150,725,82,300,False,3,train,1
+342,Group 1.csv,150,725,188,300,True,2,train,2
+343,Group 1.csv,150,725,40,300,True,1,train,2
+344,Group 1.csv,150,725,197,300,False,1,train,1
+345,Group 1.csv,150,725,21,300,False,3,train,1
+346,Group 1.csv,150,725,417,300,True,2,train,1
+347,Group 1.csv,150,725,296,300,True,3,train,2
+348,Group 1.csv,150,725,36,300,False,1,train,1
+349,Group 1.csv,150,725,70,300,True,1,train,3
+350,Group 1.csv,150,725,181,300,True,1,train,2
+351,Group 1.csv,150,725,332,300,False,3,train,3
+352,Group 1.csv,150,725,139,300,True,3,train,3
+353,Group 1.csv,150,725,94,300,False,1,train,1
+354,Group 1.csv,150,725,269,300,False,2,train,3
+355,Group 1.csv,150,725,91,300,True,1,train,3
+356,Group 1.csv,150,725,125,300,True,2,train,3
+357,Group 1.csv,150,725,59,300,False,2,train,1
+358,Group 1.csv,150,725,189,300,False,3,train,1
+359,Group 1.csv,150,725,4,300,False,1,train,1
+360,Group 1.csv,150,725,21,300,False,3,train,1
+361,Group 1.csv,150,725,317,300,True,3,train,2
+362,Group 1.csv,150,725,143,300,False,3,train,1
+363,Group 1.csv,150,725,134,300,False,1,train,1
+364,Group 1.csv,150,725,375,300,False,3,train,2
+365,Group 1.csv,150,725,191,300,True,2,train,2
+366,Group 1.csv,150,725,29,300,True,1,train,2
+367,Group 1.csv,150,725,196,300,True,1,train,2
+368,Group 1.csv,150,725,407,300,False,1,train,1
+369,Group 1.csv,150,725,0,300,False,2,train,1
+370,Group 1.csv,150,725,157,300,False,1,train,1
+371,Group 1.csv,150,725,79,300,False,1,train,1
+372,Group 1.csv,150,725,52,300,True,2,train,3
+373,Group 1.csv,150,725,340,300,True,3,train,3
+374,Group 1.csv,150,725,385,300,True,1,train,2
+375,Group 1.csv,150,725,133,300,False,1,train,1
+376,Group 1.csv,150,725,323,300,True,3,train,3
+377,Group 1.csv,150,725,49,300,False,1,train,1
+378,Group 1.csv,150,725,278,300,True,1,train,2
+379,Group 1.csv,150,725,61,300,True,2,train,3
+380,Group 1.csv,150,725,227,300,False,2,train,1
+381,Group 1.csv,150,725,324,300,False,2,train,3
+382,Group 1.csv,150,725,259,300,True,1,train,3
+383,Group 1.csv,150,725,22,300,True,1,train,2
+384,Group 1.csv,150,725,312,300,True,3,train,2
+385,Group 1.csv,150,725,132,300,True,3,train,3
+386,Group 1.csv,150,725,381,300,False,2,train,2
+387,Group 1.csv,150,725,267,300,True,3,train,2
+388,Group 1.csv,150,725,207,300,False,2,train,1
+389,Group 1.csv,150,725,420,300,False,3,train,1
+390,Group 1.csv,150,725,218,300,False,3,train,1
+391,Group 1.csv,150,725,300,300,False,1,train,3
+392,Group 1.csv,150,725,134,300,False,1,train,1
+393,Group 1.csv,150,725,119,300,False,3,train,1
+394,Group 1.csv,150,725,252,300,True,2,train,3
+395,Group 1.csv,150,725,418,300,True,3,train,1
+396,Group 1.csv,150,725,248,300,False,3,train,1
+397,Group 1.csv,150,725,143,300,False,3,train,1
+398,Group 1.csv,150,725,265,300,True,1,train,2
+399,Group 1.csv,150,725,357,300,False,2,train,2
+400,Group 1.csv,150,725,365,300,True,2,train,2
+401,Group 1.csv,150,725,368,300,False,1,train,2
+402,Group 1.csv,150,725,188,300,True,2,train,2
+403,Group 1.csv,150,725,373,300,False,2,train,2
+404,Group 1.csv,150,725,114,300,False,3,train,1
+405,Group 1.csv,150,725,218,300,False,2,train,1
+406,Group 1.csv,150,725,291,300,False,1,train,3
+407,Group 1.csv,150,725,103,300,True,2,train,3
+408,Group 1.csv,150,725,227,300,False,2,train,1
+409,Group 1.csv,150,725,243,300,False,3,train,1
+410,Group 1.csv,150,725,119,300,False,3,train,1
+411,Group 1.csv,150,725,400,300,False,2,train,3
+412,Group 1.csv,150,725,325,300,True,3,train,3
+413,Group 1.csv,150,725,276,300,False,1,train,3
+414,Group 1.csv,150,725,267,300,False,2,train,3
+415,Group 1.csv,150,725,250,300,False,1,train,1
+416,Group 1.csv,150,725,313,300,False,2,train,3
+417,Group 1.csv,150,725,387,300,False,3,train,2
+418,Group 1.csv,150,725,68,300,True,2,train,3
+419,Group 1.csv,150,725,228,300,True,3,train,3
+420,Group 1.csv,150,725,335,300,False,1,train,3
+421,Group 1.csv,150,725,0,300,False,1,train,1
+422,Group 1.csv,150,725,197,300,False,3,train,1
+423,Group 1.csv,150,725,366,300,False,3,train,2
+424,Group 1.csv,150,725,65,300,True,2,train,3
+425,Group 1.csv,150,725,342,300,False,3,train,3
+426,Group 1.csv,150,725,395,300,True,2,train,1
+427,Group 1.csv,150,725,63,300,False,2,train,1
+428,Group 1.csv,150,725,132,300,True,2,train,3
+429,Group 1.csv,150,725,331,300,False,2,train,3
+430,Group 1.csv,150,725,151,300,True,1,train,3
+431,Group 1.csv,150,725,368,300,True,3,train,2
+432,Group 1.csv,150,725,347,300,True,1,train,3
+433,Group 1.csv,150,725,146,300,False,1,train,1
+434,Group 1.csv,150,725,293,300,True,2,train,2
+435,Group 1.csv,150,725,256,300,False,3,train,1
+436,Group 1.csv,150,725,381,300,True,3,train,2
+437,Group 1.csv,150,725,124,300,False,3,train,1
+438,Group 1.csv,150,725,160,300,False,3,train,1
+439,Group 1.csv,150,725,301,300,False,1,train,3
+440,Group 1.csv,150,725,269,300,False,2,train,3
+441,Group 1.csv,150,725,266,300,False,2,train,3
+442,Group 1.csv,150,725,100,300,True,2,train,3
+443,Group 1.csv,150,725,294,300,True,2,train,2
+444,Group 1.csv,150,725,143,300,False,3,train,1
+445,Group 1.csv,150,725,201,300,False,1,train,1
+446,Group 1.csv,150,725,174,300,True,3,train,2
+447,Group 1.csv,150,725,292,300,True,1,train,2
+448,Group 1.csv,150,725,262,300,True,2,train,2
+449,Group 1.csv,150,725,396,300,True,3,train,1
+450,Group 1.csv,150,725,23,300,False,2,train,1
+451,Group 1.csv,150,725,258,300,True,1,train,3
+452,Group 1.csv,150,725,110,300,False,3,train,1
+453,Group 1.csv,150,725,274,300,True,3,train,2
+454,Group 1.csv,150,725,197,300,True,2,train,2
+455,Group 1.csv,150,725,203,300,False,1,train,1
+456,Group 1.csv,150,725,6,300,True,3,train,2
+457,Group 1.csv,150,725,172,300,True,2,train,2
+458,Group 1.csv,150,725,328,300,False,3,train,3
+459,Group 1.csv,150,725,49,300,False,2,train,1
+460,Group 1.csv,150,725,147,300,False,1,train,1
+461,Group 1.csv,150,725,143,300,True,1,train,3
+462,Group 1.csv,150,725,246,300,False,2,train,1
+463,Group 1.csv,150,725,300,300,True,3,train,2
+464,Group 1.csv,150,725,241,300,False,2,train,1
+465,Group 1.csv,150,725,94,300,True,1,train,3
+466,Group 1.csv,150,725,285,300,False,2,train,3
+467,Group 1.csv,150,725,34,300,True,3,train,2
+468,Group 1.csv,150,725,203,300,True,2,train,3
+469,Group 1.csv,150,725,208,300,False,2,train,1
+470,Group 1.csv,150,725,94,300,True,2,train,3
+471,Group 1.csv,150,725,298,300,False,3,train,3
+472,Group 1.csv,150,725,191,300,True,1,train,2
+473,Group 1.csv,150,725,51,300,True,2,train,3
+474,Group 1.csv,150,725,339,300,True,2,train,3
+475,Group 1.csv,150,725,281,300,True,1,train,2
+476,Group 1.csv,150,725,32,300,False,2,train,1
+477,Group 1.csv,150,725,261,300,False,2,train,3
+478,Group 1.csv,150,725,137,300,True,2,train,3
+479,Group 1.csv,150,725,284,300,False,2,train,3
+480,Group 1.csv,150,725,58,300,True,2,train,3
+481,Group 1.csv,150,725,347,300,True,2,train,3
+482,Group 1.csv,150,725,107,300,False,2,train,1
+483,Group 1.csv,150,725,95,300,False,2,train,1
+484,Group 1.csv,150,725,115,300,False,2,train,1
+485,Group 1.csv,150,725,182,300,False,2,train,1
+486,Group 1.csv,150,725,330,300,True,3,train,3
+487,Group 1.csv,150,725,285,300,False,1,train,3
+488,Group 1.csv,150,725,339,300,False,2,train,3
+489,Group 1.csv,150,725,82,300,False,1,train,1
+490,Group 1.csv,150,725,131,300,True,3,train,3
+491,Group 1.csv,150,725,289,300,False,3,train,3
+492,Group 1.csv,150,725,73,300,True,2,train,3
+493,Group 1.csv,150,725,286,300,True,3,train,2
+494,Group 1.csv,150,725,405,300,False,2,train,3
+495,Group 1.csv,150,725,420,300,True,1,train,1
+496,Group 1.csv,150,725,346,300,False,3,train,3
+497,Group 1.csv,150,725,93,300,True,2,train,3
+498,Group 1.csv,150,725,344,300,False,2,train,3
+499,Group 1.csv,150,725,283,300,False,3,train,3
+500,Group 1.csv,150,725,277,300,True,2,train,2
+501,Group 1.csv,150,725,274,300,True,2,train,2
+502,Group 1.csv,150,725,100,300,True,2,train,3
+503,Group 1.csv,150,725,219,300,False,3,train,1
+504,Group 1.csv,150,725,60,300,True,1,train,3
+505,Group 1.csv,150,725,16,300,True,1,train,2
+506,Group 1.csv,150,725,134,300,False,1,train,1
+507,Group 1.csv,150,725,159,300,True,2,train,2
+508,Group 1.csv,150,725,298,300,True,2,train,2
+509,Group 1.csv,150,725,154,300,True,3,train,2
+510,Group 1.csv,150,725,199,300,False,3,train,1
+511,Group 1.csv,150,725,410,300,False,3,train,1
+512,Group 1.csv,150,725,146,300,True,1,train,3
+513,Group 1.csv,150,725,303,300,False,2,train,3
+514,Group 1.csv,150,725,6,300,True,3,train,2
+515,Group 1.csv,150,725,83,300,True,3,train,3
+516,Group 1.csv,150,725,111,300,False,1,train,1
+517,Group 1.csv,150,725,211,300,True,1,train,3
+518,Group 1.csv,150,725,56,300,False,2,train,1
+519,Group 1.csv,150,725,166,300,False,2,train,1
+520,Group 1.csv,150,725,46,300,True,2,train,2
+521,Group 1.csv,150,725,367,300,True,3,train,2
+522,Group 1.csv,150,725,364,300,False,2,train,2
+523,Group 1.csv,150,725,336,300,False,3,train,3
+524,Group 1.csv,150,725,45,300,True,1,train,2
+525,Group 1.csv,150,725,390,300,False,2,train,2
+526,Group 1.csv,150,725,359,300,True,3,train,3
+527,Group 1.csv,150,725,234,300,True,3,train,3
+528,Group 1.csv,150,725,346,300,True,2,train,3
+529,Group 1.csv,150,725,231,300,False,1,train,1
+530,Group 1.csv,150,725,163,300,True,1,train,2
+531,Group 1.csv,150,725,202,300,True,3,train,3
+532,Group 1.csv,150,725,313,300,True,1,train,2
+533,Group 1.csv,150,725,137,300,True,2,train,3
+534,Group 1.csv,150,725,154,300,True,3,train,2
+535,Group 1.csv,150,725,100,300,True,3,train,3
+536,Group 1.csv,150,725,26,300,False,1,train,1
+537,Group 1.csv,150,725,363,300,True,2,train,2
+538,Group 1.csv,150,725,348,300,True,3,train,3
+539,Group 1.csv,150,725,39,300,True,1,train,2
+540,Group 1.csv,150,725,123,300,False,1,train,1
+541,Group 1.csv,150,725,185,300,False,2,train,1
+542,Group 1.csv,150,725,119,300,False,2,train,1
+543,Group 1.csv,150,725,358,300,False,1,train,2
+544,Group 1.csv,150,725,396,300,True,3,train,1
+545,Group 1.csv,150,725,374,300,True,3,train,2
+546,Group 1.csv,150,725,111,300,False,1,train,1
+547,Group 1.csv,150,725,167,300,True,3,train,2
+548,Group 1.csv,150,725,351,300,True,1,train,3
+549,Group 1.csv,150,725,409,300,True,2,train,1
+550,Group 1.csv,150,725,13,300,False,3,train,1
+551,Group 1.csv,150,725,211,300,True,2,train,3
+552,Group 1.csv,150,725,258,300,True,3,train,3
+553,Group 1.csv,150,725,237,300,False,2,train,1
+554,Group 1.csv,150,725,136,300,False,1,train,1
+555,Group 1.csv,150,725,128,300,False,3,train,1
+556,Group 1.csv,150,725,77,300,True,3,train,3
+557,Group 1.csv,150,725,168,300,True,3,train,2
+558,Group 1.csv,150,725,389,300,True,1,train,2
+559,Group 1.csv,150,725,343,300,False,2,train,3
+560,Group 1.csv,150,725,129,300,True,1,train,3
+561,Group 1.csv,150,725,40,300,True,3,train,2
+562,Group 1.csv,150,725,293,300,False,2,train,3
+563,Group 1.csv,150,725,317,300,True,2,train,2
+564,Group 1.csv,150,725,376,300,True,3,train,2
+565,Group 1.csv,150,725,79,300,True,1,train,3
+566,Group 1.csv,150,725,48,300,True,1,train,2
+567,Group 1.csv,150,725,407,300,True,3,train,1
+568,Group 1.csv,150,725,300,300,True,2,train,2
+569,Group 1.csv,150,725,150,300,True,1,train,3
+570,Group 1.csv,150,725,197,300,False,2,train,1
+571,Group 1.csv,150,725,397,300,True,1,train,1
+572,Group 1.csv,150,725,236,300,False,1,train,1
+573,Group 1.csv,150,725,394,300,False,3,train,3
+574,Group 1.csv,150,725,169,300,True,2,train,2
+575,Group 1.csv,150,725,231,300,True,1,train,3
+576,Group 1.csv,150,725,247,300,False,3,train,1
+577,Group 1.csv,150,725,392,300,True,1,train,1
+578,Group 1.csv,150,725,54,300,True,2,train,3
+579,Group 1.csv,150,725,411,300,True,1,train,1
+580,Group 1.csv,150,725,113,300,True,2,train,3
+581,Group 1.csv,150,725,131,300,False,2,train,1
+582,Group 1.csv,150,725,409,300,True,1,train,1
+583,Group 1.csv,150,725,215,300,True,3,train,3
+584,Group 1.csv,150,725,244,300,True,2,train,3
+585,Group 1.csv,150,725,23,300,False,1,train,1
+586,Group 1.csv,150,725,191,300,False,2,train,1
+587,Group 1.csv,150,725,32,300,False,2,train,1
+588,Group 1.csv,150,725,99,300,False,3,train,1
+589,Group 1.csv,150,725,136,300,False,1,train,1
+590,Group 1.csv,150,725,343,300,False,3,train,3
+591,Group 1.csv,150,725,141,300,True,1,train,3
+592,Group 1.csv,150,725,40,300,False,3,train,1
+593,Group 1.csv,150,725,390,300,True,2,train,2
+594,Group 1.csv,150,725,322,300,True,2,train,3
+595,Group 1.csv,150,725,76,300,False,3,train,1
+596,Group 1.csv,150,725,206,300,True,2,train,3
+597,Group 1.csv,150,725,152,300,False,3,train,1
+598,Group 1.csv,150,725,222,300,False,1,train,1
+599,Group 1.csv,150,725,34,300,False,2,train,1
+600,Group 1.csv,150,725,268,300,False,3,train,3
+601,Group 1.csv,150,725,320,300,False,1,train,3
+602,Group 1.csv,150,725,260,300,True,3,train,3
+603,Group 1.csv,150,725,316,300,True,1,train,2
+604,Group 1.csv,150,725,395,300,True,2,train,1
+605,Group 1.csv,150,725,68,300,True,2,train,3
+606,Group 1.csv,150,725,136,300,False,2,train,1
+607,Group 1.csv,150,725,212,300,False,2,train,1
+608,Group 1.csv,150,725,241,300,False,2,train,1
+609,Group 1.csv,150,725,380,300,True,1,train,2
+610,Group 1.csv,150,725,326,300,False,3,train,3
+611,Group 1.csv,150,725,254,300,True,2,train,3
+612,Group 1.csv,150,725,129,300,True,2,train,3
+613,Group 1.csv,150,725,415,300,False,1,train,1
+614,Group 1.csv,150,725,422,300,True,3,train,1
+615,Group 1.csv,150,725,260,300,False,1,train,1
+616,Group 1.csv,150,725,233,300,True,3,train,3
+617,Group 1.csv,150,725,135,300,False,1,train,1
+618,Group 1.csv,150,725,421,300,False,2,train,1
+619,Group 1.csv,150,725,230,300,False,1,train,1
+620,Group 1.csv,150,725,157,300,True,1,train,2
+621,Group 1.csv,150,725,274,300,True,2,train,2
+622,Group 1.csv,150,725,243,300,True,1,train,3
+623,Group 1.csv,150,725,114,300,False,1,train,1
+624,Group 1.csv,150,725,269,300,True,1,train,2
+625,Group 1.csv,150,725,215,300,True,2,train,3
+626,Group 1.csv,150,725,13,300,False,1,train,1
+627,Group 1.csv,150,725,47,300,False,1,train,1
+628,Group 1.csv,150,725,249,300,True,2,train,3
+629,Group 1.csv,150,725,151,300,False,3,train,1
+630,Group 1.csv,150,725,105,300,True,2,train,3
+631,Group 1.csv,150,725,35,300,False,1,train,1
+632,Group 1.csv,150,725,381,300,False,2,train,2
+633,Group 1.csv,150,725,128,300,False,2,train,1
+634,Group 1.csv,150,725,414,300,True,2,train,1
+635,Group 1.csv,150,725,379,300,False,2,train,2
+636,Group 1.csv,150,725,406,300,False,3,train,1
+637,Group 1.csv,150,725,269,300,False,3,train,3
+638,Group 1.csv,150,725,252,300,True,3,train,3
+639,Group 1.csv,150,725,69,300,False,1,train,1
+640,Group 1.csv,150,725,57,300,True,3,train,3
+641,Group 1.csv,150,725,82,300,False,2,train,1
+642,Group 1.csv,150,725,283,300,True,3,train,2
+643,Group 1.csv,150,725,380,300,False,2,train,2
+644,Group 1.csv,150,725,158,300,False,3,train,1
+645,Group 1.csv,150,725,90,300,False,3,train,1
+646,Group 1.csv,150,725,297,300,False,3,train,3
+647,Group 1.csv,150,725,36,300,True,1,train,2
+648,Group 1.csv,150,725,167,300,False,3,train,1
+649,Group 1.csv,150,725,103,300,False,1,train,1
+650,Group 1.csv,150,725,269,300,True,2,train,2
+651,Group 1.csv,150,725,338,300,False,2,train,3
+652,Group 1.csv,150,725,276,300,False,3,train,3
+653,Group 1.csv,150,725,242,300,False,2,train,1
+654,Group 1.csv,150,725,348,300,False,2,train,2
+655,Group 1.csv,150,725,211,300,True,2,train,3
+656,Group 1.csv,150,725,326,300,True,1,train,3
+657,Group 1.csv,150,725,310,300,False,2,train,3
+658,Group 1.csv,150,725,343,300,True,2,train,3
+659,Group 1.csv,150,725,369,300,False,3,train,2
+660,Group 1.csv,150,725,272,300,True,2,train,2
+661,Group 1.csv,150,725,327,300,False,3,train,3
+662,Group 1.csv,150,725,276,300,True,1,train,2
+663,Group 1.csv,150,725,257,300,True,2,train,3
+664,Group 1.csv,150,725,300,300,False,1,train,3
+665,Group 1.csv,150,725,407,300,False,1,train,1
+666,Group 1.csv,150,725,285,300,False,3,train,3
+667,Group 1.csv,150,725,187,300,True,2,train,2
+668,Group 1.csv,150,725,424,300,True,2,train,1
+669,Group 1.csv,150,725,344,300,False,3,train,3
+670,Group 1.csv,150,725,407,300,False,1,train,1
+671,Group 1.csv,150,725,215,300,False,2,train,1
+672,Group 1.csv,150,725,116,300,True,3,train,3
+673,Group 1.csv,150,725,390,300,True,1,train,2
+674,Group 1.csv,150,725,41,300,False,1,train,1
+675,Group 1.csv,150,725,163,300,True,2,train,2
+676,Group 1.csv,150,725,315,300,False,3,train,3
+677,Group 1.csv,150,725,183,300,True,2,train,2
+678,Group 1.csv,150,725,117,300,False,3,train,1
+679,Group 1.csv,150,725,219,300,True,3,train,3
+680,Group 1.csv,150,725,293,300,False,3,train,3
+681,Group 1.csv,150,725,276,300,True,3,train,2
+682,Group 1.csv,150,725,76,300,False,2,train,1
+683,Group 1.csv,150,725,292,300,True,1,train,2
+684,Group 1.csv,150,725,346,300,False,1,train,3
+685,Group 1.csv,150,725,110,300,False,1,train,1
+686,Group 1.csv,150,725,332,300,False,2,train,3
+687,Group 1.csv,150,725,319,300,True,3,train,3
+688,Group 1.csv,150,725,369,300,True,1,train,2
+689,Group 1.csv,150,725,265,300,False,1,train,3
+690,Group 1.csv,150,725,331,300,False,1,train,3
+691,Group 1.csv,150,725,223,300,False,2,train,1
+692,Group 1.csv,150,725,383,300,True,1,train,2
+693,Group 1.csv,150,725,102,300,True,3,train,3
+694,Group 1.csv,150,725,184,300,False,3,train,1
+695,Group 1.csv,150,725,273,300,True,3,train,2
+696,Group 1.csv,150,725,238,300,False,3,train,1
+697,Group 1.csv,150,725,281,300,False,1,train,3
+698,Group 1.csv,150,725,117,300,False,1,train,1
+699,Group 1.csv,150,725,178,300,False,3,train,1
+700,Group 1.csv,150,725,180,300,False,2,train,1
+701,Group 1.csv,150,725,349,300,False,3,train,2
+702,Group 1.csv,150,725,36,300,False,2,train,1
+703,Group 1.csv,150,725,120,300,True,2,train,3
+704,Group 1.csv,150,725,263,300,False,2,train,3
+705,Group 1.csv,150,725,319,300,False,3,train,3
+706,Group 1.csv,150,725,263,300,True,2,train,2
+707,Group 1.csv,150,725,121,300,False,1,train,1
+708,Group 1.csv,150,725,96,300,False,1,train,1
+709,Group 1.csv,150,725,186,300,False,3,train,1
+710,Group 1.csv,150,725,61,300,True,3,train,3
+711,Group 1.csv,150,725,366,300,False,1,train,2
+712,Group 1.csv,150,725,52,300,True,2,train,3
+713,Group 1.csv,150,725,50,300,True,3,train,2
+714,Group 1.csv,150,725,157,300,True,2,train,2
+715,Group 1.csv,150,725,393,300,True,2,train,1
+716,Group 1.csv,150,725,73,300,True,2,train,3
+717,Group 1.csv,150,725,392,300,False,1,train,2
+718,Group 1.csv,150,725,360,300,True,1,train,3
+719,Group 1.csv,150,725,211,300,False,1,train,1
+720,Group 1.csv,150,725,10,300,False,3,train,1
+721,Group 1.csv,150,725,307,300,True,3,train,2
+722,Group 1.csv,150,725,129,300,False,2,train,1
+723,Group 1.csv,150,725,248,300,False,2,train,1
+724,Group 1.csv,150,725,141,300,True,1,train,3
+725,Group 1.csv,150,725,276,300,False,2,train,3
+726,Group 1.csv,150,725,160,300,False,2,train,1
+727,Group 1.csv,150,725,89,300,False,3,train,1
+728,Group 1.csv,150,725,321,300,False,1,train,3
+729,Group 1.csv,150,725,46,300,True,2,train,2
+730,Group 1.csv,150,725,89,300,True,3,train,3
+731,Group 1.csv,150,725,280,300,True,2,train,2
+732,Group 1.csv,150,725,72,300,True,1,train,3
+733,Group 1.csv,150,725,265,300,False,3,train,3
+734,Group 1.csv,150,725,51,300,True,3,train,3
+735,Group 1.csv,150,725,12,300,False,1,train,1
+736,Group 1.csv,150,725,114,300,False,3,train,1
+737,Group 1.csv,150,725,285,300,True,3,train,2
+738,Group 1.csv,150,725,27,300,False,3,train,1
+739,Group 1.csv,150,725,212,300,False,3,train,1
+740,Group 1.csv,150,725,108,300,True,2,train,3
+741,Group 1.csv,150,725,354,300,True,3,train,3
+742,Group 1.csv,150,725,288,300,True,2,train,2
+743,Group 1.csv,150,725,270,300,False,3,train,3
+744,Group 1.csv,150,725,213,300,True,2,train,3
+745,Group 1.csv,150,725,225,300,False,3,train,1
+746,Group 1.csv,150,725,263,300,False,3,train,3
+747,Group 1.csv,150,725,12,300,True,2,train,2
+748,Group 1.csv,150,725,90,300,True,3,train,3
+749,Group 1.csv,150,725,157,300,False,3,train,1
+750,Group 1.csv,150,725,332,300,False,1,train,3
+751,Group 1.csv,150,725,131,300,True,2,train,3
+752,Group 1.csv,150,725,267,300,False,3,train,3
+753,Group 1.csv,150,725,241,300,False,3,train,1
+754,Group 1.csv,150,725,195,300,True,2,train,2
+755,Group 1.csv,150,725,224,300,True,3,train,3
+756,Group 1.csv,150,725,256,300,True,2,train,3
+757,Group 1.csv,150,725,139,300,False,1,train,1
+758,Group 1.csv,150,725,229,300,True,1,train,3
+759,Group 1.csv,150,725,267,300,True,3,train,2
+760,Group 1.csv,150,725,388,300,True,2,train,2
+761,Group 1.csv,150,725,117,300,True,1,train,3
+762,Group 1.csv,150,725,167,300,False,1,train,1
+763,Group 1.csv,150,725,387,300,False,2,train,2
+764,Group 1.csv,150,725,406,300,False,2,train,1
+765,Group 1.csv,150,725,75,300,False,2,train,1
+766,Group 1.csv,150,725,42,300,True,3,train,2
+767,Group 1.csv,150,725,367,300,False,2,train,2
+768,Group 1.csv,150,725,233,300,True,1,train,3
+769,Group 1.csv,150,725,227,300,True,3,train,3
+770,Group 1.csv,150,725,246,300,True,1,train,3
+771,Group 1.csv,150,725,101,300,True,3,train,3
+772,Group 1.csv,150,725,100,300,True,1,train,3
+773,Group 1.csv,150,725,209,300,False,1,train,1
+774,Group 1.csv,150,725,17,300,True,1,train,2
+775,Group 1.csv,150,725,305,300,False,2,train,3
+776,Group 1.csv,150,725,87,300,True,3,train,3
+777,Group 1.csv,150,725,205,300,True,3,train,3
+778,Group 1.csv,150,725,266,300,False,3,train,3
+779,Group 1.csv,150,725,367,300,True,3,train,2
+780,Group 1.csv,150,725,68,300,False,3,train,1
+781,Group 1.csv,150,725,314,300,True,3,train,2
+782,Group 1.csv,150,725,305,300,True,2,train,2
+783,Group 1.csv,150,725,90,300,True,1,train,3
+784,Group 1.csv,150,725,62,300,True,1,train,3
+785,Group 1.csv,150,725,7,300,False,1,train,1
+786,Group 1.csv,150,725,7,300,False,2,train,1
+787,Group 1.csv,150,725,152,300,True,3,train,2
+788,Group 1.csv,150,725,83,300,True,3,train,3
+789,Group 1.csv,150,725,32,300,False,3,train,1
+790,Group 1.csv,150,725,207,300,True,2,train,3
+791,Group 1.csv,150,725,75,300,True,3,train,3
+792,Group 1.csv,150,725,5,300,False,1,train,1
+793,Group 1.csv,150,725,184,300,True,1,train,2
+794,Group 1.csv,150,725,334,300,True,3,train,3
+795,Group 1.csv,150,725,260,300,False,1,train,1
+796,Group 1.csv,150,725,287,300,False,1,train,3
+797,Group 1.csv,150,725,303,300,False,3,train,3
+798,Group 1.csv,150,725,282,300,False,1,train,3
+799,Group 1.csv,150,725,149,300,False,1,train,1
+800,Group 1.csv,150,725,100,300,True,2,train,3
+801,Group 1.csv,150,725,229,300,True,2,train,3
+802,Group 1.csv,150,725,274,300,False,3,train,3
+803,Group 1.csv,150,725,77,300,True,2,train,3
+804,Group 1.csv,150,725,153,300,True,3,train,2
+805,Group 1.csv,150,725,35,300,False,1,train,1
+806,Group 1.csv,150,725,324,300,False,3,train,3
+807,Group 1.csv,150,725,132,300,False,3,train,1
+808,Group 1.csv,150,725,284,300,True,2,train,2
+809,Group 1.csv,150,725,108,300,True,1,train,3
+810,Group 1.csv,150,725,401,300,False,3,train,3
+811,Group 1.csv,150,725,232,300,False,3,train,1
+812,Group 1.csv,150,725,184,300,False,3,train,1
+813,Group 1.csv,150,725,50,300,True,1,train,2
+814,Group 1.csv,150,725,9,300,True,1,train,2
+815,Group 1.csv,150,725,390,300,False,2,train,2
+816,Group 1.csv,150,725,328,300,True,3,train,3
+817,Group 1.csv,150,725,382,300,True,2,train,2
+818,Group 1.csv,150,725,184,300,True,2,train,2
+819,Group 1.csv,150,725,113,300,False,2,train,1
+820,Group 1.csv,150,725,324,300,True,3,train,3
+821,Group 1.csv,150,725,94,300,False,1,train,1
+822,Group 1.csv,150,725,90,300,False,1,train,1
+823,Group 1.csv,150,725,251,300,True,3,train,3
+824,Group 1.csv,150,725,315,300,True,3,train,2
+825,Group 1.csv,150,725,17,300,True,2,train,2
+826,Group 1.csv,150,725,168,300,False,2,train,1
+827,Group 1.csv,150,725,422,300,False,1,train,1
+828,Group 1.csv,150,725,17,300,True,3,train,2
+829,Group 1.csv,150,725,380,300,False,3,train,2
+830,Group 1.csv,150,725,246,300,True,2,train,3
+831,Group 1.csv,150,725,267,300,True,2,train,2
+832,Group 1.csv,150,725,68,300,False,1,train,1
+833,Group 1.csv,150,725,128,300,True,1,train,3
+834,Group 1.csv,150,725,372,300,False,1,train,2
+835,Group 1.csv,150,725,340,300,False,2,train,3
+836,Group 1.csv,150,725,143,300,True,1,train,3
+837,Group 1.csv,150,725,340,300,True,3,train,3
+838,Group 1.csv,150,725,382,300,False,2,train,2
+839,Group 1.csv,150,725,69,300,False,3,train,1
+840,Group 1.csv,150,725,289,300,True,2,train,2
+841,Group 1.csv,150,725,337,300,True,3,train,3
+842,Group 1.csv,150,725,16,300,True,1,train,2
+843,Group 1.csv,150,725,133,300,True,3,train,3
+844,Group 1.csv,150,725,389,300,True,1,train,2
+845,Group 1.csv,150,725,274,300,True,3,train,2
+846,Group 1.csv,150,725,280,300,False,2,train,3
+847,Group 1.csv,150,725,178,300,False,1,train,1
+848,Group 1.csv,150,725,325,300,False,2,train,3
+849,Group 1.csv,150,725,157,300,True,1,train,2
+850,Group 1.csv,150,725,94,300,False,1,train,1
+851,Group 1.csv,150,725,209,300,True,2,train,3
+852,Group 1.csv,150,725,353,300,True,3,train,3
+853,Group 1.csv,150,725,153,300,True,2,train,2
+854,Group 1.csv,150,725,161,300,True,3,train,2
+855,Group 1.csv,150,725,84,300,False,2,train,1
+856,Group 1.csv,150,725,371,300,True,1,train,2
+857,Group 1.csv,150,725,88,300,False,3,train,1
+858,Group 1.csv,150,725,107,300,True,3,train,3
+859,Group 1.csv,150,725,178,300,False,1,train,1
+860,Group 1.csv,150,725,260,300,True,3,train,3
+861,Group 1.csv,150,725,419,300,True,3,train,1
+862,Group 1.csv,150,725,114,300,True,2,train,3
+863,Group 1.csv,150,725,402,300,False,3,train,3
+864,Group 1.csv,150,725,237,300,False,3,train,1
+865,Group 1.csv,150,725,341,300,False,1,train,3
+866,Group 1.csv,150,725,97,300,True,2,train,3
+867,Group 1.csv,150,725,359,300,False,1,train,2
+868,Group 1.csv,150,725,165,300,False,3,train,1
+869,Group 1.csv,150,725,140,300,True,1,train,3
+870,Group 1.csv,150,725,331,300,False,1,train,3
+871,Group 1.csv,150,725,287,300,False,3,train,3
+872,Group 1.csv,150,725,374,300,True,3,train,2
+873,Group 1.csv,150,725,242,300,False,1,train,1
+874,Group 1.csv,150,725,238,300,False,2,train,1
+875,Group 1.csv,150,725,199,300,False,2,train,1
+876,Group 1.csv,150,725,103,300,False,3,train,1
+877,Group 1.csv,150,725,271,300,False,2,train,3
+878,Group 1.csv,150,725,59,300,False,1,train,1
+879,Group 1.csv,150,725,294,300,False,1,train,3
+880,Group 1.csv,150,725,353,300,True,2,train,3
+881,Group 1.csv,150,725,269,300,False,2,train,3
+882,Group 1.csv,150,725,279,300,False,3,train,3
+883,Group 1.csv,150,725,397,300,False,1,train,3
+884,Group 1.csv,150,725,322,300,True,2,train,3
+885,Group 1.csv,150,725,266,300,False,1,train,3
+886,Group 1.csv,150,725,190,300,False,2,train,1
+887,Group 1.csv,150,725,195,300,False,1,train,1
+888,Group 1.csv,150,725,51,300,True,1,train,3
+889,Group 1.csv,150,725,120,300,False,1,train,1
+890,Group 1.csv,150,725,423,300,True,3,train,1
+891,Group 1.csv,150,725,0,300,True,1,train,2
+892,Group 1.csv,150,725,317,300,False,2,train,3
+893,Group 1.csv,150,725,120,300,False,1,train,1
+894,Group 1.csv,150,725,344,300,True,3,train,3
+895,Group 1.csv,150,725,94,300,True,3,train,3
+896,Group 1.csv,150,725,47,300,True,1,train,2
+897,Group 1.csv,150,725,265,300,False,2,train,3
+898,Group 1.csv,150,725,110,300,False,1,train,1
+899,Group 1.csv,150,725,234,300,False,1,train,1
+900,Group 1.csv,150,725,261,300,False,1,train,3
+901,Group 1.csv,150,725,242,300,True,3,train,3
+902,Group 1.csv,150,725,155,300,False,2,train,1
+903,Group 1.csv,150,725,160,300,True,3,train,2
+904,Group 1.csv,150,725,150,300,True,1,train,3
+905,Group 1.csv,150,725,365,300,False,3,train,2
+906,Group 1.csv,150,725,180,300,False,2,train,1
+907,Group 1.csv,150,725,243,300,False,1,train,1
+908,Group 1.csv,150,725,9,300,False,3,train,1
+909,Group 1.csv,150,725,21,300,False,1,train,1
+910,Group 1.csv,150,725,132,300,True,2,train,3
+911,Group 1.csv,150,725,282,300,False,1,train,3
+912,Group 1.csv,150,725,361,300,False,1,train,2
+913,Group 1.csv,150,725,272,300,True,3,train,2
+914,Group 1.csv,150,725,77,300,True,3,train,3
+915,Group 1.csv,150,725,334,300,False,2,train,3
+916,Group 1.csv,150,725,79,300,True,1,train,3
+917,Group 1.csv,150,725,202,300,False,1,train,1
+918,Group 1.csv,150,725,10,300,False,3,train,1
+919,Group 1.csv,150,725,51,300,True,2,train,3
+920,Group 1.csv,150,725,125,300,True,3,train,3
+921,Group 1.csv,150,725,287,300,True,1,train,2
+922,Group 1.csv,150,725,101,300,False,2,train,1
+923,Group 1.csv,150,725,337,300,False,1,train,3
+924,Group 1.csv,150,725,72,300,False,1,train,1
+925,Group 1.csv,150,725,88,300,True,3,train,3
+926,Group 1.csv,150,725,219,300,True,2,train,3
+927,Group 1.csv,150,725,43,300,False,2,train,1
+928,Group 1.csv,150,725,328,300,False,1,train,3
+929,Group 1.csv,150,725,67,300,False,2,train,1
+930,Group 1.csv,150,725,111,300,True,3,train,3
+931,Group 1.csv,150,725,147,300,False,3,train,1
+932,Group 1.csv,150,725,191,300,True,2,train,2
+933,Group 1.csv,150,725,153,300,False,2,train,1
+934,Group 1.csv,150,725,180,300,True,2,train,2
+935,Group 1.csv,150,725,381,300,True,2,train,2
+936,Group 1.csv,150,725,257,300,False,2,train,1
+937,Group 1.csv,150,725,125,300,False,3,train,1
+938,Group 1.csv,150,725,262,300,False,2,train,3
+939,Group 1.csv,150,725,257,300,False,3,train,1
+940,Group 1.csv,150,725,34,300,True,1,train,2
+941,Group 1.csv,150,725,75,300,False,1,train,1
+942,Group 1.csv,150,725,143,300,True,2,train,3
+943,Group 1.csv,150,725,118,300,False,2,train,1
+944,Group 1.csv,150,725,242,300,False,2,train,1
+945,Group 1.csv,150,725,259,300,False,2,train,1
+946,Group 1.csv,150,725,43,300,True,2,train,2
+947,Group 1.csv,150,725,279,300,False,3,train,3
+948,Group 1.csv,150,725,80,300,False,3,train,1
+949,Group 1.csv,150,725,191,300,True,1,train,2
+950,Group 1.csv,150,725,8,300,True,1,train,2
+951,Group 1.csv,150,725,315,300,False,3,train,3
+952,Group 1.csv,150,725,200,300,False,3,train,1
+953,Group 1.csv,150,725,183,300,True,2,train,2
+954,Group 1.csv,150,725,259,300,True,3,train,3
+955,Group 1.csv,150,725,403,300,True,1,train,1
+956,Group 1.csv,150,725,287,300,True,2,train,2
+957,Group 1.csv,150,725,122,300,True,2,train,3
+958,Group 1.csv,150,725,62,300,True,1,train,3
+959,Group 1.csv,150,725,280,300,True,3,train,2
+960,Group 1.csv,150,725,344,300,True,2,train,3
+961,Group 1.csv,150,725,416,300,False,3,train,1
+962,Group 1.csv,150,725,373,300,False,3,train,2
+963,Group 1.csv,150,725,225,300,True,1,train,3
+964,Group 1.csv,150,725,57,300,True,1,train,3
+965,Group 1.csv,150,725,367,300,True,2,train,2
+966,Group 1.csv,150,725,179,300,False,2,train,1
+967,Group 1.csv,150,725,168,300,False,2,train,1
+968,Group 1.csv,150,725,353,300,True,2,train,3
+969,Group 1.csv,150,725,423,300,False,3,train,1
+970,Group 1.csv,150,725,321,300,True,2,train,3
+971,Group 1.csv,150,725,91,300,False,1,train,1
+972,Group 1.csv,150,725,194,300,False,3,train,1
+973,Group 1.csv,150,725,91,300,True,3,train,3
+974,Group 1.csv,150,725,210,300,False,1,train,1
+975,Group 1.csv,150,725,159,300,False,2,train,1
+976,Group 1.csv,150,725,408,300,True,2,train,1
+977,Group 1.csv,150,725,175,300,False,3,train,1
+978,Group 1.csv,150,725,83,300,True,3,train,3
+979,Group 1.csv,150,725,76,300,False,1,train,1
+980,Group 1.csv,150,725,218,300,True,3,train,3
+981,Group 1.csv,150,725,199,300,True,2,train,3
+982,Group 1.csv,150,725,209,300,True,1,train,3
+983,Group 1.csv,150,725,259,300,False,1,train,1
+984,Group 1.csv,150,725,307,300,True,2,train,2
+985,Group 1.csv,150,725,69,300,False,2,train,1
+986,Group 1.csv,150,725,49,300,True,1,train,2
+987,Group 1.csv,150,725,145,300,False,3,train,1
+988,Group 1.csv,150,725,322,300,True,2,train,3
+989,Group 1.csv,150,725,171,300,True,1,train,2
+990,Group 1.csv,150,725,164,300,True,2,train,2
+991,Group 1.csv,150,725,336,300,True,2,train,3
+992,Group 1.csv,150,725,235,300,True,1,train,3
+993,Group 1.csv,150,725,78,300,False,1,train,1
+994,Group 1.csv,150,725,131,300,False,2,train,1
+995,Group 1.csv,150,725,217,300,True,3,train,3
+996,Group 1.csv,150,725,337,300,True,1,train,3
+997,Group 1.csv,150,725,78,300,False,1,train,1
+998,Group 1.csv,150,725,227,300,True,3,train,3
+999,Group 1.csv,150,725,43,300,True,2,train,2
+1000,Group 1.csv,150,725,89,300,True,2,train,3
+1001,Group 1.csv,150,725,2,300,False,1,train,1
+1002,Group 1.csv,150,725,13,300,False,2,train,1
+1003,Group 1.csv,150,725,223,300,False,3,train,1
+1004,Group 1.csv,150,725,153,300,False,3,train,1
+1005,Group 1.csv,150,725,134,300,True,3,train,3
+1006,Group 1.csv,150,725,295,300,False,1,train,3
+1007,Group 1.csv,150,725,348,300,True,3,train,3
+1008,Group 1.csv,150,725,341,300,True,3,train,3
+1009,Group 1.csv,150,725,412,300,True,2,train,1
+1010,Group 1.csv,150,725,34,300,True,1,train,2
+1011,Group 1.csv,150,725,273,300,False,3,train,3
+1012,Group 1.csv,150,725,40,300,False,2,train,1
+1013,Group 1.csv,150,725,333,300,True,1,train,3
+1014,Group 1.csv,150,725,135,300,True,3,train,3
+1015,Group 1.csv,150,725,2,300,True,1,train,2
+1016,Group 1.csv,150,725,217,300,True,3,train,3
+1017,Group 1.csv,150,725,149,300,True,3,train,3
+1018,Group 1.csv,150,725,145,300,True,3,train,3
+1019,Group 1.csv,150,725,317,300,False,2,train,3
+1020,Group 1.csv,150,725,342,300,False,2,train,3
+1021,Group 1.csv,150,725,415,300,True,2,train,1
+1022,Group 1.csv,150,725,134,300,False,2,train,1
+1023,Group 1.csv,150,725,13,300,False,2,train,1
+1024,Group 1.csv,150,725,332,300,False,2,train,3
+1025,Group 1.csv,150,725,401,300,False,3,train,3
+1026,Group 1.csv,150,725,226,300,True,3,train,3
+1027,Group 1.csv,150,725,42,300,False,2,train,1
+1028,Group 1.csv,150,725,374,300,True,1,train,2
+1029,Group 1.csv,150,725,282,300,True,2,train,2
+1030,Group 1.csv,150,725,217,300,True,1,train,3
+1031,Group 1.csv,150,725,235,300,True,1,train,3
+1032,Group 1.csv,150,725,49,300,False,1,train,1
+1033,Group 1.csv,150,725,190,300,False,3,train,1
+1034,Group 1.csv,150,725,108,300,False,1,train,1
+1035,Group 1.csv,150,725,364,300,False,2,train,2
+1036,Group 1.csv,150,725,243,300,False,3,train,1
+1037,Group 1.csv,150,725,404,300,False,3,train,3
+1038,Group 1.csv,150,725,161,300,False,3,train,1
+1039,Group 1.csv,150,725,329,300,False,1,train,3
+1040,Group 1.csv,150,725,106,300,True,3,train,3
+1041,Group 1.csv,150,725,254,300,True,1,train,3
+1042,Group 1.csv,150,725,242,300,True,3,train,3
+1043,Group 1.csv,150,725,125,300,True,2,train,3
+1044,Group 1.csv,150,725,246,300,True,3,train,3
+1045,Group 1.csv,150,725,178,300,False,3,train,1
+1046,Group 1.csv,150,725,264,300,True,1,train,2
+1047,Group 1.csv,150,725,107,300,True,2,train,3
+1048,Group 1.csv,150,725,390,300,False,3,train,2
+1049,Group 1.csv,150,725,395,300,True,1,train,1
+1050,Group 1.csv,150,725,392,300,False,2,train,2
+1051,Group 1.csv,150,725,384,300,True,1,train,2
+1052,Group 1.csv,150,725,342,300,False,3,train,3
+1053,Group 1.csv,150,725,149,300,False,3,train,1
+1054,Group 1.csv,150,725,238,300,False,1,train,1
+1055,Group 1.csv,150,725,296,300,False,1,train,3
+1056,Group 1.csv,150,725,335,300,False,2,train,3
+1057,Group 1.csv,150,725,7,300,True,1,train,2
+1058,Group 1.csv,150,725,365,300,True,3,train,2
+1059,Group 1.csv,150,725,211,300,False,2,train,1
+1060,Group 1.csv,150,725,405,300,True,3,train,1
+1061,Group 1.csv,150,725,413,300,False,1,train,1
+1062,Group 1.csv,150,725,83,300,True,2,train,3
+1063,Group 1.csv,150,725,1,300,True,1,train,2
+1064,Group 1.csv,150,725,138,300,False,2,train,1
+1065,Group 1.csv,150,725,28,300,False,3,train,1
+1066,Group 1.csv,150,725,244,300,True,1,train,3
+1067,Group 1.csv,150,725,29,300,False,2,train,1
+1068,Group 1.csv,150,725,290,300,True,2,train,2
+1069,Group 1.csv,150,725,261,300,False,1,train,3
+1070,Group 1.csv,150,725,242,300,True,2,train,3
+1071,Group 1.csv,150,725,84,300,True,3,train,3
+1072,Group 1.csv,150,725,58,300,True,3,train,3
+1073,Group 1.csv,150,725,357,300,True,2,train,3
+1074,Group 1.csv,150,725,404,300,False,1,train,3
+1075,Group 1.csv,150,725,287,300,True,1,train,2
+1076,Group 1.csv,150,725,95,300,False,1,train,1
+1077,Group 1.csv,150,725,41,300,True,1,train,2
+1078,Group 1.csv,150,725,283,300,False,2,train,3
+1079,Group 1.csv,150,725,87,300,False,1,train,1
+1080,Group 1.csv,150,725,294,300,False,2,train,3
+1081,Group 1.csv,150,725,349,300,True,3,train,3
+1082,Group 1.csv,150,725,100,300,False,3,train,1
+1083,Group 1.csv,150,725,222,300,False,3,train,1
+1084,Group 1.csv,150,725,202,300,False,2,train,1
+1085,Group 1.csv,150,725,393,300,False,2,train,3
+1086,Group 1.csv,150,725,303,300,True,1,train,2
+1087,Group 1.csv,150,725,119,300,True,1,train,3
+1088,Group 1.csv,150,725,261,300,True,3,train,3
+1089,Group 1.csv,150,725,229,300,True,1,train,3
+1090,Group 1.csv,150,725,92,300,True,3,train,3
+1091,Group 1.csv,150,725,108,300,True,3,train,3
+1092,Group 1.csv,150,725,228,300,True,3,train,3
+1093,Group 1.csv,150,725,419,300,False,1,train,1
+1094,Group 1.csv,150,725,35,300,True,3,train,2
+1095,Group 1.csv,150,725,344,300,False,1,train,3
+1096,Group 1.csv,150,725,0,300,True,3,train,2
+1097,Group 1.csv,150,725,64,300,True,1,train,3
+1098,Group 1.csv,150,725,205,300,True,1,train,3
+1099,Group 1.csv,150,725,102,300,True,3,train,3
+1100,Group 1.csv,150,725,236,300,True,2,train,3
+1101,Group 1.csv,150,725,252,300,True,2,train,3
+1102,Group 1.csv,150,725,198,300,True,3,train,2
+1103,Group 1.csv,150,725,315,300,True,3,train,2
+1104,Group 1.csv,150,725,61,300,False,1,train,1
+1105,Group 1.csv,150,725,137,300,False,3,train,1
+1106,Group 1.csv,150,725,106,300,False,2,train,1
+1107,Group 1.csv,150,725,329,300,True,3,train,3
+1108,Group 1.csv,150,725,28,300,False,2,train,1
+1109,Group 1.csv,150,725,194,300,True,1,train,2
+1110,Group 1.csv,150,725,203,300,False,1,train,1
+1111,Group 1.csv,150,725,81,300,True,1,train,3
+1112,Group 1.csv,150,725,72,300,False,3,train,1
+1113,Group 1.csv,150,725,168,300,True,3,train,2
+1114,Group 1.csv,150,725,170,300,True,3,train,2
+1115,Group 1.csv,150,725,395,300,True,1,train,1
+1116,Group 1.csv,150,725,101,300,False,3,train,1
+1117,Group 1.csv,150,725,233,300,False,2,train,1
+1118,Group 1.csv,150,725,210,300,False,3,train,1
+1119,Group 1.csv,150,725,394,300,False,3,train,3
+1120,Group 1.csv,150,725,81,300,True,3,train,3
+1121,Group 1.csv,150,725,259,300,True,2,train,3
+1122,Group 1.csv,150,725,402,300,False,3,train,3
+1123,Group 1.csv,150,725,283,300,False,2,train,3
+1124,Group 1.csv,150,725,56,300,True,1,train,3
+1125,Group 1.csv,150,725,158,300,False,3,train,1
+1126,Group 1.csv,150,725,305,300,False,3,train,3
+1127,Group 1.csv,150,725,86,300,False,1,train,1
+1128,Group 1.csv,150,725,145,300,True,1,train,3
+1129,Group 1.csv,150,725,358,300,True,2,train,3
+1130,Group 1.csv,150,725,88,300,True,3,train,3
+1131,Group 1.csv,150,725,178,300,False,3,train,1
+1132,Group 1.csv,150,725,77,300,True,1,train,3
+1133,Group 1.csv,150,725,396,300,True,3,train,1
+1134,Group 1.csv,150,725,299,300,False,2,train,3
+1135,Group 1.csv,150,725,8,300,True,2,train,2
+1136,Group 1.csv,150,725,86,300,True,2,train,3
+1137,Group 1.csv,150,725,60,300,True,3,train,3
+1138,Group 1.csv,150,725,155,300,False,1,train,1
+1139,Group 1.csv,150,725,312,300,True,3,train,2
+1140,Group 1.csv,150,725,279,300,False,1,train,3
+1141,Group 1.csv,150,725,261,300,True,3,train,3
+1142,Group 1.csv,150,725,249,300,False,3,train,1
+1143,Group 1.csv,150,725,89,300,True,1,train,3
+1144,Group 1.csv,150,725,108,300,True,1,train,3
+1145,Group 1.csv,150,725,96,300,True,1,train,3
+1146,Group 1.csv,150,725,340,300,False,3,train,3
+1147,Group 1.csv,150,725,74,300,False,1,train,1
+1148,Group 1.csv,150,725,414,300,False,1,train,1
+1149,Group 1.csv,150,725,316,300,False,1,train,3
+1150,Group 1.csv,150,725,284,300,True,2,train,2
+1151,Group 1.csv,150,725,344,300,True,1,train,3
+1152,Group 1.csv,150,725,198,300,True,2,train,2
+1153,Group 1.csv,150,725,29,300,True,3,train,2
+1154,Group 1.csv,150,725,271,300,False,3,train,3
+1155,Group 1.csv,150,725,310,300,False,1,train,3
+1156,Group 1.csv,150,725,252,300,True,1,train,3
+1157,Group 1.csv,150,725,63,300,True,2,train,3
+1158,Group 1.csv,150,725,119,300,True,3,train,3
+1159,Group 1.csv,150,725,89,300,False,1,train,1
+1160,Group 1.csv,150,725,68,300,True,3,train,3
+1161,Group 1.csv,150,725,202,300,False,3,train,1
+1162,Group 1.csv,150,725,203,300,True,3,train,3
+1163,Group 1.csv,150,725,38,300,True,1,train,2
+1164,Group 1.csv,150,725,303,300,True,3,train,2
+1165,Group 1.csv,150,725,22,300,False,3,train,1
+1166,Group 1.csv,150,725,422,300,True,2,train,1
+1167,Group 1.csv,150,725,159,300,False,3,train,1
+1168,Group 1.csv,150,725,233,300,True,3,train,3
+1169,Group 1.csv,150,725,293,300,True,3,train,2
+1170,Group 1.csv,150,725,304,300,False,1,train,3
+1171,Group 1.csv,150,725,292,300,False,2,train,3
+1172,Group 1.csv,150,725,296,300,False,3,train,3
+1173,Group 1.csv,150,725,342,300,True,1,train,3
+1174,Group 1.csv,150,725,65,300,False,3,train,1
+1175,Group 1.csv,150,725,229,300,True,3,train,3
+1176,Group 1.csv,150,725,181,300,False,3,train,1
+1177,Group 1.csv,150,725,302,300,False,1,train,3
+1178,Group 1.csv,150,725,123,300,True,1,train,3
+1179,Group 1.csv,150,725,204,300,True,3,train,3
+1180,Group 1.csv,150,725,340,300,True,3,train,3
+1181,Group 1.csv,150,725,36,300,False,2,train,1
+1182,Group 1.csv,150,725,150,300,False,3,train,1
+1183,Group 1.csv,150,725,233,300,False,1,train,1
+1184,Group 1.csv,150,725,251,300,True,3,train,3
+1185,Group 1.csv,150,725,232,300,False,3,train,1
+1186,Group 1.csv,150,725,232,300,False,2,train,1
+1187,Group 1.csv,150,725,96,300,False,1,train,1
+1188,Group 1.csv,150,725,174,300,False,1,train,1
+1189,Group 1.csv,150,725,129,300,True,2,train,3
+1190,Group 1.csv,150,725,64,300,True,2,train,3
+1191,Group 1.csv,150,725,226,300,True,1,train,3
+1192,Group 1.csv,150,725,418,300,True,1,train,1
+1193,Group 1.csv,150,725,348,300,True,2,train,3
+1194,Group 1.csv,150,725,37,300,True,1,train,2
+1195,Group 1.csv,150,725,247,300,False,1,train,1
+1196,Group 1.csv,150,725,160,300,False,1,train,1
+1197,Group 1.csv,150,725,256,300,True,3,train,3
+1198,Group 1.csv,150,725,360,300,True,2,train,3
+1199,Group 1.csv,150,725,324,300,True,1,train,3
+1200,Group 1.csv,150,725,85,300,False,1,train,1
+1201,Group 1.csv,150,725,362,300,True,2,train,2
+1202,Group 1.csv,150,725,165,300,True,3,train,2
+1203,Group 1.csv,150,725,330,300,False,3,train,3
+1204,Group 1.csv,150,725,351,300,True,2,train,3
+1205,Group 1.csv,150,725,227,300,False,1,train,1
+1206,Group 1.csv,150,725,322,300,True,2,train,3
+1207,Group 1.csv,150,725,368,300,False,1,train,2
+1208,Group 1.csv,150,725,161,300,False,1,train,1
+1209,Group 1.csv,150,725,386,300,False,3,train,2
+1210,Group 1.csv,150,725,143,300,True,1,train,3
+1211,Group 1.csv,150,725,185,300,True,1,train,2
+1212,Group 1.csv,150,725,121,300,False,3,train,1
+1213,Group 1.csv,150,725,186,300,True,3,train,2
+1214,Group 1.csv,150,725,413,300,True,3,train,1
+1215,Group 1.csv,150,725,81,300,True,1,train,3
+1216,Group 1.csv,150,725,308,300,True,2,train,2
+1217,Group 1.csv,150,725,154,300,False,2,train,1
+1218,Group 1.csv,150,725,229,300,True,2,train,3
+1219,Group 1.csv,150,725,226,300,True,2,train,3
+1220,Group 1.csv,150,725,26,300,True,2,train,2
+1221,Group 1.csv,150,725,293,300,True,2,train,2
+1222,Group 1.csv,150,725,149,300,False,1,train,1
+1223,Group 1.csv,150,725,5,300,False,3,train,1
+1224,Group 1.csv,150,725,189,300,True,3,train,2
+1225,Group 1.csv,150,725,143,300,False,1,train,1
+1226,Group 1.csv,150,725,272,300,False,2,train,3
+1227,Group 1.csv,150,725,73,300,False,3,train,1
+1228,Group 1.csv,150,725,271,300,False,2,train,3
+1229,Group 1.csv,150,725,244,300,True,1,train,3
+1230,Group 1.csv,150,725,317,300,True,2,train,2
+1231,Group 1.csv,150,725,6,300,False,3,train,1
+1232,Group 1.csv,150,725,336,300,True,1,train,3
+1233,Group 1.csv,150,725,288,300,True,3,train,2
+1234,Group 1.csv,150,725,185,300,False,3,train,1
+1235,Group 1.csv,150,725,74,300,True,2,train,3
+1236,Group 1.csv,150,725,152,300,False,2,train,1
+1237,Group 1.csv,150,725,303,300,True,2,train,2
+1238,Group 1.csv,150,725,420,300,True,3,train,1
+1239,Group 1.csv,150,725,105,300,False,3,train,1
+1240,Group 1.csv,150,725,93,300,False,1,train,1
+1241,Group 1.csv,150,725,285,300,False,3,train,3
+1242,Group 1.csv,150,725,210,300,True,3,train,3
+1243,Group 1.csv,150,725,336,300,False,3,train,3
+1244,Group 1.csv,150,725,104,300,True,3,train,3
+1245,Group 1.csv,150,725,234,300,True,3,train,3
+1246,Group 1.csv,150,725,120,300,True,3,train,3
+1247,Group 1.csv,150,725,141,300,True,1,train,3
+1248,Group 1.csv,150,725,240,300,True,3,train,3
+1249,Group 1.csv,150,725,213,300,True,1,train,3
+1250,Group 1.csv,150,725,208,300,False,1,train,1
+1251,Group 1.csv,150,725,363,300,True,1,train,2
+1252,Group 1.csv,150,725,273,300,False,1,train,3
+1253,Group 1.csv,150,725,343,300,True,1,train,3
+1254,Group 1.csv,150,725,305,300,True,3,train,2
+1255,Group 1.csv,150,725,213,300,True,1,train,3
+1256,Group 1.csv,150,725,0,300,True,2,train,2
+1257,Group 1.csv,150,725,80,300,False,1,train,1
+1258,Group 1.csv,150,725,323,300,True,2,train,3
+1259,Group 1.csv,150,725,47,300,True,3,train,2
+1260,Group 1.csv,150,725,242,300,False,3,train,1
+1261,Group 1.csv,150,725,197,300,False,3,train,1
+1262,Group 1.csv,150,725,377,300,True,1,train,2
+1263,Group 1.csv,150,725,241,300,True,1,train,3
+1264,Group 1.csv,150,725,131,300,False,1,train,1
+1265,Group 1.csv,150,725,165,300,False,3,train,1
+1266,Group 1.csv,150,725,389,300,False,2,train,2
+1267,Group 1.csv,150,725,131,300,True,3,train,3
+1268,Group 1.csv,150,725,247,300,True,3,train,3
+1269,Group 1.csv,150,725,280,300,True,2,train,2
+1270,Group 1.csv,150,725,159,300,True,1,train,2
+1271,Group 1.csv,150,725,318,300,True,1,train,3
+1272,Group 1.csv,150,725,378,300,False,3,train,2
+1273,Group 1.csv,150,725,422,300,False,3,train,1
+1274,Group 1.csv,150,725,407,300,False,3,train,1
+1275,Group 1.csv,150,725,66,300,False,3,train,1
+1276,Group 1.csv,150,725,314,300,True,2,train,2
+1277,Group 1.csv,150,725,29,300,True,1,train,2
+1278,Group 1.csv,150,725,418,300,False,1,train,1
+1279,Group 1.csv,150,725,175,300,True,3,train,2
+1280,Group 1.csv,150,725,223,300,False,1,train,1
+1281,Group 1.csv,150,725,150,300,False,1,train,1
+1282,Group 1.csv,150,725,197,300,True,1,train,2
+1283,Group 1.csv,150,725,423,300,True,2,train,1
+1284,Group 1.csv,150,725,296,300,False,3,train,3
+1285,Group 1.csv,150,725,125,300,False,1,train,1
+1286,Group 1.csv,150,725,298,300,True,3,train,2
+1287,Group 1.csv,150,725,62,300,True,3,train,3
+1288,Group 1.csv,150,725,365,300,False,2,train,2
+1289,Group 1.csv,150,725,221,300,False,3,train,1
+1290,Group 1.csv,150,725,208,300,True,2,train,3
+1291,Group 1.csv,150,725,272,300,True,3,train,2
+1292,Group 1.csv,150,725,244,300,False,3,train,1
+1293,Group 1.csv,150,725,374,300,False,3,train,2
+1294,Group 1.csv,150,725,204,300,False,2,train,1
+1295,Group 1.csv,150,725,343,300,True,2,train,3
+1296,Group 1.csv,150,725,299,300,True,2,train,2
+1297,Group 1.csv,150,725,406,300,True,1,train,1
+1298,Group 1.csv,150,725,1,300,False,1,train,1
+1299,Group 1.csv,150,725,207,300,True,3,train,3
+1300,Group 1.csv,150,725,208,300,True,1,train,3
+1301,Group 1.csv,150,725,365,300,False,2,train,2
+1302,Group 1.csv,150,725,98,300,True,3,train,3
+1303,Group 1.csv,150,725,289,300,True,3,train,2
+1304,Group 1.csv,150,725,164,300,False,2,train,1
+1305,Group 1.csv,150,725,127,300,True,1,train,3
+1306,Group 1.csv,150,725,122,300,True,3,train,3
+1307,Group 1.csv,150,725,216,300,False,2,train,1
+1308,Group 1.csv,150,725,47,300,False,3,train,1
+1309,Group 1.csv,150,725,197,300,False,3,train,1
+1310,Group 1.csv,150,725,391,300,True,1,train,1
+1311,Group 1.csv,150,725,365,300,False,2,train,2
+1312,Group 1.csv,150,725,382,300,True,3,train,2
+1313,Group 1.csv,150,725,3,300,False,2,train,1
+1314,Group 1.csv,150,725,252,300,False,2,train,1
+1315,Group 1.csv,150,725,193,300,True,2,train,2
+1316,Group 1.csv,150,725,410,300,False,3,train,1
+1317,Group 1.csv,150,725,279,300,True,1,train,2
+1318,Group 1.csv,150,725,38,300,False,1,train,1
+1319,Group 1.csv,150,725,353,300,True,1,train,3
+1320,Group 1.csv,150,725,100,300,False,2,train,1
+1321,Group 1.csv,150,725,150,300,False,1,train,1
+1322,Group 1.csv,150,725,105,300,False,2,train,1
+1323,Group 1.csv,150,725,406,300,True,1,train,1
+1324,Group 1.csv,150,725,103,300,True,1,train,3
+1325,Group 1.csv,150,725,414,300,True,1,train,1
+1326,Group 1.csv,150,725,355,300,False,1,train,2
+1327,Group 1.csv,150,725,297,300,False,2,train,3
+1328,Group 1.csv,150,725,207,300,False,2,train,1
+1329,Group 1.csv,150,725,7,300,False,3,train,1
+1330,Group 1.csv,150,725,304,300,False,3,train,3
+1331,Group 1.csv,150,725,118,300,True,3,train,3
+1332,Group 1.csv,150,725,213,300,False,1,train,1
+1333,Group 1.csv,150,725,314,300,False,1,train,3
+1334,Group 1.csv,150,725,65,300,True,3,train,3
+1335,Group 1.csv,150,725,258,300,False,2,train,1
+1336,Group 1.csv,150,725,371,300,False,3,train,2
+1337,Group 1.csv,150,725,321,300,True,3,train,3
+1338,Group 1.csv,150,725,249,300,True,3,train,3
+1339,Group 1.csv,150,725,106,300,True,1,train,3
+1340,Group 1.csv,150,725,98,300,False,1,train,1
+1341,Group 1.csv,150,725,339,300,False,3,train,3
+1342,Group 1.csv,150,725,0,300,False,2,train,1
+1343,Group 1.csv,150,725,54,300,True,3,train,3
+1344,Group 1.csv,150,725,206,300,True,3,train,3
+1345,Group 1.csv,150,725,327,300,False,1,train,3
+1346,Group 1.csv,150,725,22,300,False,2,train,1
+1347,Group 1.csv,150,725,26,300,True,1,train,2
+1348,Group 1.csv,150,725,100,300,False,1,train,1
+1349,Group 1.csv,150,725,327,300,False,3,train,3
+1350,Group 1.csv,150,725,78,300,True,2,train,3
+1351,Group 1.csv,150,725,94,300,False,1,train,1
+1352,Group 1.csv,150,725,102,300,True,3,train,3
+1353,Group 1.csv,150,725,337,300,False,2,train,3
+1354,Group 1.csv,150,725,243,300,False,1,train,1
+1355,Group 1.csv,150,725,14,300,True,2,train,2
+1356,Group 1.csv,150,725,228,300,True,3,train,3
+1357,Group 1.csv,150,725,415,300,False,3,train,1
+1358,Group 1.csv,150,725,226,300,True,1,train,3
+1359,Group 1.csv,150,725,37,300,False,2,train,1
+1360,Group 1.csv,150,725,372,300,True,3,train,2
+1361,Group 1.csv,150,725,208,300,False,3,train,1
+1362,Group 1.csv,150,725,116,300,True,2,train,3
+1363,Group 1.csv,150,725,327,300,True,1,train,3
+1364,Group 1.csv,150,725,251,300,True,1,train,3
+1365,Group 1.csv,150,725,138,300,False,3,train,1
+1366,Group 1.csv,150,725,4,300,False,1,train,1
+1367,Group 1.csv,150,725,303,300,False,2,train,3
+1368,Group 1.csv,150,725,76,300,True,3,train,3
+1369,Group 1.csv,150,725,197,300,False,2,train,1
+1370,Group 1.csv,150,725,326,300,False,2,train,3
+1371,Group 1.csv,150,725,61,300,True,2,train,3
+1372,Group 1.csv,150,725,234,300,True,3,train,3
+1373,Group 1.csv,150,725,279,300,True,3,train,2
+1374,Group 1.csv,150,725,248,300,True,2,train,3
+1375,Group 1.csv,150,725,68,300,True,2,train,3
+1376,Group 1.csv,150,725,391,300,True,2,train,1
+1377,Group 1.csv,150,725,421,300,False,3,train,1
+1378,Group 1.csv,150,725,419,300,True,3,train,1
+1379,Group 1.csv,150,725,103,300,False,2,train,1
+1380,Group 1.csv,150,725,330,300,False,2,train,3
+1381,Group 1.csv,150,725,256,300,True,2,train,3
+1382,Group 1.csv,150,725,343,300,True,1,train,3
+1383,Group 1.csv,150,725,130,300,False,3,train,1
+1384,Group 1.csv,150,725,351,300,False,3,train,2
+1385,Group 1.csv,150,725,199,300,False,3,train,1
+1386,Group 1.csv,150,725,182,300,True,1,train,2
+1387,Group 1.csv,150,725,114,300,False,3,train,1
+1388,Group 1.csv,150,725,188,300,False,1,train,1
+1389,Group 1.csv,150,725,161,300,True,3,train,2
+1390,Group 1.csv,150,725,175,300,False,3,train,1
+1391,Group 1.csv,150,725,225,300,False,3,train,1
+1392,Group 1.csv,150,725,33,300,True,3,train,2
+1393,Group 1.csv,150,725,336,300,False,3,train,3
+1394,Group 1.csv,150,725,273,300,False,1,train,3
+1395,Group 1.csv,150,725,98,300,True,3,train,3
+1396,Group 1.csv,150,725,278,300,True,3,train,2
+1397,Group 1.csv,150,725,164,300,True,1,train,2
+1398,Group 1.csv,150,725,12,300,True,1,train,2
+1399,Group 1.csv,150,725,105,300,True,1,train,3
+1400,Group 1.csv,150,725,268,300,True,2,train,2
+1401,Group 1.csv,150,725,201,300,False,1,train,1
+1402,Group 1.csv,150,725,140,300,True,2,train,3
+1403,Group 1.csv,150,725,72,300,False,2,train,1
+1404,Group 1.csv,150,725,198,300,True,1,train,2
+1405,Group 1.csv,150,725,3,300,False,3,train,1
+1406,Group 1.csv,150,725,162,300,False,3,train,1
+1407,Group 1.csv,150,725,324,300,False,2,train,3
+1408,Group 1.csv,150,725,363,300,False,2,train,2
+1409,Group 1.csv,150,725,257,300,True,3,train,3
+1410,Group 1.csv,150,725,111,300,True,3,train,3
+1411,Group 1.csv,150,725,241,300,True,3,train,3
+1412,Group 1.csv,150,725,141,300,False,1,train,1
+1413,Group 1.csv,150,725,382,300,True,1,train,2
+1414,Group 1.csv,150,725,298,300,False,3,train,3
+1415,Group 1.csv,150,725,269,300,False,2,train,3
+1416,Group 1.csv,150,725,377,300,True,2,train,2
+1417,Group 1.csv,150,725,36,300,False,2,train,1
+1418,Group 1.csv,150,725,274,300,True,3,train,2
+1419,Group 1.csv,150,725,80,300,True,2,train,3
+1420,Group 1.csv,150,725,293,300,True,1,train,2
+1421,Group 1.csv,150,725,367,300,True,1,train,2
+1422,Group 1.csv,150,725,43,300,False,2,train,1
+1423,Group 1.csv,150,725,344,300,False,3,train,3
+1424,Group 1.csv,150,725,378,300,False,2,train,2
+1425,Group 1.csv,150,725,377,300,False,2,train,2
+1426,Group 1.csv,150,725,382,300,True,2,train,2
+1427,Group 1.csv,150,725,12,300,True,3,train,2
+1428,Group 1.csv,150,725,116,300,False,3,train,1
+1429,Group 1.csv,150,725,126,300,False,1,train,1
+1430,Group 1.csv,150,725,382,300,False,3,train,2
+1431,Group 1.csv,150,725,337,300,True,2,train,3
+1432,Group 1.csv,150,725,108,300,True,3,train,3
+1433,Group 1.csv,150,725,193,300,True,1,train,2
+1434,Group 1.csv,150,725,320,300,True,1,train,3
+1435,Group 1.csv,150,725,350,300,False,3,train,2
+1436,Group 1.csv,150,725,57,300,False,3,train,1
+1437,Group 1.csv,150,725,129,300,True,2,train,3
+1438,Group 1.csv,150,725,370,300,True,3,train,2
+1439,Group 1.csv,150,725,23,300,False,2,train,1
+1440,Group 1.csv,150,725,374,300,False,1,train,2
+1441,Group 1.csv,150,725,308,300,True,3,train,2
+1442,Group 1.csv,150,725,157,300,False,3,train,1
+1443,Group 1.csv,150,725,157,300,True,2,train,2
+1444,Group 1.csv,150,725,120,300,False,1,train,1
+1445,Group 1.csv,150,725,33,300,False,1,train,1
+1446,Group 1.csv,150,725,83,300,False,2,train,1
+1447,Group 1.csv,150,725,188,300,True,1,train,2
+1448,Group 1.csv,150,725,74,300,False,1,train,1
+1449,Group 1.csv,150,725,147,300,True,2,train,3
+1450,Group 1.csv,150,725,87,300,True,1,train,3
+1451,Group 1.csv,150,725,13,300,False,2,train,1
+1452,Group 1.csv,150,725,188,300,True,2,train,2
+1453,Group 1.csv,150,725,30,300,True,2,train,2
+1454,Group 1.csv,150,725,78,300,True,1,train,3
+1455,Group 1.csv,150,725,215,300,False,3,train,1
+1456,Group 1.csv,150,725,254,300,True,1,train,3
+1457,Group 1.csv,150,725,100,300,True,3,train,3
+1458,Group 1.csv,150,725,178,300,True,1,train,2
+1459,Group 1.csv,150,725,26,300,True,2,train,2
+1460,Group 1.csv,150,725,292,300,False,1,train,3
+1461,Group 1.csv,150,725,362,300,True,1,train,2
+1462,Group 1.csv,150,725,375,300,False,3,train,2
+1463,Group 1.csv,150,725,335,300,False,1,train,3
+1464,Group 1.csv,150,725,249,300,True,3,train,3
+1465,Group 1.csv,150,725,235,300,False,1,train,1
+1466,Group 1.csv,150,725,11,300,True,2,train,2
+1467,Group 1.csv,150,725,275,300,False,2,train,3
+1468,Group 1.csv,150,725,82,300,True,1,train,3
+1469,Group 1.csv,150,725,254,300,False,3,train,1
+1470,Group 1.csv,150,725,240,300,False,2,train,1
+1471,Group 1.csv,150,725,161,300,True,3,train,2
+1472,Group 1.csv,150,725,290,300,False,1,train,3
+1473,Group 1.csv,150,725,209,300,False,3,train,1
+1474,Group 1.csv,150,725,72,300,True,3,train,3
+1475,Group 1.csv,150,725,340,300,False,1,train,3
+1476,Group 1.csv,150,725,58,300,False,1,train,1
+1477,Group 1.csv,150,725,417,300,False,2,train,1
+1478,Group 1.csv,150,725,93,300,False,1,train,1
+1479,Group 1.csv,150,725,312,300,True,3,train,2
+1480,Group 1.csv,150,725,109,300,False,3,train,1
+1481,Group 1.csv,150,725,422,300,True,3,train,1
+1482,Group 1.csv,150,725,22,300,True,3,train,2
+1483,Group 1.csv,150,725,157,300,True,3,train,2
+1484,Group 1.csv,150,725,250,300,True,3,train,3
+1485,Group 1.csv,150,725,393,300,False,1,train,3
+1486,Group 1.csv,150,725,401,300,True,2,train,1
+1487,Group 1.csv,150,725,361,300,False,3,train,2
+1488,Group 1.csv,150,725,384,300,False,2,train,2
+1489,Group 1.csv,150,725,199,300,True,3,train,3
+1490,Group 1.csv,150,725,403,300,False,2,train,3
+1491,Group 1.csv,150,725,308,300,False,1,train,3
+1492,Group 1.csv,150,725,150,300,False,3,train,1
+1493,Group 1.csv,150,725,353,300,True,1,train,3
+1494,Group 1.csv,150,725,1,300,True,3,train,2
+1495,Group 1.csv,150,725,394,300,False,3,train,3
+1496,Group 1.csv,150,725,301,300,False,1,train,3
+1497,Group 1.csv,150,725,64,300,True,1,train,3
+1498,Group 1.csv,150,725,214,300,False,3,train,1
+1499,Group 1.csv,150,725,398,300,True,2,train,1
+1500,Group 1.csv,150,725,63,300,True,3,train,3
+1501,Group 1.csv,150,725,187,300,True,2,train,2
+1502,Group 1.csv,150,725,93,300,False,1,train,1
+1503,Group 1.csv,150,725,37,300,False,2,train,1
+1504,Group 1.csv,150,725,304,300,True,2,train,2
+1505,Group 1.csv,150,725,313,300,False,3,train,3
+1506,Group 1.csv,150,725,245,300,False,1,train,1
+1507,Group 1.csv,150,725,106,300,False,1,train,1
+1508,Group 1.csv,150,725,363,300,True,3,train,2
+1509,Group 1.csv,150,725,157,300,False,2,train,1
+1510,Group 1.csv,150,725,272,300,False,3,train,3
+1511,Group 1.csv,150,725,387,300,False,2,train,2
+1512,Group 1.csv,150,725,198,300,True,3,train,2
+1513,Group 1.csv,150,725,63,300,False,3,train,1
+1514,Group 1.csv,150,725,411,300,True,1,train,1
+1515,Group 1.csv,150,725,111,300,False,3,train,1
+1516,Group 1.csv,150,725,124,300,True,2,train,3
+1517,Group 1.csv,150,725,389,300,False,2,train,2
+1518,Group 1.csv,150,725,360,300,True,2,train,3
+1519,Group 1.csv,150,725,318,300,True,3,train,3
+1520,Group 1.csv,150,725,45,300,True,2,train,2
+1521,Group 1.csv,150,725,82,300,False,1,train,1
+1522,Group 1.csv,150,725,389,300,False,3,train,2
+1523,Group 1.csv,150,725,128,300,True,2,train,3
+1524,Group 1.csv,150,725,390,300,False,1,train,2
+1525,Group 1.csv,150,725,306,300,False,3,train,3
+1526,Group 1.csv,150,725,300,300,False,2,train,3
+1527,Group 1.csv,150,725,161,300,True,1,train,2
+1528,Group 1.csv,150,725,127,300,False,2,train,1
+1529,Group 1.csv,150,725,48,300,True,1,train,2
+1530,Group 1.csv,150,725,381,300,True,2,train,2
+1531,Group 1.csv,150,725,120,300,False,2,train,1
+1532,Group 1.csv,150,725,175,300,True,1,train,2
+1533,Group 1.csv,150,725,191,300,False,1,train,1
+1534,Group 1.csv,150,725,52,300,True,3,train,3
+1535,Group 1.csv,150,725,368,300,False,1,train,2
+1536,Group 1.csv,150,725,189,300,False,1,train,1
+1537,Group 1.csv,150,725,167,300,False,1,train,1
+1538,Group 1.csv,150,725,269,300,False,1,train,3
+1539,Group 1.csv,150,725,179,300,True,3,train,2
+1540,Group 1.csv,150,725,117,300,True,3,train,3
+1541,Group 1.csv,150,725,42,300,False,1,train,1
+1542,Group 1.csv,150,725,88,300,True,2,train,3
+1543,Group 1.csv,150,725,411,300,True,2,train,1
+1544,Group 1.csv,150,725,2,300,True,1,train,2
+1545,Group 1.csv,150,725,379,300,False,1,train,2
+1546,Group 1.csv,150,725,65,300,True,1,train,3
+1547,Group 1.csv,150,725,237,300,False,3,train,1
+1548,Group 1.csv,150,725,353,300,True,3,train,3
+1549,Group 1.csv,150,725,32,300,True,3,train,2
+1550,Group 1.csv,150,725,78,300,True,3,train,3
+1551,Group 1.csv,150,725,4,300,False,2,train,1
+1552,Group 1.csv,150,725,239,300,False,1,train,1
+1553,Group 1.csv,150,725,119,300,False,3,train,1
+1554,Group 1.csv,150,725,261,300,True,1,train,3
+1555,Group 1.csv,150,725,306,300,True,1,train,2
+1556,Group 1.csv,150,725,259,300,True,2,train,3
+1557,Group 1.csv,150,725,320,300,False,3,train,3
+1558,Group 1.csv,150,725,184,300,True,2,train,2
+1559,Group 1.csv,150,725,232,300,False,3,train,1
+1560,Group 1.csv,150,725,301,300,True,1,train,2
+1561,Group 1.csv,150,725,259,300,True,3,train,3
+1562,Group 1.csv,150,725,159,300,True,1,train,2
+1563,Group 1.csv,150,725,231,300,True,1,train,3
+1564,Group 1.csv,150,725,47,300,True,1,train,2
+1565,Group 1.csv,150,725,54,300,True,1,train,3
+1566,Group 1.csv,150,725,25,300,False,1,train,1
+1567,Group 1.csv,150,725,251,300,True,3,train,3
+1568,Group 1.csv,150,725,315,300,False,2,train,3
+1569,Group 1.csv,150,725,22,300,False,3,train,1
+1570,Group 1.csv,150,725,391,300,False,2,train,2
+1571,Group 1.csv,150,725,212,300,True,2,train,3
+1572,Group 1.csv,150,725,6,300,False,2,train,1
+1573,Group 1.csv,150,725,164,300,True,3,train,2
+1574,Group 1.csv,150,725,26,300,True,3,train,2
+1575,Group 1.csv,150,725,10,300,True,1,train,2
+1576,Group 1.csv,150,725,101,300,True,1,train,3
+1577,Group 1.csv,150,725,298,300,False,3,train,3
+1578,Group 1.csv,150,725,127,300,True,3,train,3
+1579,Group 1.csv,150,725,259,300,False,1,train,1
+1580,Group 1.csv,150,725,28,300,False,2,train,1
+1581,Group 1.csv,150,725,75,300,True,1,train,3
+1582,Group 1.csv,150,725,401,300,False,2,train,3
+1583,Group 1.csv,150,725,408,300,True,1,train,1
+1584,Group 1.csv,150,725,109,300,True,1,train,3
+1585,Group 1.csv,150,725,417,300,True,1,train,1
+1586,Group 1.csv,150,725,312,300,True,3,train,2
+1587,Group 1.csv,150,725,11,300,False,1,train,1
+1588,Group 1.csv,150,725,322,300,False,2,train,3
+1589,Group 1.csv,150,725,377,300,True,1,train,2
+1590,Group 1.csv,150,725,266,300,False,1,train,3
+1591,Group 1.csv,150,725,416,300,False,2,train,1
+1592,Group 1.csv,150,725,227,300,True,2,train,3
+1593,Group 1.csv,150,725,397,300,False,2,train,3
+1594,Group 1.csv,150,725,304,300,True,2,train,2
+1595,Group 1.csv,150,725,165,300,True,3,train,2
+1596,Group 1.csv,150,725,196,300,False,1,train,1
+1597,Group 1.csv,150,725,91,300,True,3,train,3
+1598,Group 1.csv,150,725,153,300,True,2,train,2
+1599,Group 1.csv,150,725,358,300,True,2,train,3
+1600,Group 1.csv,150,725,138,300,False,3,train,1
+1601,Group 1.csv,150,725,34,300,False,1,train,1
+1602,Group 1.csv,150,725,58,300,True,3,train,3
+1603,Group 1.csv,150,725,295,300,False,3,train,3
+1604,Group 1.csv,150,725,409,300,True,2,train,1
+1605,Group 1.csv,150,725,102,300,False,2,train,1
+1606,Group 1.csv,150,725,423,300,True,3,train,1
+1607,Group 1.csv,150,725,107,300,False,2,train,1
+1608,Group 1.csv,150,725,95,300,True,1,train,3
+1609,Group 1.csv,150,725,365,300,False,1,train,2
+1610,Group 1.csv,150,725,167,300,False,1,train,1
+1611,Group 1.csv,150,725,394,300,True,1,train,1
+1612,Group 1.csv,150,725,158,300,False,3,train,1
+1613,Group 1.csv,150,725,124,300,True,3,train,3
+1614,Group 1.csv,150,725,291,300,False,2,train,3
+1615,Group 1.csv,150,725,414,300,False,1,train,1
+1616,Group 1.csv,150,725,367,300,True,2,train,2
+1617,Group 1.csv,150,725,290,300,True,1,train,2
+1618,Group 1.csv,150,725,324,300,False,3,train,3
+1619,Group 1.csv,150,725,16,300,False,1,train,1
+1620,Group 1.csv,150,725,72,300,True,3,train,3
+1621,Group 1.csv,150,725,190,300,True,1,train,2
+1622,Group 1.csv,150,725,191,300,True,1,train,2
+1623,Group 1.csv,150,725,183,300,False,3,train,1
+1624,Group 1.csv,150,725,124,300,False,1,train,1
+1625,Group 1.csv,150,725,286,300,True,3,train,2
+1626,Group 1.csv,150,725,92,300,True,2,train,3
+1627,Group 1.csv,150,725,157,300,True,1,train,2
+1628,Group 1.csv,150,725,53,300,False,2,train,1
+1629,Group 1.csv,150,725,285,300,True,2,train,2
+1630,Group 1.csv,150,725,225,300,False,2,train,1
+1631,Group 1.csv,150,725,19,300,True,1,train,2
+1632,Group 1.csv,150,725,160,300,True,3,train,2
+1633,Group 1.csv,150,725,300,300,True,2,train,2
+1634,Group 1.csv,150,725,151,300,True,1,train,3
+1635,Group 1.csv,150,725,133,300,False,2,train,1
+1636,Group 1.csv,150,725,284,300,True,2,train,2
+1637,Group 1.csv,150,725,26,300,True,2,train,2
+1638,Group 1.csv,150,725,85,300,False,2,train,1
+1639,Group 1.csv,150,725,114,300,True,3,train,3
+1640,Group 1.csv,150,725,25,300,False,1,train,1
+1641,Group 1.csv,150,725,412,300,False,2,train,1
+1642,Group 1.csv,150,725,375,300,False,3,train,2
+1643,Group 1.csv,150,725,364,300,False,3,train,2
+1644,Group 1.csv,150,725,79,300,True,3,train,3
+1645,Group 1.csv,150,725,316,300,True,2,train,2
+1646,Group 1.csv,150,725,82,300,False,2,train,1
+1647,Group 1.csv,150,725,165,300,False,1,train,1
+1648,Group 1.csv,150,725,423,300,True,2,train,1
+1649,Group 1.csv,150,725,313,300,False,1,train,3
+1650,Group 1.csv,150,725,341,300,False,2,train,3
+1651,Group 1.csv,150,725,284,300,True,2,train,2
+1652,Group 1.csv,150,725,228,300,True,3,train,3
+1653,Group 1.csv,150,725,261,300,False,3,train,3
+1654,Group 1.csv,150,725,336,300,False,3,train,3
+1655,Group 1.csv,150,725,416,300,True,3,train,1
+1656,Group 1.csv,150,725,410,300,False,1,train,1
+1657,Group 1.csv,150,725,48,300,True,3,train,2
+1658,Group 1.csv,150,725,147,300,False,3,train,1
+1659,Group 1.csv,150,725,116,300,True,3,train,3
+1660,Group 1.csv,150,725,323,300,False,2,train,3
+1661,Group 1.csv,150,725,313,300,True,2,train,2
+1662,Group 1.csv,150,725,312,300,True,2,train,2
+1663,Group 1.csv,150,725,341,300,True,1,train,3
+1664,Group 1.csv,150,725,232,300,True,1,train,3
+1665,Group 1.csv,150,725,410,300,False,2,train,1
+1666,Group 1.csv,150,725,126,300,False,1,train,1
+1667,Group 1.csv,150,725,146,300,False,1,train,1
+1668,Group 1.csv,150,725,1,300,False,3,train,1
+1669,Group 1.csv,150,725,278,300,True,2,train,2
+1670,Group 1.csv,150,725,274,300,True,2,train,2
+1671,Group 1.csv,150,725,344,300,False,1,train,3
+1672,Group 1.csv,150,725,142,300,False,1,train,1
+1673,Group 1.csv,150,725,229,300,True,1,train,3
+1674,Group 1.csv,150,725,408,300,True,3,train,1
+1675,Group 1.csv,150,725,19,300,False,1,train,1
+1676,Group 1.csv,150,725,88,300,False,1,train,1
+1677,Group 1.csv,150,725,342,300,False,1,train,3
+1678,Group 1.csv,150,725,267,300,True,3,train,2
+1679,Group 1.csv,150,725,169,300,False,2,train,1
+1680,Group 1.csv,150,725,177,300,True,2,train,2
+1681,Group 1.csv,150,725,327,300,False,3,train,3
+1682,Group 1.csv,150,725,328,300,True,2,train,3
+1683,Group 1.csv,150,725,232,300,False,3,train,1
+1684,Group 1.csv,150,725,97,300,False,1,train,1
+1685,Group 1.csv,150,725,338,300,False,3,train,3
+1686,Group 1.csv,150,725,61,300,False,2,train,1
+1687,Group 1.csv,150,725,261,300,False,2,train,3
+1688,Group 1.csv,150,725,123,300,True,3,train,3
+1689,Group 1.csv,150,725,164,300,True,1,train,2
+1690,Group 1.csv,150,725,259,300,False,3,train,1
+1691,Group 1.csv,150,725,146,300,False,2,train,1
+1692,Group 1.csv,150,725,225,300,False,2,train,1
+1693,Group 1.csv,150,725,72,300,False,2,train,1
+1694,Group 1.csv,150,725,64,300,True,1,train,3
+1695,Group 1.csv,150,725,219,300,True,3,train,3
+1696,Group 1.csv,150,725,217,300,True,1,train,3
+1697,Group 1.csv,150,725,54,300,True,3,train,3
+1698,Group 1.csv,150,725,319,300,True,3,train,3
+1699,Group 1.csv,150,725,206,300,True,1,train,3
+1700,Group 1.csv,150,725,302,300,True,1,train,2
+1701,Group 1.csv,150,725,273,300,False,2,train,3
+1702,Group 1.csv,150,725,65,300,False,1,train,1
+1703,Group 1.csv,150,725,58,300,False,2,train,1
+1704,Group 1.csv,150,725,71,300,True,2,train,3
+1705,Group 1.csv,150,725,324,300,False,3,train,3
+1706,Group 1.csv,150,725,210,300,False,2,train,1
+1707,Group 1.csv,150,725,409,300,True,3,train,1
+1708,Group 1.csv,150,725,67,300,False,3,train,1
+1709,Group 1.csv,150,725,331,300,False,2,train,3
+1710,Group 1.csv,150,725,202,300,False,3,train,1
+1711,Group 1.csv,150,725,234,300,False,1,train,1
+1712,Group 1.csv,150,725,8,300,True,1,train,2
+1713,Group 1.csv,150,725,347,300,False,3,train,2
+1714,Group 1.csv,150,725,54,300,True,2,train,3
+1715,Group 1.csv,150,725,116,300,False,2,train,1
+1716,Group 1.csv,150,725,62,300,False,3,train,1
+1717,Group 1.csv,150,725,38,300,True,2,train,2
+1718,Group 1.csv,150,725,312,300,False,2,train,3
+1719,Group 1.csv,150,725,254,300,False,1,train,1
+1720,Group 1.csv,150,725,352,300,True,3,train,3
+1721,Group 1.csv,150,725,400,300,False,1,train,3
+1722,Group 1.csv,150,725,198,300,False,1,train,1
+1723,Group 1.csv,150,725,48,300,False,2,train,1
+1724,Group 1.csv,150,725,290,300,True,2,train,2
+1725,Group 1.csv,150,725,178,300,False,3,train,1
+1726,Group 1.csv,150,725,274,300,True,1,train,2
+1727,Group 1.csv,150,725,250,300,False,1,train,1
+1728,Group 1.csv,150,725,313,300,False,1,train,3
+1729,Group 1.csv,150,725,6,300,False,3,train,1
+1730,Group 1.csv,150,725,400,300,False,2,train,3
+1731,Group 1.csv,150,725,119,300,True,1,train,3
+1732,Group 1.csv,150,725,285,300,False,3,train,3
+1733,Group 1.csv,150,725,338,300,True,3,train,3
+1734,Group 1.csv,150,725,221,300,True,2,train,3
+1735,Group 1.csv,150,725,374,300,False,2,train,2
+1736,Group 1.csv,150,725,216,300,False,1,train,1
+1737,Group 1.csv,150,725,221,300,False,1,train,1
+1738,Group 1.csv,150,725,222,300,False,1,train,1
+1739,Group 1.csv,150,725,367,300,False,3,train,2
+1740,Group 1.csv,150,725,7,300,True,2,train,2
+1741,Group 1.csv,150,725,367,300,True,1,train,2
+1742,Group 1.csv,150,725,253,300,True,2,train,3
+1743,Group 1.csv,150,725,300,300,True,3,train,2
+1744,Group 1.csv,150,725,398,300,False,3,train,3
+1745,Group 1.csv,150,725,326,300,False,2,train,3
+1746,Group 1.csv,150,725,403,300,True,2,train,1
+1747,Group 1.csv,150,725,64,300,False,3,train,1
+1748,Group 1.csv,150,725,77,300,True,2,train,3
+1749,Group 1.csv,150,725,199,300,True,3,train,3
+1750,Group 1.csv,150,725,364,300,False,2,train,2
+1751,Group 1.csv,150,725,408,300,False,3,train,1
+1752,Group 1.csv,150,725,58,300,False,2,train,1
+1753,Group 1.csv,150,725,403,300,False,2,train,3
+1754,Group 1.csv,150,725,388,300,False,1,train,2
+1755,Group 1.csv,150,725,373,300,False,1,train,2
+1756,Group 1.csv,150,725,153,300,False,1,train,1
+1757,Group 1.csv,150,725,404,300,False,3,train,3
+1758,Group 1.csv,150,725,367,300,False,2,train,2
+1759,Group 1.csv,150,725,95,300,False,2,train,1
+1760,Group 1.csv,150,725,371,300,True,2,train,2
+1761,Group 1.csv,150,725,253,300,False,1,train,1
+1762,Group 1.csv,150,725,75,300,False,1,train,1
+1763,Group 1.csv,150,725,7,300,False,3,train,1
+1764,Group 1.csv,150,725,191,300,True,2,train,2
+1765,Group 1.csv,150,725,301,300,False,3,train,3
+1766,Group 1.csv,150,725,13,300,True,3,train,2
+1767,Group 1.csv,150,725,418,300,False,1,train,1
+1768,Group 1.csv,150,725,113,300,True,3,train,3
+1769,Group 1.csv,150,725,166,300,True,2,train,2
+1770,Group 1.csv,150,725,68,300,True,3,train,3
+1771,Group 1.csv,150,725,408,300,True,2,train,1
+1772,Group 1.csv,150,725,323,300,False,1,train,3
+1773,Group 1.csv,150,725,155,300,False,3,train,1
+1774,Group 1.csv,150,725,62,300,False,3,train,1
+1775,Group 1.csv,150,725,391,300,True,3,train,1
+1776,Group 1.csv,150,725,38,300,False,3,train,1
+1777,Group 1.csv,150,725,292,300,False,1,train,3
+1778,Group 1.csv,150,725,236,300,False,1,train,1
+1779,Group 1.csv,150,725,67,300,True,2,train,3
+1780,Group 1.csv,150,725,216,300,True,1,train,3
+1781,Group 1.csv,150,725,285,300,True,3,train,2
+1782,Group 1.csv,150,725,197,300,True,3,train,2
+1783,Group 1.csv,150,725,2,300,True,1,train,2
+1784,Group 1.csv,150,725,375,300,True,3,train,2
+1785,Group 1.csv,150,725,356,300,True,2,train,3
+1786,Group 1.csv,150,725,114,300,False,1,train,1
+1787,Group 1.csv,150,725,56,300,True,2,train,3
+1788,Group 1.csv,150,725,208,300,True,1,train,3
+1789,Group 1.csv,150,725,108,300,True,2,train,3
+1790,Group 1.csv,150,725,291,300,True,2,train,2
+1791,Group 1.csv,150,725,94,300,True,1,train,3
+1792,Group 1.csv,150,725,107,300,True,3,train,3
+1793,Group 1.csv,150,725,100,300,False,1,train,1
+1794,Group 1.csv,150,725,282,300,True,2,train,2
+1795,Group 1.csv,150,725,244,300,False,2,train,1
+1796,Group 1.csv,150,725,415,300,True,3,train,1
+1797,Group 1.csv,150,725,344,300,False,2,train,3
+1798,Group 1.csv,150,725,325,300,True,2,train,3
+1799,Group 1.csv,150,725,348,300,False,2,train,2
+1800,Group 1.csv,150,725,212,300,False,1,val,1
+1801,Group 1.csv,150,725,212,300,False,1,val,1
+1802,Group 1.csv,150,725,212,300,False,1,val,1
+1803,Group 1.csv,150,725,212,300,False,2,val,1
+1804,Group 1.csv,150,725,212,300,False,1,val,1
+1805,Group 1.csv,150,725,212,300,False,1,val,1
+1806,Group 1.csv,150,725,212,300,False,3,val,1
+1807,Group 1.csv,150,725,212,300,False,2,val,1
+1808,Group 1.csv,150,725,212,300,False,1,val,1
+1809,Group 1.csv,150,725,212,300,False,3,val,1
+1810,Group 1.csv,150,725,212,300,False,1,val,1
+1811,Group 1.csv,150,725,212,300,False,2,val,1
+1812,Group 1.csv,150,725,212,300,False,3,val,1
+1813,Group 1.csv,150,725,212,300,False,2,val,1
+1814,Group 1.csv,150,725,212,300,False,3,val,1
+1815,Group 1.csv,150,725,212,300,False,2,val,1
+1816,Group 1.csv,150,725,212,300,False,3,val,1
+1817,Group 1.csv,150,725,212,300,False,2,val,1
+1818,Group 1.csv,150,725,212,300,False,3,val,1
+1819,Group 1.csv,150,725,212,300,False,3,val,1
+1820,Group 1.csv,150,725,212,300,False,2,val,1
+1821,Group 1.csv,150,725,212,300,False,1,val,1
+1822,Group 1.csv,150,725,212,300,False,3,val,1
+1823,Group 1.csv,150,725,212,300,False,1,val,1
+1824,Group 1.csv,150,725,212,300,False,1,val,1
+1825,Group 1.csv,150,725,212,300,False,1,val,1
+1826,Group 1.csv,150,725,212,300,False,1,val,1
+1827,Group 1.csv,150,725,212,300,False,1,val,1
+1828,Group 1.csv,150,725,212,300,False,1,val,1
+1829,Group 1.csv,150,725,212,300,False,2,val,1
+1830,Group 1.csv,150,725,212,300,False,2,val,1
+1831,Group 1.csv,150,725,212,300,False,3,val,1
+1832,Group 1.csv,150,725,212,300,False,1,val,1
+1833,Group 1.csv,150,725,212,300,False,3,val,1
+1834,Group 1.csv,150,725,212,300,False,3,val,1
+1835,Group 1.csv,150,725,212,300,False,3,val,1
+1836,Group 1.csv,150,725,212,300,False,3,val,1
+1837,Group 1.csv,150,725,212,300,False,3,val,1
+1838,Group 1.csv,150,725,212,300,False,1,val,1
+1839,Group 1.csv,150,725,212,300,False,3,val,1
+1840,Group 1.csv,150,725,212,300,False,2,val,1
+1841,Group 1.csv,150,725,212,300,False,3,val,1
+1842,Group 1.csv,150,725,212,300,False,2,val,1
+1843,Group 1.csv,150,725,212,300,False,2,val,1
+1844,Group 1.csv,150,725,212,300,False,3,val,1
+1845,Group 1.csv,150,725,212,300,False,2,val,1
+1846,Group 1.csv,150,725,212,300,False,2,val,1
+1847,Group 1.csv,150,725,212,300,False,2,val,1
+1848,Group 1.csv,150,725,212,300,False,1,val,1
+1849,Group 1.csv,150,725,212,300,False,1,val,1
+1850,Group 1.csv,150,725,212,300,False,1,val,1
+1851,Group 1.csv,150,725,212,300,False,2,val,1
+1852,Group 1.csv,150,725,212,300,False,3,val,1
+1853,Group 1.csv,150,725,212,300,False,2,val,1
+1854,Group 1.csv,150,725,212,300,False,3,val,1
+1855,Group 1.csv,150,725,212,300,False,2,val,1
+1856,Group 1.csv,150,725,212,300,False,1,val,1
+1857,Group 1.csv,150,725,212,300,False,2,val,1
+1858,Group 1.csv,150,725,212,300,False,3,val,1
+1859,Group 1.csv,150,725,212,300,False,2,val,1
+1860,Group 1.csv,150,725,212,300,False,3,test,1
+1861,Group 1.csv,150,725,212,300,False,1,test,1
+1862,Group 1.csv,150,725,212,300,False,1,test,1
+1863,Group 1.csv,150,725,212,300,False,1,test,1
+1864,Group 1.csv,150,725,212,300,False,1,test,1
+1865,Group 1.csv,150,725,212,300,False,3,test,1
+1866,Group 1.csv,150,725,212,300,False,2,test,1
+1867,Group 1.csv,150,725,212,300,False,1,test,1
+1868,Group 1.csv,150,725,212,300,False,1,test,1
+1869,Group 1.csv,150,725,212,300,False,1,test,1
+1870,Group 1.csv,150,725,212,300,False,2,test,1
+1871,Group 1.csv,150,725,212,300,False,2,test,1
+1872,Group 1.csv,150,725,212,300,False,3,test,1
+1873,Group 1.csv,150,725,212,300,False,3,test,1
+1874,Group 1.csv,150,725,212,300,False,3,test,1
+1875,Group 1.csv,150,725,212,300,False,1,test,1
+1876,Group 1.csv,150,725,212,300,False,2,test,1
+1877,Group 1.csv,150,725,212,300,False,2,test,1
+1878,Group 1.csv,150,725,212,300,False,2,test,1
+1879,Group 1.csv,150,725,212,300,False,2,test,1
+1880,Group 1.csv,150,725,212,300,False,1,test,1
+1881,Group 1.csv,150,725,212,300,False,2,test,1
+1882,Group 1.csv,150,725,212,300,False,1,test,1
+1883,Group 1.csv,150,725,212,300,False,3,test,1
+1884,Group 1.csv,150,725,212,300,False,3,test,1
+1885,Group 1.csv,150,725,212,300,False,3,test,1
+1886,Group 1.csv,150,725,212,300,False,3,test,1
+1887,Group 1.csv,150,725,212,300,False,3,test,1
+1888,Group 1.csv,150,725,212,300,False,3,test,1
+1889,Group 1.csv,150,725,212,300,False,3,test,1
+1890,Group 1.csv,150,725,212,300,False,2,test,1
+1891,Group 1.csv,150,725,212,300,False,1,test,1
+1892,Group 1.csv,150,725,212,300,False,2,test,1
+1893,Group 1.csv,150,725,212,300,False,2,test,1
+1894,Group 1.csv,150,725,212,300,False,2,test,1
+1895,Group 1.csv,150,725,212,300,False,3,test,1
+1896,Group 1.csv,150,725,212,300,False,3,test,1
+1897,Group 1.csv,150,725,212,300,False,2,test,1
+1898,Group 1.csv,150,725,212,300,False,2,test,1
+1899,Group 1.csv,150,725,212,300,False,1,test,1
+1900,Group 1.csv,150,725,212,300,False,1,test,1
+1901,Group 1.csv,150,725,212,300,False,3,test,1
+1902,Group 1.csv,150,725,212,300,False,1,test,1
+1903,Group 1.csv,150,725,212,300,False,2,test,1
+1904,Group 1.csv,150,725,212,300,False,3,test,1
+1905,Group 1.csv,150,725,212,300,False,2,test,1
+1906,Group 1.csv,150,725,212,300,False,2,test,1
+1907,Group 1.csv,150,725,212,300,False,1,test,1
+1908,Group 1.csv,150,725,212,300,False,3,test,1
+1909,Group 1.csv,150,725,212,300,False,3,test,1
+1910,Group 1.csv,150,725,212,300,False,2,test,1
+1911,Group 1.csv,150,725,212,300,False,1,test,1
+1912,Group 1.csv,150,725,212,300,False,3,test,1
+1913,Group 1.csv,150,725,212,300,False,2,test,1
+1914,Group 1.csv,150,725,212,300,False,3,test,1
+1915,Group 1.csv,150,725,212,300,False,1,test,1
+1916,Group 1.csv,150,725,212,300,False,1,test,1
+1917,Group 1.csv,150,725,212,300,False,2,test,1
+1918,Group 1.csv,150,725,212,300,False,1,test,1
+1919,Group 1.csv,150,725,212,300,False,1,test,1

@@ -345,9 +345,11 @@ public class ResultDAO {
         //The data to be written to the annotations CSV.
         List<String[]> dataLines = new ArrayList<>();
         dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
-        dataLines.add(new String[]{res.getGroup_name(), "1", "none", "", ""});
-        dataLines.add(new String[]{res.getGroup_name(), "2", "none", "", ""});
-        dataLines.add(new String[]{res.getGroup_name(), "3", "none", "", ""});
+        for (int i = 0; i < 100; i++) {
+            dataLines.add(new String[]{res.getGroup_name(), "1", "none", "", ""});
+            dataLines.add(new String[]{res.getGroup_name(), "2", "left", "60", ""});
+            dataLines.add(new String[]{res.getGroup_name(), "3", "right", "60", ""});
+        }
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             dataLines.stream()
                     .map(this::convertToCSV)

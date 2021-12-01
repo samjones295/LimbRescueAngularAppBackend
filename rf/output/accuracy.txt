@@ -1,1 +1,1 @@
-train / test accuracy: 1.00 / 0.58
+train / test accuracy: 0.65 / 0.33
