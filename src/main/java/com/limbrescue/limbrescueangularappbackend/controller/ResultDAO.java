@@ -346,9 +346,24 @@ public class ResultDAO {
         List<String[]> dataLines = new ArrayList<>();
         dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
         for (int i = 0; i < 100; i++) {
-            dataLines.add(new String[]{res.getGroup_name(), "1", "none", "", ""});
-            dataLines.add(new String[]{res.getGroup_name(), "2", "left", "60", ""});
-            dataLines.add(new String[]{res.getGroup_name(), "3", "right", "60", ""});
+            Random generator = new Random();
+            int arm = 1 + generator.nextInt(3);
+            String lymphedema = "";
+            switch (arm) {
+                case 1:
+                    lymphedema = "none";
+                    break;
+                case 2:
+                    lymphedema = "left";
+                    break;
+                case 3:
+                    lymphedema = "right";
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+            int bp = generator.nextInt(101);
+            dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
         }
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             dataLines.stream()
