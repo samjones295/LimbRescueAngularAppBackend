@@ -363,8 +363,13 @@ public class ResultDAO {
                 default:
                     throw new IllegalArgumentException();
             }
-            int bp = generator.nextInt(101);
-            dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
+            if (arm != 1) {
+                int bp = generator.nextInt(101);
+                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), "", ""});
+            }
+            else {
+                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, "", ""});
+            }
         }
         //Writes the data to the corresponding CSV.
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
