@@ -346,6 +346,7 @@ public class ResultDAO {
         List<String[]> dataLines = new ArrayList<>();
         dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
         for (int i = 0; i < 100; i++) {
+            //Randomness to avoid bias
             Random generator = new Random();
             int arm = 1 + generator.nextInt(3);
             String lymphedema = "";
@@ -365,6 +366,7 @@ public class ResultDAO {
             int bp = generator.nextInt(101);
             dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
         }
+        //Writes the data to the corresponding CSV.
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             dataLines.stream()
                     .map(this::convertToCSV)
