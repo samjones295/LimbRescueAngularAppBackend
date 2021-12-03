@@ -1,731 +1,641 @@
 ,file,drop,pre_length,post_start,post_length,switch,label,dataset,prediction
-0,Group 2.csv,150,1573,547,300,True,2,train,1
-1,Group 2.csv,150,1573,460,300,False,3,train,2
-2,Group 2.csv,150,1573,864,300,False,2,train,2
-3,Group 2.csv,150,1573,492,300,False,1,train,3
-4,Group 2.csv,150,1573,193,300,True,2,train,3
-5,Group 2.csv,150,1573,653,300,False,3,train,3
-6,Group 2.csv,150,1573,747,300,False,3,train,3
-7,Group 2.csv,150,1573,93,300,False,2,train,2
-8,Group 2.csv,150,1573,1075,300,True,3,train,2
-9,Group 2.csv,150,1573,115,300,True,3,train,3
-10,Group 2.csv,150,1573,1117,300,False,2,train,2
-11,Group 2.csv,150,1573,340,300,True,1,train,2
-12,Group 2.csv,150,1573,612,300,True,3,train,3
-13,Group 2.csv,150,1573,172,300,False,3,train,3
-14,Group 2.csv,150,1573,566,300,True,3,train,3
-15,Group 2.csv,150,1573,541,300,True,2,train,2
-16,Group 2.csv,150,1573,1156,300,True,2,train,3
-17,Group 2.csv,150,1573,1022,300,True,3,train,3
-18,Group 2.csv,150,1573,108,300,True,2,train,3
-19,Group 2.csv,150,1573,370,300,True,3,train,3
-20,Group 2.csv,150,1573,395,300,True,2,train,2
-21,Group 2.csv,150,1573,885,300,False,3,train,3
-22,Group 2.csv,150,1573,370,300,False,2,train,3
-23,Group 2.csv,150,1573,797,300,False,1,train,2
-24,Group 2.csv,150,1573,121,300,True,1,train,3
-25,Group 2.csv,150,1573,673,300,True,1,train,3
-26,Group 2.csv,150,1573,612,300,True,3,train,3
-27,Group 2.csv,150,1573,189,300,True,3,train,3
-28,Group 2.csv,150,1573,671,300,True,2,train,3
-29,Group 2.csv,150,1573,1268,300,True,3,train,3
-30,Group 2.csv,150,1573,406,300,False,1,train,3
-31,Group 2.csv,150,1573,848,300,False,2,train,2
-32,Group 2.csv,150,1573,1204,300,False,3,train,2
-33,Group 2.csv,150,1573,111,300,False,3,train,3
-34,Group 2.csv,150,1573,293,300,True,3,train,2
-35,Group 2.csv,150,1573,350,300,True,3,train,3
-36,Group 2.csv,150,1573,247,300,False,3,train,3
-37,Group 2.csv,150,1573,1077,300,False,1,train,3
-38,Group 2.csv,150,1573,88,300,False,1,train,2
-39,Group 2.csv,150,1573,1105,300,True,3,train,3
-40,Group 2.csv,150,1573,1178,300,True,3,train,2
-41,Group 2.csv,150,1573,1171,300,False,2,train,3
-42,Group 2.csv,150,1573,172,300,True,2,train,3
-43,Group 2.csv,150,1573,237,300,False,1,train,3
-44,Group 2.csv,150,1573,1065,300,False,2,train,2
-45,Group 2.csv,150,1573,830,300,True,2,train,2
-46,Group 2.csv,150,1573,1007,300,True,3,train,2
-47,Group 2.csv,150,1573,46,300,True,2,train,2
-48,Group 2.csv,150,1573,1111,300,False,3,train,3
-49,Group 2.csv,150,1573,525,300,False,1,train,1
-50,Group 2.csv,150,1573,920,300,False,3,train,3
-51,Group 2.csv,150,1573,55,300,False,1,train,2
-52,Group 2.csv,150,1573,1037,300,False,2,train,2
-53,Group 2.csv,150,1573,584,300,True,3,train,3
-54,Group 2.csv,150,1573,1069,300,True,2,train,2
-55,Group 2.csv,150,1573,66,300,False,3,train,3
-56,Group 2.csv,150,1573,920,300,True,2,train,2
-57,Group 2.csv,150,1573,1262,300,False,3,train,3
-58,Group 2.csv,150,1573,248,300,True,3,train,2
-59,Group 2.csv,150,1573,169,300,True,1,train,3
-60,Group 2.csv,150,1573,832,300,False,3,train,3
-61,Group 2.csv,150,1573,893,300,True,2,train,3
-62,Group 2.csv,150,1573,221,300,True,3,train,3
-63,Group 2.csv,150,1573,110,300,True,3,train,3
-64,Group 2.csv,150,1573,679,300,False,3,train,1
-65,Group 2.csv,150,1573,337,300,False,2,train,3
-66,Group 2.csv,150,1573,1061,300,True,1,train,2
-67,Group 2.csv,150,1573,1020,300,False,1,train,3
-68,Group 2.csv,150,1573,901,300,False,3,train,3
-69,Group 2.csv,150,1573,515,300,False,3,train,2
-70,Group 2.csv,150,1573,435,300,True,3,train,2
-71,Group 2.csv,150,1573,1130,300,False,1,train,2
-72,Group 2.csv,150,1573,523,300,False,3,train,1
-73,Group 2.csv,150,1573,185,300,False,3,train,3
-74,Group 2.csv,150,1573,73,300,False,3,train,3
-75,Group 2.csv,150,1573,1104,300,False,2,train,3
-76,Group 2.csv,150,1573,772,300,False,3,train,2
-77,Group 2.csv,150,1573,119,300,False,2,train,2
-78,Group 2.csv,150,1573,450,300,False,2,train,2
-79,Group 2.csv,150,1573,848,300,False,1,train,2
-80,Group 2.csv,150,1573,542,300,True,1,train,1
-81,Group 2.csv,150,1573,747,300,True,3,train,3
-82,Group 2.csv,150,1573,1112,300,True,3,train,3
-83,Group 2.csv,150,1573,131,300,False,2,train,3
-84,Group 2.csv,150,1573,939,300,True,2,train,3
-85,Group 2.csv,150,1573,1233,300,False,3,train,3
-86,Group 2.csv,150,1573,726,300,False,1,train,3
-87,Group 2.csv,150,1573,573,300,True,2,train,3
-88,Group 2.csv,150,1573,114,300,True,1,train,3
-89,Group 2.csv,150,1573,1121,300,True,3,train,3
-90,Group 2.csv,150,1573,649,300,True,1,train,2
-91,Group 2.csv,150,1573,42,300,False,1,train,3
-92,Group 2.csv,150,1573,238,300,False,2,train,3
-93,Group 2.csv,150,1573,663,300,False,2,train,2
-94,Group 2.csv,150,1573,855,300,True,1,train,2
-95,Group 2.csv,150,1573,394,300,True,2,train,3
-96,Group 2.csv,150,1573,226,300,True,3,train,3
-97,Group 2.csv,150,1573,143,300,True,3,train,3
-98,Group 2.csv,150,1573,886,300,True,3,train,3
-99,Group 2.csv,150,1573,957,300,True,3,train,3
-100,Group 2.csv,150,1573,1191,300,False,3,train,2
-101,Group 2.csv,150,1573,293,300,True,2,train,2
-102,Group 2.csv,150,1573,312,300,False,1,train,3
-103,Group 2.csv,150,1573,631,300,False,1,train,3
-104,Group 2.csv,150,1573,650,300,False,3,train,3
-105,Group 2.csv,150,1573,243,300,True,3,train,3
-106,Group 2.csv,150,1573,1133,300,False,3,train,3
-107,Group 2.csv,150,1573,1241,300,True,2,train,2
-108,Group 2.csv,150,1573,908,300,False,3,train,3
-109,Group 2.csv,150,1573,1041,300,True,2,train,3
-110,Group 2.csv,150,1573,369,300,False,3,train,3
-111,Group 2.csv,150,1573,88,300,True,3,train,2
-112,Group 2.csv,150,1573,593,300,True,2,train,2
-113,Group 2.csv,150,1573,760,300,True,3,train,3
-114,Group 2.csv,150,1573,947,300,True,1,train,3
-115,Group 2.csv,150,1573,1046,300,True,2,train,2
-116,Group 2.csv,150,1573,380,300,False,2,train,3
-117,Group 2.csv,150,1573,1011,300,True,3,train,3
-118,Group 2.csv,150,1573,1134,300,True,1,train,3
-119,Group 2.csv,150,1573,967,300,False,3,train,2
-120,Group 2.csv,150,1573,433,300,False,1,train,2
-121,Group 2.csv,150,1573,884,300,False,1,train,3
-122,Group 2.csv,150,1573,668,300,True,2,train,1
-123,Group 2.csv,150,1573,737,300,False,3,train,3
-124,Group 2.csv,150,1573,1046,300,True,3,train,2
-125,Group 2.csv,150,1573,932,300,False,3,train,2
-126,Group 2.csv,150,1573,296,300,False,2,train,2
-127,Group 2.csv,150,1573,849,300,True,3,train,2
-128,Group 2.csv,150,1573,718,300,True,2,train,2
-129,Group 2.csv,150,1573,231,300,False,3,train,2
-130,Group 2.csv,150,1573,437,300,True,1,train,3
-131,Group 2.csv,150,1573,476,300,False,2,train,2
-132,Group 2.csv,150,1573,181,300,False,2,train,3
-133,Group 2.csv,150,1573,598,300,False,2,train,2
-134,Group 2.csv,150,1573,955,300,True,1,train,3
-135,Group 2.csv,150,1573,922,300,False,1,train,3
-136,Group 2.csv,150,1573,447,300,False,3,train,2
-137,Group 2.csv,150,1573,348,300,False,3,train,3
-138,Group 2.csv,150,1573,171,300,False,3,train,3
-139,Group 2.csv,150,1573,397,300,False,2,train,3
-140,Group 2.csv,150,1573,1144,300,True,3,train,3
-141,Group 2.csv,150,1573,1170,300,False,1,train,3
-142,Group 2.csv,150,1573,481,300,True,3,train,2
-143,Group 2.csv,150,1573,771,300,True,1,train,3
-144,Group 2.csv,150,1573,498,300,True,1,train,1
-145,Group 2.csv,150,1573,111,300,False,3,train,3
-146,Group 2.csv,150,1573,973,300,True,1,train,3
-147,Group 2.csv,150,1573,136,300,False,2,train,3
-148,Group 2.csv,150,1573,608,300,False,2,train,2
-149,Group 2.csv,150,1573,364,300,True,3,train,2
-150,Group 2.csv,150,1573,531,300,True,2,train,2
-151,Group 2.csv,150,1573,441,300,True,3,train,2
-152,Group 2.csv,150,1573,309,300,False,3,train,3
-153,Group 2.csv,150,1573,594,300,True,2,train,2
-154,Group 2.csv,150,1573,594,300,False,1,train,1
-155,Group 2.csv,150,1573,783,300,False,2,train,2
-156,Group 2.csv,150,1573,437,300,True,3,train,3
-157,Group 2.csv,150,1573,911,300,True,3,train,2
-158,Group 2.csv,150,1573,987,300,True,1,train,2
-159,Group 2.csv,150,1573,1019,300,True,2,train,3
-160,Group 2.csv,150,1573,614,300,True,3,train,3
-161,Group 2.csv,150,1573,940,300,True,1,train,3
-162,Group 2.csv,150,1573,869,300,True,2,train,3
-163,Group 2.csv,150,1573,931,300,True,2,train,2
-164,Group 2.csv,150,1573,1252,300,True,3,train,3
-165,Group 2.csv,150,1573,312,300,True,2,train,2
-166,Group 2.csv,150,1573,718,300,False,3,train,3
-167,Group 2.csv,150,1573,28,300,True,2,train,2
-168,Group 2.csv,150,1573,640,300,False,3,train,2
-169,Group 2.csv,150,1573,116,300,False,1,train,2
-170,Group 2.csv,150,1573,594,300,False,1,train,1
-171,Group 2.csv,150,1573,102,300,False,2,train,3
-172,Group 2.csv,150,1573,1171,300,False,2,train,3
-173,Group 2.csv,150,1573,1179,300,True,1,train,2
-174,Group 2.csv,150,1573,1107,300,True,2,train,3
-175,Group 2.csv,150,1573,701,300,False,2,train,2
-176,Group 2.csv,150,1573,822,300,False,3,train,3
-177,Group 2.csv,150,1573,363,300,False,2,train,2
-178,Group 2.csv,150,1573,312,300,True,3,train,2
-179,Group 2.csv,150,1573,1167,300,False,2,train,3
-180,Group 2.csv,150,1573,357,300,False,2,train,3
-181,Group 2.csv,150,1573,750,300,False,3,train,3
-182,Group 2.csv,150,1573,1244,300,False,1,train,3
-183,Group 2.csv,150,1573,611,300,True,1,train,3
-184,Group 2.csv,150,1573,51,300,False,2,train,2
-185,Group 2.csv,150,1573,216,300,True,3,train,3
-186,Group 2.csv,150,1573,561,300,False,3,train,3
-187,Group 2.csv,150,1573,198,300,True,1,train,3
-188,Group 2.csv,150,1573,355,300,False,3,train,3
-189,Group 2.csv,150,1573,16,300,False,1,train,2
-190,Group 2.csv,150,1573,968,300,True,3,train,3
-191,Group 2.csv,150,1573,146,300,False,1,train,3
-192,Group 2.csv,150,1573,524,300,False,3,train,1
-193,Group 2.csv,150,1573,881,300,True,2,train,3
-194,Group 2.csv,150,1573,265,300,True,2,train,2
-195,Group 2.csv,150,1573,500,300,True,1,train,1
-196,Group 2.csv,150,1573,669,300,True,3,train,2
-197,Group 2.csv,150,1573,612,300,False,1,train,2
-198,Group 2.csv,150,1573,471,300,True,1,train,2
-199,Group 2.csv,150,1573,1221,300,True,1,train,3
-200,Group 2.csv,150,1573,635,300,True,3,train,3
-201,Group 2.csv,150,1573,429,300,False,3,train,2
-202,Group 2.csv,150,1573,835,300,False,2,train,3
-203,Group 2.csv,150,1573,74,300,True,3,train,2
-204,Group 2.csv,150,1573,8,300,False,2,train,3
-205,Group 2.csv,150,1573,36,300,False,3,train,3
-206,Group 2.csv,150,1573,738,300,True,2,train,2
-207,Group 2.csv,150,1573,63,300,True,2,train,2
-208,Group 2.csv,150,1573,908,300,True,2,train,3
-209,Group 2.csv,150,1573,261,300,False,2,train,2
-210,Group 2.csv,150,1573,852,300,True,3,train,2
-211,Group 2.csv,150,1573,761,300,True,3,train,3
-212,Group 2.csv,150,1573,952,300,False,1,train,2
-213,Group 2.csv,150,1573,1260,300,True,3,train,3
-214,Group 2.csv,150,1573,431,300,False,2,train,2
-215,Group 2.csv,150,1573,335,300,False,3,train,2
-216,Group 2.csv,150,1573,506,300,True,2,train,1
-217,Group 2.csv,150,1573,533,300,False,1,train,1
-218,Group 2.csv,150,1573,291,300,False,2,train,2
-219,Group 2.csv,150,1573,266,300,False,2,train,2
-220,Group 2.csv,150,1573,337,300,True,2,train,2
-221,Group 2.csv,150,1573,1039,300,False,2,train,2
-222,Group 2.csv,150,1573,589,300,False,2,train,3
-223,Group 2.csv,150,1573,870,300,False,1,train,2
-224,Group 2.csv,150,1573,902,300,False,3,train,3
-225,Group 2.csv,150,1573,635,300,True,1,train,3
-226,Group 2.csv,150,1573,864,300,True,2,train,2
-227,Group 2.csv,150,1573,780,300,False,2,train,2
-228,Group 2.csv,150,1573,327,300,True,1,train,2
-229,Group 2.csv,150,1573,288,300,True,1,train,2
-230,Group 2.csv,150,1573,140,300,True,2,train,3
-231,Group 2.csv,150,1573,871,300,False,3,train,2
-232,Group 2.csv,150,1573,34,300,False,3,train,3
-233,Group 2.csv,150,1573,286,300,True,3,train,2
-234,Group 2.csv,150,1573,71,300,False,2,train,3
-235,Group 2.csv,150,1573,1209,300,True,2,train,2
-236,Group 2.csv,150,1573,213,300,False,2,train,3
-237,Group 2.csv,150,1573,168,300,False,2,train,3
-238,Group 2.csv,150,1573,606,300,True,3,train,1
-239,Group 2.csv,150,1573,1186,300,False,3,train,2
-240,Group 2.csv,150,1573,163,300,True,1,train,3
-241,Group 2.csv,150,1573,197,300,False,3,train,3
-242,Group 2.csv,150,1573,559,300,True,1,train,1
-243,Group 2.csv,150,1573,181,300,True,1,train,3
-244,Group 2.csv,150,1573,1028,300,False,3,train,2
-245,Group 2.csv,150,1573,813,300,True,1,train,3
-246,Group 2.csv,150,1573,815,300,True,1,train,3
-247,Group 2.csv,150,1573,507,300,True,3,train,3
-248,Group 2.csv,150,1573,1221,300,True,2,train,3
-249,Group 2.csv,150,1573,1251,300,False,3,train,3
-250,Group 2.csv,150,1573,999,300,True,3,train,2
-251,Group 2.csv,150,1573,367,300,False,1,train,3
-252,Group 2.csv,150,1573,315,300,False,3,train,3
-253,Group 2.csv,150,1573,887,300,False,3,train,3
-254,Group 2.csv,150,1573,434,300,True,1,train,2
-255,Group 2.csv,150,1573,879,300,True,3,train,3
-256,Group 2.csv,150,1573,1135,300,False,2,train,3
-257,Group 2.csv,150,1573,1053,300,False,2,train,2
-258,Group 2.csv,150,1573,623,300,True,3,train,3
-259,Group 2.csv,150,1573,603,300,False,3,train,2
-260,Group 2.csv,150,1573,336,300,True,2,train,2
-261,Group 2.csv,150,1573,1142,300,False,2,train,3
-262,Group 2.csv,150,1573,11,300,False,2,train,3
-263,Group 2.csv,150,1573,284,300,False,3,train,3
-264,Group 2.csv,150,1573,929,300,False,2,train,2
-265,Group 2.csv,150,1573,1182,300,False,1,train,2
-266,Group 2.csv,150,1573,307,300,False,3,train,3
-267,Group 2.csv,150,1573,1157,300,False,3,train,2
-268,Group 2.csv,150,1573,1153,300,False,2,train,2
-269,Group 2.csv,150,1573,72,300,True,2,train,2
-270,Group 2.csv,150,1573,1116,300,True,2,train,3
-271,Group 2.csv,150,1573,1166,300,False,1,train,3
-272,Group 2.csv,150,1573,774,300,True,3,train,3
-273,Group 2.csv,150,1573,576,300,True,3,train,3
-274,Group 2.csv,150,1573,917,300,False,1,train,3
-275,Group 2.csv,150,1573,1238,300,False,3,train,3
-276,Group 2.csv,150,1573,82,300,True,2,train,2
-277,Group 2.csv,150,1573,96,300,True,3,train,2
-278,Group 2.csv,150,1573,647,300,True,2,train,2
-279,Group 2.csv,150,1573,540,300,False,2,train,2
-280,Group 2.csv,150,1573,978,300,True,2,train,2
-281,Group 2.csv,150,1573,1252,300,False,1,train,3
-282,Group 2.csv,150,1573,1223,300,False,2,train,3
-283,Group 2.csv,150,1573,1092,300,True,2,train,3
-284,Group 2.csv,150,1573,225,300,False,2,train,2
-285,Group 2.csv,150,1573,607,300,False,2,train,2
-286,Group 2.csv,150,1573,1075,300,True,2,train,2
-287,Group 2.csv,150,1573,355,300,True,1,train,2
-288,Group 2.csv,150,1573,389,300,True,3,train,3
-289,Group 2.csv,150,1573,373,300,False,2,train,3
-290,Group 2.csv,150,1573,294,300,True,1,train,2
-291,Group 2.csv,150,1573,777,300,False,3,train,2
-292,Group 2.csv,150,1573,1163,300,False,3,train,3
-293,Group 2.csv,150,1573,680,300,True,3,train,3
-294,Group 2.csv,150,1573,226,300,False,3,train,2
-295,Group 2.csv,150,1573,836,300,False,2,train,3
-296,Group 2.csv,150,1573,304,300,True,1,train,2
-297,Group 2.csv,150,1573,256,300,False,2,train,2
-298,Group 2.csv,150,1573,186,300,True,2,train,3
-299,Group 2.csv,150,1573,702,300,False,2,train,2
-300,Group 2.csv,150,1573,738,300,True,3,train,2
-301,Group 2.csv,150,1573,432,300,False,3,train,2
-302,Group 2.csv,150,1573,970,300,False,1,train,2
-303,Group 2.csv,150,1573,754,300,False,2,train,3
-304,Group 2.csv,150,1573,1233,300,False,2,train,3
-305,Group 2.csv,150,1573,673,300,False,2,train,2
-306,Group 2.csv,150,1573,870,300,False,3,train,2
-307,Group 2.csv,150,1573,871,300,True,1,train,3
-308,Group 2.csv,150,1573,985,300,False,3,train,3
-309,Group 2.csv,150,1573,155,300,False,3,train,2
-310,Group 2.csv,150,1573,763,300,True,2,train,3
-311,Group 2.csv,150,1573,1064,300,False,3,train,2
-312,Group 2.csv,150,1573,851,300,True,1,train,2
-313,Group 2.csv,150,1573,170,300,True,2,train,3
-314,Group 2.csv,150,1573,626,300,False,3,train,3
-315,Group 2.csv,150,1573,1172,300,True,3,train,2
-316,Group 2.csv,150,1573,142,300,False,3,train,3
-317,Group 2.csv,150,1573,705,300,True,3,train,2
-318,Group 2.csv,150,1573,595,300,False,3,train,1
-319,Group 2.csv,150,1573,685,300,False,1,train,1
-320,Group 2.csv,150,1573,1102,300,True,3,train,3
-321,Group 2.csv,150,1573,120,300,False,3,train,2
-322,Group 2.csv,150,1573,1243,300,True,1,train,2
-323,Group 2.csv,150,1573,642,300,True,1,train,2
-324,Group 2.csv,150,1573,1113,300,False,3,train,3
-325,Group 2.csv,150,1573,858,300,False,2,train,2
-326,Group 2.csv,150,1573,1265,300,True,1,train,3
-327,Group 2.csv,150,1573,734,300,True,2,train,2
-328,Group 2.csv,150,1573,1141,300,False,2,train,3
-329,Group 2.csv,150,1573,931,300,False,1,train,2
-330,Group 2.csv,150,1573,102,300,True,2,train,2
-331,Group 2.csv,150,1573,516,300,False,1,train,2
-332,Group 2.csv,150,1573,941,300,True,3,train,3
-333,Group 2.csv,150,1573,1270,300,False,1,train,3
-334,Group 2.csv,150,1573,511,300,True,1,train,3
-335,Group 2.csv,150,1573,1040,300,True,3,train,3
-336,Group 2.csv,150,1573,434,300,True,2,train,2
-337,Group 2.csv,150,1573,1156,300,True,3,train,3
-338,Group 2.csv,150,1573,375,300,True,3,train,3
-339,Group 2.csv,150,1573,1258,300,True,2,train,3
-340,Group 2.csv,150,1573,387,300,False,3,train,3
-341,Group 2.csv,150,1573,804,300,False,1,train,2
-342,Group 2.csv,150,1573,1153,300,False,2,train,2
-343,Group 2.csv,150,1573,508,300,False,2,train,2
-344,Group 2.csv,150,1573,624,300,True,3,train,3
-345,Group 2.csv,150,1573,91,300,False,1,train,2
-346,Group 2.csv,150,1573,1026,300,True,3,train,3
-347,Group 2.csv,150,1573,707,300,True,2,train,2
-348,Group 2.csv,150,1573,207,300,True,1,train,3
-349,Group 2.csv,150,1573,103,300,False,3,train,3
-350,Group 2.csv,150,1573,637,300,True,2,train,3
-351,Group 2.csv,150,1573,173,300,False,3,train,3
-352,Group 2.csv,150,1573,956,300,False,1,train,2
-353,Group 2.csv,150,1573,606,300,False,2,train,2
-354,Group 2.csv,150,1573,370,300,False,3,train,3
-355,Group 2.csv,150,1573,209,300,False,3,train,3
-356,Group 2.csv,150,1573,830,300,False,1,train,3
-357,Group 2.csv,150,1573,1068,300,True,2,train,2
-358,Group 2.csv,150,1573,198,300,True,1,train,3
-359,Group 2.csv,150,1573,1176,300,False,1,train,2
-360,Group 2.csv,150,1573,1142,300,False,2,train,3
-361,Group 2.csv,150,1573,945,300,False,1,train,2
-362,Group 2.csv,150,1573,1241,300,True,2,train,2
-363,Group 2.csv,150,1573,873,300,False,1,train,2
-364,Group 2.csv,150,1573,368,300,True,2,train,3
-365,Group 2.csv,150,1573,1048,300,True,2,train,2
-366,Group 2.csv,150,1573,624,300,True,3,train,3
-367,Group 2.csv,150,1573,1173,300,True,2,train,2
-368,Group 2.csv,150,1573,44,300,False,2,train,3
-369,Group 2.csv,150,1573,1007,300,True,2,train,2
-370,Group 2.csv,150,1573,470,300,True,2,train,2
-371,Group 2.csv,150,1573,151,300,True,2,train,3
-372,Group 2.csv,150,1573,965,300,False,3,train,2
-373,Group 2.csv,150,1573,1181,300,False,1,train,2
-374,Group 2.csv,150,1573,678,300,True,3,train,3
-375,Group 2.csv,150,1573,174,300,True,3,train,3
-376,Group 2.csv,150,1573,328,300,False,3,train,2
-377,Group 2.csv,150,1573,468,300,True,2,train,2
-378,Group 2.csv,150,1573,181,300,False,1,train,3
-379,Group 2.csv,150,1573,740,300,True,2,train,2
-380,Group 2.csv,150,1573,263,300,False,2,train,2
-381,Group 2.csv,150,1573,1172,300,True,1,train,2
-382,Group 2.csv,150,1573,585,300,True,2,train,3
-383,Group 2.csv,150,1573,150,300,False,1,train,2
-384,Group 2.csv,150,1573,237,300,False,3,train,3
-385,Group 2.csv,150,1573,939,300,False,2,train,2
-386,Group 2.csv,150,1573,790,300,False,2,train,2
-387,Group 2.csv,150,1573,401,300,False,1,train,3
-388,Group 2.csv,150,1573,970,300,True,1,train,3
-389,Group 2.csv,150,1573,451,300,False,2,train,2
-390,Group 2.csv,150,1573,462,300,False,2,train,2
-391,Group 2.csv,150,1573,1198,300,False,2,train,2
-392,Group 2.csv,150,1573,1085,300,False,3,train,3
-393,Group 2.csv,150,1573,777,300,False,3,train,2
-394,Group 2.csv,150,1573,1166,300,False,1,train,3
-395,Group 2.csv,150,1573,86,300,True,3,train,2
-396,Group 2.csv,150,1573,284,300,True,1,train,2
-397,Group 2.csv,150,1573,1268,300,True,2,train,3
-398,Group 2.csv,150,1573,208,300,True,2,train,3
-399,Group 2.csv,150,1573,559,300,True,1,train,1
-400,Group 2.csv,150,1573,448,300,False,2,train,2
-401,Group 2.csv,150,1573,554,300,True,1,train,3
-402,Group 2.csv,150,1573,95,300,False,1,train,2
-403,Group 2.csv,150,1573,1198,300,True,1,train,2
-404,Group 2.csv,150,1573,595,300,False,2,train,1
-405,Group 2.csv,150,1573,59,300,False,1,train,2
-406,Group 2.csv,150,1573,1016,300,False,2,train,3
-407,Group 2.csv,150,1573,606,300,False,3,train,2
-408,Group 2.csv,150,1573,1194,300,False,3,train,2
-409,Group 2.csv,150,1573,1201,300,True,3,train,2
-410,Group 2.csv,150,1573,256,300,False,1,train,2
-411,Group 2.csv,150,1573,216,300,True,3,train,3
-412,Group 2.csv,150,1573,89,300,True,3,train,2
-413,Group 2.csv,150,1573,860,300,True,1,train,2
-414,Group 2.csv,150,1573,1228,300,False,1,train,3
-415,Group 2.csv,150,1573,1113,300,False,3,train,3
-416,Group 2.csv,150,1573,236,300,False,2,train,3
-417,Group 2.csv,150,1573,469,300,True,1,train,2
-418,Group 2.csv,150,1573,3,300,True,3,train,2
-419,Group 2.csv,150,1573,787,300,False,2,train,2
-420,Group 2.csv,150,1573,1120,300,False,2,train,2
-421,Group 2.csv,150,1573,1040,300,True,3,train,3
-422,Group 2.csv,150,1573,336,300,False,2,train,2
-423,Group 2.csv,150,1573,291,300,False,2,train,2
-424,Group 2.csv,150,1573,499,300,False,3,train,1
-425,Group 2.csv,150,1573,552,300,False,1,train,1
-426,Group 2.csv,150,1573,1193,300,True,2,train,2
-427,Group 2.csv,150,1573,180,300,False,2,train,3
-428,Group 2.csv,150,1573,945,300,False,1,train,2
-429,Group 2.csv,150,1573,585,300,True,1,train,3
-430,Group 2.csv,150,1573,484,300,False,1,train,3
-431,Group 2.csv,150,1573,59,300,False,3,train,2
-432,Group 2.csv,150,1573,922,300,False,3,train,3
-433,Group 2.csv,150,1573,400,300,True,3,train,2
-434,Group 2.csv,150,1573,358,300,False,3,train,3
-435,Group 2.csv,150,1573,510,300,True,3,train,3
-436,Group 2.csv,150,1573,255,300,True,2,train,2
-437,Group 2.csv,150,1573,949,300,False,3,train,2
-438,Group 2.csv,150,1573,1053,300,True,1,train,2
-439,Group 2.csv,150,1573,203,300,True,1,train,3
-440,Group 2.csv,150,1573,586,300,True,1,train,1
-441,Group 2.csv,150,1573,770,300,True,3,train,3
-442,Group 2.csv,150,1573,1218,300,True,3,train,3
-443,Group 2.csv,150,1573,1124,300,True,3,train,3
-444,Group 2.csv,150,1573,801,300,False,2,train,2
-445,Group 2.csv,150,1573,694,300,True,2,train,2
-446,Group 2.csv,150,1573,1195,300,True,3,train,2
-447,Group 2.csv,150,1573,1058,300,True,1,train,2
-448,Group 2.csv,150,1573,290,300,True,3,train,2
-449,Group 2.csv,150,1573,608,300,False,2,train,2
-450,Group 2.csv,150,1573,1133,300,True,2,train,3
-451,Group 2.csv,150,1573,1259,300,False,1,train,3
-452,Group 2.csv,150,1573,236,300,True,1,train,3
-453,Group 2.csv,150,1573,623,300,True,3,train,3
-454,Group 2.csv,150,1573,539,300,False,2,train,2
-455,Group 2.csv,150,1573,494,300,False,3,train,2
-456,Group 2.csv,150,1573,730,300,True,2,train,2
-457,Group 2.csv,150,1573,51,300,True,2,train,2
-458,Group 2.csv,150,1573,370,300,False,1,train,3
-459,Group 2.csv,150,1573,1095,300,False,2,train,3
-460,Group 2.csv,150,1573,257,300,False,1,train,2
-461,Group 2.csv,150,1573,374,300,False,3,train,3
-462,Group 2.csv,150,1573,1247,300,False,3,train,3
-463,Group 2.csv,150,1573,866,300,False,2,train,2
-464,Group 2.csv,150,1573,1001,300,True,2,train,2
-465,Group 2.csv,150,1573,343,300,False,2,train,3
-466,Group 2.csv,150,1573,1164,300,False,1,train,3
-467,Group 2.csv,150,1573,870,300,False,1,train,2
-468,Group 2.csv,150,1573,212,300,False,2,train,3
-469,Group 2.csv,150,1573,874,300,True,2,train,3
-470,Group 2.csv,150,1573,409,300,True,2,train,2
-471,Group 2.csv,150,1573,797,300,False,3,train,2
-472,Group 2.csv,150,1573,354,300,True,3,train,3
-473,Group 2.csv,150,1573,1089,300,True,2,train,2
-474,Group 2.csv,150,1573,400,300,False,3,train,3
-475,Group 2.csv,150,1573,586,300,False,3,train,3
-476,Group 2.csv,150,1573,695,300,True,3,train,2
-477,Group 2.csv,150,1573,643,300,True,2,train,2
-478,Group 2.csv,150,1573,260,300,True,2,train,2
-479,Group 2.csv,150,1573,556,300,False,1,train,1
-480,Group 2.csv,150,1573,749,300,True,3,train,3
-481,Group 2.csv,150,1573,1144,300,False,3,train,3
-482,Group 2.csv,150,1573,699,300,False,2,train,2
-483,Group 2.csv,150,1573,325,300,True,3,train,2
-484,Group 2.csv,150,1573,1037,300,False,2,train,2
-485,Group 2.csv,150,1573,832,300,True,2,train,2
-486,Group 2.csv,150,1573,1067,300,False,3,train,3
-487,Group 2.csv,150,1573,902,300,False,3,train,3
-488,Group 2.csv,150,1573,96,300,False,2,train,2
-489,Group 2.csv,150,1573,328,300,True,1,train,2
-490,Group 2.csv,150,1573,834,300,False,1,train,3
-491,Group 2.csv,150,1573,591,300,True,1,train,2
-492,Group 2.csv,150,1573,534,300,True,2,train,2
-493,Group 2.csv,150,1573,258,300,True,1,train,2
-494,Group 2.csv,150,1573,788,300,True,1,train,3
-495,Group 2.csv,150,1573,798,300,False,2,train,2
-496,Group 2.csv,150,1573,1178,300,True,1,train,2
-497,Group 2.csv,150,1573,1009,300,False,1,train,3
-498,Group 2.csv,150,1573,1131,300,True,2,train,3
-499,Group 2.csv,150,1573,912,300,False,1,train,3
-500,Group 2.csv,150,1573,21,300,True,2,train,2
-501,Group 2.csv,150,1573,111,300,True,3,train,3
-502,Group 2.csv,150,1573,334,300,True,1,train,2
-503,Group 2.csv,150,1573,1141,300,False,1,train,3
-504,Group 2.csv,150,1573,770,300,False,2,train,2
-505,Group 2.csv,150,1573,441,300,True,2,train,2
-506,Group 2.csv,150,1573,91,300,True,2,train,2
-507,Group 2.csv,150,1573,383,300,False,1,train,3
-508,Group 2.csv,150,1573,974,300,True,1,train,3
-509,Group 2.csv,150,1573,754,300,False,3,train,3
-510,Group 2.csv,150,1573,1160,300,True,2,train,3
-511,Group 2.csv,150,1573,710,300,False,1,train,2
-512,Group 2.csv,150,1573,69,300,True,1,train,2
-513,Group 2.csv,150,1573,126,300,True,1,train,3
-514,Group 2.csv,150,1573,1176,300,True,3,train,2
-515,Group 2.csv,150,1573,1121,300,False,2,train,2
-516,Group 2.csv,150,1573,184,300,True,2,train,3
-517,Group 2.csv,150,1573,742,300,False,1,train,3
-518,Group 2.csv,150,1573,463,300,True,2,train,2
-519,Group 2.csv,150,1573,640,300,True,1,train,1
-520,Group 2.csv,150,1573,1158,300,True,2,train,3
-521,Group 2.csv,150,1573,696,300,False,2,train,2
-522,Group 2.csv,150,1573,339,300,True,2,train,2
-523,Group 2.csv,150,1573,870,300,True,2,train,3
-524,Group 2.csv,150,1573,378,300,False,3,train,3
-525,Group 2.csv,150,1573,620,300,False,3,train,3
-526,Group 2.csv,150,1573,632,300,False,1,train,3
-527,Group 2.csv,150,1573,662,300,True,2,train,2
-528,Group 2.csv,150,1573,498,300,True,1,train,1
-529,Group 2.csv,150,1573,662,300,True,1,train,2
-530,Group 2.csv,150,1573,830,300,False,3,train,3
-531,Group 2.csv,150,1573,172,300,True,1,train,3
-532,Group 2.csv,150,1573,108,300,True,3,train,3
-533,Group 2.csv,150,1573,797,300,False,3,train,2
-534,Group 2.csv,150,1573,362,300,True,1,train,3
-535,Group 2.csv,150,1573,734,300,False,3,train,3
-536,Group 2.csv,150,1573,782,300,True,3,train,3
-537,Group 2.csv,150,1573,45,300,True,2,train,2
-538,Group 2.csv,150,1573,771,300,False,2,train,2
-539,Group 2.csv,150,1573,387,300,True,3,train,3
-540,Group 2.csv,150,1573,681,300,True,2,train,3
-541,Group 2.csv,150,1573,1044,300,True,3,train,3
-542,Group 2.csv,150,1573,60,300,True,3,train,2
-543,Group 2.csv,150,1573,839,300,True,2,train,2
-544,Group 2.csv,150,1573,454,300,False,3,train,2
-545,Group 2.csv,150,1573,904,300,False,2,train,3
-546,Group 2.csv,150,1573,1232,300,False,3,train,3
-547,Group 2.csv,150,1573,464,300,False,2,train,2
-548,Group 2.csv,150,1573,622,300,False,3,train,3
-549,Group 2.csv,150,1573,392,300,False,3,train,3
-550,Group 2.csv,150,1573,816,300,False,1,train,3
-551,Group 2.csv,150,1573,1208,300,True,3,train,2
-552,Group 2.csv,150,1573,394,300,False,3,train,3
-553,Group 2.csv,150,1573,1143,300,True,2,train,3
-554,Group 2.csv,150,1573,945,300,False,2,train,2
-555,Group 2.csv,150,1573,261,300,True,3,train,2
-556,Group 2.csv,150,1573,1189,300,True,2,train,2
-557,Group 2.csv,150,1573,919,300,False,1,train,3
-558,Group 2.csv,150,1573,318,300,True,2,train,2
-559,Group 2.csv,150,1573,889,300,False,2,train,3
-560,Group 2.csv,150,1573,555,300,True,3,train,3
-561,Group 2.csv,150,1573,520,300,True,3,train,3
-562,Group 2.csv,150,1573,85,300,True,3,train,2
-563,Group 2.csv,150,1573,939,300,False,1,train,2
-564,Group 2.csv,150,1573,1223,300,True,1,train,3
-565,Group 2.csv,150,1573,647,300,False,1,train,2
-566,Group 2.csv,150,1573,159,300,True,2,train,3
-567,Group 2.csv,150,1573,449,300,True,1,train,2
-568,Group 2.csv,150,1573,1225,300,True,3,train,3
-569,Group 2.csv,150,1573,274,300,False,1,train,3
-570,Group 2.csv,150,1573,374,300,True,3,train,3
-571,Group 2.csv,150,1573,1104,300,False,2,train,3
-572,Group 2.csv,150,1573,1243,300,True,2,train,2
-573,Group 2.csv,150,1573,77,300,True,1,train,2
-574,Group 2.csv,150,1573,490,300,True,2,train,1
-575,Group 2.csv,150,1573,1219,300,False,2,train,2
-576,Group 2.csv,150,1573,1119,300,False,1,train,2
-577,Group 2.csv,150,1573,1030,300,True,3,train,3
-578,Group 2.csv,150,1573,12,300,True,2,train,2
-579,Group 2.csv,150,1573,230,300,False,3,train,2
-580,Group 2.csv,150,1573,112,300,True,1,train,3
-581,Group 2.csv,150,1573,1134,300,False,1,train,3
-582,Group 2.csv,150,1573,889,300,False,2,train,3
-583,Group 2.csv,150,1573,1036,300,False,2,train,2
-584,Group 2.csv,150,1573,209,300,False,2,train,3
-585,Group 2.csv,150,1573,773,300,False,3,train,2
-586,Group 2.csv,150,1573,216,300,True,2,train,3
-587,Group 2.csv,150,1573,78,300,False,2,train,3
-588,Group 2.csv,150,1573,1089,300,True,1,train,2
-589,Group 2.csv,150,1573,1220,300,True,3,train,2
-590,Group 2.csv,150,1573,79,300,False,1,train,2
-591,Group 2.csv,150,1573,377,300,True,1,train,3
-592,Group 2.csv,150,1573,278,300,False,3,train,3
-593,Group 2.csv,150,1573,213,300,True,3,train,3
-594,Group 2.csv,150,1573,541,300,True,3,train,2
-595,Group 2.csv,150,1573,560,300,True,1,train,3
-596,Group 2.csv,150,1573,1159,300,False,3,train,2
-597,Group 2.csv,150,1573,1215,300,True,3,train,2
-598,Group 2.csv,150,1573,950,300,True,3,train,3
-599,Group 2.csv,150,1573,888,300,True,1,train,3
-600,Group 2.csv,150,1573,235,300,False,2,train,3
-601,Group 2.csv,150,1573,0,300,True,2,train,2
-602,Group 2.csv,150,1573,843,300,False,2,train,2
-603,Group 2.csv,150,1573,306,300,True,2,train,2
-604,Group 2.csv,150,1573,698,300,False,1,train,2
-605,Group 2.csv,150,1573,1132,300,True,3,train,3
-606,Group 2.csv,150,1573,448,300,False,2,train,2
-607,Group 2.csv,150,1573,232,300,True,3,train,3
-608,Group 2.csv,150,1573,1012,300,True,3,train,3
-609,Group 2.csv,150,1573,765,300,False,3,train,3
-610,Group 2.csv,150,1573,528,300,True,1,train,2
-611,Group 2.csv,150,1573,23,300,True,1,train,2
-612,Group 2.csv,150,1573,573,300,False,1,train,1
-613,Group 2.csv,150,1573,514,300,False,2,train,2
-614,Group 2.csv,150,1573,1111,300,True,3,train,3
-615,Group 2.csv,150,1573,396,300,False,3,train,3
-616,Group 2.csv,150,1573,632,300,True,3,train,3
-617,Group 2.csv,150,1573,1242,300,False,2,train,3
-618,Group 2.csv,150,1573,725,300,False,3,train,3
-619,Group 2.csv,150,1573,346,300,True,2,train,3
-620,Group 2.csv,150,1573,1209,300,False,2,train,2
-621,Group 2.csv,150,1573,1007,300,True,2,train,2
-622,Group 2.csv,150,1573,1229,300,True,3,train,3
-623,Group 2.csv,150,1573,273,300,True,2,train,2
-624,Group 2.csv,150,1573,1155,300,False,2,train,2
-625,Group 2.csv,150,1573,419,300,False,2,train,3
-626,Group 2.csv,150,1573,823,300,True,3,train,3
-627,Group 2.csv,150,1573,630,300,False,3,train,3
-628,Group 2.csv,150,1573,454,300,True,2,train,2
-629,Group 2.csv,150,1573,1123,300,True,3,train,3
-630,Group 2.csv,150,1573,819,300,True,1,train,3
-631,Group 2.csv,150,1573,1269,300,False,1,train,3
-632,Group 2.csv,150,1573,323,300,False,2,train,2
-633,Group 2.csv,150,1573,1035,300,False,2,train,2
-634,Group 2.csv,150,1573,153,300,False,2,train,2
-635,Group 2.csv,150,1573,842,300,False,3,train,2
-636,Group 2.csv,150,1573,1205,300,False,3,train,2
-637,Group 2.csv,150,1573,812,300,False,2,train,2
-638,Group 2.csv,150,1573,1227,300,False,3,train,3
-639,Group 2.csv,150,1573,571,300,True,3,train,3
-640,Group 2.csv,150,1573,827,300,False,3,train,3
-641,Group 2.csv,150,1573,3,300,False,3,train,3
-642,Group 2.csv,150,1573,573,300,True,3,train,3
-643,Group 2.csv,150,1573,184,300,True,2,train,3
-644,Group 2.csv,150,1573,1213,300,False,3,train,3
-645,Group 2.csv,150,1573,490,300,False,3,train,3
-646,Group 2.csv,150,1573,714,300,False,3,train,3
-647,Group 2.csv,150,1573,109,300,False,3,train,3
-648,Group 2.csv,150,1573,420,300,False,3,train,3
-649,Group 2.csv,150,1573,239,300,True,1,train,3
-650,Group 2.csv,150,1573,403,300,True,2,train,2
-651,Group 2.csv,150,1573,493,300,False,2,train,3
-652,Group 2.csv,150,1573,796,300,True,2,train,3
-653,Group 2.csv,150,1573,35,300,False,2,train,3
-654,Group 2.csv,150,1573,413,300,False,3,train,3
-655,Group 2.csv,150,1573,790,300,True,1,train,3
-656,Group 2.csv,150,1573,626,300,False,2,train,3
-657,Group 2.csv,150,1573,154,300,True,2,train,3
-658,Group 2.csv,150,1573,523,300,True,3,train,3
-659,Group 2.csv,150,1573,1120,300,True,2,train,3
-660,Group 2.csv,150,1573,24,300,True,3,train,2
-661,Group 2.csv,150,1573,595,300,False,1,train,1
-662,Group 2.csv,150,1573,679,300,True,3,train,3
-663,Group 2.csv,150,1573,301,300,False,3,train,2
-664,Group 2.csv,150,1573,329,300,False,2,train,2
-665,Group 2.csv,150,1573,187,300,False,1,train,3
-666,Group 2.csv,150,1573,208,300,True,2,train,3
-667,Group 2.csv,150,1573,60,300,True,1,train,2
-668,Group 2.csv,150,1573,1145,300,False,3,train,3
-669,Group 2.csv,150,1573,304,300,False,3,train,2
-670,Group 2.csv,150,1573,1171,300,False,1,train,3
-671,Group 2.csv,150,1573,1111,300,False,3,train,3
-672,Group 2.csv,150,1573,599,300,True,3,train,1
-673,Group 2.csv,150,1573,765,300,False,2,train,3
-674,Group 2.csv,150,1573,779,300,False,2,train,2
-675,Group 2.csv,150,1573,143,300,True,1,train,3
-676,Group 2.csv,150,1573,377,300,True,2,train,3
-677,Group 2.csv,150,1573,876,300,False,3,train,2
-678,Group 2.csv,150,1573,120,300,False,1,train,2
-679,Group 2.csv,150,1573,824,300,True,1,train,3
-680,Group 2.csv,150,1573,1152,300,True,3,train,3
-681,Group 2.csv,150,1573,366,300,True,1,train,3
-682,Group 2.csv,150,1573,176,300,False,2,train,3
-683,Group 2.csv,150,1573,184,300,False,3,train,3
-684,Group 2.csv,150,1573,1029,300,True,2,train,3
-685,Group 2.csv,150,1573,287,300,False,1,train,3
-686,Group 2.csv,150,1573,1115,300,True,2,train,3
-687,Group 2.csv,150,1573,421,300,True,2,train,2
-688,Group 2.csv,150,1573,590,300,True,3,train,1
-689,Group 2.csv,150,1573,502,300,False,1,train,1
-690,Group 2.csv,150,1573,719,300,False,3,train,3
-691,Group 2.csv,150,1573,1062,300,True,3,train,2
-692,Group 2.csv,150,1573,344,300,True,1,train,2
-693,Group 2.csv,150,1573,365,300,False,2,train,2
-694,Group 2.csv,150,1573,1075,300,True,3,train,2
-695,Group 2.csv,150,1573,907,300,True,3,train,3
-696,Group 2.csv,150,1573,1196,300,False,1,train,2
-697,Group 2.csv,150,1573,199,300,False,2,train,3
-698,Group 2.csv,150,1573,1250,300,True,3,train,3
-699,Group 2.csv,150,1573,338,300,False,2,train,3
-700,Group 2.csv,150,1573,636,300,False,1,val,2
-701,Group 2.csv,150,1573,636,300,False,1,val,2
-702,Group 2.csv,150,1573,636,300,False,1,val,2
-703,Group 2.csv,150,1573,636,300,False,2,val,2
-704,Group 2.csv,150,1573,636,300,False,3,val,2
-705,Group 2.csv,150,1573,636,300,False,3,val,2
-706,Group 2.csv,150,1573,636,300,False,2,val,2
-707,Group 2.csv,150,1573,636,300,False,2,val,2
-708,Group 2.csv,150,1573,636,300,False,1,val,2
-709,Group 2.csv,150,1573,636,300,False,2,val,2
-710,Group 2.csv,150,1573,636,300,False,2,val,2
-711,Group 2.csv,150,1573,636,300,False,3,val,2
-712,Group 2.csv,150,1573,636,300,False,1,val,2
-713,Group 2.csv,150,1573,636,300,False,3,val,2
-714,Group 2.csv,150,1573,636,300,False,3,val,2
-715,Group 2.csv,150,1573,636,300,False,2,test,2
-716,Group 2.csv,150,1573,636,300,False,3,test,2
-717,Group 2.csv,150,1573,636,300,False,1,test,2
-718,Group 2.csv,150,1573,636,300,False,3,test,2
-719,Group 2.csv,150,1573,636,300,False,1,test,2
-720,Group 2.csv,150,1573,636,300,False,3,test,2
-721,Group 2.csv,150,1573,636,300,False,3,test,2
-722,Group 2.csv,150,1573,636,300,False,2,test,2
-723,Group 2.csv,150,1573,636,300,False,2,test,2
-724,Group 2.csv,150,1573,636,300,False,2,test,2
-725,Group 2.csv,150,1573,636,300,False,2,test,2
-726,Group 2.csv,150,1573,636,300,False,1,test,2
-727,Group 2.csv,150,1573,636,300,False,3,test,2
-728,Group 2.csv,150,1573,636,300,False,1,test,2
-729,Group 2.csv,150,1573,636,300,False,1,test,2
+0,session_2021-07-19-11_36_12.csv,150,723,300,300,True,2,train,1
+1,session_2021-06-29-20_09_40.csv,150,718,390,300,False,1,train,2
+2,session_2021-07-19-11_23_10.csv,150,721,359,300,True,3,train,3
+3,session_2021-07-19-11_22_11.csv,150,627,81,300,True,3,train,3
+4,session_2021-06-29-22_43_51.csv,150,722,250,300,False,3,train,3
+5,session_2021-06-29-22_39_33.csv,150,719,354,300,False,3,train,3
+6,session_2021-06-28-21_54_19.csv,150,723,128,300,False,3,train,1
+7,session_2021-06-29-22_43_51.csv,150,722,65,300,True,2,train,2
+8,session_2021-06-29-20_11_21.csv,150,719,389,300,True,3,train,3
+9,Group 1.csv,150,703,371,300,True,3,train,2
+10,session_2021-06-29-22_49_16.csv,150,721,132,300,True,1,train,2
+11,session_2021-06-29-22_37_01.csv,150,723,48,300,True,2,train,2
+12,session_2021-06-28-17_44_26.csv,150,688,130,300,False,2,train,2
+13,session_2021-07-19-11_25_13.csv,150,690,11,300,True,3,train,3
+14,session_2021-06-29-22_17_56.csv,150,720,285,300,True,1,train,1
+15,session_2021-07-19-11_29_30.csv,150,721,415,300,True,3,train,1
+16,session_2021-07-19-11_26_06.csv,150,719,187,300,False,2,train,2
+17,session_2021-06-29-22_27_44.csv,150,645,79,300,True,1,train,1
+18,Group 1.csv,150,703,38,300,False,3,train,3
+19,session_2021-07-19-11_23_10.csv,150,721,377,300,False,2,train,2
+20,session_2021-07-19-11_25_13.csv,150,690,324,300,False,2,train,2
+21,session_2021-06-28-21_56_20.csv,150,646,74,300,True,2,train,1
+22,session_2021-06-29-22_35_49.csv,150,705,180,300,False,3,train,3
+23,session_2021-06-29-22_39_33.csv,150,719,80,300,False,3,train,3
+24,session_2021-06-28-21_45_25.csv,150,691,320,300,True,3,train,2
+25,Group 1.csv,150,703,131,300,False,3,train,2
+26,session_2021-06-29-22_17_56.csv,150,720,265,300,False,1,train,1
+27,session_2021-06-29-22_35_49.csv,150,705,154,300,False,3,train,3
+28,session_2021-06-28-21_44_21.csv,150,717,174,300,True,3,train,3
+29,session_2021-06-29-22_35_49.csv,150,705,396,300,True,2,train,2
+30,session_2021-07-19-11_30_59.csv,150,719,105,300,True,2,train,2
+31,session_2021-06-29-20_09_40.csv,150,718,390,300,False,1,train,2
+32,Group 1.csv,150,703,284,300,True,3,train,3
+33,session_2021-07-19-11_23_10.csv,150,721,38,300,True,3,train,3
+34,session_2021-07-19-11_39_04.csv,150,658,226,300,True,2,train,1
+35,session_2021-06-29-08_25_10.csv,150,645,334,300,True,3,train,3
+36,session_2021-06-28-17_52_22.csv,150,719,182,300,False,1,train,1
+37,session_2021-06-29-22_26_44.csv,150,703,389,300,True,3,train,3
+38,session_2021-06-29-20_12_31.csv,150,720,135,300,True,1,train,1
+39,session_2021-06-28-21_50_01.csv,150,687,370,300,False,1,train,3
+40,Group 1.csv,150,703,315,300,True,2,train,2
+41,session_2021-07-19-11_38_07.csv,150,705,401,300,False,3,train,1
+42,session_2021-06-29-22_42_47.csv,150,704,101,300,True,2,train,2
+43,session_2021-06-28-21_47_59.csv,150,721,163,300,True,1,train,2
+44,session_2021-07-19-11_30_59.csv,150,719,269,300,False,3,train,3
+45,session_2021-06-29-20_06_51.csv,150,716,221,300,True,1,train,3
+46,session_2021-06-29-22_39_33.csv,150,719,365,300,False,3,train,3
+47,session_2021-06-29-22_42_47.csv,150,704,362,300,True,2,train,2
+48,Group 1.csv,150,703,389,300,False,2,train,2
+49,session_2021-06-29-20_06_51.csv,150,716,246,300,False,1,train,2
+50,session_2021-06-28-21_56_20.csv,150,646,93,300,False,3,train,1
+51,session_2021-07-19-11_38_07.csv,150,705,266,300,False,3,train,1
+52,session_2021-06-28-17_57_27.csv,150,643,33,300,True,1,train,1
+53,session_2021-07-19-11_39_04.csv,150,658,245,300,True,2,train,1
+54,session_2021-07-19-11_40_00.csv,150,714,205,300,False,3,train,1
+55,session_2021-06-29-20_12_31.csv,150,720,345,300,False,1,train,1
+56,session_2021-06-28-21_55_21.csv,150,706,135,300,True,1,train,2
+57,Group 1.csv,150,703,165,300,False,2,train,2
+58,session_2021-06-28-21_45_25.csv,150,691,83,300,True,3,train,1
+59,session_2021-06-29-22_15_53.csv,150,696,302,300,True,1,train,3
+60,Group 1.csv,150,703,337,300,True,2,train,2
+61,Group 1.csv,150,703,143,300,True,2,train,2
+62,session_2021-07-19-11_36_12.csv,150,723,87,300,False,3,train,2
+63,session_2021-06-28-17_51_17.csv,150,718,129,300,False,3,train,1
+64,session_2021-06-29-22_15_53.csv,150,696,124,300,False,1,train,2
+65,session_2021-07-19-11_36_12.csv,150,723,41,300,False,3,train,2
+66,Group 1.csv,150,703,94,300,False,2,train,2
+67,session_2021-07-19-11_38_07.csv,150,705,285,300,False,3,train,1
+68,session_2021-07-19-11_26_06.csv,150,719,341,300,True,3,train,3
+69,session_2021-06-29-22_26_44.csv,150,703,396,300,True,3,train,3
+70,session_2021-06-29-22_27_44.csv,150,645,37,300,True,1,train,1
+71,session_2021-06-28-17_56_16.csv,150,700,290,300,False,3,train,1
+72,session_2021-06-29-22_24_14.csv,150,715,219,300,True,3,train,3
+73,session_2021-06-28-17_44_26.csv,150,688,41,300,False,2,train,2
+74,session_2021-06-28-17_57_27.csv,150,643,168,300,False,1,train,1
+75,session_2021-06-28-17_43_10.csv,150,672,349,300,False,1,train,1
+76,session_2021-06-29-22_24_14.csv,150,715,403,300,True,3,train,3
+77,Group 1.csv,150,703,266,300,True,2,train,2
+78,session_2021-07-19-11_42_07.csv,150,718,60,300,True,2,train,1
+79,session_2021-06-29-08_25_10.csv,150,645,128,300,True,3,train,3
+80,session_2021-06-29-22_42_47.csv,150,704,197,300,True,2,train,2
+81,session_2021-07-19-11_42_07.csv,150,718,99,300,True,2,train,1
+82,session_2021-07-19-11_36_12.csv,150,723,193,300,True,2,train,3
+83,session_2021-06-28-21_47_59.csv,150,721,208,300,False,1,train,1
+84,Group 1.csv,150,703,260,300,False,3,train,2
+85,Group 1.csv,150,703,360,300,True,2,train,2
+86,session_2021-06-29-20_09_40.csv,150,718,197,300,True,1,train,3
+87,Group 1.csv,150,703,29,300,True,3,train,3
+88,session_2021-06-29-20_12_31.csv,150,720,46,300,True,1,train,1
+89,session_2021-06-29-22_26_44.csv,150,703,257,300,True,3,train,3
+90,session_2021-06-29-08_25_10.csv,150,645,173,300,False,2,train,2
+91,session_2021-06-28-21_50_01.csv,150,687,280,300,False,1,train,3
+92,session_2021-07-19-11_29_30.csv,150,721,33,300,True,3,train,1
+93,session_2021-06-28-21_58_23.csv,150,722,164,300,True,1,train,2
+94,session_2021-06-29-22_35_49.csv,150,705,320,300,False,3,train,3
+95,session_2021-06-29-22_35_49.csv,150,705,261,300,False,3,train,3
+96,Group 1.csv,150,703,143,300,False,2,train,2
+97,Group 1.csv,150,703,96,300,False,2,train,2
+98,session_2021-06-29-22_17_56.csv,150,720,84,300,False,1,train,1
+99,session_2021-06-29-20_11_21.csv,150,719,47,300,False,2,train,2
+100,session_2021-07-19-11_30_59.csv,150,719,313,300,True,2,train,2
+101,session_2021-06-28-21_50_01.csv,150,687,309,300,False,1,train,3
+102,session_2021-06-28-17_52_22.csv,150,719,217,300,True,1,train,1
+103,session_2021-06-28-21_45_25.csv,150,691,87,300,True,3,train,1
+104,session_2021-06-29-22_23_10.csv,150,716,99,300,False,1,train,1
+105,session_2021-06-29-22_17_56.csv,150,720,109,300,False,1,train,1
+106,Group 1.csv,150,703,100,300,True,1,train,1
+107,session_2021-06-29-22_17_56.csv,150,720,49,300,False,1,train,1
+108,Group 1.csv,150,703,83,300,True,3,train,3
+109,session_2021-06-28-21_51_04.csv,150,717,65,300,True,2,train,2
+110,session_2021-06-29-22_49_16.csv,150,721,100,300,True,1,train,2
+111,session_2021-06-28-21_46_21.csv,150,708,139,300,False,1,train,3
+112,session_2021-06-28-17_51_17.csv,150,718,184,300,True,2,train,1
+113,session_2021-06-29-22_49_16.csv,150,721,88,300,True,1,train,2
+114,session_2021-06-29-20_11_21.csv,150,719,78,300,False,2,train,2
+115,session_2021-07-19-11_38_07.csv,150,705,244,300,True,2,train,1
+116,session_2021-06-28-21_54_19.csv,150,723,186,300,True,2,train,2
+117,session_2021-06-28-17_47_03.csv,150,721,328,300,False,2,train,2
+118,session_2021-06-28-21_55_21.csv,150,706,284,300,True,1,train,2
+119,session_2021-06-28-21_50_01.csv,150,687,54,300,True,1,train,2
+120,session_2021-06-28-21_45_25.csv,150,691,281,300,True,3,train,2
+121,Group 1.csv,150,703,112,300,False,1,train,2
+122,session_2021-06-29-22_43_51.csv,150,722,167,300,False,3,train,3
+123,session_2021-06-29-22_23_10.csv,150,716,225,300,False,1,train,1
+124,session_2021-06-28-17_57_27.csv,150,643,291,300,False,1,train,1
+125,session_2021-06-29-22_15_53.csv,150,696,110,300,False,1,train,2
+126,Group 1.csv,150,703,58,300,False,3,train,3
+127,session_2021-06-28-21_58_23.csv,150,722,4,300,False,1,train,3
+128,Group 1.csv,150,703,340,300,False,2,train,2
+129,Group 1.csv,150,703,188,300,True,3,train,3
+130,session_2021-07-19-11_39_04.csv,150,658,186,300,True,2,train,1
+131,Group 1.csv,150,703,26,300,True,3,train,3
+132,session_2021-06-28-21_55_21.csv,150,706,201,300,True,1,train,2
+133,session_2021-06-28-17_52_22.csv,150,719,189,300,False,1,train,1
+134,session_2021-06-29-22_24_14.csv,150,715,242,300,False,2,train,2
+135,session_2021-07-19-11_37_12.csv,150,720,249,300,True,2,train,1
+136,session_2021-06-28-17_45_55.csv,150,734,94,300,False,1,train,1
+137,Group 1.csv,150,703,23,300,False,3,train,2
+138,session_2021-06-29-20_11_21.csv,150,719,138,300,True,3,train,3
+139,session_2021-06-28-21_56_20.csv,150,646,32,300,False,3,train,1
+140,session_2021-06-28-21_51_04.csv,150,717,415,300,True,2,train,2
+141,Group 1.csv,150,703,147,300,False,2,train,2
+142,session_2021-07-19-11_39_04.csv,150,658,86,300,False,3,train,1
+143,Group 1.csv,150,703,284,300,False,2,train,2
+144,session_2021-07-19-11_40_00.csv,150,714,212,300,True,2,train,1
+145,Group 1.csv,150,703,312,300,True,3,train,2
+146,session_2021-06-29-20_12_31.csv,150,720,197,300,False,1,train,1
+147,session_2021-07-19-11_38_07.csv,150,705,316,300,True,2,train,1
+148,session_2021-06-29-22_37_01.csv,150,723,116,300,False,3,train,3
+149,session_2021-06-29-20_09_40.csv,150,718,100,300,False,1,train,2
+150,session_2021-06-28-21_58_23.csv,150,722,207,300,True,1,train,2
+151,Group 1.csv,150,703,312,300,True,2,train,2
+152,session_2021-06-29-22_24_14.csv,150,715,138,300,True,3,train,3
+153,session_2021-06-29-20_09_40.csv,150,718,81,300,True,1,train,3
+154,session_2021-06-28-21_44_21.csv,150,717,191,300,True,3,train,3
+155,session_2021-06-28-17_47_03.csv,150,721,260,300,False,2,train,2
+156,session_2021-07-19-11_22_11.csv,150,627,175,300,True,3,train,3
+157,session_2021-06-28-21_44_21.csv,150,717,136,300,False,2,train,2
+158,session_2021-06-28-21_40_11.csv,150,736,322,300,False,1,train,3
+159,session_2021-07-19-11_25_13.csv,150,690,205,300,True,3,train,3
+160,session_2021-07-19-11_22_11.csv,150,627,145,300,True,3,train,3
+161,session_2021-06-28-21_55_21.csv,150,706,224,300,True,1,train,2
+162,session_2021-06-28-17_47_03.csv,150,721,413,300,False,2,train,2
+163,session_2021-07-19-11_30_59.csv,150,719,306,300,False,3,train,3
+164,session_2021-06-28-21_46_21.csv,150,708,361,300,False,1,train,3
+165,session_2021-06-29-22_45_06.csv,150,690,11,300,False,3,train,3
+166,session_2021-07-19-11_38_07.csv,150,705,259,300,True,2,train,1
+167,session_2021-07-19-11_29_30.csv,150,721,346,300,False,2,train,1
+168,session_2021-07-19-11_39_04.csv,150,658,312,300,True,2,train,1
+169,Group 1.csv,150,703,123,300,True,2,train,2
+170,Group 1.csv,150,703,263,300,False,2,train,2
+171,session_2021-06-28-21_54_19.csv,150,723,330,300,True,2,train,2
+172,session_2021-06-28-21_56_20.csv,150,646,339,300,True,2,train,1
+173,session_2021-06-29-22_17_56.csv,150,720,410,300,False,1,train,1
+174,Group 1.csv,150,703,121,300,False,2,train,2
+175,Group 1.csv,150,703,272,300,True,2,train,2
+176,session_2021-06-28-21_54_19.csv,150,723,325,300,False,3,train,3
+177,session_2021-06-29-22_49_16.csv,150,721,340,300,False,1,train,3
+178,session_2021-06-29-20_11_21.csv,150,719,254,300,True,3,train,3
+179,session_2021-07-19-11_40_00.csv,150,714,61,300,True,2,train,1
+180,session_2021-06-29-22_49_16.csv,150,721,2,300,False,1,train,3
+181,session_2021-06-29-22_45_06.csv,150,690,101,300,True,2,train,2
+182,session_2021-06-29-22_39_33.csv,150,719,114,300,False,3,train,3
+183,session_2021-07-19-11_37_12.csv,150,720,79,300,True,2,train,1
+184,session_2021-06-28-21_50_01.csv,150,687,353,300,True,1,train,2
+185,session_2021-07-19-11_42_07.csv,150,718,222,300,False,3,train,1
+186,session_2021-06-28-17_44_26.csv,150,688,50,300,False,2,train,2
+187,session_2021-06-28-21_40_11.csv,150,736,150,300,True,1,train,2
+188,session_2021-06-28-17_45_55.csv,150,734,42,300,False,1,train,1
+189,session_2021-06-29-22_35_49.csv,150,705,95,300,False,3,train,1
+190,Group 1.csv,150,703,301,300,False,1,train,2
+191,session_2021-06-28-17_56_16.csv,150,700,341,300,False,3,train,1
+192,Group 1.csv,150,703,16,300,False,2,train,2
+193,session_2021-06-29-22_15_53.csv,150,696,48,300,False,1,train,2
+194,session_2021-06-28-17_45_55.csv,150,734,32,300,False,1,train,1
+195,session_2021-07-19-11_23_10.csv,150,721,346,300,False,2,train,2
+196,session_2021-06-28-17_47_03.csv,150,721,317,300,True,3,train,3
+197,session_2021-06-29-22_27_44.csv,150,645,235,300,True,1,train,1
+198,session_2021-06-29-20_12_31.csv,150,720,353,300,False,1,train,1
+199,session_2021-06-28-21_51_04.csv,150,717,347,300,True,2,train,2
+200,Group 1.csv,150,703,111,300,False,2,train,2
+201,Group 1.csv,150,703,208,300,True,3,train,3
+202,session_2021-06-29-22_15_53.csv,150,696,260,300,True,1,train,3
+203,session_2021-07-19-11_29_30.csv,150,721,83,300,False,2,train,1
+204,session_2021-06-29-08_25_10.csv,150,645,303,300,True,3,train,3
+205,session_2021-06-28-21_40_11.csv,150,736,146,300,False,1,train,3
+206,session_2021-06-29-20_06_51.csv,150,716,120,300,True,1,train,3
+207,session_2021-07-19-11_26_06.csv,150,719,181,300,False,2,train,2
+208,session_2021-06-28-21_46_21.csv,150,708,274,300,False,1,train,3
+209,session_2021-06-28-17_45_55.csv,150,734,43,300,True,1,train,1
+210,Group 1.csv,150,703,389,300,True,3,train,2
+211,session_2021-07-19-11_37_12.csv,150,720,160,300,True,2,train,1
+212,session_2021-06-28-21_47_59.csv,150,721,269,300,True,1,train,2
+213,session_2021-07-19-11_37_12.csv,150,720,168,300,True,2,train,1
+214,session_2021-06-29-22_27_44.csv,150,645,6,300,True,1,train,1
+215,Group 1.csv,150,703,234,300,True,2,train,2
+216,session_2021-06-28-17_43_10.csv,150,672,256,300,False,1,train,1
+217,session_2021-07-19-11_39_04.csv,150,658,346,300,True,2,train,1
+218,session_2021-07-19-11_26_06.csv,150,719,15,300,True,3,train,3
+219,session_2021-06-28-17_44_26.csv,150,688,227,300,False,2,train,2
+220,session_2021-07-19-11_30_59.csv,150,719,271,300,False,3,train,3
+221,session_2021-07-19-11_38_07.csv,150,705,21,300,False,3,train,1
+222,session_2021-06-28-17_56_16.csv,150,700,199,300,True,2,train,2
+223,session_2021-06-29-20_11_21.csv,150,719,229,300,True,3,train,3
+224,session_2021-06-28-21_50_01.csv,150,687,305,300,False,1,train,3
+225,session_2021-06-29-20_09_40.csv,150,718,344,300,True,1,train,3
+226,session_2021-06-28-17_43_10.csv,150,672,180,300,True,1,train,1
+227,session_2021-07-19-11_42_07.csv,150,718,323,300,False,3,train,1
+228,Group 1.csv,150,703,68,300,True,3,train,3
+229,session_2021-07-19-11_29_30.csv,150,721,416,300,True,3,train,1
+230,session_2021-07-19-11_29_30.csv,150,721,257,300,False,2,train,1
+231,session_2021-06-28-21_51_04.csv,150,717,148,300,True,2,train,2
+232,session_2021-06-28-17_51_17.csv,150,718,111,300,True,2,train,1
+233,session_2021-06-29-22_43_51.csv,150,722,179,300,True,2,train,2
+234,session_2021-06-29-22_15_53.csv,150,696,363,300,True,1,train,1
+235,Group 1.csv,150,703,184,300,False,2,train,2
+236,Group 1.csv,150,703,350,300,False,2,train,2
+237,session_2021-06-28-17_45_55.csv,150,734,294,300,True,1,train,1
+238,session_2021-06-29-22_42_47.csv,150,704,150,300,True,2,train,2
+239,session_2021-07-19-11_42_07.csv,150,718,35,300,False,3,train,1
+240,session_2021-07-19-11_25_13.csv,150,690,236,300,True,3,train,3
+241,Group 1.csv,150,703,220,300,False,2,train,2
+242,session_2021-07-19-11_39_04.csv,150,658,32,300,False,3,train,1
+243,session_2021-06-28-21_45_25.csv,150,691,276,300,False,2,train,3
+244,Group 1.csv,150,703,295,300,False,2,train,2
+245,session_2021-06-28-17_51_17.csv,150,718,416,300,False,3,train,1
+246,session_2021-06-29-20_12_31.csv,150,720,152,300,True,1,train,1
+247,session_2021-07-19-11_39_04.csv,150,658,283,300,False,3,train,1
+248,session_2021-07-19-11_40_00.csv,150,714,221,300,True,2,train,1
+249,session_2021-07-19-11_36_12.csv,150,723,276,300,False,3,train,2
+250,session_2021-06-28-17_52_22.csv,150,719,125,300,False,1,train,1
+251,session_2021-07-19-11_36_12.csv,150,723,343,300,True,2,train,1
+252,Group 1.csv,150,703,37,300,False,3,train,3
+253,session_2021-07-19-11_40_00.csv,150,714,68,300,True,2,train,1
+254,session_2021-06-29-22_24_14.csv,150,715,39,300,True,3,train,1
+255,session_2021-06-28-17_47_03.csv,150,721,248,300,True,3,train,3
+256,session_2021-06-28-21_55_21.csv,150,706,108,300,True,1,train,2
+257,session_2021-07-19-11_25_13.csv,150,690,123,300,True,3,train,3
+258,session_2021-07-19-11_30_59.csv,150,719,338,300,False,3,train,3
+259,session_2021-06-28-21_50_01.csv,150,687,29,300,True,1,train,2
+260,session_2021-06-29-22_35_49.csv,150,705,394,300,True,2,train,2
+261,session_2021-06-28-17_56_16.csv,150,700,295,300,True,2,train,2
+262,session_2021-06-29-22_45_06.csv,150,690,368,300,False,3,train,3
+263,session_2021-06-29-22_49_16.csv,150,721,94,300,True,1,train,2
+264,session_2021-06-28-21_47_59.csv,150,721,13,300,False,1,train,3
+265,Group 1.csv,150,703,242,300,False,2,train,3
+266,session_2021-06-29-22_37_01.csv,150,723,9,300,True,2,train,2
+267,session_2021-07-19-11_37_12.csv,150,720,20,300,True,2,train,1
+268,session_2021-06-29-22_26_44.csv,150,703,381,300,False,2,train,2
+269,session_2021-06-29-22_39_33.csv,150,719,7,300,False,3,train,3
+270,session_2021-06-29-22_42_47.csv,150,704,264,300,True,2,train,2
+271,session_2021-06-28-21_46_21.csv,150,708,256,300,True,1,train,2
+272,session_2021-06-29-22_43_51.csv,150,722,367,300,True,2,train,2
+273,session_2021-06-29-20_11_21.csv,150,719,153,300,False,2,train,2
+274,session_2021-06-28-21_40_11.csv,150,736,198,300,False,1,train,3
+275,session_2021-06-28-17_43_10.csv,150,672,279,300,True,1,train,1
+276,session_2021-06-29-20_12_31.csv,150,720,164,300,False,1,train,1
+277,session_2021-07-19-11_37_12.csv,150,720,149,300,True,2,train,1
+278,Group 1.csv,150,703,402,300,False,2,train,3
+279,session_2021-06-28-21_55_21.csv,150,706,72,300,True,1,train,2
+280,session_2021-07-19-11_25_13.csv,150,690,183,300,True,3,train,3
+281,session_2021-06-28-17_43_10.csv,150,672,42,300,False,1,train,1
+282,session_2021-07-19-11_22_11.csv,150,627,11,300,False,2,train,2
+283,session_2021-06-28-17_57_27.csv,150,643,176,300,False,1,train,1
+284,session_2021-06-28-17_45_55.csv,150,734,269,300,True,1,train,1
+285,session_2021-06-29-22_23_10.csv,150,716,90,300,False,1,train,1
+286,session_2021-06-29-08_25_10.csv,150,645,322,300,False,2,train,2
+287,session_2021-06-29-22_15_53.csv,150,696,127,300,True,1,train,3
+288,Group 1.csv,150,703,120,300,False,3,train,2
+289,session_2021-06-28-21_56_20.csv,150,646,179,300,True,2,train,1
+290,session_2021-07-19-11_23_10.csv,150,721,413,300,False,2,train,2
+291,session_2021-06-29-22_26_44.csv,150,703,307,300,True,3,train,3
+292,Group 1.csv,150,703,42,300,True,2,train,2
+293,Group 1.csv,150,703,374,300,False,1,train,2
+294,Group 1.csv,150,703,137,300,True,3,train,3
+295,session_2021-06-28-21_58_23.csv,150,722,73,300,False,1,train,3
+296,Group 1.csv,150,703,339,300,False,2,train,2
+297,session_2021-06-29-22_17_56.csv,150,720,42,300,True,1,train,1
+298,session_2021-06-28-21_44_21.csv,150,717,384,300,True,3,train,3
+299,session_2021-06-28-21_45_25.csv,150,691,270,300,True,3,train,2
+300,session_2021-07-19-11_23_10.csv,150,721,179,300,False,2,train,2
+301,session_2021-06-28-21_40_11.csv,150,736,341,300,True,1,train,2
+302,session_2021-06-29-22_49_16.csv,150,721,59,300,True,1,train,2
+303,session_2021-07-19-11_42_07.csv,150,718,50,300,True,2,train,1
+304,session_2021-06-28-21_56_20.csv,150,646,171,300,True,2,train,1
+305,session_2021-06-28-21_46_21.csv,150,708,314,300,True,1,train,2
+306,session_2021-06-28-17_43_10.csv,150,672,143,300,True,1,train,1
+307,Group 1.csv,150,703,239,300,True,3,train,2
+308,Group 1.csv,150,703,285,300,False,3,train,2
+309,Group 1.csv,150,703,147,300,True,2,train,2
+310,session_2021-06-29-22_26_44.csv,150,703,382,300,False,2,train,2
+311,session_2021-07-19-11_29_30.csv,150,721,106,300,False,2,train,1
+312,session_2021-07-19-11_26_06.csv,150,719,373,300,True,3,train,3
+313,Group 1.csv,150,703,102,300,True,3,train,1
+314,session_2021-06-28-21_54_19.csv,150,723,131,300,True,2,train,2
+315,Group 1.csv,150,703,108,300,True,2,train,3
+316,Group 1.csv,150,703,312,300,True,2,train,2
+317,session_2021-06-29-08_25_10.csv,150,645,220,300,False,2,train,2
+318,session_2021-06-29-22_37_01.csv,150,723,368,300,True,2,train,2
+319,session_2021-06-29-22_26_44.csv,150,703,118,300,False,2,train,2
+320,session_2021-06-28-21_40_11.csv,150,736,44,300,False,1,train,3
+321,session_2021-06-29-22_24_14.csv,150,715,365,300,False,2,train,2
+322,Group 1.csv,150,703,61,300,True,2,train,3
+323,session_2021-06-29-22_37_01.csv,150,723,0,300,False,3,train,3
+324,session_2021-07-19-11_22_11.csv,150,627,77,300,True,3,train,3
+325,session_2021-06-28-21_58_23.csv,150,722,26,300,True,1,train,2
+326,Group 1.csv,150,703,2,300,True,3,train,3
+327,session_2021-06-28-21_47_59.csv,150,721,106,300,False,1,train,3
+328,session_2021-06-29-22_43_51.csv,150,722,29,300,True,2,train,2
+329,session_2021-06-29-22_23_10.csv,150,716,10,300,False,1,train,3
+330,Group 1.csv,150,703,329,300,True,2,train,2
+331,Group 1.csv,150,703,202,300,False,2,train,2
+332,session_2021-06-29-22_15_53.csv,150,696,290,300,False,1,train,2
+333,Group 1.csv,150,703,64,300,True,3,train,3
+334,session_2021-06-29-22_45_06.csv,150,690,374,300,False,3,train,3
+335,session_2021-07-19-11_42_07.csv,150,718,286,300,False,3,train,1
+336,Group 1.csv,150,703,108,300,True,3,train,3
+337,session_2021-07-19-11_37_12.csv,150,720,300,300,False,3,train,1
+338,session_2021-07-19-11_39_04.csv,150,658,59,300,False,3,train,1
+339,session_2021-07-19-11_22_11.csv,150,627,97,300,True,3,train,3
+340,Group 1.csv,150,703,332,300,False,2,train,2
+341,Group 1.csv,150,703,317,300,False,2,train,3
+342,session_2021-06-28-17_56_16.csv,150,700,307,300,False,3,train,1
+343,session_2021-07-19-11_40_00.csv,150,714,7,300,False,3,train,1
+344,session_2021-07-19-11_30_59.csv,150,719,396,300,True,2,train,2
+345,session_2021-07-19-11_36_12.csv,150,723,91,300,False,3,train,2
+346,session_2021-07-19-11_40_00.csv,150,714,132,300,True,2,train,1
+347,session_2021-06-28-21_51_04.csv,150,717,259,300,True,2,train,2
+348,session_2021-06-28-21_40_11.csv,150,736,340,300,True,1,train,2
+349,session_2021-06-28-17_43_10.csv,150,672,341,300,True,1,train,1
+350,session_2021-06-29-22_23_10.csv,150,716,364,300,False,1,train,1
+351,session_2021-06-29-22_27_44.csv,150,645,13,300,False,1,train,1
+352,session_2021-06-29-22_23_10.csv,150,716,274,300,False,1,train,1
+353,session_2021-06-29-22_39_33.csv,150,719,228,300,False,3,train,3
+354,session_2021-06-29-22_37_01.csv,150,723,417,300,True,2,train,2
+355,Group 1.csv,150,703,97,300,False,3,train,2
+356,Group 1.csv,150,703,129,300,True,1,train,3
+357,Group 1.csv,150,703,251,300,True,2,train,2
+358,Group 1.csv,150,703,109,300,False,2,train,2
+359,session_2021-07-19-11_36_12.csv,150,723,210,300,False,3,train,2
+360,session_2021-06-29-22_17_56.csv,150,720,304,300,True,1,train,1
+361,session_2021-07-19-11_37_12.csv,150,720,138,300,False,3,train,1
+362,session_2021-06-29-22_27_44.csv,150,645,236,300,True,1,train,1
+363,session_2021-07-19-11_38_07.csv,150,705,158,300,False,3,train,1
+364,session_2021-07-19-11_37_12.csv,150,720,251,300,True,2,train,1
+365,session_2021-07-19-11_23_10.csv,150,721,97,300,True,3,train,3
+366,session_2021-06-28-21_44_21.csv,150,717,209,300,False,2,train,2
+367,session_2021-07-19-11_29_30.csv,150,721,296,300,True,3,train,1
+368,session_2021-06-28-17_57_27.csv,150,643,136,300,False,1,train,1
+369,session_2021-06-29-22_35_49.csv,150,705,150,300,False,3,train,3
+370,session_2021-07-19-11_30_59.csv,150,719,21,300,False,3,train,3
+371,session_2021-06-28-21_56_20.csv,150,646,315,300,False,3,train,1
+372,Group 1.csv,150,703,65,300,False,2,train,2
+373,session_2021-06-28-21_50_01.csv,150,687,342,300,True,1,train,2
+374,Group 1.csv,150,703,77,300,True,3,train,3
+375,session_2021-06-28-17_44_26.csv,150,688,370,300,False,2,train,2
+376,session_2021-06-28-17_47_03.csv,150,721,139,300,True,3,train,3
+377,session_2021-06-28-21_56_20.csv,150,646,173,300,False,3,train,1
+378,session_2021-07-19-11_26_06.csv,150,719,281,300,False,2,train,2
+379,Group 1.csv,150,703,273,300,False,2,train,2
+380,session_2021-07-19-11_22_11.csv,150,627,100,300,True,3,train,3
+381,session_2021-06-28-21_45_25.csv,150,691,72,300,True,3,train,1
+382,Group 1.csv,150,703,119,300,True,3,train,2
+383,Group 1.csv,150,703,215,300,False,2,train,2
+384,Group 1.csv,150,703,120,300,True,2,train,2
+385,session_2021-07-19-11_40_00.csv,150,714,185,300,False,3,train,1
+386,session_2021-06-29-20_12_31.csv,150,720,152,300,False,1,train,1
+387,Group 1.csv,150,703,120,300,True,3,train,2
+388,session_2021-06-29-22_45_06.csv,150,690,217,300,True,2,train,2
+389,session_2021-06-28-21_55_21.csv,150,706,340,300,False,1,train,3
+390,Group 1.csv,150,703,61,300,True,3,train,3
+391,Group 1.csv,150,703,367,300,True,2,train,2
+392,session_2021-07-19-11_37_12.csv,150,720,134,300,False,3,train,1
+393,session_2021-06-28-21_58_23.csv,150,722,185,300,True,1,train,2
+394,session_2021-06-28-21_46_21.csv,150,708,290,300,True,1,train,2
+395,session_2021-06-28-17_56_16.csv,150,700,29,300,True,2,train,2
+396,Group 1.csv,150,703,231,300,False,2,train,3
+397,session_2021-06-29-20_06_51.csv,150,716,3,300,True,1,train,3
+398,session_2021-06-28-17_47_03.csv,150,721,377,300,True,3,train,3
+399,session_2021-06-29-20_11_21.csv,150,719,199,300,True,3,train,3
+400,session_2021-06-28-17_51_17.csv,150,718,207,300,True,2,train,1
+401,session_2021-06-28-17_44_26.csv,150,688,62,300,True,3,train,3
+402,Group 1.csv,150,703,257,300,False,2,train,3
+403,session_2021-06-28-17_43_10.csv,150,672,292,300,True,1,train,1
+404,Group 1.csv,150,703,308,300,False,3,train,2
+405,session_2021-06-29-08_25_10.csv,150,645,15,300,False,2,train,2
+406,session_2021-06-28-21_51_04.csv,150,717,138,300,False,3,train,3
+407,session_2021-06-28-17_44_26.csv,150,688,383,300,True,3,train,3
+408,session_2021-06-28-17_52_22.csv,150,719,24,300,True,1,train,1
+409,session_2021-07-19-11_38_07.csv,150,705,143,300,False,3,train,1
+410,session_2021-06-28-17_45_55.csv,150,734,77,300,True,1,train,1
+411,session_2021-06-29-22_17_56.csv,150,720,116,300,True,1,train,1
+412,session_2021-06-28-17_47_03.csv,150,721,184,300,True,3,train,3
+413,Group 1.csv,150,703,99,300,True,1,train,1
+414,Group 1.csv,150,703,252,300,True,1,train,1
+415,session_2021-06-28-21_47_59.csv,150,721,304,300,False,1,train,3
+416,Group 1.csv,150,703,8,300,True,3,train,3
+417,session_2021-06-29-22_26_44.csv,150,703,157,300,True,3,train,3
+418,session_2021-06-28-21_51_04.csv,150,717,376,300,True,2,train,2
+419,session_2021-06-29-22_37_01.csv,150,723,61,300,False,3,train,3
+420,session_2021-06-29-22_23_10.csv,150,716,344,300,True,1,train,2
+421,session_2021-07-19-11_36_12.csv,150,723,194,300,True,2,train,3
+422,session_2021-06-29-20_11_21.csv,150,719,165,300,False,2,train,2
+423,session_2021-06-29-22_49_16.csv,150,721,261,300,False,1,train,3
+424,session_2021-06-28-21_55_21.csv,150,706,223,300,False,1,train,3
+425,Group 1.csv,150,703,147,300,False,2,train,2
+426,Group 1.csv,150,703,178,300,False,2,train,2
+427,session_2021-06-29-22_43_51.csv,150,722,216,300,True,2,train,2
+428,session_2021-06-28-17_56_16.csv,150,700,297,300,True,2,train,2
+429,session_2021-06-28-21_51_04.csv,150,717,324,300,False,3,train,3
+430,session_2021-06-28-17_45_55.csv,150,734,258,300,True,1,train,1
+431,session_2021-06-29-22_42_47.csv,150,704,19,300,True,2,train,2
+432,session_2021-06-28-21_54_19.csv,150,723,332,300,False,3,train,3
+433,session_2021-07-19-11_30_59.csv,150,719,327,300,False,3,train,3
+434,session_2021-07-19-11_22_11.csv,150,627,170,300,True,3,train,3
+435,session_2021-06-28-17_57_27.csv,150,643,209,300,True,1,train,1
+436,Group 1.csv,150,703,241,300,False,3,train,2
+437,session_2021-06-29-22_45_06.csv,150,690,119,300,False,3,train,3
+438,session_2021-06-28-17_51_17.csv,150,718,300,300,False,3,train,1
+439,session_2021-06-28-21_45_25.csv,150,691,120,300,False,2,train,1
+440,session_2021-06-28-17_51_17.csv,150,718,251,300,True,2,train,1
+441,session_2021-07-19-11_26_06.csv,150,719,213,300,False,2,train,2
+442,Group 1.csv,150,703,374,300,True,2,train,2
+443,session_2021-06-28-17_52_22.csv,150,719,104,300,True,1,train,1
+444,session_2021-06-28-21_51_04.csv,150,717,182,300,True,2,train,2
+445,session_2021-06-28-17_51_17.csv,150,718,287,300,False,3,train,1
+446,Group 1.csv,150,703,62,300,True,3,train,3
+447,session_2021-06-29-22_26_44.csv,150,703,225,300,False,2,train,2
+448,session_2021-06-29-20_06_51.csv,150,716,174,300,True,1,train,3
+449,session_2021-06-28-17_44_26.csv,150,688,201,300,True,3,train,3
+450,session_2021-06-29-22_37_01.csv,150,723,330,300,False,3,train,3
+451,Group 1.csv,150,703,154,300,True,2,train,2
+452,Group 1.csv,150,703,29,300,False,3,train,3
+453,session_2021-06-28-21_46_21.csv,150,708,74,300,True,1,train,2
+454,session_2021-06-29-22_45_06.csv,150,690,278,300,True,2,train,2
+455,session_2021-06-28-21_47_59.csv,150,721,335,300,False,1,train,3
+456,session_2021-07-19-11_38_07.csv,150,705,73,300,False,3,train,1
+457,session_2021-06-28-17_57_27.csv,150,643,290,300,True,1,train,1
+458,session_2021-06-29-20_09_40.csv,150,718,165,300,True,1,train,3
+459,session_2021-06-29-22_17_56.csv,150,720,375,300,True,1,train,1
+460,session_2021-06-29-22_45_06.csv,150,690,96,300,False,3,train,3
+461,session_2021-06-28-17_45_55.csv,150,734,125,300,False,1,train,1
+462,session_2021-06-28-21_44_21.csv,150,717,93,300,False,2,train,2
+463,session_2021-07-19-11_23_10.csv,150,721,262,300,True,3,train,3
+464,Group 1.csv,150,703,158,300,False,2,train,2
+465,Group 1.csv,150,703,382,300,True,3,train,2
+466,session_2021-06-29-22_26_44.csv,150,703,331,300,True,3,train,3
+467,Group 1.csv,150,703,199,300,True,3,train,3
+468,session_2021-07-19-11_26_06.csv,150,719,392,300,False,2,train,2
+469,session_2021-06-29-20_09_40.csv,150,718,405,300,True,1,train,3
+470,session_2021-06-28-21_54_19.csv,150,723,265,300,False,3,train,3
+471,session_2021-06-29-22_27_44.csv,150,645,40,300,False,1,train,1
+472,session_2021-07-19-11_40_00.csv,150,714,212,300,False,3,train,1
+473,session_2021-06-29-22_42_47.csv,150,704,389,300,True,2,train,2
+474,session_2021-06-28-17_47_03.csv,150,721,377,300,False,2,train,2
+475,session_2021-06-29-22_23_10.csv,150,716,380,300,False,1,train,1
+476,session_2021-06-29-22_39_33.csv,150,719,337,300,False,3,train,3
+477,session_2021-06-29-22_49_16.csv,150,721,261,300,True,1,train,2
+478,session_2021-06-29-22_39_33.csv,150,719,90,300,True,2,train,2
+479,session_2021-06-28-17_56_16.csv,150,700,265,300,False,3,train,1
+480,session_2021-06-28-21_58_23.csv,150,722,419,300,False,1,train,3
+481,session_2021-07-19-11_26_06.csv,150,719,213,300,True,3,train,3
+482,Group 1.csv,150,703,378,300,False,3,train,3
+483,session_2021-06-28-17_44_26.csv,150,688,123,300,True,3,train,3
+484,session_2021-06-29-20_06_51.csv,150,716,218,300,False,1,train,2
+485,Group 1.csv,150,703,289,300,False,2,train,2
+486,session_2021-06-29-20_11_21.csv,150,719,346,300,False,2,train,2
+487,session_2021-06-29-20_12_31.csv,150,720,186,300,False,1,train,1
+488,session_2021-06-28-21_51_04.csv,150,717,105,300,True,2,train,2
+489,session_2021-06-29-22_43_51.csv,150,722,238,300,False,3,train,3
+490,session_2021-06-28-17_57_27.csv,150,643,254,300,False,1,train,1
+491,session_2021-06-28-17_43_10.csv,150,672,95,300,False,1,train,1
+492,session_2021-06-28-17_52_22.csv,150,719,258,300,False,1,train,1
+493,session_2021-07-19-11_22_11.csv,150,627,244,300,True,3,train,3
+494,session_2021-06-29-22_45_06.csv,150,690,199,300,False,3,train,3
+495,session_2021-07-19-11_30_59.csv,150,719,336,300,False,3,train,3
+496,session_2021-06-28-17_57_27.csv,150,643,255,300,True,1,train,1
+497,session_2021-06-29-22_35_49.csv,150,705,292,300,True,2,train,2
+498,session_2021-06-28-21_44_21.csv,150,717,345,300,True,3,train,3
+499,session_2021-07-19-11_29_30.csv,150,721,229,300,True,3,train,1
+500,Group 1.csv,150,703,24,300,False,2,train,2
+501,session_2021-06-28-21_45_25.csv,150,691,22,300,True,3,train,1
+502,session_2021-06-28-21_44_21.csv,150,717,16,300,True,3,train,3
+503,session_2021-06-28-21_44_21.csv,150,717,329,300,False,2,train,2
+504,Group 1.csv,150,703,178,300,False,1,train,2
+505,session_2021-06-29-22_42_47.csv,150,704,68,300,True,2,train,2
+506,Group 1.csv,150,703,365,300,True,2,train,2
+507,Group 1.csv,150,703,7,300,False,2,train,2
+508,Group 1.csv,150,703,285,300,False,2,train,2
+509,session_2021-07-19-11_25_13.csv,150,690,88,300,True,3,train,3
+510,session_2021-06-28-21_50_01.csv,150,687,60,300,True,1,train,2
+511,session_2021-06-29-22_24_14.csv,150,715,171,300,False,2,train,2
+512,session_2021-06-28-21_44_21.csv,150,717,94,300,True,3,train,3
+513,session_2021-06-28-21_58_23.csv,150,722,343,300,True,1,train,2
+514,session_2021-06-29-20_06_51.csv,150,716,197,300,False,1,train,2
+515,session_2021-06-28-21_55_21.csv,150,706,347,300,True,1,train,2
+516,session_2021-06-29-08_25_10.csv,150,645,309,300,False,2,train,2
+517,session_2021-06-28-17_44_26.csv,150,688,36,300,False,2,train,2
+518,session_2021-06-28-21_47_59.csv,150,721,38,300,True,1,train,2
+519,Group 1.csv,150,703,247,300,True,3,train,2
+520,session_2021-06-29-22_27_44.csv,150,645,47,300,True,1,train,1
+521,session_2021-06-28-17_52_22.csv,150,719,43,300,True,1,train,1
+522,session_2021-06-28-21_58_23.csv,150,722,51,300,True,1,train,2
+523,Group 1.csv,150,703,284,300,False,2,train,2
+524,session_2021-06-29-22_15_53.csv,150,696,374,300,False,1,train,2
+525,session_2021-06-28-17_56_16.csv,150,700,302,300,False,3,train,1
+526,session_2021-07-19-11_25_13.csv,150,690,206,300,False,2,train,2
+527,session_2021-06-28-21_46_21.csv,150,708,219,300,True,1,train,2
+528,session_2021-06-29-22_23_10.csv,150,716,378,300,True,1,train,2
+529,Group 1.csv,150,703,376,300,True,2,train,2
+530,session_2021-06-28-21_54_19.csv,150,723,314,300,True,2,train,2
+531,session_2021-06-28-21_46_21.csv,150,708,348,300,False,1,train,3
+532,session_2021-06-28-17_57_27.csv,150,643,29,300,False,1,train,1
+533,Group 1.csv,150,703,304,300,False,2,train,2
+534,session_2021-06-28-21_45_25.csv,150,691,13,300,False,2,train,1
+535,session_2021-06-28-21_40_11.csv,150,736,69,300,True,1,train,2
+536,Group 1.csv,150,703,43,300,True,1,train,2
+537,session_2021-06-28-21_54_19.csv,150,723,111,300,True,2,train,2
+538,session_2021-07-19-11_42_07.csv,150,718,12,300,False,3,train,1
+539,session_2021-06-29-22_39_33.csv,150,719,334,300,False,3,train,3
+540,Group 1.csv,150,703,228,300,True,2,train,2
+541,session_2021-06-29-22_43_51.csv,150,722,40,300,True,2,train,2
+542,session_2021-06-29-22_39_33.csv,150,719,279,300,False,3,train,3
+543,session_2021-06-29-22_43_51.csv,150,722,384,300,False,3,train,3
+544,Group 1.csv,150,703,157,300,False,3,train,2
+545,Group 1.csv,150,703,143,300,True,3,train,2
+546,Group 1.csv,150,703,153,300,True,3,train,2
+547,session_2021-06-28-21_47_59.csv,150,721,336,300,True,1,train,2
+548,session_2021-06-28-17_51_17.csv,150,718,41,300,True,2,train,1
+549,session_2021-06-29-20_09_40.csv,150,718,102,300,False,1,train,2
+550,session_2021-06-29-08_25_10.csv,150,645,327,300,True,3,train,3
+551,session_2021-07-19-11_42_07.csv,150,718,49,300,False,3,train,1
+552,session_2021-06-28-17_47_03.csv,150,721,25,300,False,2,train,2
+553,session_2021-06-29-22_24_14.csv,150,715,301,300,False,2,train,2
+554,session_2021-06-29-22_27_44.csv,150,645,143,300,True,1,train,1
+555,session_2021-06-28-17_52_22.csv,150,719,291,300,False,1,train,1
+556,session_2021-07-19-11_22_11.csv,150,627,226,300,True,3,train,3
+557,session_2021-06-29-22_49_16.csv,150,721,87,300,True,1,train,2
+558,session_2021-06-29-22_42_47.csv,150,704,214,300,False,3,train,3
+559,Group 1.csv,150,703,362,300,False,2,train,2
+560,session_2021-06-29-22_37_01.csv,150,723,312,300,True,2,train,2
+561,session_2021-06-28-21_54_19.csv,150,723,226,300,True,2,train,2
+562,session_2021-06-29-22_27_44.csv,150,645,120,300,False,1,train,1
+563,session_2021-06-29-22_37_01.csv,150,723,79,300,False,3,train,3
+564,session_2021-06-28-21_40_11.csv,150,736,433,300,False,1,train,3
+565,Group 1.csv,150,703,210,300,False,2,train,2
+566,session_2021-06-29-08_25_10.csv,150,645,208,300,True,3,train,3
+567,Group 1.csv,150,703,273,300,True,3,train,2
+568,session_2021-06-28-21_58_23.csv,150,722,205,300,True,1,train,2
+569,session_2021-06-29-22_45_06.csv,150,690,216,300,False,3,train,3
+570,session_2021-06-28-21_47_59.csv,150,721,326,300,True,1,train,2
+571,session_2021-06-28-21_50_01.csv,150,687,227,300,False,1,train,3
+572,session_2021-07-19-11_39_04.csv,150,658,111,300,False,3,train,1
+573,session_2021-06-28-21_46_21.csv,150,708,61,300,True,1,train,2
+574,Group 1.csv,150,703,301,300,False,2,train,2
+575,Group 1.csv,150,703,227,300,False,3,train,3
+576,session_2021-07-19-11_40_00.csv,150,714,336,300,True,2,train,1
+577,session_2021-06-29-20_06_51.csv,150,716,161,300,False,1,train,2
+578,session_2021-06-28-21_56_20.csv,150,646,7,300,True,2,train,1
+579,session_2021-06-28-17_45_55.csv,150,734,328,300,False,1,train,1
+580,session_2021-06-29-22_24_14.csv,150,715,284,300,False,2,train,2
+581,Group 1.csv,150,703,276,300,True,2,train,2
+582,session_2021-07-19-11_25_13.csv,150,690,285,300,True,3,train,3
+583,session_2021-06-29-22_42_47.csv,150,704,385,300,True,2,train,2
+584,session_2021-07-19-11_29_30.csv,150,721,385,300,True,3,train,1
+585,session_2021-07-19-11_25_13.csv,150,690,185,300,False,2,train,2
+586,session_2021-06-29-22_15_53.csv,150,696,157,300,True,1,train,3
+587,session_2021-06-28-17_51_17.csv,150,718,83,300,False,3,train,1
+588,session_2021-06-28-21_56_20.csv,150,646,123,300,False,3,train,1
+589,session_2021-06-28-17_43_10.csv,150,672,69,300,True,1,train,1
+590,session_2021-06-29-20_06_51.csv,150,716,233,300,True,1,train,3
+591,session_2021-07-19-11_26_06.csv,150,719,321,300,False,2,train,2
+592,session_2021-07-19-11_36_12.csv,150,723,413,300,False,3,train,1
+593,session_2021-06-28-21_55_21.csv,150,706,135,300,False,1,train,3
+594,session_2021-06-29-20_09_40.csv,150,718,243,300,False,1,train,2
+595,Group 1.csv,150,703,292,300,True,3,train,3
+596,session_2021-06-29-22_35_49.csv,150,705,208,300,True,2,train,2
+597,session_2021-06-29-22_24_14.csv,150,715,195,300,False,2,train,2
+598,session_2021-06-28-21_40_11.csv,150,736,348,300,True,1,train,2
+599,session_2021-06-28-17_56_16.csv,150,700,364,300,True,2,train,1
+600,session_2021-06-29-20_12_31.csv,150,720,206,300,True,1,train,1
+601,session_2021-06-29-22_23_10.csv,150,716,222,300,True,1,train,2
+602,session_2021-07-19-11_42_07.csv,150,718,291,300,False,3,train,1
+603,Group 1.csv,150,703,99,300,False,1,train,2
+604,Group 1.csv,150,703,27,300,False,2,train,2
+605,session_2021-06-28-17_52_22.csv,150,719,259,300,True,1,train,1
+606,session_2021-06-29-20_06_51.csv,150,716,125,300,True,1,train,3
+607,session_2021-07-19-11_23_10.csv,150,721,334,300,True,3,train,3
+608,Group 1.csv,150,703,56,300,False,3,train,3
+609,session_2021-07-19-11_23_10.csv,150,721,407,300,False,2,train,2
+610,session_2021-07-19-11_21_15.csv,150,689,194,300,False,2,val,2
+611,Group 1.csv,150,703,201,300,False,3,val,2
+612,Group 1.csv,150,703,201,300,False,2,val,2
+613,Group 1.csv,150,703,201,300,False,3,val,2
+614,Group 1.csv,150,703,201,300,False,3,val,2
+615,session_2021-07-19-11_32_02.csv,150,718,209,300,False,3,val,3
+616,Group 1.csv,150,703,201,300,False,2,val,2
+617,session_2021-06-28-21_57_23.csv,150,705,202,300,False,1,val,3
+618,Group 1.csv,150,703,201,300,False,3,val,2
+619,session_2021-06-28-17_50_06.csv,150,717,208,300,False,1,val,1
+620,session_2021-06-29-20_08_31.csv,150,721,210,300,False,2,val,2
+621,session_2021-06-29-08_24_02.csv,150,718,209,300,False,1,val,1
+622,session_2021-06-29-22_29_03.csv,150,703,201,300,False,1,val,3
+623,session_2021-07-19-11_24_09.csv,150,687,193,300,False,2,val,2
+624,session_2021-06-29-22_19_19.csv,150,704,202,300,False,1,val,1
+625,session_2021-07-19-11_20_13.csv,150,720,210,300,False,2,test,2
+626,session_2021-06-29-22_22_10.csv,150,721,210,300,False,2,test,2
+627,Group 1.csv,150,703,201,300,False,1,test,2
+628,Group 1.csv,150,703,201,300,False,3,test,2
+629,session_2021-06-29-08_27_11.csv,150,719,209,300,False,1,test,3
+630,session_2021-07-19-11_19_04.csv,150,717,208,300,False,2,test,2
+631,Group 1.csv,150,703,201,300,False,3,test,2
+632,session_2021-07-19-11_41_07.csv,150,720,210,300,False,3,test,1
+633,session_2021-07-19-11_33_06.csv,150,658,179,300,False,3,test,3
+634,session_2021-06-28-21_43_21.csv,150,676,188,300,False,2,test,2
+635,Group 1.csv,150,703,201,300,False,2,test,2
+636,Group 1.csv,150,703,201,300,False,1,test,2
+637,session_2021-06-28-21_37_46.csv,150,716,208,300,False,1,test,2
+638,Group 1.csv,150,703,201,300,False,1,test,2
+639,Group 1.csv,150,703,201,300,False,3,test,2
