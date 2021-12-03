@@ -326,6 +326,15 @@ public class ResultDAO {
                 e.printStackTrace();
             }
         }
+        writeToAnnotation(res);
+    }
+
+    /**
+     * Writes to the annotation file.
+     * @param res
+     *              The result.
+     */
+    public void writeToAnnotation(Result res) {
         //The CSV annotation file to update the NPZ file.
         File csvOutputFile = null;
         switch(res.getAlgorithm()) {
@@ -344,7 +353,9 @@ public class ResultDAO {
         }
         //The data to be written to the annotations CSV.
         List<String[]> dataLines = new ArrayList<>();
+        //Header
         dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
+        //Reads from the old CSV file.
         Scanner sc = null;
         switch(res.getAlgorithm()) {
             case "Support Vector Machine":
@@ -376,6 +387,8 @@ public class ResultDAO {
                 }
                 break;
         }
+        //Places the previous CSV files into the annotations file
+        //Because the test accuracy is always 33 if only one file is used.
         int i = 0;
         while (sc.hasNext()) {
             String line = sc.nextLine();
@@ -385,6 +398,7 @@ public class ResultDAO {
         //Randomness to avoid bias
         for (int j = 0; j < 25; j++) {
             Random generator = new Random();
+            //Chooses which arm to label.
             int arm = 1 + generator.nextInt(3);
             String lymphedema = "";
             switch (arm) {
@@ -400,10 +414,12 @@ public class ResultDAO {
                 default:
                     throw new IllegalArgumentException();
             }
+            //Chooses a blood pressure
             if (arm != 1) {
                 int bp = generator.nextInt(101);
                 dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
             }
+            //If no lymphedema, do not choose.
             else {
                 dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema});
             }
@@ -416,8 +432,8 @@ public class ResultDAO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
 
+    }
     /**
      * Converts to a CSV.
      *
