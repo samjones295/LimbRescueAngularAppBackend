@@ -345,8 +345,45 @@ public class ResultDAO {
         //The data to be written to the annotations CSV.
         List<String[]> dataLines = new ArrayList<>();
         dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
-        for (int i = 0; i < 100; i++) {
-            //Randomness to avoid bias
+        Scanner sc = null;
+        switch(res.getAlgorithm()) {
+            case "Support Vector Machine":
+                try {
+                    sc = new Scanner(new File(p.getProperty("spring.datasource.outputFile") + "/svm/rawdata/annotations_old.csv"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Random Forest":
+                try {
+                    sc = new Scanner(new File(p.getProperty("spring.datasource.outputFile") + "/rf/rawdata/annotations_old.csv"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Naive Bayes":
+                try {
+                    sc = new Scanner(new File(p.getProperty("spring.datasource.outputFile") + "/nb/rawdata/annotations_old.csv"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Multi Layer Perceptron":
+                try {
+                    sc = new Scanner(new File(p.getProperty("spring.datasource.outputFile") + "/mlp/rawdata/annotations_old.csv"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+        int i = 0;
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (i != 0) dataLines.add(line.split(","));
+            i++;
+        }
+        //Randomness to avoid bias
+        for (int j = 0; j < 25; j++) {
             Random generator = new Random();
             int arm = 1 + generator.nextInt(3);
             String lymphedema = "";
@@ -365,10 +402,10 @@ public class ResultDAO {
             }
             if (arm != 1) {
                 int bp = generator.nextInt(101);
-                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), "", ""});
+                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
             }
             else {
-                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, "", ""});
+                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema});
             }
         }
         //Writes the data to the corresponding CSV.
