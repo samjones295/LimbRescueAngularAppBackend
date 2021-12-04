@@ -240,37 +240,26 @@ public class ReadingDAO {
         }
     }
 
-//    /**
-//     * Retrieves the start date and time for the watch.
-//     *
-//     * @return
-//     *          The current date and time in UTC.
-//     */
-//    @GetMapping("/start")
-//    @ResponseBody
-//    public String getStartDateAndTime() {
-//        DateFormat df = DateFormat.getDateTimeInstance();
-//        df.setTimeZone(TimeZone.getTimeZone("gmt"));
-//        String gmtTime = df.format(new Date());
-//        return gmtTime;
-//    }
     /**
-     * Retrieves the stop date and time for the watch.
+     * Retrieves the start and stop date and time for the watch.
      *
      * @return
-     *          The current date and time in UTC.
+     *          The array containing the start and the stop time for the watch.
      */
     @GetMapping("/start")
     @ResponseBody
     public String[] getDateAndTime() {
         DateFormat df = DateFormat.getDateTimeInstance();
         df.setTimeZone(TimeZone.getTimeZone("gmt"));
+        //Start time
         String startTime = df.format(new Date());
+        //Thread sleeps to get a later end time.
         try {
             Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //Stop time
         String endTime = df.format(new Date());
         return new String[]{startTime, endTime};
     }
