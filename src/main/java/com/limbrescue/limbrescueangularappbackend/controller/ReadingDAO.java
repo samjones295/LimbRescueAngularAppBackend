@@ -254,11 +254,6 @@ public class ReadingDAO {
         //Start time
         String startTime = df.format(new Date());
         //Thread sleeps to get a later end time.
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         //Stop time
         String endTime = df.format(new Date());
         return new String[]{startTime, endTime};
