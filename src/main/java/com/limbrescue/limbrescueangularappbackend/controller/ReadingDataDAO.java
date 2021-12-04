@@ -167,29 +167,20 @@ public class ReadingDataDAO {
 
     /**
      * Inserts a reading data to the table.
-     *
-     * @param data
-     *              The group reading to be inserted.
+     * @param sql
+     *          The SQL Insert Query
      */
-    @PostMapping(path = "/data")
-    @ResponseBody
-    public void insertReadingData(@RequestBody ReadingData data) {
+    public void insertReadingData(String sql, int reading_id, double time, double value, String laterality) {
         Connection connection = dbConnection.getConnection();
-        //Updates the ID if necessary to avoid duplicates.
-        int id = data.getId();
-        while (getReadingData(id) != null) {
-            id++;
-            data.setId(id);
-        }
         //SQL Insert Statement
-        String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
+        //String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, data.getId());
-            statement.setInt(2, data.getReading_id());
-            statement.setDouble(3, data.getTime());
-            statement.setDouble(4, data.getPpg_reading());
-            statement.setString(5, data.getLaterality());
+            statement.setInt(1, 0);
+            statement.setInt(2, reading_id);
+            statement.setDouble(3, time);
+            statement.setDouble(4, value);
+            statement.setString(5, laterality);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -201,6 +192,23 @@ public class ReadingDataDAO {
         }
     }
 
+    /**
+     * Parses a JSON
+     * @param json
+     *              The JSON to be parsed
+     */
+    @PostMapping(path = "/data")
+    @ResponseBody
+    public void parseData(@RequestParam("reading_id") int reading_id, @RequestParam("JSON") String json) {
+        String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
+        int timeIndex = json.indexOf("time:");
+        int valueIndex = json.indexOf("ppg_reading:");
+        int armIndex = json.indexOf("laterality:");
+        double time = Double.parseDouble(json.substring(timeIndex + 6, json.indexOf(",", timeIndex)));
+        double value = Double.parseDouble(json.substring(valueIndex + 13, json.indexOf(",", valueIndex)));
+        String laterality = json.substring(armIndex + 12);
+        insertReadingData(sql, reading_id, time, value, laterality);
+    }
     /**
      * Updates a reading data based on the ID.
      *

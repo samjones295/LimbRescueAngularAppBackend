@@ -13,11 +13,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.TimeZone;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
@@ -249,10 +246,9 @@ public class ReadingDAO {
      */
     @GetMapping("/start")
     @ResponseBody
-    public String getDateAndTime() {
+    public String getDateAndTime(@RequestParam int delta) {
         // Unit of delta is ms, so 30s is 30000ms.
         // TODO: Implement the user input time delta function.
-        long delta = 30000;
         SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
         formatter.setTimeZone(TimeZone.getTimeZone("gmt"));
         Date startDate = new Date();
@@ -261,7 +257,6 @@ public class ReadingDAO {
         String endTime = formatter.format(endDate);
         return startTime + ";" + endTime;
     }
-
 
     /**
      * Updates a reading based on the ID.
