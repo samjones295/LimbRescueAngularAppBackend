@@ -249,12 +249,15 @@ public class ReadingDAO {
     @GetMapping("/start")
     @ResponseBody
     public String[] getDateAndTime() {
+        // Unit of delta is ms, so 30s is 30000ms.
+        // TODO: Implement the user input time delta function.
+        long delta = 30000;
         DateFormat df = DateFormat.getDateTimeInstance();
         df.setTimeZone(TimeZone.getTimeZone("gmt"));
-        //Start time
-        String startTime = df.format(new Date());
-        //Stop time
-        String endTime = df.format(new Date());
+        Date startDate = new Date();
+        Date endDate = new Date(startDate.getTime() + delta);
+        String startTime = df.format(startDate);
+        String endTime = df.format(endDate);
         return new String[]{startTime, endTime};
     }
 
