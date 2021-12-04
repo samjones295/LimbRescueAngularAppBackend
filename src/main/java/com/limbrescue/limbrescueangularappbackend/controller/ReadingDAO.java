@@ -253,7 +253,6 @@ public class ReadingDAO {
         df.setTimeZone(TimeZone.getTimeZone("gmt"));
         //Start time
         String startTime = df.format(new Date());
-        //Thread sleeps to get a later end time.
         //Stop time
         String endTime = df.format(new Date());
         return new String[]{startTime, endTime};
