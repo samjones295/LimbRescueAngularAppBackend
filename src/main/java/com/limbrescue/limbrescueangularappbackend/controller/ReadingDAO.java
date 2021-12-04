@@ -240,33 +240,39 @@ public class ReadingDAO {
         }
     }
 
-    /**
-     * Retrieves the start date and time for the watch.
-     *
-     * @return
-     *          The current date and time in UTC.
-     */
-    @GetMapping("/start")
-    @ResponseBody
-    public String getStartDateAndTime() {
-        DateFormat df = DateFormat.getDateTimeInstance();
-        df.setTimeZone(TimeZone.getTimeZone("gmt"));
-        String gmtTime = df.format(new Date());
-        return gmtTime;
-    }
+//    /**
+//     * Retrieves the start date and time for the watch.
+//     *
+//     * @return
+//     *          The current date and time in UTC.
+//     */
+//    @GetMapping("/start")
+//    @ResponseBody
+//    public String getStartDateAndTime() {
+//        DateFormat df = DateFormat.getDateTimeInstance();
+//        df.setTimeZone(TimeZone.getTimeZone("gmt"));
+//        String gmtTime = df.format(new Date());
+//        return gmtTime;
+//    }
     /**
      * Retrieves the stop date and time for the watch.
      *
      * @return
      *          The current date and time in UTC.
      */
-    @GetMapping("/stop")
+    @GetMapping("/start")
     @ResponseBody
-    public String getStopDateAndTime() {
+    public String[] getDateAndTime() {
         DateFormat df = DateFormat.getDateTimeInstance();
         df.setTimeZone(TimeZone.getTimeZone("gmt"));
-        String gmtTime = df.format(new Date());
-        return gmtTime;
+        String startTime = df.format(new Date());
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String endTime = df.format(new Date());
+        return new String[]{startTime, endTime};
     }
 
 
