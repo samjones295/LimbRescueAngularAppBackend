@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -252,13 +253,13 @@ public class ReadingDAO {
         // Unit of delta is ms, so 30s is 30000ms.
         // TODO: Implement the user input time delta function.
         long delta = 30000;
-        DateFormat df = DateFormat.getDateTimeInstance();
-        df.setTimeZone(TimeZone.getTimeZone("gmt"));
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("gmt"));
         Date startDate = new Date();
-        Date endDate = new Date(startDate.getTime() + delta);
-        String startTime = df.format(startDate);
-        String endTime = df.format(endDate);
-        return startTime+";"+endTime;
+        //Date endDate = new Date(startDate.getTime() + delta);
+        String startTime = formatter.format(startDate);
+        //String endTime = formatter.format(endDate);
+        return startTime + ";" + delta;
     }
 
 
