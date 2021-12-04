@@ -248,7 +248,7 @@ public class ReadingDAO {
      */
     @GetMapping("/start")
     @ResponseBody
-    public String[] getDateAndTime() {
+    public String getDateAndTime() {
         // Unit of delta is ms, so 30s is 30000ms.
         // TODO: Implement the user input time delta function.
         long delta = 30000;
@@ -258,7 +258,7 @@ public class ReadingDAO {
         Date endDate = new Date(startDate.getTime() + delta);
         String startTime = df.format(startDate);
         String endTime = df.format(endDate);
-        return new String[]{startTime, endTime};
+        return startTime+";"+endTime;
     }
 
 
