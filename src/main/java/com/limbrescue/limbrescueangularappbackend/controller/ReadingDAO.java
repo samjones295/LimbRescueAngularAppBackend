@@ -256,10 +256,10 @@ public class ReadingDAO {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
         formatter.setTimeZone(TimeZone.getTimeZone("gmt"));
         Date startDate = new Date();
-        //Date endDate = new Date(startDate.getTime() + delta);
+        Date endDate = new Date(startDate.getTime() + delta);
         String startTime = formatter.format(startDate);
-        //String endTime = formatter.format(endDate);
-        return startTime + ";" + delta;
+        String endTime = formatter.format(endDate);
+        return startTime + ";" + endTime;
     }
 
 
