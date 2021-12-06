@@ -242,27 +242,15 @@ public class ReadingDAO {
         }
     }
     /**
-     * Parses a JSON
-     * @param json
-     *              The JSON to be parsed
+     * Parses a reading
+     * @param reading
+     *              The reading to be parsed
      */
     @PostMapping(path = "/table")
     @ResponseBody
-    public void parseData(@RequestParam("JSON") String json) {
+    public void parseData(@RequestBody Reading reading) {
         String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
-        int readingIDindex = json.indexOf("id:");
-        int patientIndex = json.indexOf("patient_no:");
-        int dateIndex = json.indexOf("date_created:");
-        int armIndex = json.indexOf("laterality:");
-        int commentIndex = json.indexOf("comments:");
-        int id = Integer.parseInt(json.substring(readingIDindex + 4, json.indexOf(",", readingIDindex)));
-        String patient = json.substring(patientIndex + 12, json.indexOf(",", patientIndex));
-        String date_created = json.substring(dateIndex + 14, json.indexOf(",", dateIndex));
-        String[] parts = date_created.split("-");
-        java.sql.Date date = new java.sql.Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
-        String laterality = json.substring(armIndex + 12, json.indexOf(",", armIndex));
-        String comments = json.substring(commentIndex + 10);
-        insertReading(sql, id, patient, date, laterality, comments);
+        insertReading(sql, reading.getId(), reading.getPatient_no(), reading.getDate_created(), reading.getLaterality(), reading.getComments());
     }
     /**
      * Retrieves the start and stop date and time for the watch.

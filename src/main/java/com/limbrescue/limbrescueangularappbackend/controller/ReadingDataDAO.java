@@ -201,23 +201,15 @@ public class ReadingDataDAO {
     }
 
     /**
-     * Parses a JSON
-     * @param json
-     *              The JSON to be parsed
+     * Parses a reading data
+     * @param data
+     *              The data to be parsed.
      */
     @PostMapping(path = "/data")
     @ResponseBody
-    public void parseData(@RequestParam("JSON") String json) {
+    public void parseData(@RequestBody ReadingData data) {
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
-        int readingIDindex = json.indexOf("reading_id:");
-        int timeIndex = json.indexOf("time:");
-        int valueIndex = json.indexOf("ppg_reading:");
-        int armIndex = json.indexOf("laterality:");
-        int reading_id = Integer.parseInt(json.substring(readingIDindex + 12, json.indexOf(",", readingIDindex)));
-        double time = Double.parseDouble(json.substring(timeIndex + 6, json.indexOf(",", timeIndex)));
-        double value = Double.parseDouble(json.substring(valueIndex + 13, json.indexOf(",", valueIndex)));
-        String laterality = json.substring(armIndex + 12);
-        insertReadingData(sql, reading_id, time, value, laterality);
+        insertReadingData(sql, data.getReading_id(), data.getTime(), data.getPpg_reading(), data.getLaterality());
     }
     /**
      * Updates a reading data based on the ID.
