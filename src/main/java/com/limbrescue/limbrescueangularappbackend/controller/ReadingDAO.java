@@ -8,11 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.Date;
 
@@ -36,6 +32,14 @@ public class ReadingDAO {
      * The Database Connection.
      */
     private DBConnection dbConnection;
+    /**
+     * Global storage for time and date
+     */
+    private String startTime;
+    private String endTime;
+    private Date startDate;
+    private Date endDate;
+    private long delta;
 
     /**
      * Constructor
@@ -208,7 +212,7 @@ public class ReadingDAO {
      * @param reading
      *              The reading to be inserted.
      */
-    @PostMapping(path = "/reading")
+    @PostMapping(path = "/table")
     @ResponseBody
     public void insertReading(@RequestBody Reading reading) {
         Connection connection = dbConnection.getConnection();
@@ -248,15 +252,33 @@ public class ReadingDAO {
      */
     @GetMapping("/start")
     @ResponseBody
-    public String getDateAndTime(@RequestParam("delta") int delta) {
+    public String getDateAndTime(@RequestParam("delta") long delta) {
+        this.delta = delta;
         // Unit of delta is ms, so 30s is 30000ms.
         SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
         formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
-        Date startDate = new Date(); //Start Date
-        Date endDate = new Date(startDate.getTime() + delta); //End Date
+        startDate = new Date(); //Start Date
+        endDate = new Date(startDate.getTime() + delta); //End Date
+        startTime = formatter.format(startDate); //Start time
+        endTime = formatter.format(endDate); //End time
+        return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\", \"delta\":  \"" + delta + "\" }";
+    }
+
+    /**
+     * Three-second delay.
+     *
+     * @return
+     *          The array containing the start and the stop time for the watch.
+     */
+    @GetMapping("/time")
+    @ResponseBody
+    public String getDateAndTime() {
+        // Unit of delta is ms, so 30s is 30000ms.
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
+        formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
         String startTime = formatter.format(startDate); //Start time
         String endTime = formatter.format(endDate); //End time
-        return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\", \"delta\":  \"" + delta + "\" }";
+        return startTime + ";" + endTime + ";" + delta;
     }
 
     /**
