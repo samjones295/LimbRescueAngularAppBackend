@@ -35,8 +35,8 @@ public class ReadingDAO {
     /**
      * Global storage for time and date
      */
-    private String startTime;
-    private String endTime;
+    private String startTime = "JAN-01-1970 00:00:00";
+    private String endTime = "JAN-01-1970 00:00:00";
     private Date startDate;
     private Date endDate;
     private long delta;
