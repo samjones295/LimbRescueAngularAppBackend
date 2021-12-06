@@ -78,7 +78,7 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
+                        result.getDouble("time"), result.getString("value"), result.getString("laterality"));
                 readings.add(data);
             }
         } catch (SQLException e) {
@@ -209,7 +209,12 @@ public class ReadingDataDAO {
     @ResponseBody
     public void parseData(@RequestBody ReadingData data) {
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
-        insertReadingData(sql, data.getReading_id(), data.getTime(), data.getPpg_reading(), data.getLaterality());
+        String ppg_reading = data.getPpg_reading();
+        int timeIndex = ppg_reading.indexOf("time:");
+        int valueIndex = ppg_reading.indexOf("value:");
+        double time = Double.parseDouble(ppg_reading.substring(timeIndex + 6, ppg_reading.indexOf(",", timeIndex)));
+        String value = ppg_reading.substring(valueIndex + 7, ppg_reading.length() - 1);
+        insertReadingData(sql, data.getReading_id(), time, value, data.getLaterality());
     }
     /**
      * Updates a reading data based on the ID.

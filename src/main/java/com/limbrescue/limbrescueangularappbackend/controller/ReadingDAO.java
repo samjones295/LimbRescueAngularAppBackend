@@ -85,7 +85,7 @@ public class ReadingDAO {
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getString("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
+                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -119,7 +119,7 @@ public class ReadingDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getString("date_created"), result.getString("laterality"), result.getString("comments"));
+                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -257,7 +257,51 @@ public class ReadingDAO {
     @ResponseBody
     public void parseData(@RequestBody Reading reading) {
         String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
-        insertReading(sql, reading.getId(), reading.getPatient_no(), reading.getDate_created(), reading.getLaterality(), reading.getComments());
+        String create = reading.getDate_created();
+        String[] elements = create.split(" ");
+        int month;
+        switch (elements[1]) {
+            case "Jan":
+                month = 0;
+                break;
+            case "Feb":
+                month = 1;
+                break;
+            case "Mar":
+                month = 2;
+                break;
+            case "Apr":
+                month = 3;
+                break;
+            case "May":
+                month = 4;
+                break;
+            case "Jun":
+                month = 5;
+                break;
+            case "Jul":
+                month = 6;
+                break;
+            case "Aug":
+                month = 7;
+                break;
+            case "Sep":
+                month = 8;
+                break;
+            case "Oct":
+                month = 9;
+                break;
+            case "Nov":
+                month = 10;
+                break;
+            case "Dec":
+                month = 11;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid month");
+        }
+        java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
+        insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
     }
     /**
      * Retrieves the start and stop date and time for the watch.
