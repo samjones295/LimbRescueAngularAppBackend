@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
@@ -210,28 +209,29 @@ public class ReadingDAO {
     /**
      * Inserts a reading to the table.
      *
-     * @param reading
-     *              The reading to be inserted.
+     * @param sql
+     *          The SQL query.
+     * @param id
+     *          The reading ID
+     * @param patient_no
+     *          The patient number
+     * @param date_created
+     *          The date created
+     * @param laterality
+     *          The laterality
+     * @param comments
+     *          The comments
      */
-    @PostMapping(path = "/table")
-    @ResponseBody
-    public void insertReading(@RequestBody Reading reading) {
+    public void insertReading(String sql, int id, String patient_no, java.sql.Date date_created, String laterality, String comments) {
         Connection connection = dbConnection.getConnection();
-        //Updates the ID if necessary to avoid duplicates.
-        int id = reading.getId();
-        while (getReading(id) != null) {
-            id++;
-            reading.setId(id);
-        }
         //SQL Insert Statement
-        String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, reading.getId());
-            statement.setString(2, reading.getPatient_no());
-            statement.setDate(3, reading.getDate_created());
-            statement.setString(4, reading.getLaterality());
-            statement.setString(5, reading.getComments());
+            statement.setInt(1, id);
+            statement.setString(2, patient_no);
+            statement.setDate(3, date_created);
+            statement.setString(4, laterality);
+            statement.setString(5, comments);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -242,7 +242,29 @@ public class ReadingDAO {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Parses a JSON
+     * @param json
+     *              The JSON to be parsed
+     */
+    @PostMapping(path = "/table")
+    @ResponseBody
+    public void parseData(@RequestParam("JSON") String json) {
+        String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
+        int readingIDindex = json.indexOf("id:");
+        int patientIndex = json.indexOf("patient_no:");
+        int dateIndex = json.indexOf("date_created:");
+        int armIndex = json.indexOf("laterality:");
+        int commentIndex = json.indexOf("comments:");
+        int id = Integer.parseInt(json.substring(readingIDindex + 4, json.indexOf(",", readingIDindex)));
+        String patient = json.substring(patientIndex + 12, json.indexOf(",", patientIndex));
+        String date_created = json.substring(dateIndex + 14, json.indexOf(",", dateIndex));
+        String[] parts = date_created.split("-");
+        java.sql.Date date = new java.sql.Date(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+        String laterality = json.substring(armIndex + 12, json.indexOf(",", armIndex));
+        String comments = json.substring(commentIndex + 10);
+        insertReading(sql, id, patient, date, laterality, comments);
+    }
     /**
      * Retrieves the start and stop date and time for the watch.
      *
@@ -258,8 +280,8 @@ public class ReadingDAO {
         // Unit of delta is ms, so 30s is 30000ms.
         SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
         formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
-        Date startDate = new Date(); //Start Date
-        Date endDate = new Date(startDate.getTime() + delta); //End Date
+        java.util.Date startDate = new java.util.Date(); //Start Date
+        java.util.Date endDate = new java.util.Date(startDate.getTime() + delta); //End Date
         startTime = formatter.format(startDate); //Start time
         endTime = formatter.format(endDate); //End time
         return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\", \"delta\":  \"" + delta + "\" }";

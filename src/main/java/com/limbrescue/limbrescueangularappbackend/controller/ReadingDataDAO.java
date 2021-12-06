@@ -166,9 +166,17 @@ public class ReadingDataDAO {
     }
 
     /**
-     * Inserts a reading data to the table.
+     * Inserts a reading data into the table.
      * @param sql
-     *          The SQL Insert Query
+     *          The SQL query
+     * @param reading_id
+     *          The reading ID
+     * @param time
+     *          The time
+     * @param value
+     *          The reading
+     * @param laterality
+     *          The laterality
      */
     public void insertReadingData(String sql, int reading_id, double time, double value, String laterality) {
         Connection connection = dbConnection.getConnection();
@@ -199,11 +207,13 @@ public class ReadingDataDAO {
      */
     @PostMapping(path = "/data")
     @ResponseBody
-    public void parseData(@RequestParam("reading_id") int reading_id, @RequestParam("JSON") String json) {
+    public void parseData(@RequestParam("JSON") String json) {
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
+        int readingIDindex = json.indexOf("reading_id:");
         int timeIndex = json.indexOf("time:");
         int valueIndex = json.indexOf("ppg_reading:");
         int armIndex = json.indexOf("laterality:");
+        int reading_id = Integer.parseInt(json.substring(readingIDindex + 12, json.indexOf(",", readingIDindex)));
         double time = Double.parseDouble(json.substring(timeIndex + 6, json.indexOf(",", timeIndex)));
         double value = Double.parseDouble(json.substring(valueIndex + 13, json.indexOf(",", valueIndex)));
         String laterality = json.substring(armIndex + 12);
