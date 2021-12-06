@@ -256,7 +256,7 @@ public class ReadingDAO {
         Date endDate = new Date(startDate.getTime() + delta); //End Date
         String startTime = formatter.format(startDate); //Start time
         String endTime = formatter.format(endDate); //End time
-        return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\" }";
+        return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\", \"delta\":  \"" + delta + "\" }";
     }
 
     /**
