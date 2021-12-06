@@ -78,7 +78,7 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getDouble("ppg_reading"), result.getString("laterality"));
+                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
                 readings.add(data);
             }
         } catch (SQLException e) {
@@ -111,7 +111,7 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getDouble("ppg_reading"), result.getString("laterality"));
+                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
                 readings.add(data);
             }
         } catch (SQLException e) {
@@ -150,7 +150,7 @@ public class ReadingDataDAO {
                 data.setId(id);
                 data.setReading_id(result.getInt("reading_id"));
                 data.setTime(result.getDouble("time"));
-                data.setPpg_reading(result.getDouble("ppg_reading"));
+                data.setPpg_reading(result.getString("ppg_reading"));
                 data.setLaterality(result.getString("laterality"));
             }
         } catch (SQLException e) {
@@ -178,7 +178,7 @@ public class ReadingDataDAO {
      * @param laterality
      *          The laterality
      */
-    public void insertReadingData(String sql, int reading_id, double time, double value, String laterality) {
+    public void insertReadingData(String sql, int reading_id, double time, String value, String laterality) {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
         //String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
@@ -187,7 +187,7 @@ public class ReadingDataDAO {
             statement.setInt(1, 0);
             statement.setInt(2, reading_id);
             statement.setDouble(3, time);
-            statement.setDouble(4, value);
+            statement.setString(4, value);
             statement.setString(5, laterality);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -229,7 +229,7 @@ public class ReadingDataDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, data.getReading_id());
             statement.setDouble(2, data.getTime());
-            statement.setDouble(3, data.getPpg_reading());
+            statement.setString(3, data.getPpg_reading());
             statement.setString(4, data.getLaterality());
             statement.setInt(5, id);
             statement.executeUpdate();
