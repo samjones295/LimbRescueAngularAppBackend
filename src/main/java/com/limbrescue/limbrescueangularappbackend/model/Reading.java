@@ -6,14 +6,14 @@ public class Reading {
     //Fields
     private int id;
     private String patient_no;
-    private Date date_created;
+    private String date_created;
     private String laterality;
     private String comments;
     //Constructors
     public Reading() {
 
     }
-    public Reading(int id, String patient_no, Date date_created, String laterality, String comments) {
+    public Reading(int id, String patient_no, String date_created, String laterality, String comments) {
         this.id = id;
         this.patient_no = patient_no;
         this.date_created = date_created;
@@ -27,7 +27,7 @@ public class Reading {
     public String getPatient_no() {
         return patient_no;
     }
-    public Date getDate_created() {
+    public String getDate_created() {
         return date_created;
     }
     public String getLaterality() { return laterality; }
@@ -42,7 +42,7 @@ public class Reading {
     public void setPatient_no(String patient_no) {
         this.patient_no = patient_no;
     }
-    public void setDate_created(Date date_created) {
+    public void setDate_created(String date_created) {
         this.date_created = date_created;
     }
     public void setLaterality(String laterality) { this.laterality = laterality; }

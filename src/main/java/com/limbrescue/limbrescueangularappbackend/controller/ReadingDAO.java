@@ -80,7 +80,7 @@ public class ReadingDAO {
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getDate("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
+                        result.getString("date_created"), result.getString("laterality"), /*result.getString("active_or_rest"),*/ result.getString("comments"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -114,7 +114,7 @@ public class ReadingDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getDate("date_created"), result.getString("laterality"), result.getString("comments"));
+                        result.getString("date_created"), result.getString("laterality"), result.getString("comments"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -152,7 +152,7 @@ public class ReadingDAO {
                 reading = new Reading();
                 reading.setId(id);
                 reading.setPatient_no(result.getString("patient_no"));
-                reading.setDate_created(result.getDate("date_created"));
+                reading.setDate_created(result.getString("date_created"));
                 reading.setLaterality(result.getString("laterality"));
                 reading.setComments(result.getString("comments"));
             }
@@ -191,7 +191,7 @@ public class ReadingDAO {
                 reading = new Reading();
                 reading.setId(result.getInt("id"));
                 reading.setPatient_no(patient_no);
-                reading.setDate_created(result.getDate("date_created"));
+                reading.setDate_created(result.getString("date_created"));
                 reading.setLaterality(result.getString("laterality"));
                 reading.setComments(result.getString("comments"));
             }
@@ -223,14 +223,14 @@ public class ReadingDAO {
      * @param comments
      *          The comments
      */
-    public void insertReading(String sql, int id, String patient_no, java.sql.Date date_created, String laterality, String comments) {
+    public void insertReading(String sql, int id, String patient_no, String date_created, String laterality, String comments) {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             statement.setString(2, patient_no);
-            statement.setDate(3, date_created);
+            statement.setString(3, date_created);
             statement.setString(4, laterality);
             statement.setString(5, comments);
             statement.executeUpdate();
@@ -315,7 +315,7 @@ public class ReadingDAO {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, reading.getPatient_no());
-            statement.setDate(2, reading.getDate_created());
+            statement.setString(2, reading.getDate_created());
             statement.setString(3, reading.getLaterality());
             statement.setString(4, reading.getComments());
             statement.setInt(5, id);
