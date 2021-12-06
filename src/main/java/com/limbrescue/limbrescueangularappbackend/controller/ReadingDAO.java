@@ -248,7 +248,7 @@ public class ReadingDAO {
      */
     @GetMapping("/start")
     @ResponseBody
-    public String getDateAndTime(@RequestParam int delta) {
+    public String getDateAndTime(@RequestParam("delta") int delta) {
         // Unit of delta is ms, so 30s is 30000ms.
         SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
         formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
@@ -256,7 +256,7 @@ public class ReadingDAO {
         Date endDate = new Date(startDate.getTime() + delta); //End Date
         String startTime = formatter.format(startDate); //Start time
         String endTime = formatter.format(endDate); //End time
-        return startTime + ";" + endTime;
+        return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\" }";
     }
 
     /**
