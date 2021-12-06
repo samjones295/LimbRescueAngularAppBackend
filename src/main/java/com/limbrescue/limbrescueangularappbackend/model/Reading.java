@@ -36,7 +36,6 @@ public class Reading {
     }
 
     //Setters
-
     public void setId(int id) {
         this.id = id;
     }

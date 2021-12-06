@@ -355,6 +355,56 @@ public class ResultDAO {
         List<String[]> dataLines = new ArrayList<>();
         //Header
         dataLines.add(new String[]{"Filename", "Label", "Blood pressure cuff laterality", "Inflation (mmHg)", "Comments"});
+        readFromCSV(res, dataLines);
+        //Randomness to avoid bias
+        for (int j = 0; j < 25; j++) {
+            Random generator = new Random();
+            //Chooses which arm to label.
+            int arm = 1 + generator.nextInt(3);
+            String lymphedema = "";
+            switch (arm) {
+                case 1:
+                    lymphedema = "none";
+                    break;
+                case 2:
+                    lymphedema = "left";
+                    break;
+                case 3:
+                    lymphedema = "right";
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+            //Chooses a blood pressure
+            if (arm != 1) {
+                int bp = generator.nextInt(101);
+                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
+            }
+            //If no lymphedema, do not choose.
+            else {
+                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema});
+            }
+        }
+        //Writes the data to the corresponding CSV.
+        try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+            dataLines.stream()
+                    .map(this::convertToCSV)
+                    .forEach(pw::println);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Reads from a CSV file.
+     *
+     * @param res
+     *              The result.
+     * @param dataLines
+     *              The array to store the data.
+     */
+    public void readFromCSV(Result res, List<String[]> dataLines) {
         //Reads from the old CSV file.
         Scanner sc = null;
         switch(res.getAlgorithm()) {
@@ -395,44 +445,6 @@ public class ResultDAO {
             if (i != 0) dataLines.add(line.split(","));
             i++;
         }
-        //Randomness to avoid bias
-        for (int j = 0; j < 25; j++) {
-            Random generator = new Random();
-            //Chooses which arm to label.
-            int arm = 1 + generator.nextInt(3);
-            String lymphedema = "";
-            switch (arm) {
-                case 1:
-                    lymphedema = "none";
-                    break;
-                case 2:
-                    lymphedema = "left";
-                    break;
-                case 3:
-                    lymphedema = "right";
-                    break;
-                default:
-                    throw new IllegalArgumentException();
-            }
-            //Chooses a blood pressure
-            if (arm != 1) {
-                int bp = generator.nextInt(101);
-                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema, Integer.toString(bp), ""});
-            }
-            //If no lymphedema, do not choose.
-            else {
-                dataLines.add(new String[]{res.getGroup_name(), Integer.toString(arm), lymphedema});
-            }
-        }
-        //Writes the data to the corresponding CSV.
-        try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
-            dataLines.stream()
-                    .map(this::convertToCSV)
-                    .forEach(pw::println);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
     }
     /**
      * Converts to a CSV.

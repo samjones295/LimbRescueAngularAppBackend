@@ -241,6 +241,8 @@ public class ReadingDAO {
     /**
      * Retrieves the start and stop date and time for the watch.
      *
+     * @param delta
+     *          The standard time of watch.
      * @return
      *          The array containing the start and the stop time for the watch.
      */
@@ -248,13 +250,12 @@ public class ReadingDAO {
     @ResponseBody
     public String getDateAndTime(@RequestParam int delta) {
         // Unit of delta is ms, so 30s is 30000ms.
-        // TODO: Implement the user input time delta function.
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
-        formatter.setTimeZone(TimeZone.getTimeZone("gmt"));
-        Date startDate = new Date();
-        Date endDate = new Date(startDate.getTime() + delta);
-        String startTime = formatter.format(startDate);
-        String endTime = formatter.format(endDate);
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
+        formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
+        Date startDate = new Date(); //Start Date
+        Date endDate = new Date(startDate.getTime() + delta); //End Date
+        String startTime = formatter.format(startDate); //Start time
+        String endTime = formatter.format(endDate); //End time
         return startTime + ";" + endTime;
     }
 
@@ -320,7 +321,6 @@ public class ReadingDAO {
                 e.printStackTrace();
             }
         }
-
     }
 
     /**
