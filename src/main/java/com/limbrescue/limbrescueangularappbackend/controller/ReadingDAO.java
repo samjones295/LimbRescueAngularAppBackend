@@ -35,11 +35,9 @@ public class ReadingDAO {
     /**
      * Global storage for time and date
      */
-    private String startTime = "Jan-01-1970 00:00:00";
-    private String endTime = "Jan-01-1970 00:00:00";
+    private String startTime;
+    private String endTime;
     private final static long DELAY = 3000;
-    //private Date startDate;
-    //private Date endDate;
     private long delta;
 
     /**
@@ -61,6 +59,13 @@ public class ReadingDAO {
         //Reads the table from the properties file.
         table = p.getProperty("spring.datasource.ReadingTable");
         dbConnection = new DBConnection();
+        Date defaultDate = new Date(0);
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz"); //Formats the date.
+        formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
+        // Initiate time setting
+        startTime = formatter.format(defaultDate);
+        endTime = formatter.format(defaultDate);
+        delta = 0;
     }
 
     /**
@@ -285,7 +290,8 @@ public class ReadingDAO {
     @GetMapping("/time")
     @ResponseBody
     public String getDateAndTime() {
-        //return startTime + ";" + endTime + ";" + delta;
+        return startTime + ";" + endTime + ";" + delta;
+        /*
         long delta = 10000;
         Date now = new Date();
         Date startDate = new Date(now.getTime() + 3000); //Start Date
@@ -295,6 +301,8 @@ public class ReadingDAO {
         startTime = formatter.format(startDate); //Start time
         endTime = formatter.format(endDate); //End time
         return startTime + ";" + endTime + ";" + delta;
+
+         */
     }
 
     /**
