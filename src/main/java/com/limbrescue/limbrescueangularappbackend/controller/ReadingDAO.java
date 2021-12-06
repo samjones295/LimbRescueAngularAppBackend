@@ -35,10 +35,10 @@ public class ReadingDAO {
     /**
      * Global storage for time and date
      */
-    private String startTime = "JAN-01-1970 00:00:00";
-    private String endTime = "JAN-01-1970 00:00:00";
-    private Date startDate;
-    private Date endDate;
+    private String startTime = "Jan-01-1970 00:00:00";
+    private String endTime = "Jan-01-1970 00:00:00";
+    //private Date startDate;
+    //private Date endDate;
     private long delta;
 
     /**
@@ -257,8 +257,8 @@ public class ReadingDAO {
         // Unit of delta is ms, so 30s is 30000ms.
         SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
         formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
-        startDate = new Date(); //Start Date
-        endDate = new Date(startDate.getTime() + delta); //End Date
+        Date startDate = new Date(); //Start Date
+        Date endDate = new Date(startDate.getTime() + delta); //End Date
         startTime = formatter.format(startDate); //Start time
         endTime = formatter.format(endDate); //End time
         return "{ \"start_time\": \""+startTime + "\", \"end_time\": \"" + endTime + "\", \"delta\":  \"" + delta + "\" }";
@@ -273,11 +273,6 @@ public class ReadingDAO {
     @GetMapping("/time")
     @ResponseBody
     public String getDateAndTime() {
-        // Unit of delta is ms, so 30s is 30000ms.
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
-        formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
-        String startTime = formatter.format(startDate); //Start time
-        String endTime = formatter.format(endDate); //End time
         return startTime + ";" + endTime + ";" + delta;
     }
 
