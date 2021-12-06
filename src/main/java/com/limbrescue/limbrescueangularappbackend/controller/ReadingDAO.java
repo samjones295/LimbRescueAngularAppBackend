@@ -37,6 +37,7 @@ public class ReadingDAO {
      */
     private String startTime = "Jan-01-1970 00:00:00";
     private String endTime = "Jan-01-1970 00:00:00";
+    private final static long DELAY = 3000;
     //private Date startDate;
     //private Date endDate;
     private long delta;
@@ -273,6 +274,15 @@ public class ReadingDAO {
     @GetMapping("/time")
     @ResponseBody
     public String getDateAndTime() {
+        //return startTime + ";" + endTime + ";" + delta;
+        long delta = 10000;
+        Date now = new Date();
+        Date startDate = new Date(now.getTime() + 3000); //Start Date
+        Date endDate = new Date(startDate.getTime() + delta + DELAY);
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
+        formatter.setTimeZone(TimeZone.getTimeZone("gmt"));
+        startTime = formatter.format(startDate); //Start time
+        endTime = formatter.format(endDate); //End time
         return startTime + ";" + endTime + ";" + delta;
     }
 
