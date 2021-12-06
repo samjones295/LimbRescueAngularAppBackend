@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 @CrossOrigin(origins="http://localhost:8081")
 @RestController
@@ -266,7 +267,7 @@ public class ReadingDAO {
     public String getDateAndTime(@RequestParam("delta") long delta) {
         this.delta = delta;
         // Unit of delta is ms, so 30s is 30000ms.
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz"); //Formats the date.
         formatter.setTimeZone(TimeZone.getTimeZone("gmt")); //Time zone is in UTC.
         java.util.Date startDate = new java.util.Date(); //Start Date
         java.util.Date endDate = new java.util.Date(startDate.getTime() + delta); //End Date
@@ -289,7 +290,7 @@ public class ReadingDAO {
         Date now = new Date();
         Date startDate = new Date(now.getTime() + 3000); //Start Date
         Date endDate = new Date(startDate.getTime() + delta + DELAY);
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss"); //Formats the date.
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz\n"); //Formats the date.
         formatter.setTimeZone(TimeZone.getTimeZone("gmt"));
         startTime = formatter.format(startDate); //Start time
         endTime = formatter.format(endDate); //End time
