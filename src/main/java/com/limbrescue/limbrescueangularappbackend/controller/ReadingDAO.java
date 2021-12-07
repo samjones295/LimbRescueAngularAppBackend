@@ -227,8 +227,10 @@ public class ReadingDAO {
      *          The laterality
      * @param comments
      *          The comments
+     * @return
+     *          The id of the reading.
      */
-    public void insertReading(String sql, int id, String patient_no, String date_created, String laterality, String comments) {
+    public int insertReading(String sql, int id, String patient_no, String date_created, String laterality, String comments) {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
         try {
@@ -247,6 +249,7 @@ public class ReadingDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return id;
     }
     /**
      * Parses a reading
@@ -256,9 +259,18 @@ public class ReadingDAO {
     @PostMapping(path = "/table")
     @ResponseBody
     public void parseData(@RequestBody Reading reading) {
+        //Auto increment the ID.
+        int id = reading.getId();
+        while (getReading(id) != null) {
+            id++;
+        }
+        reading.setId(id);
         String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
+        //Date to be parsed.
         String create = reading.getDate_created();
+        //Splits the date into the components.
         String[] elements = create.split(" ");
+        //Converts the month to a number.
         int month;
         switch (elements[1]) {
             case "Jan":
@@ -301,6 +313,8 @@ public class ReadingDAO {
                 throw new IllegalArgumentException("Invalid month");
         }
         java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
+        //Updates the date
+        reading.setDate_created(date.toString());
         insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
     }
     /**

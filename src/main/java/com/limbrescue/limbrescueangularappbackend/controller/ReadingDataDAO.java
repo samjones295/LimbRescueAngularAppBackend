@@ -210,10 +210,17 @@ public class ReadingDataDAO {
     public void parseData(@RequestBody ReadingData data) {
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         String ppg_reading = data.getPpg_reading();
+        //Get the time.
         int timeIndex = ppg_reading.indexOf("time:");
+        //Get the value.
         int valueIndex = ppg_reading.indexOf("value:");
+        //Converts time to double.
         double time = Double.parseDouble(ppg_reading.substring(timeIndex + 6, ppg_reading.indexOf(",", timeIndex)));
+        //The value part of the PPG reading.
         String value = ppg_reading.substring(valueIndex + 7, ppg_reading.length() - 1);
+        //Update the time and ppg reading attributes.
+        data.setTime(time);
+        data.setPpg_reading(value);
         insertReadingData(sql, data.getReading_id(), time, value, data.getLaterality());
     }
     /**
