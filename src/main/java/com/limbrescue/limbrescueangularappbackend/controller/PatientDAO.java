@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping("")
 public class PatientDAO {
