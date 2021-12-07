@@ -126,7 +126,7 @@ public class GroupDAO {
      * @return
      *          The group with the name.
      */
-    @GetMapping(value = "/group/", params = "name")
+    @GetMapping(value = "/group", params = "name")
     @ResponseBody
     public Group getGroupByName(@RequestParam("name") String name) {
         Connection connection = dbConnection.getConnection();
