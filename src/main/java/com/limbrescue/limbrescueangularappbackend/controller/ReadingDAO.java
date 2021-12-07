@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-@CrossOrigin(origins="http://localhost:8081")
+@CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping("")
 public class ReadingDAO {
