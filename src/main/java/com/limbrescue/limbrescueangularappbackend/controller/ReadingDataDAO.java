@@ -2,6 +2,7 @@ package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.ReadingData;
 import org.springframework.web.bind.annotation.*;
+import org.json.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -180,11 +181,15 @@ public class ReadingDataDAO {
      */
     public void insertReadingData(String sql, int reading_id, double time, String value, String laterality) {
         Connection connection = dbConnection.getConnection();
+        int id = 1;
+        while (getReadingData(id) != null) {
+            id++;
+        }
         //SQL Insert Statement
         //String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, 0);
+            statement.setInt(1, id);
             statement.setInt(2, reading_id);
             statement.setDouble(3, time);
             statement.setString(4, value);
@@ -207,21 +212,21 @@ public class ReadingDataDAO {
      */
     @PostMapping(path = "/data")
     @ResponseBody
-    public void parseData(@RequestBody ReadingData data) {
+    public void parseData(@RequestBody JSONObject data) {
+        int reading_id = data.getInt("reading_id");
+        String laterality = data.getString("laterality");
+        JSONArray ppg_reading = data.getJSONArray("ppg_reading");
+        JSONArray readings = data.getJSONArray("readings");
+
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
-        String ppg_reading = data.getPpg_reading();
-        //Get the time.
-        int timeIndex = ppg_reading.indexOf("time:");
-        //Get the value.
-        int valueIndex = ppg_reading.indexOf("value:");
-        //Converts time to double.
-        double time = Double.parseDouble(ppg_reading.substring(timeIndex + 6, ppg_reading.indexOf(",", timeIndex)));
-        //The value part of the PPG reading.
-        String value = ppg_reading.substring(valueIndex + 7, ppg_reading.length() - 1);
         //Update the time and ppg reading attributes.
-        data.setTime(time);
-        data.setPpg_reading(value);
-        insertReadingData(sql, data.getReading_id(), time, value, data.getLaterality());
+        double time;
+        String value;
+        for(int i = 0; i<readings.length(); i++){
+            time = readings.getJSONObject(0).getDouble("time");
+            value = readings.getJSONObject(i).getString("value");
+            insertReadingData(sql, reading_id, time, value, laterality);
+        }
     }
     /**
      * Updates a reading data based on the ID.
