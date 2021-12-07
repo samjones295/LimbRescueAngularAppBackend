@@ -39,7 +39,7 @@ public class ReadingDAO {
     private String endTime;
     private final static long DELAY = 3000;
     private long delta;
-
+    private int reading_id;
     /**
      * Constructor
      */
@@ -317,7 +317,13 @@ public class ReadingDAO {
         java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
         //Updates the date
         reading.setDate_created(date.toString());
+        reading_id = reading.getId();
         return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
+    }
+    @GetMapping("/table")
+    @ResponseBody
+    public int getReading_id() {
+        return reading_id;
     }
     /**
      * Retrieves the start and stop date and time for the watch.
