@@ -320,7 +320,7 @@ public class ReadingDAO {
         reading_id = reading.getId();
         return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
     }
-    @GetMapping("/table")
+    @PostMapping("/id")
     @ResponseBody
     public int getReading_id() {
         return reading_id;
