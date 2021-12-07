@@ -78,7 +78,7 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getString("value"), result.getString("laterality"));
+                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
                 readings.add(data);
             }
         } catch (SQLException e) {
