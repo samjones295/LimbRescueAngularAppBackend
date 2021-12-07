@@ -255,10 +255,12 @@ public class ReadingDAO {
      * Parses a reading
      * @param reading
      *              The reading to be parsed
+     * @return
+     *          the ID of the inserted reading.
      */
     @PostMapping(path = "/table")
     @ResponseBody
-    public void parseData(@RequestBody Reading reading) {
+    public int parseData(@RequestBody Reading reading) {
         //Auto increment the ID.
         int id = reading.getId();
         while (getReading(id) != null) {
@@ -315,7 +317,7 @@ public class ReadingDAO {
         java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
         //Updates the date
         reading.setDate_created(date.toString());
-        insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
+        return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
     }
     /**
      * Retrieves the start and stop date and time for the watch.
