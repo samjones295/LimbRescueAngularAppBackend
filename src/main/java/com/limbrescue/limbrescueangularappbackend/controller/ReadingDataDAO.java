@@ -212,19 +212,27 @@ public class ReadingDataDAO {
      */
     @PostMapping(path = "/data")
     @ResponseBody
-    public void parseData(@RequestBody JSONObject data) {
+    public void parseData(@RequestBody String s) {
+        JSONObject data = new JSONObject(s);
         int reading_id = data.getInt("reading_id");
         String laterality = data.getString("laterality");
+        if(laterality.equals("LEFT_ARM_BILATERAL")){
+            laterality = "LEFT_ARM";
+        }else if(laterality.equals("RIGHT_ARM_BILATERAL")){
+            laterality = "RIGHT_ARM";
+        }
         JSONArray ppg_reading = data.getJSONArray("ppg_reading");
-        JSONArray readings = data.getJSONArray("readings");
+        JSONObject readings = ppg_reading.getJSONObject(0);
+        JSONArray reading_data = readings.getJSONArray("readings");
 
         String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         //Update the time and ppg reading attributes.
         double time;
         String value;
-        for(int i = 0; i<readings.length(); i++){
-            time = readings.getJSONObject(0).getDouble("time");
-            value = readings.getJSONObject(i).getString("value");
+        int length = reading_data.length();
+        for(int i = 0; i<reading_data.length(); i++){
+            time = reading_data.getJSONObject(i).getDouble("time");
+            value = reading_data.getJSONObject(i).getDouble("value")+"";
             insertReadingData(sql, reading_id, time, value, laterality);
         }
     }
