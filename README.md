@@ -14,11 +14,13 @@
 - create database limbrescue;
 - use limbrescue;
 - describe limbrescue;
+- 
 - Download 7-zip and go to ProgramData/MySQL/MySQL Server 8.0
-- Check the "secure_file_priv" by using "SHOW VARIABLES LIKE 'secure_file_priv'"
+- Check the "secure_file_priv" variable by using "SHOW VARIABLES LIKE 'secure_file_priv'"
 - Go to the my.ini configuration file in the MySQL Server file and set it to the empty string.
 - Go to the MySQL services under the services setting and click "Properties".
 - On the log on tab, click on "local system account"
 - 
 - Download postman and use that to test the backend
+- Postman could be used to run GET, POST, PUT, and DELETE requests.
 
