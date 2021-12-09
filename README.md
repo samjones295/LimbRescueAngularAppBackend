@@ -7,7 +7,6 @@
 - Come up with a username and a password for the web application.
 - Download maven if you have not already
 - mvn spring-boot:run
-- Go to localhost:8081 and type in the username and password for the web application.
 - 
 - Login to mysql (mysql -u root -p)
 - mysql
