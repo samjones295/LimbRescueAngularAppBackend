@@ -261,64 +261,71 @@ public class ReadingDAO {
     @PostMapping(path = "/table")
     @ResponseBody
     public int parseData(@RequestBody Reading reading) {
+        Reading lastReading = null;
         //Auto increment the ID.
         int id = reading.getId();
         while (getReading(id) != null) {
+            lastReading = getReading(id);
             id++;
         }
-        reading.setId(id);
-        String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
-        //Date to be parsed.
-        String create = reading.getDate_created();
-        //Splits the date into the components.
-        String[] elements = create.split(" ");
-        //Converts the month to a number.
-        int month;
-        switch (elements[1]) {
-            case "Jan":
-                month = 0;
-                break;
-            case "Feb":
-                month = 1;
-                break;
-            case "Mar":
-                month = 2;
-                break;
-            case "Apr":
-                month = 3;
-                break;
-            case "May":
-                month = 4;
-                break;
-            case "Jun":
-                month = 5;
-                break;
-            case "Jul":
-                month = 6;
-                break;
-            case "Aug":
-                month = 7;
-                break;
-            case "Sep":
-                month = 8;
-                break;
-            case "Oct":
-                month = 9;
-                break;
-            case "Nov":
-                month = 10;
-                break;
-            case "Dec":
-                month = 11;
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid month");
+        if(lastReading != null && !lastReading.getComments().equals("")  && lastReading.getComments().equals(reading.getComments())){
+            return id-1;
+        }else {
+            reading.setId(id);
+            String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
+            //Date to be parsed.
+            String create = reading.getDate_created();
+            //Splits the date into the components.
+            String[] elements = create.split(" ");
+            //Converts the month to a number.
+            int month;
+            switch (elements[1]) {
+                case "Jan":
+                    month = 0;
+                    break;
+                case "Feb":
+                    month = 1;
+                    break;
+                case "Mar":
+                    month = 2;
+                    break;
+                case "Apr":
+                    month = 3;
+                    break;
+                case "May":
+                    month = 4;
+                    break;
+                case "Jun":
+                    month = 5;
+                    break;
+                case "Jul":
+                    month = 6;
+                    break;
+                case "Aug":
+                    month = 7;
+                    break;
+                case "Sep":
+                    month = 8;
+                    break;
+                case "Oct":
+                    month = 9;
+                    break;
+                case "Nov":
+                    month = 10;
+                    break;
+                case "Dec":
+                    month = 11;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid month");
+            }
+            java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
+            //Updates the date
+            reading.setDate_created(date.toString());
+            reading_id = reading.getId();
+            return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
         }
-        java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
-        //Updates the date
-        reading.setDate_created(date.toString());
-        reading_id = reading.getId();
-        return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
+
     }
     @PostMapping("/id")
     @ResponseBody
