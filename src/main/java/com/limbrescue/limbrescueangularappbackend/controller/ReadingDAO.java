@@ -1,12 +1,21 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
 import com.limbrescue.limbrescueangularappbackend.model.Reading;
+import com.limbrescue.limbrescueangularappbackend.model.ReadingData;
+import com.opencsv.CSVWriter;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.opencsv.CSVParser;
 
-
+import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -131,8 +140,11 @@ public class ReadingDAO {
                 e.printStackTrace();
             }
         }
+
         return readings;
     }
+
+
 
     /**
      * Retrieves a single reading based on the ID.
@@ -210,6 +222,52 @@ public class ReadingDAO {
             }
         }
         return reading;
+    }
+
+    /**
+     *
+     *
+     * @param id
+     *                  the reading_id
+     * @param patient_no
+     *                  the laterality
+     * @return a csv file for reading_Data
+     *
+     */
+    @GetMapping(value="/reading_output", params={"id","patient_no"})
+    @ResponseBody
+    public ResponseEntity<Object> getAllReadingDataOfReading_toJSON(@RequestParam("id") int id, @RequestParam("patient_no") String patient_no, HttpServletResponse res) throws IOException, URISyntaxException {
+        Connection connection = dbConnection.getConnection();
+        String sql = "SELECT * FROM " + table + " WHERE id=? AND patient_no=?"; //The SELECT Query
+
+        JSONArray output_list = new JSONArray();
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setString(2, patient_no);
+            ResultSet result = statement.executeQuery();
+            //Iterates over the result set and adds into the array list after executing query.
+            while (result.next()) {
+                JSONObject output = new JSONObject();
+                output.put("id", Double.toString(result.getInt("id")));
+                output.put("patient_no", result.getString("patient_no"));
+                output.put("laterality", result.getString("laterality"));
+                output.put("comments",result.getString("comments"));
+                output_list.put(output);
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new ResponseEntity<>(output_list.toList(), HttpStatus.OK);
     }
 
     /**
