@@ -250,8 +250,9 @@ public class ReadingDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 JSONObject output = new JSONObject();
-                output.put("id", Double.toString(result.getInt("id")));
+                output.put("id", Integer.toString(result.getInt("id")));
                 output.put("patient_no", result.getString("patient_no"));
+                output.put("date_created", result.getString("date_created"));
                 output.put("laterality", result.getString("laterality"));
                 output.put("comments",result.getString("comments"));
                 output_list.put(output);
