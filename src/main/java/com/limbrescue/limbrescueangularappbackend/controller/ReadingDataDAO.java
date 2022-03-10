@@ -1,12 +1,28 @@
 package com.limbrescue.limbrescueangularappbackend.controller;
 
+
 import com.limbrescue.limbrescueangularappbackend.model.ReadingData;
+import org.python.antlr.ast.Str;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.json.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import com.opencsv.CSVWriter;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +111,81 @@ public class ReadingDataDAO {
     }
 
     /**
+     *
+     *
+     * @param reading_id
+     *                  the reading_id
+     * @param laterality
+     *                  the laterality
+     * @return a csv file for reading_Data
+     *
+     */
+    @GetMapping(value="/output", params={"reading_id","laterality"})
+    @ResponseBody
+    public ResponseEntity<Object> getAllReadingDataOfReadingId_toJSON(@RequestParam("reading_id") int reading_id, @RequestParam("laterality") String laterality, HttpServletResponse res) throws IOException, URISyntaxException {
+        Connection connection = dbConnection.getConnection();
+        String sql = "SELECT * FROM " + table + " WHERE reading_id=? AND laterality=?"; //The SELECT Query
+        List<ReadingData> readings = new ArrayList<>(); //The array list to store the tuples.
+        JSONArray output_list = new JSONArray();
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, reading_id);
+            statement.setString(2, laterality);
+            ResultSet result = statement.executeQuery();
+            //Iterates over the result set and adds into the array list after executing query.
+            while (result.next()) {
+                JSONObject output = new JSONObject();
+                output.put("time",Double.toString(result.getDouble("time")));
+                output.put("ppg",result.getString("ppg_reading"));
+                output.put("laterality",result.getString("laterality"));
+                output_list.put(output);
+
+                ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
+                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
+                readings.add(data);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new ResponseEntity<>(output_list.toList(), HttpStatus.OK);
+
+
+
+//        FileWriter output = new FileWriter("outputfile.csv");
+//        CSVWriter writer= new CSVWriter(output);
+//        String[]header = {"time","ppg_reading","reading_id","laterality"};
+//        writer.writeNext(header);
+//        for (ReadingData data:readings)
+//        {
+//            String[] data_read = {Integer.toString(data.getReading_id()),Double.toString(data.getTime()),data.getPpg_reading(),data.getLaterality()};
+//            writer.writeNext(data_read);
+//        }
+//        writer.close();;
+
+//        File file_download =new File("outputfile.csv");
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    /**
      * Retrieves all the elements of the reading data table and stores it in an array list.
      *
      * @return
@@ -126,6 +217,8 @@ public class ReadingDataDAO {
         }
         return readings;
     }
+
+
 
     /**
      * Retrieves a single reading data based on the ID.
@@ -207,7 +300,7 @@ public class ReadingDataDAO {
 
     /**
      * Parses a reading data
-     * @param data
+     *
      *              The data to be parsed.
      */
     @PostMapping(path = "/data")

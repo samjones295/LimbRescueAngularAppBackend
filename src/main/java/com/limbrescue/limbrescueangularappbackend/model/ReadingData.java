@@ -1,5 +1,7 @@
 package com.limbrescue.limbrescueangularappbackend.model;
 
+
+
 public class ReadingData {
     //Fields
     private int id;
