@@ -272,7 +272,7 @@ public class ReadingDataDAO {
      */
 public void insertReadingData(int reading_id, List<Double> time, List<String> value, String laterality) {
     Connection connection = dbConnection.getConnection();
-    int id = 1;
+    int id = 8759;
 
     String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
     PreparedStatement selection = connection.prepareStatement(selectHighestID);
@@ -292,6 +292,7 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     try {
         for (int i = 0; i < time.size(); i++) {
             PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
+
             statement.setInt(1, id + i);
             statement.setInt(2, reading_id);
             statement.setDouble(3, time.get(i));
@@ -336,8 +337,8 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
         List<Double> time = new ArrayList<Double>();
         List<String> value = new ArrayList<String>(); // Assuming that String is declared for a reason, so preserving this for now.
         int length = reading_data.length();
-
-        for(int i = 0; i < reading_data.length(); i++){
+        
+        for(int i = 0; i < length; i++){
             time.add(reading_data.getJSONObject(i).getDouble("time"));
             value.add(reading_data.getJSONObject(i).getDouble("value")+"");
         }
