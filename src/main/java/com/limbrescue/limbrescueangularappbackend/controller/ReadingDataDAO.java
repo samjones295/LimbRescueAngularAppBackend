@@ -284,7 +284,7 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     try {
         for (int i = 0; i < time.size(); i++) {
             PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
-            statement.setInt(1, id);
+            statement.setInt(1, id+i);
             statement.setInt(2, reading_id);
             statement.setDouble(3, time.get(i));
             statement.setString(4, value.get(i));
