@@ -260,48 +260,52 @@ public class ReadingDataDAO {
     }
 
     /**
-     * Inserts a reading data into the table.
-     * @param sql
-     *          The SQL query
+     * Inserts all reading data into the table sequentially over a single connection.
      * @param reading_id
      *          The reading ID
      * @param time
-     *          The time
+     *          The List of all reading times
      * @param value
-     *          The reading
+     *          The List reading of all reading values
      * @param laterality
      *          The laterality
      */
-    public void insertReadingData(String sql, int reading_id, double time, String value, String laterality) {
-        Connection connection = dbConnection.getConnection();
-        int id = 1;
-        while (getReadingData(id) != null) {
-            id++;
-        }
-        //SQL Insert Statement
-        //String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+public void insertReadingData(int reading_id, List<Double> time, List<String> value, String laterality) {
+    Connection connection = dbConnection.getConnection();
+    int id = 1;
+
+    while (getReadingData(id) != null) {
+        id++;
+    }
+
+    //SQL Insert Statement
+    String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
+
+    try {
+        for (int i = 0; i < time.size(); i++) {
+            PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
             statement.setInt(1, id);
             statement.setInt(2, reading_id);
-            statement.setDouble(3, time);
-            statement.setString(4, value);
+            statement.setDouble(3, time.get(i));
+            statement.setString(4, value.get(i));
             statement.setString(5, laterality);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            statement.executeUpdate();  // Executes the SQL query.
         }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    try {
+        connection.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * Parses a reading data
-     *
-     *              The data to be parsed.
+     * @param data
+     *              The data to be parsed and sent to the database.
      */
     @PostMapping(path = "/data")
     @ResponseBody
@@ -309,26 +313,31 @@ public class ReadingDataDAO {
         JSONObject data = new JSONObject(s);
         int reading_id = data.getInt("reading_id");
         String laterality = data.getString("laterality");
-        if(laterality.equals("LEFT_ARM_BILATERAL")){
+
+        if (laterality.equals("LEFT_ARM_BILATERAL")) {
             laterality = "LEFT_ARM";
-        }else if(laterality.equals("RIGHT_ARM_BILATERAL")){
+        } else if (laterality.equals("RIGHT_ARM_BILATERAL")){
             laterality = "RIGHT_ARM";
         }
+
         JSONArray ppg_reading = data.getJSONArray("ppg_reading");
         JSONObject readings = ppg_reading.getJSONObject(0);
         JSONArray reading_data = readings.getJSONArray("readings");
 
-        String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
         //Update the time and ppg reading attributes.
-        double time;
-        String value;
+        List<Double> time = new ArrayList<Double>();
+        List<String> value = new ArrayList<String>(); // Assuming that String is declared for a reason, so preserving this for now.
         int length = reading_data.length();
-        for(int i = 0; i<reading_data.length(); i++){
+
+        for(int i = 0; i < reading_data.length(); i++){
             time = reading_data.getJSONObject(i).getDouble("time");
             value = reading_data.getJSONObject(i).getDouble("value")+"";
-            insertReadingData(sql, reading_id, time, value, laterality);
         }
+
+        // Send the data to be sent to the database.
+        insertReadingData(reading_id, time, value, laterality);
     }
+
     /**
      * Updates a reading data based on the ID.
      *
