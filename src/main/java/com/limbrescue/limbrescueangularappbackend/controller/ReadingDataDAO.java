@@ -330,8 +330,8 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
         int length = reading_data.length();
 
         for(int i = 0; i < reading_data.length(); i++){
-            time = reading_data.getJSONObject(i).getDouble("time");
-            value = reading_data.getJSONObject(i).getDouble("value")+"";
+            time.add(reading_data.getJSONObject(i).getDouble("time"));
+            value.add(reading_data.getJSONObject(i).getDouble("value")+"");
         }
 
         // Send the data to be sent to the database.
