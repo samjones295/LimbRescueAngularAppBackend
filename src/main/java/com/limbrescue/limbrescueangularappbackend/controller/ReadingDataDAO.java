@@ -283,6 +283,7 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
         while (result.next()) { // While the result has options, should only run once.
             try {
                 id = result.getInt("id");
+                id++;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
