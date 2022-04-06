@@ -274,8 +274,16 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     Connection connection = dbConnection.getConnection();
     int id = 1;
 
-    while (getReadingData(id) != null) {
-        id++;
+    String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
+    PreparedStatement selection = connection.prepareStatement(selectHighestID);
+    ResultSet result = statement.executeQuery();
+
+    while (result.next()) { // While the result has options, should only run once.
+        try {
+            id = result.getInt("id");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     //SQL Insert Statement
@@ -284,7 +292,7 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     try {
         for (int i = 0; i < time.size(); i++) {
             PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
-            statement.setInt(1, id);
+            statement.setInt(1, id + i);
             statement.setInt(2, reading_id);
             statement.setDouble(3, time.get(i));
             statement.setString(4, value.get(i));
@@ -330,8 +338,8 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
         int length = reading_data.length();
 
         for(int i = 0; i < reading_data.length(); i++){
-            time = reading_data.getJSONObject(i).getDouble("time");
-            value = reading_data.getJSONObject(i).getDouble("value")+"";
+            time.add(reading_data.getJSONObject(i).getDouble("time"));
+            value.add(reading_data.getJSONObject(i).getDouble("value")+"");
         }
 
         // Send the data to be sent to the database.
@@ -350,6 +358,7 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     @ResponseBody
     public void updateReadingData(@RequestBody ReadingData data, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
+        
         //SQL Update Statement
         String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ?, laterality = ? WHERE id = ?";
         try {
