@@ -335,6 +335,11 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
             laterality = "LEFT_ARM";
         } else if (laterality.equals("RIGHT_ARM_BILATERAL")){
             laterality = "RIGHT_ARM";
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         JSONArray ppg_reading = data.getJSONArray("ppg_reading");
