@@ -272,7 +272,7 @@ public class ReadingDataDAO {
      */
 public void insertReadingData(int reading_id, List<Double> time, List<String> value, String laterality) {
     Connection connection = dbConnection.getConnection();
-    int id = 1;
+    int id = 8759;
 
     while (getReadingData(id) != null) {
         id++;
