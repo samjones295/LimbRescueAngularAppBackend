@@ -275,16 +275,23 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     int id = 8759;
 
     String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
-    PreparedStatement selection = connection.prepareStatement(selectHighestID);
-    ResultSet result = statement.executeQuery();
-
-    while (result.next()) { // While the result has options, should only run once.
-        try {
-            id = result.getInt("id");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+    PreparedStatement selection;
+    ResultSet result;
+    try {
+        selection = connection.prepareStatement(selectHighestID);
+        result = selection.executeQuery();
+        while (result.next()) { // While the result has options, should only run once.
+            try {
+                id = result.getInt("id");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
+
+    } catch (SQLException e1) {
+        e1.printStackTrace();
     }
+   
 
     //SQL Insert Statement
     String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
