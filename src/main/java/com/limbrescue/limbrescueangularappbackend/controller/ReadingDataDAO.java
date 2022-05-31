@@ -30,7 +30,7 @@ import java.util.Properties;
 
 @CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/")
 public class ReadingDataDAO {
     /**
      * The name of the table.

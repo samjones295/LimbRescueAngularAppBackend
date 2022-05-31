@@ -23,7 +23,7 @@ import java.util.Date;
 
 @CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/")
 public class ReadingDAO {
     /**
      * The name of the table.

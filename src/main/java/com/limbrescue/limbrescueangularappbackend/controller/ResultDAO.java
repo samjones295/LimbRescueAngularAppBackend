@@ -12,7 +12,7 @@ import java.util.*;
 
 @CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/")
 public class ResultDAO {
     /**
      * The name of the table.
