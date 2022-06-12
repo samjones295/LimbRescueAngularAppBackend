@@ -95,7 +95,7 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
+                        result.getDouble("record_time"), result.getString("ppg_val"), result.getString("laterality"), result.getInt("derivative"));
                 readings.add(data);
             }
         } catch (SQLException e) {
@@ -136,13 +136,14 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 JSONObject output = new JSONObject();
-                output.put("time",Double.toString(result.getDouble("time")));
-                output.put("ppg",result.getString("ppg_reading"));
+                output.put("record_time",Double.toString(result.getDouble("record_time")));
+                output.put("ppg",result.getString("ppg_val"));
                 output.put("laterality",result.getString("laterality"));
+                output.put("derivative",result.getInt("derivative"));
                 output_list.put(output);
 
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
+                        result.getDouble("record_time"), result.getString("ppg_val"), result.getString("laterality"), result.getInt("derivative"));
                 readings.add(data);
 
             }
@@ -161,11 +162,11 @@ public class ReadingDataDAO {
 
 //        FileWriter output = new FileWriter("outputfile.csv");
 //        CSVWriter writer= new CSVWriter(output);
-//        String[]header = {"time","ppg_reading","reading_id","laterality"};
+//        String[]header = {"record_time","ppg_val","reading_id","laterality"};
 //        writer.writeNext(header);
 //        for (ReadingData data:readings)
 //        {
-//            String[] data_read = {Integer.toString(data.getReading_id()),Double.toString(data.getTime()),data.getPpg_reading(),data.getLaterality()};
+//            String[] data_read = {Integer.toString(data.getReading_id()),Double.toString(data.getrecord_time()),data.getppg_val(),data.getLaterality()};
 //            writer.writeNext(data_read);
 //        }
 //        writer.close();;
@@ -203,7 +204,7 @@ public class ReadingDataDAO {
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
-                        result.getDouble("time"), result.getString("ppg_reading"), result.getString("laterality"));
+                        result.getDouble("record_time"), result.getString("ppg_val"), result.getString("laterality"), result.getInt("derivative"));
                 readings.add(data);
             }
         } catch (SQLException e) {
@@ -243,9 +244,10 @@ public class ReadingDataDAO {
                 data = new ReadingData();
                 data.setId(id);
                 data.setReading_id(result.getInt("reading_id"));
-                data.setTime(result.getDouble("time"));
-                data.setPpg_reading(result.getString("ppg_reading"));
+                data.setRecord_time(result.getDouble("record_time"));
+                data.setPpg_val(result.getString("ppg_val"));
                 data.setLaterality(result.getString("laterality"));
+                data.setDerivative(result.getInt("derivative"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -263,14 +265,16 @@ public class ReadingDataDAO {
      * Inserts all reading data into the table sequentially over a single connection.
      * @param reading_id
      *          The reading ID
-     * @param time
-     *          The List of all reading times
+     * @param record_time
+     *          The List of all reading record_times
      * @param value
      *          The List reading of all reading values
      * @param laterality
      *          The laterality
+     * @param derivative         
+     *          The derivative
      */
-public void insertReadingData(int reading_id, List<Double> time, List<String> value, String laterality) {
+public void insertReadingData(int reading_id, List<Double> record_time, List<String> value, String laterality, int derivative) {
     Connection connection = dbConnection.getConnection();
     int id = 8759;
 
@@ -295,17 +299,18 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
    
 
     //SQL Insert Statement
-    String sql = "INSERT INTO " + table + " (id, reading_id, time, ppg_reading, laterality) VALUES(?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative) VALUES(?, ?, ?, ?, ?, ?)";
 
     try {
-        for (int i = 0; i < time.size(); i++) {
+        for (int i = 0; i < record_time.size(); i++) {
             PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
 
             statement.setInt(1, id + i);
             statement.setInt(2, reading_id);
-            statement.setDouble(3, time.get(i));
+            statement.setDouble(3, record_time.get(i));
             statement.setString(4, value.get(i));
             statement.setString(5, laterality);
+            statement.setInt(6, derivative);
             statement.executeUpdate();  // Executes the SQL query.
         }
     } catch (SQLException e) {
@@ -329,6 +334,7 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
     public void parseData(@RequestBody String s) {
         JSONObject data = new JSONObject(s);
         int reading_id = data.getInt("reading_id");
+        int derivative = data.getInt("derivative");
         String laterality = data.getString("laterality");
 
         if (laterality.equals("LEFT_ARM_BILATERAL")) {
@@ -342,22 +348,22 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
             }
         }
 
-        JSONArray ppg_reading = data.getJSONArray("ppg_reading");
-        JSONObject readings = ppg_reading.getJSONObject(0);
+        JSONArray ppg_val = data.getJSONArray("ppg_val");
+        JSONObject readings = ppg_val.getJSONObject(0);
         JSONArray reading_data = readings.getJSONArray("readings");
 
-        //Update the time and ppg reading attributes.
-        List<Double> time = new ArrayList<Double>();
+        //Update the record_time and ppg reading attributes.
+        List<Double> record_time = new ArrayList<Double>();
         List<String> value = new ArrayList<String>(); // Assuming that String is declared for a reason, so preserving this for now.
         int length = reading_data.length();
         
         for(int i = 0; i < length; i++){
-            time.add(reading_data.getJSONObject(i).getDouble("time"));
+            record_time.add(reading_data.getJSONObject(i).getDouble("record_time"));
             value.add(reading_data.getJSONObject(i).getDouble("value")+"");
         }
 
         // Send the data to be sent to the database.
-        insertReadingData(reading_id, time, value, laterality);
+        insertReadingData(reading_id, record_time, value, laterality, derivative);
     }
 
     /**
@@ -374,14 +380,15 @@ public void insertReadingData(int reading_id, List<Double> time, List<String> va
         Connection connection = dbConnection.getConnection();
         
         //SQL Update Statement
-        String sql = "UPDATE " + table + " SET reading_id = ?, time = ?, ppg_reading = ?, laterality = ? WHERE id = ?";
+        String sql = "UPDATE " + table + " SET reading_id = ?, record_time = ?, ppg_val = ?, laterality = ?, derivative = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, data.getReading_id());
-            statement.setDouble(2, data.getTime());
-            statement.setString(3, data.getPpg_reading());
+            statement.setDouble(2, data.getrecord_time());
+            statement.setString(3, data.getPpg_val());
             statement.setString(4, data.getLaterality());
-            statement.setInt(5, id);
+            statement.setInt(5, data.getDerivative());
+            statement.setInt(6, id)connection;
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

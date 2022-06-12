@@ -93,8 +93,8 @@ public class ReadingDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
-                Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
+                Reading reading = new Reading(result.getInt("id"), result.getString("patient_num"),
+                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("notes"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -115,20 +115,20 @@ public class ReadingDAO {
      * @return
      *          An arraylist containing the readings table.
      */
-    @GetMapping(value ="/readings", params="patient_no")
+    @GetMapping(value ="/readings", params="patient_num")
     @ResponseBody
-    public List<Reading> getAllReadingsOfPatient(@RequestParam("patient_no") String patient_no) {
+    public List<Reading> getAllReadingsOfPatient(@RequestParam("patient_num") String patient_num) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table  + " WHERE patient_no = ?"; //The SELECT query.
+        String sql = "SELECT * FROM " + table  + " WHERE patient_num = ?"; //The SELECT query.
         List<Reading> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, patient_no);
+            statement.setString(1, patient_num);
             ResultSet result = statement.executeQuery();
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
-                Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
+                Reading reading = new Reading(result.getInt("id"), result.getString("patient_num"),
+                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("notes"));
                 readings.add(reading);
             }
         } catch (SQLException e) {
@@ -168,10 +168,10 @@ public class ReadingDAO {
             if (result.next()) {
                 reading = new Reading();
                 reading.setId(id);
-                reading.setPatient_no(result.getString("patient_no"));
+                reading.setPatient_num(result.getString("patient_num"));
                 reading.setDate_created(result.getString("date_created"));
                 reading.setLaterality(result.getString("laterality"));
-                reading.setComments(result.getString("comments"));
+                reading.setNotes(result.getString("notes"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -186,31 +186,31 @@ public class ReadingDAO {
     }
 
     /**
-     * Retrieves a single reading based on the patient_no.
+     * Retrieves a single reading based on the patient_num.
      *
-     * @param patient_no
-     *          The patient_no to be retrieved
+     * @param patient_num
+     *          The patient_num to be retrieved
      * @return
      *          A pointer to a tuple in the readings table.
      */
     @GetMapping("/reading")
     @ResponseBody
-    public Reading getReadingOfPatient(@RequestParam("patient_no") String patient_no) {
+    public Reading getReadingOfPatient(@RequestParam("patient_num") String patient_num) {
         Connection connection = dbConnection.getConnection();
         Reading reading = null;
-        String sql = "SELECT * FROM " + table + " WHERE patient_no = ?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE patient_num = ?"; //The SELECT Query
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, patient_no);
+            statement.setString(1, patient_num);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
                 reading = new Reading();
                 reading.setId(result.getInt("id"));
-                reading.setPatient_no(patient_no);
+                reading.setPatient_num(patient_num);
                 reading.setDate_created(result.getString("date_created"));
                 reading.setLaterality(result.getString("laterality"));
-                reading.setComments(result.getString("comments"));
+                reading.setNotes(result.getString("notes"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -229,32 +229,32 @@ public class ReadingDAO {
      *
      * @param id
      *                  the reading_id
-     * @param patient_no
+     * @param patient_num
      *                  the laterality
      * @return a csv file for reading_Data
      *
      */
-    @GetMapping(value="/reading_output", params={"id","patient_no"})
+    @GetMapping(value="/reading_output", params={"id","patient_num"})
     @ResponseBody
-    public ResponseEntity<Object> getAllReadingDataOfReading_toJSON(@RequestParam("id") int id, @RequestParam("patient_no") String patient_no, HttpServletResponse res) throws IOException, URISyntaxException {
+    public ResponseEntity<Object> getAllReadingDataOfReading_toJSON(@RequestParam("id") int id, @RequestParam("patient_num") String patient_num, HttpServletResponse res) throws IOException, URISyntaxException {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id=? AND patient_no=?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE id=? AND patient_num=?"; //The SELECT Query
 
         JSONArray output_list = new JSONArray();
         try {
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
-            statement.setString(2, patient_no);
+            statement.setString(2, patient_num);
             ResultSet result = statement.executeQuery();
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
                 JSONObject output = new JSONObject();
                 output.put("id", Integer.toString(result.getInt("id")));
-                output.put("patient_no", result.getString("patient_no"));
+                output.put("patient_num", result.getString("patient_num"));
                 output.put("date_created", result.getString("date_created"));
                 output.put("laterality", result.getString("laterality"));
-                output.put("comments",result.getString("comments"));
+                output.put("notes",result.getString("notes"));
                 output_list.put(output);
 
 
@@ -278,27 +278,27 @@ public class ReadingDAO {
      *          The SQL query.
      * @param id
      *          The reading ID
-     * @param patient_no
+     * @param patient_num
      *          The patient number
      * @param date_created
      *          The date created
      * @param laterality
      *          The laterality
-     * @param comments
-     *          The comments
+     * @param notes
+     *          The notes
      * @return
      *          The id of the reading.
      */
-    public int insertReading(String sql, int id, String patient_no, String date_created, String laterality, String comments) {
+    public int insertReading(String sql, int id, String patient_num, String date_created, String laterality, String notes) {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
-            statement.setString(2, patient_no);
+            statement.setString(2, patient_num);
             statement.setString(3, date_created);
             statement.setString(4, laterality);
-            statement.setString(5, comments);
+            statement.setString(5, notes);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -327,11 +327,11 @@ public class ReadingDAO {
             lastReading = getReading(id);
             id++;
         }
-        if(lastReading != null && !lastReading.getComments().equals("")  && lastReading.getComments().equals(reading.getComments())){
+        if(lastReading != null && !lastReading.getNotes().equals("")  && lastReading.getNotes().equals(reading.getNotes())){
             return id-1;
         }else {
             reading.setId(id);
-            String sql = "INSERT INTO " + table + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO " + table + " (id, patient_num, date_created, laterality, notes) VALUES(?, ?, ?, ?, ?)";
             //Date to be parsed.
             String create = reading.getDate_created();
             //Splits the date into the components.
@@ -382,7 +382,7 @@ public class ReadingDAO {
             //Updates the date
             reading.setDate_created(date.toString());
             reading_id = reading.getId();
-            return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
+            return insertReading(sql, reading.getId(), reading.getPatient_num(), date.toString(), reading.getLaterality(), reading.getNotes());
         }
 
     }
@@ -439,14 +439,14 @@ public class ReadingDAO {
     public void updateReading(@RequestBody Reading reading, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         //SQL Update Statement
-        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, comments= ? " +
+        String sql = "UPDATE " + table + " SET patient_num = ?, date_created = ?, laterality = ?, notes= ? " +
                 " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, reading.getPatient_no());
+            statement.setString(1, reading.getPatient_num());
             statement.setString(2, reading.getDate_created());
             statement.setString(3, reading.getLaterality());
-            statement.setString(4, reading.getComments());
+            statement.setString(4, reading.getNotes());
             statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -461,7 +461,7 @@ public class ReadingDAO {
     }
 
     /**
-     * Updates the comments of a patient.
+     * Updates the notes of a patient.
      *
      * @param id
      *          The id to be updated.
@@ -470,10 +470,10 @@ public class ReadingDAO {
      */
     @PutMapping("/readingcomment/{id}")
     @ResponseBody
-    public void updateComments(@PathVariable("id") int id, @RequestParam String comment) {
+    public void updateNotes(@PathVariable("id") int id, @RequestParam String comment) {
         Connection connection = dbConnection.getConnection();
-        //SQL Update Statement to update comments
-        String sql = "UPDATE " + table + " SET comments = ? WHERE id = ?";
+        //SQL Update Statement to update notes
+        String sql = "UPDATE " + table + " SET notes = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, comment);
