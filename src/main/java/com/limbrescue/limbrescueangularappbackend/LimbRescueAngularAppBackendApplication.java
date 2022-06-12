@@ -9,5 +9,4 @@ public class LimbRescueAngularAppBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(LimbRescueAngularAppBackendApplication.class, args);
     }
-
 }

@@ -31,7 +31,7 @@ public class Reading {
         return date_created;
     }
     public String getLaterality() { return laterality; }
-    public String getnotes() {
+    public String getNotes() {
         return notes;
     }
 

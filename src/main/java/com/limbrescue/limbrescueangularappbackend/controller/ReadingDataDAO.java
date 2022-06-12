@@ -172,18 +172,6 @@ public class ReadingDataDAO {
 //        writer.close();;
 
 //        File file_download =new File("outputfile.csv");
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     /**
@@ -218,8 +206,6 @@ public class ReadingDataDAO {
         }
         return readings;
     }
-
-
 
     /**
      * Retrieves a single reading data based on the ID.
@@ -384,11 +370,11 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, data.getReading_id());
-            statement.setDouble(2, data.getrecord_time());
+            statement.setDouble(2, data.getRecord_time());
             statement.setString(3, data.getPpg_val());
             statement.setString(4, data.getLaterality());
             statement.setInt(5, data.getDerivative());
-            statement.setInt(6, id)connection;
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
