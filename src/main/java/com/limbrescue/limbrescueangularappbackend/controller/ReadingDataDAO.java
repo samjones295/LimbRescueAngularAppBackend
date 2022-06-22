@@ -248,6 +248,32 @@ public class ReadingDataDAO {
     }
 
     /**
+     * Calculates the derivative of the ppg data
+     * @param value
+     *          The List reading of all reading values
+     * @param time
+     *          The List reading of all reading times
+     */
+public List<String> calculateDerivative( List<Double> time,List<String> value){
+
+    List<String> output = new ArrayList<>(value);
+    double ydiff=0;
+    double xdiff=0;
+    for (int i = 0; i < output.size()-1; i++) {
+        
+        ydiff=Double.parseDouble(output.get(i+1))-Double.parseDouble(output.get(i));
+        xdiff=time.get(i+1)-time.get(i);
+
+        output.set(i,String.valueOf(ydiff/xdiff));
+
+    }
+
+    //each derivative has one less point, extra point is set to 0
+    output.set(output.size()-1, "0");
+
+    return output;
+}
+    /**
      * Inserts all reading data into the table sequentially over a single connection.
      * @param reading_id
      *          The reading ID
@@ -285,19 +311,48 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
    
 
     //SQL Insert Statement
-    String sql = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative) VALUES(?, ?, ?, ?, ?, ?)";
 
+    //Two derivatives are entered along with the base data
+    //the decision was made to do this rather than calling a process on the stored data due to the following facts
+    //1. the derivatives are meaningless without the base data
+    //2. the derivatives are bounded to two(no need for a process for creating more)
+    //3. the derivatives are incorporated into existing workflow instead of adding additional processing
+    //4. the only downside is that the derivatives are automatically created(this could potentially be dealt with by soft delete)
+    String sql1 = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative) VALUES(?, ?, ?, ?, ?, ?)";
+    String sql2 = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative) VALUES(?, ?, ?, ?, ?, ?)";
+    String sql3 = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative) VALUES(?, ?, ?, ?, ?, ?)";
+    
+    List<String> der1 = calculateDerivative(record_time, value);
+    List<String> der2 = calculateDerivative(record_time,calculateDerivative(record_time, value));
     try {
         for (int i = 0; i < record_time.size(); i++) {
-            PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
+            PreparedStatement statement1 = connection.prepareStatement(sql1); // Object that holds SQL query.
+            PreparedStatement statement2 = connection.prepareStatement(sql2); // Object that holds SQL query.
+            PreparedStatement statement3 = connection.prepareStatement(sql3); // Object that holds SQL query.
 
-            statement.setInt(1, id + i);
-            statement.setInt(2, reading_id);
-            statement.setDouble(3, record_time.get(i));
-            statement.setString(4, value.get(i));
-            statement.setString(5, laterality);
-            statement.setInt(6, derivative);
-            statement.executeUpdate();  // Executes the SQL query.
+            statement1.setInt(1, id + i);
+            statement1.setInt(2, reading_id);
+            statement1.setDouble(3, record_time.get(i));
+            statement1.setString(4, value.get(i));
+            statement1.setString(5, laterality);
+            statement1.setInt(6, derivative);
+            statement1.executeUpdate();  // Executes the SQL query.
+
+            statement2.setInt(1, id + i);
+            statement2.setInt(2, reading_id);
+            statement2.setDouble(3, record_time.get(i));
+            statement2.setString(4, der1.get(i));
+            statement2.setString(5, laterality);
+            statement2.setInt(6, derivative);
+            statement2.executeUpdate();  // Executes the SQL query.
+
+            statement3.setInt(1, id + i);
+            statement3.setInt(2, reading_id);
+            statement3.setDouble(3, record_time.get(i));
+            statement3.setString(4, der2.get(i));
+            statement3.setString(5, laterality);
+            statement3.setInt(6, derivative);
+            statement3.executeUpdate();  // Executes the SQL query.
         }
     } catch (SQLException e) {
         e.printStackTrace();
