@@ -335,23 +335,23 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
             statement1.setDouble(3, record_time.get(i));
             statement1.setString(4, value.get(i));
             statement1.setString(5, laterality);
-            statement1.setInt(6, derivative);
+            statement1.setInt(6, 0);
             statement1.executeUpdate();  // Executes the SQL query.
 
-            statement2.setInt(1, id + i);
+            statement2.setInt(1, id + i+ record_time.size());
             statement2.setInt(2, reading_id);
             statement2.setDouble(3, record_time.get(i));
             statement2.setString(4, der1.get(i));
             statement2.setString(5, laterality);
-            statement2.setInt(6, derivative);
+            statement2.setInt(6, 1);
             statement2.executeUpdate();  // Executes the SQL query.
 
-            statement3.setInt(1, id + i);
+            statement3.setInt(1, id + i+ record_time.size()*2);
             statement3.setInt(2, reading_id);
             statement3.setDouble(3, record_time.get(i));
             statement3.setString(4, der2.get(i));
             statement3.setString(5, laterality);
-            statement3.setInt(6, derivative);
+            statement3.setInt(6, 2);
             statement3.executeUpdate();  // Executes the SQL query.
         }
     } catch (SQLException e) {
