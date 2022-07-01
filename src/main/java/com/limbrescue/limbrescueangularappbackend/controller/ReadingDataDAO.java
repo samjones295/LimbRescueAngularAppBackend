@@ -288,13 +288,14 @@ public List<String> calculateDerivative( List<Double> time,List<String> value){
      */
 public void insertReadingData(int reading_id, List<Double> record_time, List<String> value, String laterality, int derivative) {
     Connection connection = dbConnection.getConnection();
-    int id = 8759;
 
-    String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
+    //int id = 8759;
+
+    /*String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
     PreparedStatement selection;
     ResultSet result;
     try {
-        selection = connection.prepareStatement(selectHighestID);
+       selection = connection.prepareStatement(selectHighestID);
         result = selection.executeQuery();
         while (result.next()) { // While the result has options, should only run once.
             try {
@@ -308,7 +309,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     } catch (SQLException e1) {
         e1.printStackTrace();
     }
-   
+    */
 
     //SQL Insert Statement
 
@@ -330,7 +331,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
             PreparedStatement statement2 = connection.prepareStatement(sql2); // Object that holds SQL query.
             PreparedStatement statement3 = connection.prepareStatement(sql3); // Object that holds SQL query.
 
-            statement1.setInt(1, id + i);
+            //statement1.setInt(1, id);
             statement1.setInt(2, reading_id);
             statement1.setDouble(3, record_time.get(i));
             statement1.setString(4, value.get(i));
@@ -338,7 +339,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
             statement1.setInt(6, 0);
             statement1.executeUpdate();  // Executes the SQL query.
 
-            statement2.setInt(1, id + i+ record_time.size());
+            //statement2.setInt(1, );
             statement2.setInt(2, reading_id);
             statement2.setDouble(3, record_time.get(i));
             statement2.setString(4, der1.get(i));
@@ -346,7 +347,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
             statement2.setInt(6, 1);
             statement2.executeUpdate();  // Executes the SQL query.
 
-            statement3.setInt(1, id + i+ record_time.size()*2);
+            //statement3.setInt(1, );
             statement3.setInt(2, reading_id);
             statement3.setDouble(3, record_time.get(i));
             statement3.setString(4, der2.get(i));
