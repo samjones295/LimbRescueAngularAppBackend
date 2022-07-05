@@ -401,7 +401,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
         
         for(int i = 0; i < length; i++){
             record_time.add(reading_data.getJSONObject(i).getDouble("record_time"));
-            value.add(reading_data.getJSONObject(i).getDouble("value")+"");
+            value.add(reading_data.getJSONObject(i).getDouble("value") + "");
         }
 
         // Send the data to be sent to the database.
