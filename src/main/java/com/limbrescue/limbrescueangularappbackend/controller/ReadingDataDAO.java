@@ -81,16 +81,17 @@ public class ReadingDataDAO {
      * @return
      *          An arraylist containing the reading data table.
      */
-    @GetMapping(value="/data", params={"reading_id","laterality"})
+    @GetMapping(value="/data", params={"reading_id","laterality","derivative"})
     @ResponseBody
-    public List<ReadingData> getAllReadingDataOfReadingId(@RequestParam("reading_id") int reading_id, @RequestParam("laterality") String laterality) {
+    public List<ReadingData> getAllReadingDataOfReadingId(@RequestParam("reading_id") int reading_id, @RequestParam("laterality") String laterality, @RequestParam("derivative") int derivative) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE reading_id=? AND laterality=?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE reading_id=? AND laterality=? AND derivative=?"; //The SELECT Query
         List<ReadingData> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, reading_id);
             statement.setString(2, laterality);
+            statement.setInt(3, derivative);
             ResultSet result = statement.executeQuery();
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
