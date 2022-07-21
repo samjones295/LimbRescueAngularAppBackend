@@ -87,7 +87,7 @@ public class ReadingDAO {
     @ResponseBody
     public List<Reading> getAllReadings() {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
+        String sql = "SELECT * FROM " + table + " WHERE is_active = TRUE";
         List<Reading> readings = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class ReadingDAO {
     @ResponseBody
     public List<Reading> getAllReadingsOfPatient(@RequestParam("patient_num") String patient_num) {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table  + " WHERE patient_num = ?"; //The SELECT query.
+        String sql = "SELECT * FROM " + table  + " WHERE patient_num = ? AND is_active = TRUE"; //The SELECT query.
         List<Reading> readings = new ArrayList<>(); //The array list to store the tuples.
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -159,7 +159,7 @@ public class ReadingDAO {
     public Reading getReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         Reading reading = null; //Uses a NULL value if ID is not found.
-        String sql = "SELECT * FROM " + table + " WHERE id = ?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE id = ? AND is_active = TRUE"; //The SELECT Query
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -198,7 +198,7 @@ public class ReadingDAO {
     public Reading getReadingOfPatient(@RequestParam("patient_num") String patient_num) {
         Connection connection = dbConnection.getConnection();
         Reading reading = null;
-        String sql = "SELECT * FROM " + table + " WHERE patient_num = ?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE patient_num = ? AND is_active = TRUE"; //The SELECT Query
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, patient_num);
@@ -238,7 +238,7 @@ public class ReadingDAO {
     @ResponseBody
     public ResponseEntity<Object> getAllReadingDataOfReading_toJSON(@RequestParam("id") int id, @RequestParam("patient_num") String patient_num, HttpServletResponse res) throws IOException, URISyntaxException {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id=? AND patient_num=?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE id=? AND patient_num=? AND is_active = TRUE"; //The SELECT Query
 
         JSONArray output_list = new JSONArray();
         try {
@@ -293,7 +293,6 @@ public class ReadingDAO {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
         int id = 0;
-        System.out.println("HELLO??");
         try {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             //statement.setInt(1, id);
@@ -511,7 +510,7 @@ public class ReadingDAO {
     public void deleteReading(@PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         //SQL Delete Statement
-        String sql = "DELETE FROM " + table + " WHERE id = ?";
+        String sql = "UPDATE " + table + " SET is_active = FALSE WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
