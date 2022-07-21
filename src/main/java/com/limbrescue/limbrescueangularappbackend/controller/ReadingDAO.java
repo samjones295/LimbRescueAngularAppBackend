@@ -289,17 +289,27 @@ public class ReadingDAO {
      * @return
      *          The id of the reading.
      */
-    public int insertReading(String sql, int id, String patient_num, String date_created, String laterality, String notes) {
+    public int insertReading(String sql, String patient_num, String date_created, String laterality, String notes) {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
+        int id = 0;
+        System.out.println("HELLO??");
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.setString(2, patient_num);
-            statement.setString(3, date_created);
-            statement.setString(4, laterality);
-            statement.setString(5, notes);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            //statement.setInt(1, id);
+            statement.setString(1, patient_num);
+            statement.setString(2, date_created);
+            statement.setString(3, laterality);
+            statement.setString(4, notes);
             statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getInt(1);
+                System.out.println("Inserted ID -" + id); // display inserted record
+            } else {
+                System.out.println("WTAF");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -331,7 +341,7 @@ public class ReadingDAO {
             return id-1;
         }else {
             reading.setId(id);
-            String sql = "INSERT INTO " + table + " (id, patient_num, date_created, laterality, notes) VALUES(?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO " + table + " (patient_num, date_created, laterality, notes) VALUES(?, ?, ?, ?)";
             //Date to be parsed.
             String create = reading.getDate_created();
             //Splits the date into the components.
@@ -381,8 +391,8 @@ public class ReadingDAO {
             java.sql.Date date = new java.sql.Date(Integer.parseInt(elements[5]) - 1900, month, Integer.parseInt(elements[2]));
             //Updates the date
             reading.setDate_created(date.toString());
-            reading_id = reading.getId();
-            return insertReading(sql, reading.getId(), reading.getPatient_num(), date.toString(), reading.getLaterality(), reading.getNotes());
+            //reading_id = reading.getId();
+            return insertReading(sql, reading.getPatient_num(), date.toString(), reading.getLaterality(), reading.getNotes());
         }
 
     }
