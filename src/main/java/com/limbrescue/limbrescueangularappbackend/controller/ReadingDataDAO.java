@@ -140,6 +140,7 @@ public class ReadingDataDAO {
                 output.put("ppg",result.getString("ppg_val"));
                 output.put("laterality",result.getString("laterality"));
                 output.put("derivative",result.getInt("derivative"));
+                output.put("average",result.getDouble("average"));
                 output_list.put(output);
 
                 ReadingData data = new ReadingData(result.getInt("id"), result.getInt("reading_id"),
@@ -248,6 +249,74 @@ public class ReadingDataDAO {
     }
 
     /**
+     * Calculates the derivative of the ppg data
+     * @param value
+     *          The List reading of all reading values
+     * @param time
+     *          The List reading of all reading times
+     */
+public List<String> calculateDerivative( List<Double> time,List<String> value){
+
+    List<String> output = new ArrayList<>(value);
+    double ydiff=0;
+    double xdiff=0;
+    for (int i = 0; i < output.size()-1; i++) {
+        
+        ydiff=Double.parseDouble(output.get(i+1))-Double.parseDouble(output.get(i));
+        xdiff=time.get(i+1)-time.get(i);
+
+        output.set(i,String.valueOf(ydiff/xdiff));
+
+    }
+
+    //each derivative has one less point, extra point is set to 0
+    output.set(output.size()-1, "0");
+
+    return output;
+}
+
+
+public double calculateAverage( List<String> value){
+
+    double sum=0;
+    for (int i = 0; i < value.size()-1; i++) {
+        
+        sum=sum+Double.parseDouble(value.get(i));
+
+    }
+    sum=sum/value.size();
+
+    return sum;
+}
+
+public List<String> calculateFFT( List<Double> time,List<String> value){
+
+    value=calculateDerivative(time,value);
+    
+    
+    List<String> output = new ArrayList<>(value);
+    
+    FFT fft = new FFT(output.size());
+ 
+     double[] window = fft.getWindow();
+     
+     double[] re = new double[output.size()];
+     double[] im = new double[output.size()];
+     
+     String[] array = output.toArray(new String[0]);
+     
+     for (int i = 0; i < output.size()-1; i++) {
+         re[i]=Double.parseDouble(array[i]);
+     }
+    
+    fft.fft(re, im);   
+    
+    for (int i = 0; i < output.size()-1; i++) {
+         output.set(i, String.valueOf(re[i]));
+    }
+    return output;
+}
+    /**
      * Inserts all reading data into the table sequentially over a single connection.
      * @param reading_id
      *          The reading ID
@@ -262,13 +331,14 @@ public class ReadingDataDAO {
      */
 public void insertReadingData(int reading_id, List<Double> record_time, List<String> value, String laterality, int derivative) {
     Connection connection = dbConnection.getConnection();
-    int id = 8759;
 
-    String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
+    //int id = 8759;
+
+    /*String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
     PreparedStatement selection;
     ResultSet result;
     try {
-        selection = connection.prepareStatement(selectHighestID);
+       selection = connection.prepareStatement(selectHighestID);
         result = selection.executeQuery();
         while (result.next()) { // While the result has options, should only run once.
             try {
@@ -282,22 +352,59 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     } catch (SQLException e1) {
         e1.printStackTrace();
     }
-   
+    */
 
     //SQL Insert Statement
-    String sql = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative) VALUES(?, ?, ?, ?, ?, ?)";
 
+    //Two derivatives are entered along with the base data
+    //the decision was made to do this rather than calling a process on the stored data due to the following facts
+    //1. the derivatives are meaningless without the base data
+    //2. the derivatives are bounded to two(no need for a process for creating more)
+    //3. the derivatives are incorporated into existing workflow instead of adding additional processing
+    //4. the only downside is that the derivatives are automatically created(this could potentially be dealt with by soft delete)
+    String sql1 = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative,average) VALUES(?, ?, ?, ?, ?, ?)";
+    List<String> der1 = calculateDerivative(record_time, value);
+    List<String> der2 = calculateDerivative(record_time,calculateDerivative(record_time, value));
+    List<String> datafft = calculateFFT(record_time,value);
     try {
         for (int i = 0; i < record_time.size(); i++) {
-            PreparedStatement statement = connection.prepareStatement(sql); // Object that holds SQL query.
+            PreparedStatement statement1 = connection.prepareStatement(sql1); // Object that holds SQL query.
+            PreparedStatement statement2 = connection.prepareStatement(sql1); // Object that holds SQL query.
+            PreparedStatement statement3 = connection.prepareStatement(sql1); // Object that holds SQL query.
+	    PreparedStatement statement4 = connection.prepareStatement(sql1); // Object that holds SQL query.
+            //statement1.setInt(1, id);
+            statement1.setInt(2, reading_id);
+            statement1.setDouble(3, record_time.get(i));
+            statement1.setString(4, value.get(i));
+            statement1.setString(5, laterality);
+            statement1.setInt(6, 0);
+            statement1.setDouble(7, calculateAverage(value));
+            statement1.executeUpdate();  // Executes the SQL query.
 
-            statement.setInt(1, id + i);
-            statement.setInt(2, reading_id);
-            statement.setDouble(3, record_time.get(i));
-            statement.setString(4, value.get(i));
-            statement.setString(5, laterality);
-            statement.setInt(6, derivative);
-            statement.executeUpdate();  // Executes the SQL query.
+            //statement2.setInt(1, );
+            statement2.setInt(2, reading_id);
+            statement2.setDouble(3, record_time.get(i));
+            statement2.setString(4, der1.get(i));
+            statement2.setString(5, laterality);
+            statement2.setInt(6, 1);
+            statement2.executeUpdate();  // Executes the SQL query.
+            statement2.setDouble(7, calculateAverage(der1));
+            //statement3.setInt(1, );
+            statement3.setInt(2, reading_id);
+            statement3.setDouble(3, record_time.get(i));
+            statement3.setString(4, der2.get(i));
+            statement3.setString(5, laterality);
+            statement3.setInt(6, 2);
+            statement3.executeUpdate();  // Executes the SQL query.
+            statement3.setDouble(7, calculateAverage(der2));
+            //statement3.setInt(1, );
+            statement4.setInt(2, reading_id);
+            statement4.setDouble(3, record_time.get(i));
+            statement4.setString(4, datafft.get(i));
+            statement4.setString(5, laterality);
+            statement4.setInt(6, 3);
+            statement4.setDouble(7, 0);
+            statement4.executeUpdate();  // Executes the SQL query.
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -308,6 +415,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     } catch (SQLException e) {
         e.printStackTrace();
     }
+
 }
 
     /**
