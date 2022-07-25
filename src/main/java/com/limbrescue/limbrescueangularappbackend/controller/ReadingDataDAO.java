@@ -91,7 +91,6 @@ public class ReadingDataDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, reading_id);
             statement.setString(2, laterality);
-            statement.setInt(3, derivative);
             ResultSet result = statement.executeQuery();
             //Iterates over the result set and adds into the array list after executing query.
             while (result.next()) {
