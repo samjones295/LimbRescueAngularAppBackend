@@ -335,7 +335,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     //2. the derivatives are bounded to two(no need for a process for creating more)
     //3. the derivatives are incorporated into existing workflow instead of adding additional processing
     //4. the only downside is that the derivatives are automatically created(this could potentially be dealt with by soft delete)
-    String sql1 = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative,average) VALUES(?, ?, ?, ?, ?, ?,?)";
+    String sql1 = "INSERT INTO " + table + " (reading_id, record_time, ppg_val, laterality, derivative,average) VALUES(?, ?, ?, ?, ?,?)";
     List<String> der1 = calculateDerivative(record_time, value);
     List<String> der2 = calculateDerivative(record_time,calculateDerivative(record_time, value));
     try {
@@ -343,30 +343,30 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
             PreparedStatement statement1 = connection.prepareStatement(sql1); // Object that holds SQL query.
             PreparedStatement statement2 = connection.prepareStatement(sql1); // Object that holds SQL query.
             PreparedStatement statement3 = connection.prepareStatement(sql1); // Object that holds SQL query.
-            statement1.setInt(1, id);
-            statement1.setInt(2, reading_id);
-            statement1.setDouble(3, record_time.get(i));
-            statement1.setString(4, value.get(i));
-            statement1.setString(5, laterality);
-            statement1.setInt(6, 0);
-            statement1.setDouble(7, calculateAverage(value));
+            //statement1.setInt(1, id);
+            statement1.setInt(1, reading_id);
+            statement1.setDouble(2, record_time.get(i));
+            statement1.setString(3, value.get(i));
+            statement1.setString(4, laterality);
+            statement1.setInt(5, 0);
+            statement1.setDouble(6, calculateAverage(value));
             statement1.executeUpdate();  // Executes the SQL query.
 
-            statement2.setInt(1,id );
-            statement2.setInt(2, reading_id);
-            statement2.setDouble(3, record_time.get(i));
-            statement2.setString(4, der1.get(i));
-            statement2.setString(5, laterality);
-            statement2.setInt(6, 1);
-            statement2.setDouble(7, calculateAverage(der1));
+            //statement2.setInt(1,id );
+            statement2.setInt(1, reading_id);
+            statement2.setDouble(2, record_time.get(i));
+            statement2.setString(3, der1.get(i));
+            statement2.setString(4, laterality);
+            statement2.setInt(5, 1);
+            statement2.setDouble(6, calculateAverage(der1));
             statement2.executeUpdate();  // Executes the SQL query.
-            statement3.setInt(1,id );
-            statement3.setInt(2, reading_id);
-            statement3.setDouble(3, record_time.get(i));
-            statement3.setString(4, der2.get(i));
-            statement3.setString(5, laterality);
-            statement3.setInt(6, 2);
-              statement3.setDouble(7, calculateAverage(der2));
+            //statement3.setInt(1,id );
+            statement3.setInt(1, reading_id);
+            statement3.setDouble(2, record_time.get(i));
+            statement3.setString(3, der2.get(i));
+            statement3.setString(4, laterality);
+            statement3.setInt(5, 2);
+              statement3.setDouble(6, calculateAverage(der2));
             statement3.executeUpdate();  // Executes the SQL query.
             //statement3.setInt(1, );
         }
