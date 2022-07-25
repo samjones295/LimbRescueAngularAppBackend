@@ -297,13 +297,13 @@ public List<String> calculateFFT( List<Double> time,List<String> value){
     String[] array = output.toArray(new String[0]);
             FFT.Complex[] x = new FFT.Complex[output.size()];
             // original data
-            for (int i = 0; i < N; i++) 
+            for (int i = 0; i < output.size(); i++) 
             {
                 x[i] = new FFT.Complex(Double.parseDouble(array[i]), 0);
             }
  
             // FFT of original data
-            FFT.Complex[] y = FFT.fft(x);
+            FFT.Complex[] y = FFT.Complex.fft(x);
  
     
     for (int i = 0; i < output.size()-1; i++) {
