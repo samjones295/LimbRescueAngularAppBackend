@@ -292,19 +292,18 @@ public double calculateAverage( List<String> value){
 public List<String> calculateFFT( List<Double> time,List<String> value){
 
     value=calculateDerivative(time,value);
-    FFT fftObj = new FFT();
     
     List<String> output = new ArrayList<>(value);
     String[] array = output.toArray(new String[0]);
-            fftObj.Complex[] x = new fftObj.Complex[output.size()];
+            FFT.Complex[] x = new FFT.Complex[output.size()];
             // original data
             for (int i = 0; i < N; i++) 
             {
-                x[i] = new fftObj.Complex(Double.parseDouble(array[i]), 0);
+                x[i] = new FFT.Complex(Double.parseDouble(array[i]), 0);
             }
  
             // FFT of original data
-            fftObj.Complex[] y = fftObj.fft(x);
+            FFT.Complex[] y = FFT.fft(x);
  
     
     for (int i = 0; i < output.size()-1; i++) {

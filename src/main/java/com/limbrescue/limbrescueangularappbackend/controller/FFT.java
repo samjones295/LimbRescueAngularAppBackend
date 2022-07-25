@@ -20,7 +20,7 @@
   *  See the file "COPYING" for the text of the license.
   */
  
- package com.limbrescue.limbrescueangularappbackend.controller;
+package com.limbrescue.limbrescueangularappbackend.controller;
  
 public class FFT 
 {
