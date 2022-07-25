@@ -275,6 +275,7 @@ public List<String> calculateDerivative( List<Double> time,List<String> value){
     return output;
 }
 
+
 public double calculateAverage( List<String> value){
 
     double sum=0;
@@ -291,27 +292,23 @@ public double calculateAverage( List<String> value){
 public List<String> calculateFFT( List<Double> time,List<String> value){
 
     value=calculateDerivative(time,value);
-    
+    FFT fftObj = new FFT();
     
     List<String> output = new ArrayList<>(value);
-    
-    FFT fft = new FFT(output.size());
+    String[] array = output.toArray(new String[0]);
+            fftObj.Complex[] x = new fftObj.Complex[output.size()];
+            // original data
+            for (int i = 0; i < N; i++) 
+            {
+                x[i] = new fftObj.Complex(Double.parseDouble(array[i]), 0);
+            }
  
-     double[] window = fft.getWindow();
-     
-     double[] re = new double[output.size()];
-     double[] im = new double[output.size()];
-     
-     String[] array = output.toArray(new String[0]);
-     
-     for (int i = 0; i < output.size()-1; i++) {
-         re[i]=Double.parseDouble(array[i]);
-     }
-    
-    fft.fft(re, im);   
+            // FFT of original data
+            fftObj.Complex[] y = fftObj.fft(x);
+ 
     
     for (int i = 0; i < output.size()-1; i++) {
-         output.set(i, String.valueOf(re[i]));
+         output.set(i, String.valueOf(y[i].re()));
     }
     return output;
 }
@@ -330,6 +327,7 @@ public List<String> calculateFFT( List<Double> time,List<String> value){
      */
 public void insertReadingData(int reading_id, List<Double> record_time, List<String> value, String laterality, int derivative) {
     Connection connection = dbConnection.getConnection();
+
     //int id = 8759;
 
     /*String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
@@ -451,7 +449,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
         
         for(int i = 0; i < length; i++){
             record_time.add(reading_data.getJSONObject(i).getDouble("record_time"));
-            value.add(reading_data.getJSONObject(i).getDouble("value") + "");
+            value.add(reading_data.getJSONObject(i).getDouble("value")+"");
         }
 
         // Send the data to be sent to the database.
