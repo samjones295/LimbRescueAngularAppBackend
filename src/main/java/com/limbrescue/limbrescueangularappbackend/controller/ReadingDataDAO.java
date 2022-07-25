@@ -335,7 +335,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     //2. the derivatives are bounded to two(no need for a process for creating more)
     //3. the derivatives are incorporated into existing workflow instead of adding additional processing
     //4. the only downside is that the derivatives are automatically created(this could potentially be dealt with by soft delete)
-    String sql1 = "INSERT INTO " + table + " (reading_id, record_time, ppg_val, laterality, derivative,average) VALUES( ?, ?, ?, ?, ?)";
+    String sql1 = "INSERT INTO " + table + " (reading_id, record_time, ppg_val, laterality, derivative,average) VALUES( ?, ?, ?, ?, ?,?)";
     List<String> der1 = calculateDerivative(record_time, value);
     List<String> der2 = calculateDerivative(record_time,calculateDerivative(record_time, value));
     try {
