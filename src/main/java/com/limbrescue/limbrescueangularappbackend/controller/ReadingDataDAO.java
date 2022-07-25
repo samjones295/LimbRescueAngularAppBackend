@@ -289,28 +289,6 @@ public double calculateAverage( List<String> value){
     return sum;
 }
 
-public List<String> calculateFFT( List<Double> time,List<String> value){
-
-    value=calculateDerivative(time,value);
-    
-    List<String> output = new ArrayList<>(value);
-    String[] array = output.toArray(new String[0]);
-            FFT.Complex[] x = new FFT.Complex[output.size()];
-            // original data
-            for (int i = 0; i < output.size(); i++) 
-            {
-                x[i] = new FFT.Complex(Double.parseDouble(array[i]), 0);
-            }
- 
-            // FFT of original data
-            FFT.Complex[] y = FFT.Complex.fft(x);
- 
-    
-    for (int i = 0; i < output.size()-1; i++) {
-         output.set(i, String.valueOf(y[i].re()));
-    }
-    return output;
-}
     /**
      * Inserts all reading data into the table sequentially over a single connection.
      * @param reading_id
@@ -360,13 +338,11 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     String sql1 = "INSERT INTO " + table + " (id, reading_id, record_time, ppg_val, laterality, derivative,average) VALUES(?, ?, ?, ?, ?, ?)";
     List<String> der1 = calculateDerivative(record_time, value);
     List<String> der2 = calculateDerivative(record_time,calculateDerivative(record_time, value));
-    List<String> datafft = calculateFFT(record_time,value);
     try {
         for (int i = 0; i < record_time.size(); i++) {
             PreparedStatement statement1 = connection.prepareStatement(sql1); // Object that holds SQL query.
             PreparedStatement statement2 = connection.prepareStatement(sql1); // Object that holds SQL query.
             PreparedStatement statement3 = connection.prepareStatement(sql1); // Object that holds SQL query.
-	    PreparedStatement statement4 = connection.prepareStatement(sql1); // Object that holds SQL query.
             //statement1.setInt(1, id);
             statement1.setInt(2, reading_id);
             statement1.setDouble(3, record_time.get(i));
@@ -393,13 +369,6 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
             statement3.executeUpdate();  // Executes the SQL query.
             statement3.setDouble(7, calculateAverage(der2));
             //statement3.setInt(1, );
-            statement4.setInt(2, reading_id);
-            statement4.setDouble(3, record_time.get(i));
-            statement4.setString(4, datafft.get(i));
-            statement4.setString(5, laterality);
-            statement4.setInt(6, 3);
-            statement4.setDouble(7, 0);
-            statement4.executeUpdate();  // Executes the SQL query.
         }
     } catch (SQLException e) {
         e.printStackTrace();
