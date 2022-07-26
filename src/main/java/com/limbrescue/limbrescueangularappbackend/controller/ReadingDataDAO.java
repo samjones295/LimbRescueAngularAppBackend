@@ -304,7 +304,7 @@ public double calculateAverage( List<String> value){
      */
 public void insertReadingData(int reading_id, List<Double> record_time, List<String> value, String laterality, int derivative) {
     Connection connection = dbConnection.getConnection();
-    System.out.println("Id:"+ id);
+    System.out.println("Id:"+ reading_id);
     //int id = 8759;
 
     /*String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
