@@ -317,6 +317,7 @@ public class ReadingDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(id+" blow me kevin");
         return id;
     }
     /**
