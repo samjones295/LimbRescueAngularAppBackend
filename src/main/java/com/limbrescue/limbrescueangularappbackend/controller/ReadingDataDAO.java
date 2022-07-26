@@ -338,38 +338,46 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     String sql1 = "INSERT INTO " + table + " (reading_id, record_time, ppg_val, laterality, derivative,average) VALUES(?, ?, ?, ?, ?,?)";
     List<String> der1 = calculateDerivative(record_time, value);
     List<String> der2 = calculateDerivative(record_time,calculateDerivative(record_time, value));
+    Double average1=calculateAverage(value);
+    Double average2=calculateAverage(der1);
+    Double average3=calculateAverage(der2);
     try {
         for (int i = 0; i < record_time.size(); i++) {
             PreparedStatement statement1 = connection.prepareStatement(sql1); // Object that holds SQL query.
-            PreparedStatement statement2 = connection.prepareStatement(sql1); // Object that holds SQL query.
-            PreparedStatement statement3 = connection.prepareStatement(sql1); // Object that holds SQL query.
             //statement1.setInt(1, id);
             statement1.setInt(1, reading_id);
             statement1.setDouble(2, record_time.get(i));
             statement1.setString(3, value.get(i));
             statement1.setString(4, laterality);
             statement1.setInt(5, 0);
-            statement1.setDouble(6, calculateAverage(value));
+            statement1.setDouble(6, average1);
             statement1.executeUpdate();  // Executes the SQL query.
-
+					 //
+	}   
+	 for (int i = 0; i < record_time.size(); i++) {
             //statement2.setInt(1,id );
-            statement2.setInt(1, reading_id);
+            PreparedStatement statement2 = connection.prepareStatement(sql1); // Object that holds SQL query.
+	    statement2.setInt(1, reading_id);
             statement2.setDouble(2, record_time.get(i));
             statement2.setString(3, der1.get(i));
             statement2.setString(4, laterality);
             statement2.setInt(5, 1);
-            statement2.setDouble(6, calculateAverage(der1));
+            statement2.setDouble(6, average2);
             statement2.executeUpdate();  // Executes the SQL query.
-            //statement3.setInt(1,id );
+	 }
+	
+	  for (int i = 0; i < record_time.size(); i++) {
+	     PreparedStatement statement3 = connection.prepareStatement(sql1); // Object that holds SQL query.
+	    //statement3.setInt(1,id );
             statement3.setInt(1, reading_id);
             statement3.setDouble(2, record_time.get(i));
             statement3.setString(3, der2.get(i));
             statement3.setString(4, laterality);
             statement3.setInt(5, 2);
-              statement3.setDouble(6, calculateAverage(der2));
+            statement3.setDouble(6, average3);
             statement3.executeUpdate();  // Executes the SQL query.
             //statement3.setInt(1, );
-        }
+            }
     } catch (SQLException e) {
         e.printStackTrace();
     }
