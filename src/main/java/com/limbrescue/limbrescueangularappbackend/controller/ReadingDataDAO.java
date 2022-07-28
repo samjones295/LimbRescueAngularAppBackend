@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import java.util.Date;
+
+
 @CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping("/api/")
@@ -305,18 +308,54 @@ public double calculateAverage( List<String> value){
 public void insertReadingData(int reading_id, List<Double> record_time, List<String> value, String laterality, int derivative) {
     Connection connection = dbConnection.getConnection();
     System.out.println("Id:"+ reading_id);
+    System.out.println("Laterality:"+ laterality);
     //int id = 8759;
 
-    /*String selectHighestID = "SELECT id FROM reading_data ORDER BY id DESC LIMIT 1";
+    String selectHighestID = "SELECT * FROM reading ORDER BY id DESC LIMIT 1";
     PreparedStatement selection;
     ResultSet result;
     try {
        selection = connection.prepareStatement(selectHighestID);
         result = selection.executeQuery();
         while (result.next()) { // While the result has options, should only run once.
-            try {
-                id = result.getInt("id");
-                id++;
+		try {
+		String later=result.getString("laterality");
+		System.out.println("Checked Laterality:"+ later);
+		if(later.equals("BILATERAL")){
+			String test = result.getString("notes");
+			String[] arrOfStr = test.split(":", 3);
+			try{
+			test=arrOfStr[1];
+			}catch (Exception e){
+				//we decided to follow best practice here
+				//in all seriousness, this line must execute for one watch, and is guaranteed to throw an error for anothe
+				//TODO
+				//YOU REALLY SHOULD TRY AND FIX THIS, FOR THE BILATERAL READING INSERTION, THE WATCHES NEED A WAY TO COORDINATE
+				//WE USED THE TIMESTAMP IN THE COMMENTS
+			}
+			Date systemtime = new Date();
+			int curr=systemtime.getMinutes();
+			if(curr>=Integer.parseInt(test)-1&&curr<=Integer.parseInt(test)+1){
+				int temp=reading_id;
+				reading_id=result.getInt("id");
+				
+				String deleter = "DELETE FROM reading WHERE id=?";
+
+				PreparedStatement deletion=connection.prepareStatement(deleter);
+				deletion.setInt(1,temp);
+				deletion.executeUpdate();
+
+				String updater = "UPDATE reading set notes='' where id=?";
+
+                                PreparedStatement updates=connection.prepareStatement(updater);
+                                updates.setInt(1,reading_id);
+                                updates.executeUpdate();
+
+
+
+			}
+
+		}
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -325,7 +364,7 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
     } catch (SQLException e1) {
         e1.printStackTrace();
     }
-    */
+
 
     //SQL Insert Statement
 

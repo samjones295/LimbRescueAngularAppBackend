@@ -305,7 +305,9 @@ public class ReadingDAO {
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
                 id = rs.getInt(1);
-                System.out.println("Inserted ID -" + id); // display inserted record
+                System.out.println("Inserted ID:" + id); // display inserted record
+		Date timer=new Date();
+		System.out.println("Timer:"+timer.toString());
             } else {
                 System.out.println("WTAF");
             }
@@ -317,7 +319,6 @@ public class ReadingDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(id+" blow me kevin");
         return id;
     }
     /**
