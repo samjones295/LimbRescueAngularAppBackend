@@ -326,13 +326,6 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
 			String test = result.getString("notes");
 			String[] arrOfStr = test.split(":", 3);
 			test=arrOfStr[1];
-			}catch (Exception e){
-				//we decided to follow best practice here
-				//in all seriousness, this line must execute for one watch, and is guaranteed to throw an error for anothe
-				//TODO
-				//YOU REALLY SHOULD TRY AND FIX THIS, FOR THE BILATERAL READING INSERTION, THE WATCHES NEED A WAY TO COORDINATE
-				//WE USED THE TIMESTAMP IN THE COMMENTS
-			}
 			Date systemtime = new Date();
 			int curr=systemtime.getMinutes();
 			if(curr>=Integer.parseInt(test)-1&&curr<=Integer.parseInt(test)+1){
@@ -350,10 +343,14 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
                                 PreparedStatement updates=connection.prepareStatement(updater);
                                 updates.setInt(1,reading_id);
                                 updates.executeUpdate();
-
-
-
 			}
+                        }catch (Exception e){
+                                //we decided to follow best practice here
+                                //in all seriousness, this line must execute for one watch, and is guaranteed to throw an error for anothe
+                                //TODO
+                                //YOU REALLY SHOULD TRY AND FIX THIS, FOR THE BILATERAL READING INSERTION, THE WATCHES NEED A WAY TO COORDINATE
+                                //WE USED THE TIMESTAMP IN THE COMMENTS
+                        }
 
 		}
             } catch (Exception ex) {
