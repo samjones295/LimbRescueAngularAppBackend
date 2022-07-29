@@ -322,9 +322,9 @@ public void insertReadingData(int reading_id, List<Double> record_time, List<Str
 		String later=result.getString("laterality");
 		System.out.println("Checked Laterality:"+ later);
 		if(later.equals("BILATERAL")){
+			try{
 			String test = result.getString("notes");
 			String[] arrOfStr = test.split(":", 3);
-			try{
 			test=arrOfStr[1];
 			}catch (Exception e){
 				//we decided to follow best practice here
