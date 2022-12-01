@@ -1,4 +1,5 @@
-package com.limbrescue.limbrescueangularappbackend.model;
+package com.limbrescue.limbrescueangularappbackend.aws_cognito;
+
 
 /*
 // Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.

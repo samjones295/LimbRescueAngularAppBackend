@@ -1,33 +1,59 @@
-package com.limbrescue.limbrescueangularappbackend.payload.response;
+package com.limbrescue.limbrescueangularappbackend.models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import java.util.List;
+import javax.validation.constraints.NotBlank;
 
-public class JwtResponse {
-  private String token;
-  private String type = "Bearer";
-  private Long id;
-  private String username;
-  private String email;
-  private List<String> roles;
+@JsonIgnoreProperties(value = {
+"sub",
+"cognito:groups",
+"email_verified",
+"cognito:username",
+"given_name",
+"origin_jti",
+"cognito:roles",
+"aud",
+"event_id",
+"token_use",
+"auth_time",
+"iat",
+"family_name",
+"jti",
+"email"})
 
-  public CognitoJWT(String iss, String exp) {
-    this.iss = iss
-    this.exp = exp
+public class CognitoJWT {
+  @NotBlank
+  private String iss;
+  @NotBlank
+  private String exp;
+
+
+
+  public String getIss() {
+    return iss;
   }
 
-  public String getProvider() {
-    return token;
+  public void setIss(String iss) {
+    this.iss = iss.replace("https://", "");
   }
 
-  public void setProvider(String iss) {
-    this.exp = exp;
-  }
-
-  public String getExpiryDate() {
+  public String getExp() {
     return exp;
   }
 
-  public void setTokenType(String tokenType) {
-    this.type = tokenType;
+  public void setExp(String exp) {
+    this.exp = exp;
   }
 
+  //ToString
+  @Override
+  public String toString(){
+    return "{" +
+            "iss: " + iss + ", " +
+            "exp: " + exp + ", " +
+            "}";
+  }
+
+
+}

@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.UUID;
+import java.sql.Timestamp;
+import java.sql.*;
+import java.util.*;
 
 import javax.validation.Valid;
 
@@ -21,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoJWTParser;
+import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoHelper;
+import com.limbrescue.limbrescueangularappbackend.models.CognitoJWT;
 import com.limbrescue.limbrescueangularappbackend.models.ERole;
 import com.limbrescue.limbrescueangularappbackend.models.Role;
 import com.limbrescue.limbrescueangularappbackend.models.User;
@@ -32,6 +39,11 @@ import com.limbrescue.limbrescueangularappbackend.repository.RoleRepository;
 import com.limbrescue.limbrescueangularappbackend.repository.UserRepository;
 import com.limbrescue.limbrescueangularappbackend.security.jwt.JwtUtils;
 import com.limbrescue.limbrescueangularappbackend.security.services.UserDetailsImpl;
+import com.limbrescue.limbrescueangularappbackend.security.encryption.AES;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -46,93 +58,43 @@ public class AuthController {
   @Autowired
   RoleRepository roleRepository;
 
+
   @Autowired
   PasswordEncoder encoder;
 
   @Autowired
   JwtUtils jwtUtils;
 
-  /**
-     * Authorizes the login.
-     *
-     * @return
-     *          The authentication bean.
-     */
-    @GetMapping(path = "/basicauth")
-    public void helloWorldBean() {
-        System.out.println("You are authenticated");
+  @Autowired
+  CognitoHelper cognitoHelper;
+
+
+  //Inserts Hashed Access Token associated with a user to database
+    public String InsertHashedToken(String uuid, String username, String accessToken, String expiryDate) {
+        AES aes_encryption = new AES();
+        String key = aes_encryption.init();
+        String token = aes_encryption.encrypt(accessToken, key);
+        Timestamp exp = new Timestamp(Long.parseLong(expiryDate)*1000);
+        Timestamp createdat = new Timestamp(System.currentTimeMillis());
+
+  
+        
+        return key;
     }
 
   @PostMapping("/signin")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  public void authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
   
+    ObjectMapper cognitoMapper = new ObjectMapper();
+    String cognito_jwt = cognitoHelper.validateUser(loginRequest.getUsername(), loginRequest.getPassword());
+    CognitoJWT payload = cognitoMapper.readValue(CognitoJWTParser.getPayload(cognito_jwt).toString(), CognitoJWT.class);
+    String credentials = cognitoHelper.getCredentials(payload.getIss(), cognito_jwt).toString();
+    String uuid = UUID.randomUUID().toString();
+    String key = this.InsertHashedToken(uuid, loginRequest.getUsername(), credentials, payload.getExp());
     
-    String result = cognitoHelper.validateUser(loginRequest.getUsername(), loginRequest.getPassword());
-        
-    String provider = CognitoJWTParser.getClaim(payload, "iss");
-    String expiryDate = CognitoJWTParser.getClaim(payload, "exp");  
-    String credentials = cognitoHelper.getCredentials(provider, result).toString();
-    String key = this.InsertHashedToken(uuid, username, credentials, expiryDate);
-    AuthenticationResponse subject = new AuthenticationResponse(uuid, key);
-
-    String jwt = jwtUtils.generateJwtToken(authentication);
-
-
-    return ResponseEntity.ok(new JwtResponse());
+    System.out.println(userRepository.findAll());
+   
   }
 
-  @PostMapping("/signup")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-      return ResponseEntity
-          .badRequest()
-          .body(new MessageResponse("Error: Username is already taken!"));
-    }
 
-    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-      return ResponseEntity
-          .badRequest()
-          .body(new MessageResponse("Error: Email is already in use!"));
-    }
-
-    // Create new user's account
-    User user = new User(signUpRequest.getUsername(), 
-               signUpRequest.getEmail(),
-               encoder.encode(signUpRequest.getPassword()));
-
-    Set<String> strRoles = signUpRequest.getRole();
-    Set<Role> roles = new HashSet<>();
-
-    if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-      roles.add(userRole);
-    } else {
-      strRoles.forEach(role -> {
-        switch (role) {
-        case "admin":
-          Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(adminRole);
-
-          break;
-        case "mod":
-          Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(modRole);
-
-          break;
-        default:
-          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(userRole);
-        }
-      });
-    }
-
-    user.setRoles(roles);
-    userRepository.save(user);
-
-    return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-  }
 }

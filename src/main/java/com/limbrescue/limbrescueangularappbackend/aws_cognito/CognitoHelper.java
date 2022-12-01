@@ -1,5 +1,9 @@
-package com.limbrescue.limbrescueangularappbackend.model;
-import com.limbrescue.limbrescueangularappbackend.model.CognitoJWTParser;
+package com.limbrescue.limbrescueangularappbackend.aws_cognito;
+
+import com.limbrescue.limbrescueangularappbackend.security.EnvironmentCredentials;
+import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoJWTParser;
+import com.limbrescue.limbrescueangularappbackend.aws_cognito.SRPAuthenticationHelper;
+
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.AnonymousAWSCredentials;
@@ -15,7 +19,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Bucket;
 import org.json.JSONObject;
-
+import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,11 +41,9 @@ public class CognitoHelper {
 
     private static final Properties p = new Properties();
 
+    
     public CognitoHelper() {
-
-
         try {
-            
             EnvironmentCredentials AWSCredentials = new EnvironmentCredentials(File);
             // Read the property values
             POOL_ID = AWSCredentials.getProp("POOL_ID");
@@ -54,7 +56,6 @@ public class CognitoHelper {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Sign up the user to the user pool
@@ -137,7 +138,7 @@ public class CognitoHelper {
     }
 
     public String validateUser(String username, String password) {
-        AuthenticationHelper helper = new AuthenticationHelper(POOL_ID, CLIENTAPP_ID, CLIENT_SECRET, REGION);
+        SRPAuthenticationHelper helper = new SRPAuthenticationHelper(POOL_ID, CLIENTAPP_ID, CLIENT_SECRET, REGION);
         return helper.PerformSRPAuthentication("davecverano@gmail.com", "Asdf123!");
     }
 
