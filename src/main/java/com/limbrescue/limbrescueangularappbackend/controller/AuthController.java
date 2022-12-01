@@ -87,5 +87,16 @@ public class AuthController {
     response.addCookie(authTokenCookie);
   }
 
+    @PostMapping("/signup")
+  public void authenticateUser(@Valid @RequestBody SignupRequest signupRequest, HttpServletResponse response) throws Exception {
+
+        CognitoHelper cognitoHelper = new CognitoHelper();
+        String uuid = UUID.randomUUID().toString();
+        Boolean success = cognitoHelper.SignUpUser(signupRequest.getUsername(), signupRequest.getPassword(), signupRequest.getGivenname(), signupRequest.Middlename(), signupRequest.getFamilyname());
+        if(success){
+            this.insertUser(uuid, signupRequest.getUsername(), signupRequest.getGivenname(), signupRequest.Middlename(), signupRequest.getFamilyname());
+        } 
+  }
+
 
 }
