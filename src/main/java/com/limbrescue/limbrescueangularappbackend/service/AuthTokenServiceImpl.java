@@ -36,7 +36,7 @@ public class AuthTokenServiceImpl implements AuthTokenService {
     String token = aes_encryption.encrypt(accessToken, key);
     Timestamp exp = new Timestamp(Long.parseLong(expiryDate)*1000);
     Timestamp createdat = new Timestamp(System.currentTimeMillis());
-    authtoken.insertToken(uuid, accessToken, exp, createdat, username);
+    authtoken.insertToken(uuid, token, exp, createdat, username);
     return key;
   }
 
