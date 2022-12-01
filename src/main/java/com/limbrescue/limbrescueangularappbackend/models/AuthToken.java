@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "access_token", 
+@Table(name = "auth_token", 
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "id"),
       @UniqueConstraint(columnNames = "uuid") 

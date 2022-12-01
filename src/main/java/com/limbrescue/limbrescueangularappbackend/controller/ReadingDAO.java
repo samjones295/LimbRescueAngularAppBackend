@@ -20,13 +20,28 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
+import java.util.Map;
+import javax.servlet.http.*;
+import java.util.stream.Collectors;
+import org.apache.commons.codec.binary.Base64;
+import java.io.UnsupportedEncodingException;
 
-@CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@CrossOrigin(origins = "http://localhost:8081", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("")
 public class ReadingDAO {
     /**
-     * The name of the table.
+     * The name of the auth token table.
+     */
+    private String authTokenTable;
+    /**
+     * The name of the reading table.
+     */
+    private String readingTable;
+    /**
+     * The name of the reading table.
      */
     private String table;
     /**
@@ -65,8 +80,11 @@ public class ReadingDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //Reads the table from the properties file.
-        table = p.getProperty("spring.datasource.ReadingTable");
+        //Reads the auth token table from the properties file.
+        authTokenTable = p.getProperty("spring.datasource.AuthTokenTable");
+        //Reads the auth token table from the properties file.
+        readingTable = p.getProperty("spring.datasource.ReadingTable");
+        table = readingTable;
         dbConnection = new DBConnection();
         Date defaultDate = new Date(0);
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz"); //Formats the date.
@@ -77,23 +95,96 @@ public class ReadingDAO {
         delta = 0;
     }
 
+    // /**
+    //  * Retrieves all the elements of the readings table and stores it in an array list.
+    //  *
+    //  * @return
+    //  *          An arraylist containing the readings table.
+    //  */
+    // @GetMapping("/readings")
+    // @ResponseBody
+    // public List<Reading> getAllReadings() {
+    //     Connection connection = dbConnection.getConnection();
+    //     String sql = "SELECT * FROM " + table;
+    //     List<Reading> readings = new ArrayList<>();
+    //     try {
+    //         PreparedStatement statement = connection.prepareStatement(sql);
+    //         ResultSet result = statement.executeQuery();
+    //         while (result.next()) {
+    //             Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
+    //                     result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
+    //             readings.add(reading);
+    //         }
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //     } finally {
+    //         try {
+    //             connection.close();
+    //         } catch (SQLException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
+    //     return readings;
+    // }
+
     /**
      * Retrieves all the elements of the readings table and stores it in an array list.
      *
      * @return
      *          An arraylist containing the readings table.
      */
-    @GetMapping("/readings")
-    @ResponseBody
-    public List<Reading> getAllReadings() {
+    @GetMapping(path = "/readings")
+    public List<Reading> getAllReadingsOfPatient(@CookieValue(name = "auth_jwt") String jwt) {
+
+        
+        
+        String[] pieces = jwt.split("\\.");
+        String b64payload = pieces[1];
+        String jsonString = "";
+
+        try{
+            jsonString = new String(Base64.decodeBase64(b64payload), "UTF-8");
+            
+        }catch(UnsupportedEncodingException e){
+            System.out.println("error");
+        }
+        
+        
+        Map<String, Object> sub = null;
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            sub = mapper.readValue(jsonString, Map.class);
+        }catch(Exception e){
+            System.out.println("Error");
+        }
+
+        
+
+        String sub_string = sub.get("sub").toString();
+        Map<String, Object> map = null;
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            map = mapper.readValue(sub_string, Map.class);
+        }catch(Exception e){
+            System.out.println("Error");
+        }
+
+        String uuid = map.get("uuid").toString();
+        String publicKey =  map.get("publicKey").toString();
+
+        System.out.println(uuid);
+
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table;
+        String sql = "SELECT * FROM " + readingTable  + " WHERE userid = (SELECT userid FROM " + authTokenTable  + " WHERE uuid = ?)"; 
         List<Reading> readings = new ArrayList<>();
-        try {
+        //The SELECT query.
+        try{
             PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, uuid);
             ResultSet result = statement.executeQuery();
+            
             while (result.next()) {
-                Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
+                Reading reading = new Reading(result.getInt("id"), result.getInt("userid"),
                         result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
                 readings.add(reading);
             }
@@ -107,41 +198,8 @@ public class ReadingDAO {
             }
         }
         return readings;
-    }
 
-    /**
-     * Retrieves all the elements of the readings table and stores it in an array list.
-     *
-     * @return
-     *          An arraylist containing the readings table.
-     */
-    @GetMapping(value ="/readings", params="patient_no")
-    @ResponseBody
-    public List<Reading> getAllReadingsOfPatient(@RequestParam("patient_no") String patient_no) {
-        Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table  + " WHERE patient_no = ?"; //The SELECT query.
-        List<Reading> readings = new ArrayList<>(); //The array list to store the tuples.
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, patient_no);
-            ResultSet result = statement.executeQuery();
-            //Iterates over the result set and adds into the array list after executing query.
-            while (result.next()) {
-                Reading reading = new Reading(result.getInt("id"), result.getString("patient_no"),
-                        result.getDate("date_created").toString(), result.getString("laterality"), result.getString("comments"));
-                readings.add(reading);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return readings;
+        
     }
 
 
@@ -168,7 +226,7 @@ public class ReadingDAO {
             if (result.next()) {
                 reading = new Reading();
                 reading.setId(id);
-                reading.setPatient_no(result.getString("patient_no"));
+                reading.setUserId(result.getInt("userid"));
                 reading.setDate_created(result.getString("date_created"));
                 reading.setLaterality(result.getString("laterality"));
                 reading.setComments(result.getString("comments"));
@@ -195,19 +253,19 @@ public class ReadingDAO {
      */
     @GetMapping("/reading")
     @ResponseBody
-    public Reading getReadingOfPatient(@RequestParam("patient_no") String patient_no) {
+    public Reading getReadingOfPatient(@RequestParam("userid") int userid) {
         Connection connection = dbConnection.getConnection();
         Reading reading = null;
-        String sql = "SELECT * FROM " + table + " WHERE patient_no = ?"; //The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE userid = ?"; //The SELECT Query
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, patient_no);
+            statement.setInt(1, userid);
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
                 reading = new Reading();
                 reading.setId(result.getInt("id"));
-                reading.setPatient_no(patient_no);
+                reading.setUserId(userid);
                 reading.setDate_created(result.getString("date_created"));
                 reading.setLaterality(result.getString("laterality"));
                 reading.setComments(result.getString("comments"));
@@ -278,7 +336,7 @@ public class ReadingDAO {
      *          The SQL query.
      * @param id
      *          The reading ID
-     * @param patient_no
+     * @param userid
      *          The patient number
      * @param date_created
      *          The date created
@@ -289,13 +347,13 @@ public class ReadingDAO {
      * @return
      *          The id of the reading.
      */
-    public int insertReading(String sql, int id, String patient_no, String date_created, String laterality, String comments) {
+    public int insertReading(String sql, int id, int userid, String date_created, String laterality, String comments) {
         Connection connection = dbConnection.getConnection();
         //SQL Insert Statement
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
-            statement.setString(2, patient_no);
+            statement.setInt(2, userid);
             statement.setString(3, date_created);
             statement.setString(4, laterality);
             statement.setString(5, comments);
@@ -382,7 +440,7 @@ public class ReadingDAO {
             //Updates the date
             reading.setDate_created(date.toString());
             reading_id = reading.getId();
-            return insertReading(sql, reading.getId(), reading.getPatient_no(), date.toString(), reading.getLaterality(), reading.getComments());
+            return insertReading(sql, reading.getId(), reading.getUserId(), date.toString(), reading.getLaterality(), reading.getComments());
         }
 
     }
@@ -443,7 +501,7 @@ public class ReadingDAO {
                 " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, reading.getPatient_no());
+            statement.setInt(1, reading.getUserId());
             statement.setString(2, reading.getDate_created());
             statement.setString(3, reading.getLaterality());
             statement.setString(4, reading.getComments());

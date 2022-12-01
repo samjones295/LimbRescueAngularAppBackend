@@ -15,6 +15,6 @@ public interface AuthTokenRepository extends JpaRepository<AuthToken, Integer> {
   Optional<AuthToken> findById(int id);
 
   @Modifying
-  @Query(value = "INSERT INTO access_token (uuid, userid, token, exp, createdat) SELECT :uuid, id, :accessToken, :expiryDate, :createdat FROM user WHERE username = :username", nativeQuery = true)
+  @Query(value = "INSERT INTO auth_token (uuid, userid, token, exp, createdat) SELECT :uuid, id, :accessToken, :expiryDate, :createdat FROM user WHERE username = :username", nativeQuery = true)
   public void insertToken(String uuid, String accessToken, Timestamp expiryDate, Timestamp createdat, String username);
 }

@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.Optional;
 
 import javax.validation.Valid;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,18 +34,19 @@ import com.limbrescue.limbrescueangularappbackend.models.User;
 import com.limbrescue.limbrescueangularappbackend.models.AuthToken;
 import com.limbrescue.limbrescueangularappbackend.payload.request.LoginRequest;
 import com.limbrescue.limbrescueangularappbackend.payload.request.SignupRequest;
-import com.limbrescue.limbrescueangularappbackend.payload.response.JwtResponse;
+import com.limbrescue.limbrescueangularappbackend.payload.response.AuthenticationResponse;
 import com.limbrescue.limbrescueangularappbackend.payload.response.MessageResponse;
 import com.limbrescue.limbrescueangularappbackend.service.UserServiceImpl;
 import com.limbrescue.limbrescueangularappbackend.service.AuthTokenServiceImpl;
 import com.limbrescue.limbrescueangularappbackend.security.jwt.JwtUtils;
 import com.limbrescue.limbrescueangularappbackend.security.encryption.AES;
+import com.limbrescue.limbrescueangularappbackend.security.cookie.AuthTokenCookie;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8081", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -67,7 +69,7 @@ public class AuthController {
 
 
   @PostMapping("/signin")
-  public void authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
+  public void authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletResponse response) throws Exception {
   
     ObjectMapper cognitoMapper = new ObjectMapper();
     String username = loginRequest.getUsername();
@@ -79,6 +81,10 @@ public class AuthController {
     String uuid = UUID.randomUUID().toString();
     String exp = payload.getExp();
     String key = authtokenService.insertToken(uuid, credentials, exp, username);
+    String subject = new AuthenticationResponse(uuid, key).toString();
+    String auth_jwt = jwtUtils.generateJwtToken(subject);
+    AuthTokenCookie authTokenCookie = new AuthTokenCookie(auth_jwt);
+    response.addCookie(authTokenCookie);
   }
 
 
