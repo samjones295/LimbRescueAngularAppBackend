@@ -1,4 +1,4 @@
-package com.limbrescue.limbrescueangularappbackend.controllers;
+package com.limbrescue.limbrescueangularappbackend.controller;
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.sql.Timestamp;
 import java.sql.*;
 import java.util.*;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -28,17 +29,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoJWTParser;
 import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoHelper;
 import com.limbrescue.limbrescueangularappbackend.models.CognitoJWT;
-import com.limbrescue.limbrescueangularappbackend.models.ERole;
-import com.limbrescue.limbrescueangularappbackend.models.Role;
 import com.limbrescue.limbrescueangularappbackend.models.User;
 import com.limbrescue.limbrescueangularappbackend.payload.request.LoginRequest;
 import com.limbrescue.limbrescueangularappbackend.payload.request.SignupRequest;
 import com.limbrescue.limbrescueangularappbackend.payload.response.JwtResponse;
 import com.limbrescue.limbrescueangularappbackend.payload.response.MessageResponse;
-import com.limbrescue.limbrescueangularappbackend.repository.RoleRepository;
-import com.limbrescue.limbrescueangularappbackend.repository.UserRepository;
+import com.limbrescue.limbrescueangularappbackend.service.UserServiceImpl;
 import com.limbrescue.limbrescueangularappbackend.security.jwt.JwtUtils;
-import com.limbrescue.limbrescueangularappbackend.security.services.UserDetailsImpl;
 import com.limbrescue.limbrescueangularappbackend.security.encryption.AES;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,15 +46,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-  @Autowired
-  AuthenticationManager authenticationManager;
 
   @Autowired
-  UserRepository userRepository;
-
-  @Autowired
-  RoleRepository roleRepository;
-
+  UserServiceImpl userService;
 
   @Autowired
   PasswordEncoder encoder;
@@ -77,8 +68,8 @@ public class AuthController {
         Timestamp exp = new Timestamp(Long.parseLong(expiryDate)*1000);
         Timestamp createdat = new Timestamp(System.currentTimeMillis());
 
-  
-        
+            
+
         return key;
     }
 
@@ -91,9 +82,7 @@ public class AuthController {
     String credentials = cognitoHelper.getCredentials(payload.getIss(), cognito_jwt).toString();
     String uuid = UUID.randomUUID().toString();
     String key = this.InsertHashedToken(uuid, loginRequest.getUsername(), credentials, payload.getExp());
-    
-    System.out.println(userRepository.findAll());
-   
+
   }
 
 

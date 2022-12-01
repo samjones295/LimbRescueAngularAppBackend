@@ -204,7 +204,7 @@ public class SRPAuthenticationHelper {
         String usernameInternal = challenge.getChallengeParameters().get("USERNAME");
 
         BigInteger B = new BigInteger(challenge.getChallengeParameters().get("SRP_B"), 16);
-        if (B.mod(SPAAuthenticationHelper.N).equals(BigInteger.ZERO)) {
+        if (B.mod(SRPAuthenticationHelper.N).equals(BigInteger.ZERO)) {
             throw new SecurityException("SRP error, B cannot be zero");
         }
 
