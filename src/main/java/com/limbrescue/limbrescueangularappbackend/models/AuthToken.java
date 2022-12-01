@@ -2,6 +2,7 @@ package com.limbrescue.limbrescueangularappbackend.models;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -9,59 +10,48 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user", 
+@Table(name = "access_token", 
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "id"),
-      @UniqueConstraint(columnNames = "username") 
+      @UniqueConstraint(columnNames = "uuid") 
     })
 
-public class User {
+public class AuthToken {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   @NotBlank
-  @Size(max = 255)
-  private String username;
+  @Size(max = 128)
+  private String uuid;
 
-  @Size(max = 35)
-  private String givenname;
+  private int userid;
 
-  @Size(max = 35)
-  private String middlename;
+  @Size(max = 2047)
+  private String token;
 
-  @Size(max = 35)
-  private String familyname;
-
-  private Boolean confirmed;
+  private Timestamp exp;
 
   private Timestamp createdat;
 
-  private Timestamp updatedat;
-
-
-  public User() {
+  public AuthToken() {
   }
 
-  public User(String username) {
-    this.username = username;
 
-  }
-
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
-  public String getUsername() {
-    return username;
+  public String getToken() {
+    return token;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setToken(String token) {
+    this.token = token;
   }
 
 }

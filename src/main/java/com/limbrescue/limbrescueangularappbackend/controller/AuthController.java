@@ -30,11 +30,13 @@ import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoJWTParser;
 import com.limbrescue.limbrescueangularappbackend.aws_cognito.CognitoHelper;
 import com.limbrescue.limbrescueangularappbackend.models.CognitoJWT;
 import com.limbrescue.limbrescueangularappbackend.models.User;
+import com.limbrescue.limbrescueangularappbackend.models.AuthToken;
 import com.limbrescue.limbrescueangularappbackend.payload.request.LoginRequest;
 import com.limbrescue.limbrescueangularappbackend.payload.request.SignupRequest;
 import com.limbrescue.limbrescueangularappbackend.payload.response.JwtResponse;
 import com.limbrescue.limbrescueangularappbackend.payload.response.MessageResponse;
 import com.limbrescue.limbrescueangularappbackend.service.UserServiceImpl;
+import com.limbrescue.limbrescueangularappbackend.service.AuthTokenServiceImpl;
 import com.limbrescue.limbrescueangularappbackend.security.jwt.JwtUtils;
 import com.limbrescue.limbrescueangularappbackend.security.encryption.AES;
 
@@ -51,6 +53,9 @@ public class AuthController {
   UserServiceImpl userService;
 
   @Autowired
+  AuthTokenServiceImpl authtokenService;
+
+  @Autowired
   PasswordEncoder encoder;
 
   @Autowired
@@ -60,29 +65,20 @@ public class AuthController {
   CognitoHelper cognitoHelper;
 
 
-  //Inserts Hashed Access Token associated with a user to database
-    public String InsertHashedToken(String uuid, String username, String accessToken, String expiryDate) {
-        AES aes_encryption = new AES();
-        String key = aes_encryption.init();
-        String token = aes_encryption.encrypt(accessToken, key);
-        Timestamp exp = new Timestamp(Long.parseLong(expiryDate)*1000);
-        Timestamp createdat = new Timestamp(System.currentTimeMillis());
-
-            
-
-        return key;
-    }
 
   @PostMapping("/signin")
   public void authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
   
     ObjectMapper cognitoMapper = new ObjectMapper();
-    String cognito_jwt = cognitoHelper.validateUser(loginRequest.getUsername(), loginRequest.getPassword());
+    String username = loginRequest.getUsername();
+    String password = loginRequest.getPassword();
+    String cognito_jwt = cognitoHelper.validateUser(username, password);
     CognitoJWT payload = cognitoMapper.readValue(CognitoJWTParser.getPayload(cognito_jwt).toString(), CognitoJWT.class);
-    String credentials = cognitoHelper.getCredentials(payload.getIss(), cognito_jwt).toString();
+    String iss = payload.getIss();
+    String credentials = cognitoHelper.getCredentials(iss, cognito_jwt).toString();
     String uuid = UUID.randomUUID().toString();
-    String key = this.InsertHashedToken(uuid, loginRequest.getUsername(), credentials, payload.getExp());
-
+    String exp = payload.getExp();
+    String key = authtokenService.insertToken(uuid, credentials, exp, username);
   }
 
 

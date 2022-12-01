@@ -11,5 +11,6 @@ public interface AuthTokenService {
   
 
     public Optional<AuthToken> findById(int id);
+    public String insertToken(String uuid, String username, String accessToken, String expiryDate);
     
 }

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.limbrescue.limbrescueangularappbackend.models.AuthToken;
 
 @Repository
-public interface AuthTokenRepository extends JpaRepository<AuthToken, int> {
-  Optional<User> findById(int id);
-  Boolean existsById();
+public interface AuthTokenRepository extends JpaRepository<AuthToken, Integer> {
+  Optional<AuthToken> findById(int id);
+
+  @Query(value = "INSERT INTO access_token (uuid, userid, token, exp, createdat) SELECT :uuid, id, :accessToken, :expiryDate, :createdat FROM user WHERE username = :username", nativeQuery = true)
+    public List<Product> getProductsWithMaxPrice(String uuid, String accessToken, Timestamp expiryDate, Timestamp createdat, String username);
 }

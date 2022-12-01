@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.limbrescue.limbrescueangularappbackend.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
 @Component
@@ -21,12 +20,11 @@ public class JwtUtils {
   @Value("${limbrescue.app.jwtExpirationMs}")
   private int jwtExpirationMs;
 
-  public String generateJwtToken(Authentication authentication) {
+  public String generateJwtToken(String subject) {
 
-    UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
     return Jwts.builder()
-        .setSubject((userPrincipal.getUsername()))
+        .setSubject(subject)
         .setIssuedAt(new Date())
         .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
         .signWith(SignatureAlgorithm.HS512, jwtSecret)

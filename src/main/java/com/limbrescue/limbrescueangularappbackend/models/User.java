@@ -2,6 +2,7 @@ package com.limbrescue.limbrescueangularappbackend.models;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -48,11 +49,11 @@ public class User {
 
   }
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
