@@ -28,4 +28,5 @@ public class UserServiceImpl implements UserService {
   public Optional<User> findByUsername(String username) {
     return user.findByUsername(username);
   }
+
 }
