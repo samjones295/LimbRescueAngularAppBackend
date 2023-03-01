@@ -3,7 +3,7 @@ import com.limbrescue.limbrescueangularappbackend.model.AuthenticationBean;
 import org.springframework.web.bind.annotation.*;
 
 //Port number 8081
-@CrossOrigin(origins = "*")
+@CrossOrigin(originPatterns = "*",allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/v1")
 public class BasicAuthController {

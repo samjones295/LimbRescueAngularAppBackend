@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-@CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(originPatterns = "*",allowedHeaders = "*", allowCredentials = "true",methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping("/api/")
 public class ReadingDAO {
