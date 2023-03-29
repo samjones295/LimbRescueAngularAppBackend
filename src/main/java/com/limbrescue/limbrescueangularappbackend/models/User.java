@@ -1,6 +1,8 @@
 package com.limbrescue.limbrescueangularappbackend.models;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.sql.Timestamp;
 
@@ -9,14 +11,17 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "user", 
-    uniqueConstraints = { 
-      @UniqueConstraint(columnNames = "id"),
-      @UniqueConstraint(columnNames = "username") 
-    })
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class User {
+@Entity
+@Table(name = "user", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "id"),
+    @UniqueConstraint(columnNames = "username")
+})
+
+public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -40,7 +45,6 @@ public class User {
 
   private Timestamp updatedat;
 
-
   public User() {
   }
 
@@ -63,6 +67,45 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  @Enumerated(EnumType.STRING)
+  private Role role;
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+
+    return List.of(new SimpleGrantedAuthority(role.name()));
+  }
+
+  @Override
+  public String getPassword() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    // TODO Auto-generated method stub
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    // TODO Auto-generated method stub
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    // TODO Auto-generated method stub
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    // TODO Auto-generated method stub
+    return true;
   }
 
 }

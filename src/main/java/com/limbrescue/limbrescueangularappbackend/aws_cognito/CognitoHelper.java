@@ -139,7 +139,7 @@ public class CognitoHelper {
 
     public String validateUser(String username, String password) {
         SRPAuthenticationHelper helper = new SRPAuthenticationHelper(POOL_ID, CLIENTAPP_ID, CLIENT_SECRET, REGION);
-        return helper.PerformSRPAuthentication("davecverano@gmail.com", "Asdf123!");
+        return helper.PerformSRPAuthentication(username, password);
     }
 
     /**

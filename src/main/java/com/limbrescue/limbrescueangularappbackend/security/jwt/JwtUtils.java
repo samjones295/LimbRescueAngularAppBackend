@@ -22,7 +22,6 @@ public class JwtUtils {
 
   public String generateJwtToken(String subject) {
 
-
     return Jwts.builder()
         .setSubject(subject)
         .setIssuedAt(new Date())
@@ -32,7 +31,13 @@ public class JwtUtils {
   }
 
   public String getUserNameFromJwtToken(String token) {
+    // System.out.println("Help" +
+    // Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject());
+
+    // System.out.println("Help " + token + ": " + jwtSecret);
+    // System.out.println("Hello" + jwtSecret.getBytes());
     return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+
   }
 
   public boolean validateJwtToken(String authToken) {
