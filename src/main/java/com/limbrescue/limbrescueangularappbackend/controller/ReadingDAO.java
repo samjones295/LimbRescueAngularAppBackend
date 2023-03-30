@@ -301,7 +301,7 @@ public class ReadingDAO {
             @RequestParam("patient_no") String patient_no, HttpServletResponse res)
             throws IOException, URISyntaxException {
         Connection connection = dbConnection.getConnection();
-        String sql = "SELECT * FROM " + table + " WHERE id=? AND patient_no=?"; // The SELECT Query
+        String sql = "SELECT * FROM " + table + " WHERE id=? AND userid=?"; // The SELECT Query
 
         JSONArray output_list = new JSONArray();
         try {
@@ -315,7 +315,7 @@ public class ReadingDAO {
             while (result.next()) {
                 JSONObject output = new JSONObject();
                 output.put("id", Integer.toString(result.getInt("id")));
-                output.put("patient_no", result.getString("patient_no"));
+                output.put("userid", result.getString("userid"));
                 output.put("date_created", result.getString("date_created"));
                 output.put("laterality", result.getString("laterality"));
                 output.put("comments", result.getString("comments"));
@@ -398,7 +398,7 @@ public class ReadingDAO {
         } else {
             reading.setId(id);
             String sql = "INSERT INTO " + table
-                    + " (id, patient_no, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
+                    + " (id, userid, date_created, laterality, comments) VALUES(?, ?, ?, ?, ?)";
             // Date to be parsed.
             String create = reading.getDate_created();
             // Splits the date into the components.
@@ -511,7 +511,7 @@ public class ReadingDAO {
     public void updateReading(@RequestBody Reading reading, @PathVariable("id") int id) {
         Connection connection = dbConnection.getConnection();
         // SQL Update Statement
-        String sql = "UPDATE " + table + " SET patient_no = ?, date_created = ?, laterality = ?, comments= ? " +
+        String sql = "UPDATE " + table + " SET userid = ?, date_created = ?, laterality = ?, comments= ? " +
                 " WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -589,3 +589,4 @@ public class ReadingDAO {
         }
     }
 }
+

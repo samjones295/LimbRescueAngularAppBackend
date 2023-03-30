@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @CrossOrigin(originPatterns = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/")
 public class GroupReadingDAO {
     /**
      * The name of the table.

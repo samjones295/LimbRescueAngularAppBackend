@@ -33,7 +33,7 @@ import java.util.Date;
         RequestMethod.GET,
         RequestMethod.POST })
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/")
 public class ReadingDataDAO {
     /**
      * The name of the table.
